@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>User</title>
+<link href="views/user/home/home.css" rel="stylesheet" />
+<link href="common/user/header/header.css" rel="stylesheet" />
+<link href="common/user/footer/footer.css" rel="stylesheet" />
 </head>
 <body>
-	<%@ include file="/common/user/header.jsp"%>
+	<%@ include file="/common/user/header/header.jsp"%>
 	<decorator:body />
-	<%@ include file="/common/user/footer.jsp"%>
+	<%@ include file="/common/user/footer/footer.jsp"%>
 </body>
 </html>
