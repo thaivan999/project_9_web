@@ -20,6 +20,12 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/product_detail/product_detail.css"/>' rel="stylesheet" type="text/css">
+
+
+<!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 </head>
 <body>
 	<%@ include file="/common/user/header/header.jsp"%>
