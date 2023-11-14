@@ -1,6 +1,5 @@
 
 /* Common */
-
 .no-border {
 	border: none!important; 
 }
@@ -17,23 +16,6 @@
 	font-weight: bold!important;
 }
 
-.breadcrumb {
-	background: none;
-}
-
-.breadcrumb-item+.breadcrumb-item::before {
-    color: #000!important;
-}
-
-.btn {
-	border-radius: 0.75rem!important;
-}
-
-.btn-dark {
-    background-color: #000!important;
-    border-color: #000!important;
-}
-
 .ml-1 {
 	margin-left: 1rem!important;
 }
@@ -44,4 +26,32 @@
 
 .fs-18 {
 	font-size: 1.25rem!important;
+}
+
+/* breadcrumb */
+.breadcrumb {
+	background: none;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    color: #000!important;
+}
+
+/* btn */
+.btn {
+	border-radius: 0.75rem!important;
+}
+
+.btn-dark {
+    background-color: #000!important;
+    border-color: #000!important;
+}
+
+/* card */
+.card {
+    border: none; 
+}
+
+.card-img-top {
+    border-radius: 15px; 
 }
