@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="/common/admin/header.jsp"%>
+	<%@ include file="/common/admin/header/header.jsp"%>
 	<decorator:body />
-	<%@ include file="/common/admin/footer.jsp"%>
+	<%@ include file="/common/admin/footer/footer.jsp"%>
 </body>
 </html>
