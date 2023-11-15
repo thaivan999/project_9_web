@@ -20,6 +20,7 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/product_detail/product_detail.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/views/user/order/order.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="/common/user/header/header.jsp"%>
