@@ -10,6 +10,9 @@
 	<decorator name="user" page="user.jsp">
 		<pattern>/*</pattern>
 	</decorator>
+	<decorator name="security" page="security.jsp">
+		<pattern>/security*</pattern>
+	</decorator>
 	<excludes>
 		<pattern>/api*</pattern>
 	</excludes>
