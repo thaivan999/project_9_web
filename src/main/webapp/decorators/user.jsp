@@ -23,6 +23,7 @@
 <link href='<c:url value="/views/user/order/order.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/branches/branches.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/branches_info/branches_info.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/views/user/cart/cart.css"/>' rel="stylesheet" type="text/css">
 
 
 <!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
