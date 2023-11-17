@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +28,10 @@
 					</div>
 				</div>
 
-				<div class="quantity-container">
-					<button class="plus-minus">-</button>
-					<span class="quantity">1</span>
-					<button class="plus-minus">+</button>
+				<div class="counter">
+					<span class="down" onClick='decreaseCount(event, this)'>-</span> <input
+						type="text" value="1"> <span class="up"
+						onClick='increaseCount(event, this)'>+</span>
 				</div>
 			</li>
 			<li class="cart-item">
@@ -45,10 +45,10 @@
 					</div>
 				</div>
 
-				<div class="quantity-container">
-					<button class="plus-minus">-</button>
-					<span class="quantity">1</span>
-					<button class="plus-minus">+</button>
+				<div class="counter">
+					<span class="down" onClick='decreaseCount(event, this)'>-</span> <input
+						type="text" value="1"> <span class="up"
+						onClick='increaseCount(event, this)'>+</span>
 				</div>
 			</li>
 			<li class="cart-item">
@@ -62,10 +62,10 @@
 					</div>
 				</div>
 
-				<div class="quantity-container">
-					<button class="plus-minus">-</button>
-					<span class="quantity">1</span>
-					<button class="plus-minus">+</button>
+				<div class="counter">
+					<span class="down" onClick='decreaseCount(event, this)'>-</span> <input
+						type="text" value="1"> <span class="up"
+						onClick='increaseCount(event, this)'>+</span>
 				</div>
 			</li>
 			<li class="cart-item">
@@ -79,10 +79,10 @@
 					</div>
 				</div>
 
-				<div class="quantity-container">
-					<button class="plus-minus">-</button>
-					<span class="quantity">1</span>
-					<button class="plus-minus">+</button>
+				<div class="counter">
+					<span class="down" onClick='decreaseCount(event, this)'>-</span> <input
+						type="text" value="1"> <span class="up"
+						onClick='increaseCount(event, this)'>+</span>
 				</div>
 			</li>
 			<!-- Add more list items as needed -->
@@ -102,7 +102,8 @@
 					class="price-cart">35.000</span>
 			</div>
 
-			<button class="order-btn">Đặt hàng</button>
+			<!-- <button class="order-btn">Đặt hàng</button> -->
+			<button class="btn btn-primary" type="submit">Đặt hàng</button>
 		</div>
 	</div>
 </body>
