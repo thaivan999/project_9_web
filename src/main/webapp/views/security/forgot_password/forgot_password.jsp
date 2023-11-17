@@ -13,7 +13,7 @@
                 <div class="col-12 col-md-8 col-lg-8 col-xl-6">
                     <div class="card rounded-4 shadow">
                         <div class="card-body p-md-5 p-sm-2">
-                            <h2 class="fw-bold mb-4">Forgot password</h2>
+                            <h2 class="fw-bold mb-4 text-center">Forgot password</h2>
                             <div class="alert">
 								<c:if test="${not empty message}">
 									<div class="alert alert-success">${message}</div>
@@ -41,6 +41,9 @@
                             </form>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="forgot_password.png" alt="Image" class="img-fluid me-3">
                 </div>
             </div>
         </div>
