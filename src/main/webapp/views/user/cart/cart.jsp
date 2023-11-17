@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="/common/taglib.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Giỏ hàng</title>
-<link rel="stylesheet" type="text/css" href=".cart.css">
 </head>
 <body>
 	<!-- Content -->
@@ -21,11 +20,12 @@
 			<li class="cart-item">
 				<div class="product-container">
 					<input class="check-box-cart-item" type="checkbox"> <img
-						class="image-cart" src="path-to-image.jpg" alt="">
-                    <div class="product-cart">
-                        <span class="name-cart">Product Name</span> <span
-						class="price-cart">35.000</span>
-                    </div>					
+						class="image-cart" src="https://dummyimage.com/120x120/d6d6d6"
+						alt="">
+					<div class="product-cart">
+						<span class="name-cart">Product Name</span> <span
+							class="price-cart">35.000</span>
+					</div>
 				</div>
 
 				<div class="quantity-container">
@@ -37,11 +37,46 @@
 			<li class="cart-item">
 				<div class="product-container">
 					<input class="check-box-cart-item" type="checkbox"> <img
-						class="image-cart" src="path-to-image.jpg" alt="">
-                    <div class="product-cart">
-                        <span class="name-cart">Product Name</span> <span
-                        class="price-cart">35.000</span>
-                    </div>
+						class="image-cart" src=https://dummyimage.com/120x120/d6d6d6
+						alt="">
+					<div class="product-cart">
+						<span class="name-cart">Product Name</span> <span
+							class="price-cart">35.000</span>
+					</div>
+				</div>
+
+				<div class="quantity-container">
+					<button class="plus-minus">-</button>
+					<span class="quantity">1</span>
+					<button class="plus-minus">+</button>
+				</div>
+			</li>
+			<li class="cart-item">
+				<div class="product-container">
+					<input class="check-box-cart-item" type="checkbox"> <img
+						class="image-cart" src=https://dummyimage.com/120x120/d6d6d6
+						alt="">
+					<div class="product-cart">
+						<span class="name-cart">Product Name</span> <span
+							class="price-cart">35.000</span>
+					</div>
+				</div>
+
+				<div class="quantity-container">
+					<button class="plus-minus">-</button>
+					<span class="quantity">1</span>
+					<button class="plus-minus">+</button>
+				</div>
+			</li>
+			<li class="cart-item">
+				<div class="product-container">
+					<input class="check-box-cart-item" type="checkbox"> <img
+						class="image-cart" src=https://dummyimage.com/120x120/d6d6d6
+						alt="">
+					<div class="product-cart">
+						<span class="name-cart">Product Name</span> <span
+							class="price-cart">35.000</span>
+					</div>
 				</div>
 
 				<div class="quantity-container">
@@ -55,18 +90,18 @@
 
 		<!-- Total price -->
 		<div class="order-container">
-				<!-- Check box -->
+			<!-- Check box -->
 			<div class="check-container">
-				<input class="check-box-cart" type="checkbox"> 
-				<span class="all-order">Tất cả</span> 
+				<input class="check-box-cart" type="checkbox"> <span
+					class="all-order">Tất cả</span>
 			</div>
-			
+
 			<!-- Total Price -->
 			<div class="total-price">
-				<span class="total-price-title">Tổng giá:</span> 
-				<span class="price-cart">35.000</span>
+				<span class="total-price-title">Tổng giá:</span> <span
+					class="price-cart">35.000</span>
 			</div>
-			
+
 			<button class="order-btn">Đặt hàng</button>
 		</div>
 	</div>
