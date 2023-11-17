@@ -1,17 +1,12 @@
-@charset "ISO-8859-1";
-
 .content {
 	width: 100%;
-
 }
 
-.title {
+.title h1{
 	color: #000;
-	font-family: Inter;
-	font-size: 24px;
-	font-weight: 700;
 	line-height: 48px;
 	text-align: center;
+	font-weight: 700;
 }
 
 .list-cart {
@@ -62,7 +57,6 @@
 
 .name-cart {
 	color: #000;
-	font-family: Inter;
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 700;
@@ -71,34 +65,46 @@
 
 .price-acrt {
 	color: #444;
-	font-family: Inter;
 	font-size: 24px;
 	font-style: normal;
 	font-weight: 700;
 	line-height: 36px;
-	/* 150% */
 }
 
-.quantity-container {
-	width: 24px;
+
+.counter {
+	width: 150px;
+	margin-left: 120px;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: center;
+	border: solid 1px #B6B6B6;
 }
 
-.plus-minus {
-	width: 24px;
-	height: 24px;
-	background: #B6B6B6;
+.counter input {
+	width: 50px;
+	border: 0;
+	line-height: 30px;
+	font-size: 20px;
+	text-align: center;	
+	appearance: none;
+	outline: 0;
+	margin: 0 16px!important;
 }
 
-.quantity {
-	display: flex;
-	padding: 0 32px;
-	flex-direction: column;
+.counter span {
+	display: inline-flex;
+	background-color: #B6B6B6;
+	font-size: 25px;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid #B6B6B6;
+	cursor: pointer;
+	color: #000;
+	user-select: none;
+	width: 38px;
 }
+
+
 
 .order-container {
 	display: flex;
@@ -126,9 +132,7 @@
 
 .all-order {
 	color: #000;
-	font-family: Inter;
 	font-size: 20px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 30px;
 	margin-left: 16px;
@@ -142,32 +146,23 @@
 
 .total-price-title {
 	color: #000;
-	font-family: Inter;
-	font-size: 20px;
-	font-style: normal;
+	font-size: 24px;
 	font-weight: 700;
 	line-height: 30px;
 }
 
 .price-cart {
 	color: #444;
-	font-family: Inter;
 	font-size: 32px;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 48px;
 	margin-left: 16px;
 }
 
-.order-btn {
-	color: #fff;
-	font-size: 32px;
-	font-weight: 700;
-	display: flex;
-	line-height: 30px;
-	padding: 12px 32px;
-	justify-content: center;
-	align-items: center;
-	border-radius: 12px;
-	background: #000;
+.btn-primary{
+	font-size: 28px !important;
+	background-color: #000!important;
+	padding: 12px 32px !important;
+	color: #fff!important;
+	border: none!important	;
 }
