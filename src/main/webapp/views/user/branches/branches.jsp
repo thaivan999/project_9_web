@@ -20,12 +20,15 @@
 			</section>
 			<section class="branches col col-9">
 				<div class="container">
-					<div class="row">
+					<div class="row gx-5">
 						<div class="col col-6">
 							<div class="branch">
-								<img
-									src="https://tse4.mm.bing.net/th?id=OIP.IWtYygKAS-cXa5lBWO8XQQHaE9&pid=Api&P=0&h=180"
-									class="branch-image" />
+								<div class="branch_image-container">
+									<img
+										src="https://i.pinimg.com/originals/82/53/c6/8253c636b4cc1664cb6f79ebf33ea127.jpg"
+										class="branch-image" />
+									<div class="branch-slide"></div>
+								</div>
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
@@ -56,9 +59,12 @@
 						</div>
 						<div class="col col-6">
 							<div class="branch">
-								<img
-									src="https://tse4.mm.bing.net/th?id=OIP.IWtYygKAS-cXa5lBWO8XQQHaE9&pid=Api&P=0&h=180"
-									class="branch-image" />
+								<div class="branch_image-container">
+									<img
+										src="https://i.pinimg.com/originals/82/53/c6/8253c636b4cc1664cb6f79ebf33ea127.jpg"
+										class="branch-image" />
+									<div class="branch-slide"></div>
+								</div>
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
@@ -89,9 +95,12 @@
 						</div>
 						<div class="col col-6">
 							<div class="branch">
-								<img
-									src="https://tse4.mm.bing.net/th?id=OIP.IWtYygKAS-cXa5lBWO8XQQHaE9&pid=Api&P=0&h=180"
-									class="branch-image" />
+								<div class="branch_image-container">
+									<img
+										src="https://i.pinimg.com/originals/82/53/c6/8253c636b4cc1664cb6f79ebf33ea127.jpg"
+										class="branch-image" />
+									<div class="branch-slide"></div>
+								</div>
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
@@ -122,9 +131,12 @@
 						</div>
 						<div class="col col-6">
 							<div class="branch">
-								<img
-									src="https://tse4.mm.bing.net/th?id=OIP.IWtYygKAS-cXa5lBWO8XQQHaE9&pid=Api&P=0&h=180"
-									class="branch-image" />
+								<div class="branch_image-container">
+									<img
+										src="https://i.pinimg.com/originals/82/53/c6/8253c636b4cc1664cb6f79ebf33ea127.jpg"
+										class="branch-image" />
+									<div class="branch-slide"></div>
+								</div>
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">

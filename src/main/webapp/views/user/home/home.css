@@ -5,22 +5,58 @@
 	--neutral-05: rgba(214, 214, 214, 1);
 	--neutral-06: rgba(239, 239, 239, 1);
 	--neutral-07: rgba(255, 255, 255, 1);
+	--clr-primary: #f7cfc8;
+	--clr-secondary: #4d84c8;
+	--clr-wht: #fffcf6;
 }
 
 .c-item {
-    height: 400px;
+	height: 400px;
 }
 
 .c-img {
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 16px;
 }
 
 .home {
 	background-color: #ffffff;
 	width: 100%;
 	min-height: 200px;
+	background-color: #edf0f3;
+}
+
+.home-title {
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	padding: 32px 0 48px 0;
+}
+
+.home-title h1 {
+	color: var(--clr-primary);
+	font-family: "Luckiest Guy", cursive;
+	font-size: 160px;
+	letter-spacing: 10px;
+	text-align: center;
+	text-shadow: -6px -6px var(--clr-secondary), -5px -5px var(--clr-secondary),
+		-4px -4px var(--clr-secondary), -3px -3px var(--clr-secondary), -2px -2px var(--clr-secondary),
+		-1px -1px var(--clr-secondary), 1px 1px var(--clr-secondary), 2px 2px var(--clr-secondary),
+		3px 3px var(--clr-secondary), 4px 4px var(--clr-secondary), 5px 5px var(--clr-secondary),
+		6px 6px var(--clr-secondary), 7px 7px var(--clr-secondary), 8px 8px var(--clr-secondary),
+		9px 9px var(--clr-secondary), 10px 10px var(--clr-secondary), 11px 11px var(--clr-secondary),
+		12px 12px var(--clr-secondary), 13px 13px var(--clr-secondary), 14px 14px var(--clr-secondary),
+		15px 15px var(--clr-secondary), 16px 16px var(--clr-secondary), 17px 17px var(--clr-secondary),
+		18px 18px var(--clr-secondary), 19px 19px var(--clr-secondary), 20px 20px var(--clr-secondary),
+		21px 21px var(--clr-secondary), 22px 22px var(--clr-secondary), 23px 23px var(--clr-secondary),
+		24px 24px var(--clr-secondary), 25px 25px var(--clr-secondary), 26px 26px var(--clr-secondary),
+		27px 27px var(--clr-secondary), 25px 25px var(--clr-secondary), 28px 28px var(--clr-secondary),
+		29px 29px var(--clr-secondary), 30px 30px var(--clr-secondary), 31px 31px var(--clr-secondary),
+		32px 32px var(--clr-secondary), 33px 33px var(--clr-secondary), 34px 34px var(--clr-secondary),
+		35px 35px var(--clr-secondary), 36px 36px var(--clr-secondary), 37px 37px var(--clr-secondary),
+		38px 38px var(--clr-secondary), 39px 39px var(--clr-secondary), 40px 40px;
+	width: 100%;
 }
 
 
@@ -35,6 +71,8 @@
 	position: absolute;
 	top: 4px;
 }
+
+
 
 .introduce {
 	margin-top: 40px;
@@ -69,6 +107,7 @@
 	border-radius: 24px;
 	margin-top: 12px;
 	cursor: pointer;
+	transition: all .2s;
 }
 
 .btn-explore:hover {
@@ -92,7 +131,7 @@
 }
 
 .card {
-	transition: all .3s	;
+	transition: all .3s;
 	min-height: 200px !important;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
@@ -102,10 +141,18 @@
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.img-container {
+	overflow: hidden;
+}
+
 .card-image {
 	--size: 250px;
 	width: var(--size);
 	height: var(--size);
 	transition: all .3s;
 	border-radius: 0 !important;
+}
+
+.card:hover .card-image {
+	transform: scale(1.1);
 }

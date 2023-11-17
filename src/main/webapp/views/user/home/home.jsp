@@ -31,7 +31,7 @@
 				</div>
 				<div class="carousel-item c-item">
 					<img
-						src="https://png.pngtree.com/thumb_back/fh260/background/20210903/pngtree-milk-tea-pearl-milk-image_792621.jpg"
+						src="https://static.vecteezy.com/system/resources/previews/001/349/609/original/bubble-tea-milk-splash-advertisement-free-vector.jpg"
 						class="d-block w-100 c-img" alt="..." />
 				</div>
 				<div class="carousel-item c-item">
@@ -51,13 +51,15 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
-
+		<div class="home-title">
+			<h1>Milk Tea</h1>
+		</div>
 		<div class="introduce">
 			<div class="row">
 				<div class="col">
 					<div class="introduce-item">
 						<img class="img-introduce"
-							src="https://tse3.mm.bing.net/th?id=OIP.JjQxSk7CZygExaUzsAhKmgHaEO&pid=Api&P=0&h=180" />
+							src="https://images.deliveryhero.io/image/fd-ph/LH/h6bn-hero.jpg" />
 					</div>
 				</div>
 				<div class="col">
@@ -78,9 +80,11 @@
 			<div class="row">
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -90,9 +94,11 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -102,9 +108,11 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -114,9 +122,11 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -124,7 +134,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="products">
@@ -132,9 +142,11 @@
 			<div class="row">
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -144,9 +156,11 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -156,9 +170,11 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
@@ -168,9 +184,11 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<img
-							src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-							class="card-image card-img-top" alt="...">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
 							<p class="card-text">Some quick example text to build on the
