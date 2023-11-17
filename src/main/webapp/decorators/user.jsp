@@ -19,17 +19,24 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
+
 <link href='<c:url value="/views/user/product_detail/product_detail.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/order/order.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/branches/branches.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/branches_info/branches_info.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/cart/cart.css"/>' rel="stylesheet" type="text/css">
 
-
 <!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+	crossorigin="anonymous">
+<!-- Kha thêm bootstrap bên dưới làm chuyển trang cho slider(HomePage)-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
 </head>
 <body>
 	<%@ include file="/common/user/header/header.jsp"%>
