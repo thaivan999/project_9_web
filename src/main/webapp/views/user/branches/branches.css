@@ -21,20 +21,34 @@ body {
 }
 
 .branches_sidebar_item_link {
+	--c: #1095c1;
+	--s: .15em;
+
+	display: inline-block;
+	line-height: 1.1em;
+	padding-bottom: calc(2.1*var(--s));
+	background:
+		conic-gradient(from 135deg at top, var(--c) 90deg, #0000 0) left 0 bottom var(--s)/calc(2*var(--s)) var(--s) repeat-x,
+		conic-gradient(from -45deg at bottom, var(--c) 90deg, #0000 0) left var(--s) bottom 0/calc(2*var(--s)) var(--s) repeat-x;
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0) 0/var(--_p, 0%) padding-box no-repeat;
+	transition: .5s;
+	font-size: 24px;
+	font-weight: 700;
 	text-decoration: none;
-	font-size: 20px;
-	font-weight: 600;
-	font-style: italic;
-	color: #000 !important;
-	display: block;
-	padding: 12px 16px;
-	border-bottom: 1px solid #ccc;
-	transition: all .2s;
+	color: #000;
+	margin-bottom: 24px;
+}
+
+.branches_sidebar_item_link--active {
+	--_p: 100%;
+	color: var(--c);
 }
 
 .branches_sidebar_item_link:hover {
-	background-color: #ccc;
-	border-radius: 24px;
+	--_p: 100%;
+	color: var(--c);
 	text-decoration: none;
 }
 

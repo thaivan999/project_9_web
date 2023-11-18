@@ -8,7 +8,7 @@
 			<section class="col col-3 branches_sidebar">
 				<ul class="branches_sidebar_list">
 					<li class="branches_sidebar_item"><a
-						class="branches_sidebar_item_link" href="#">TP. Hồ Chí Minh
+						class="branches_sidebar_item_link branches_sidebar_item_link--active" href="#">TP. Hồ Chí Minh
 							(12)</a></li>
 					<li class="branches_sidebar_item"><a
 						class="branches_sidebar_item_link" href="#">Hà Nội (8)</a></li>
