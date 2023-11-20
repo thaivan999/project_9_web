@@ -46,16 +46,26 @@
 				</div>
 
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 footer-content">
-					<img src="https://i.pinimg.com/564x/c9/00/23/c90023ffa7e711b6e533af01c5dfc19f.jpg" alt="Logo thương hiệu">
-					<p>
-						<a href=''>Zalo</a>
-					</p>
-					<p>
-						<a href=''>Facebook</a>
-					</p>
-					<p>
-						<a href=''>Instagram</a>
-					</p>
+					<img
+						src="https://i.pinimg.com/564x/c9/00/23/c90023ffa7e711b6e533af01c5dfc19f.jpg"
+						alt="Logo thương hiệu" />
+					<div class="footer-social d-flex">
+						<p class="me-4" style="font-size: 28px">
+							<a href=''><i class="fa-brands fa-facebook"></i></a>
+						</p>
+						<p class="me-4" style="font-size: 28px">
+							<a href=''><i class="fa-brands fa-square-instagram"></i></a>
+						</p>
+						<p class="me-4" style="font-size: 28px">
+							<a href=''><i class="fa-brands fa-twitter"></i></a>
+						</p>
+						<p class="me-4" style="font-size: 28px">
+							<a href=''><i class="fa-brands fa-linkedin"></i></a>
+						</p>
+						<p class="me-4" style="font-size: 28px">
+							<a href=''><i class="fa-brands fa-tiktok"></i></a>
+						</p>
+					</div>
 				</div>
 			</div>
 			<!-- end row -->

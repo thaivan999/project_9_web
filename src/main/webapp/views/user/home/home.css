@@ -10,14 +10,19 @@
 	--clr-wht: #fffcf6;
 }
 
-.c-item {
-	height: 400px;
+#carouselExampleIndicators {
+	min-height: 20px;
 }
 
+.carousel-inner {
+	min-height: 20px;
+}
+
+
 .c-img {
-	height: 100%;
 	object-fit: cover;
-	border-radius: 16px;
+	background-size: cover;
+	height: 463px;
 }
 
 .home {
@@ -25,6 +30,7 @@
 	width: 100%;
 	min-height: 200px;
 	background-color: #edf0f3;
+	margin-top: 80px;
 }
 
 .home-title {
@@ -75,8 +81,8 @@
 
 
 .introduce {
-	margin-top: 40px;
 	padding: 0 52px;
+	margin-top: 48px;
 }
 
 .introduce-item {
@@ -95,6 +101,8 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 24px;
+	-webkit-clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+	clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
 }
 
 .btn-explore {
@@ -134,6 +142,7 @@
 	transition: all .3s;
 	min-height: 200px !important;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	border-radius: 24px !important;
 }
 
 .card:hover {
@@ -150,9 +159,16 @@
 	width: var(--size);
 	height: var(--size);
 	transition: all .3s;
-	border-radius: 0 !important;
+	border-radius: 24px !important;
 }
 
 .card:hover .card-image {
 	transform: scale(1.1);
 }
+
+.card-price {
+	font-size: 24px;
+	font-weight: 700;
+	color: red;
+}
+
