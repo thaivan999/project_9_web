@@ -32,6 +32,8 @@
 	rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/cart/cart.css"/>' rel="stylesheet"
 	type="text/css">
+<link href='<c:url value="/views/user/user_infor/user_infor.css"/>' rel="stylesheet"
+	type="text/css">
 
 <!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
 <link
