@@ -10,20 +10,24 @@
 <body>
    <div class="container">
         <div class="menu">
-            <ul>Trà</ul>
+            <ul>Trà
             <li><a href="">Trà thảo mộc</a></li>
             <li><a href="">Trà trái cây</a></li>
-            <ul>Trà sữa</ul>
+            </ul>
+            <ul>Trà sữa
             <li><a href="">Trà nguyên vị</a></li>
             <li><a href="">Trà sữa Topping</a></li>
             <li><a href="">Trà sữa Macchiato</a></li>
-            <ul>Đá xay</ul>
+            </ul>
+            <ul>Đá xay
             <li><a href="">Yogurt</a></li>
             <li><a href="">Cookies</a></li>
             <li><a href="">Caramel</a></li>
-            <ul>Sữa tươi</ul>
+            </ul>
+            <ul>Sữa tươi
             <li><a href="">Đường đen</a></li>
             <li><a href="">Chocolate</a></li>
+            </ul>
         </div>
 
         <div class="products">
