@@ -26,18 +26,18 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active c-item">
 					<img
-						src="https://static.vecteezy.com/system/resources/previews/001/349/622/original/bubble-tea-in-milk-splash-advertisement-banner-free-vector.jpg"
-						class="d-block w-100 c-img" alt="..." />
+						src="https://file.hstatic.net/1000075078/file/web_desktop_aeb6f5acca5d46adad94c262dcd9ac72.jpg"
+						class=" d-block w-100 c-img" alt="..." />
 				</div>
 				<div class="carousel-item c-item">
 					<img
-						src="https://static.vecteezy.com/system/resources/previews/001/349/609/original/bubble-tea-milk-splash-advertisement-free-vector.jpg"
-						class="d-block w-100 c-img" alt="..." />
+						src="https://file.hstatic.net/1000075078/file/desktop_b924413014a1448eb0a38024cd8bc270.jpg"
+						class=" d-block w-100 c-img" alt="..." />
 				</div>
 				<div class="carousel-item c-item">
 					<img
-						src="https://static.vecteezy.com/system/resources/previews/002/876/937/original/bubble-milk-tea-design-collection-pearl-milk-tea-boba-milk-tea-yummy-drinks-coffees-with-doodle-style-banner-illustration-vector.jpg"
-						class="d-block w-100 c-img" alt="..." />
+						src="https://file.hstatic.net/1000075078/file/web_moi_-_desktop_7f410066fea94545b59667a4063a1e09.jpg"
+						class=" d-block w-100 c-img" alt="..." />
 				</div>
 			</div>
 			<button class="carousel-control-prev" type="button"
@@ -51,9 +51,6 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
-		<div class="home-title">
-			<h1>Milk Tea</h1>
-		</div>
 		<div class="introduce">
 			<div class="row">
 				<div class="col">
@@ -63,14 +60,17 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="introduce-item">
-						<div class="introduce-title">Câu chuyện thương hiệu</div>
-						<p>Được trồng trọt và chăm chút kỹ lưỡng, nuôi dưỡng từ thổ
-							nhưỡng phì nhiêu, nguồn nước mát lành, bao bọc bởi mây và sương
-							cùng nền nhiệt độ mát mẻ quanh năm, những búp trà ở Tây Bắc mập
-							mạp và xanh mướt, hội tụ đầy đủ dưỡng chất, sinh khí, và tinh hoa
-							đất trời.</p>
-						<button class="btn-explore">Khám phá</button>
+					<div class="w-100 d-flex align-items-center justify-content-center"
+						style="height: 100%">
+						<div class="introduce-item">
+							<div class="introduce-title">Câu chuyện thương hiệu</div>
+							<p>Được trồng trọt và chăm chút kỹ lưỡng, nuôi dưỡng từ thổ
+								nhưỡng phì nhiêu, nguồn nước mát lành, bao bọc bởi mây và sương
+								cùng nền nhiệt độ mát mẻ quanh năm, những búp trà ở Tây Bắc mập
+								mạp và xanh mướt, hội tụ đầy đủ dưỡng chất, sinh khí, và tinh
+								hoa đất trời.</p>
+							<button class="btn-explore">Khám phá</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -87,8 +87,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -101,8 +100,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -115,8 +113,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -129,8 +126,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -149,8 +145,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -163,8 +158,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -177,8 +171,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>
@@ -191,8 +184,7 @@
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+							<p class="card-price">25.000đ</p>
 						</div>
 					</div>
 				</div>

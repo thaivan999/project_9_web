@@ -24,6 +24,15 @@ footer {
 
 /* Style cho logo thương hiệu */
 .footer-content img {
-    max-width: 100%; /* Logo sẽ không vượt quá chiều rộng của ô chứa */
-    height: 60px; /* Đảm bảo tỷ lệ khung hình của logo được giữ nguyên */
+	width: 100px;
+	height: 100px;
+}
+
+.footer-social {
+	display: flex;
+	align-items: center;
+}
+
+.footer-social p a{
+	font-size: 24px;
 }
