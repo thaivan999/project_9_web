@@ -34,7 +34,7 @@
 	type="text/css">
 <link href='<c:url value="/views/user/user_infor/user_infor.css"/>' rel="stylesheet"
 	type="text/css">
-<link href='<c:url value="/views/user/product/product.css"/>' rel="stylesheet"
+<link href='<c:url value="/views/user/products/products.css"/>' rel="stylesheet"
 	type="text/css">
 
 <!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
