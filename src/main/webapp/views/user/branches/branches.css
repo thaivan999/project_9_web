@@ -12,79 +12,149 @@ body {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	padding-top: 16px;
 }
 
-.branches_sidebar_item a {
-	color: #444444;
-	font-family: Inter;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 36px;
-}
-
-.branches_sidebar_item.branch--active a {
-	color: #000000;
-	font-family: Inter;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 36px;
-}
 
 .branches_sidebar {
 	border-right: 1px solid #000000;
 }
 
-.branch {
-	padding: 35px;
+.branches_sidebar_item_link {
+	--c: #1095c1;
+	--s: .15em;
+
+	display: inline-block;
+	line-height: 1.1em;
+	padding-bottom: calc(2.1*var(--s));
+	background:
+		conic-gradient(from 135deg at top, var(--c) 90deg, #0000 0) left 0 bottom var(--s)/calc(2*var(--s)) var(--s) repeat-x,
+		conic-gradient(from -45deg at bottom, var(--c) 90deg, #0000 0) left var(--s) bottom 0/calc(2*var(--s)) var(--s) repeat-x;
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0) 0/var(--_p, 0%) padding-box no-repeat;
+	transition: .5s;
+	font-size: 24px;
+	font-weight: 700;
+	text-decoration: none;
+	color: #000;
+	margin-bottom: 24px;
 }
 
-.branch_image {
-	width: 396px;
-	height: 249px;
-	max-width: 100%;
-	border-radius: 12px;
-	background: #D6D6D6;
-	cursor: pointer;
+.branches_sidebar_item_link--active {
+	--_p: 100%;
+	color: var(--c);
+}
 
+.branches_sidebar_item_link:hover {
+	--_p: 100%;
+	color: var(--c);
+	text-decoration: none;
+}
+
+.branch {
+	padding: 12px 36px;
+	border-radius: 12px;
+	margin-bottom: 48px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+	transition: all .2s;
+}
+
+.branch:hover {
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.branch-image {
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 12px;
+	transition: all .5s;
+}
+
+.branch_image-container {
+	position: relative;
+	overflow: hidden;
+}
+
+.branch-slide {
+	display: block;
+	width: 300%;
+	height: 50px;
+	background-color: rgba(255, 255, 255, .4);
+	position: absolute;
+	top: -50%;
+	left: -170%;
+	transform: rotate(-42deg);
+}
+
+.branch_image-container:hover .branch-slide {
+	animation: fadeIn linear .5s;
+}
+
+.branch_image-container:hover .branch-image {
+	transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+	from {
+		top: -50%;
+		left: -170%;
+	}
+
+	to {
+		top: 0;
+		left: 100%;
+	}
 }
 
 .branch_name {
 	color: var(--neutral-01, #000);
-	font-family: Inter;
-	font-size: 20px;
+	font-size: 24px;
 	font-style: normal;
 	font-weight: 700;
 	line-height: 30px;
 	padding: 12px 0px;
+	margin-top: 4px;
 }
+
 
 .branch_btn {
-	display: flex;
-	padding: 12px 0px;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	align-self: stretch;
+	width: 100%;
+	text-align: center;
+	background: #5E5DF0;
+	border-radius: 999px;
+	box-shadow: #5E5DF0 0 10px 20px -10px;
+	box-sizing: border-box;
+	color: #FFFFFF;
 	cursor: pointer;
-	border-radius: 12px;
-	background: var(--neutral-06, #EFEFEF);
-}
-
-.branch_btn span {
-	color: var(--neutral-02, #444);
-	font-family: Inter;
-	font-size: 20px;
-	font-style: normal;
+	font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+	font-size: 16px;
 	font-weight: 700;
-	line-height: normal;
+	line-height: 24px;
+	opacity: 1;
+	outline: 0 solid transparent;
+	padding: 8px 18px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	word-break: break-word;
+	border: 0;
 }
 
 .branch_society {
 	display: flex;
 	align-items: center;
 	justify-content: start;
+	margin-top: 24px;
+}
+
+.branch_society i {
+	font-size: 24px;
+}
+
+.branch_society i:hover {
+	opacity: .7;
 }
 
 .branch_society span {
@@ -97,14 +167,13 @@ body {
 	padding: 12px 0px;
 }
 
+.branch_desc {
+	margin-top: 16px;
+	font-size: 18px;
+}
+
 .branch_desc p {
-	color: var(--neutral-02, #444);
-	font-family: Inter;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: 30px;
-	width: 309px;
+	margin-bottom: 4px;
 }
 
 .branch_society_list {
@@ -126,236 +195,42 @@ body {
 }
 
 .branch_see_more {
-	display: inline-flex;
-	padding: 12px 24px;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	border-radius: 12px;
-	border: 1px solid var(--neutral-03, #707070);
-	margin-top: 47px;
-	margin-left: auto;
-	margin-right: auto;
+	align-self: center;
+	background-color: #fff;
+	background-image: none;
+	background-position: 0 90%;
+	background-repeat: repeat no-repeat;
+	background-size: 4px 3px;
+	border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+	border-style: solid;
+	border-width: 2px;
+	box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+	box-sizing: border-box;
+	color: #41403e;
 	cursor: pointer;
-}
-
-/*#sidebar {
-	width: 20%;	
-}
-
-.branches {
-	list-style: none;
-}
-
-.branch a{
-	color: #444;
-	font-family: Inter;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 36px;
-	 150% 
-}
-
-.branch.branch--active a{
-	color: red;
-	font-family: Inter;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 36px;
-	 150% 
-}
-
-#products {
-	width: 80%;
-	padding: 10px;
-	margin: 0;
-	float: right;
-}
-li a:hover {
-	text-decoration: none;
-	color: darksalmon;
-}
-
-.fa-circle {
-	font-size: 20px;
-}
-
-#red {
-	color: #e94545d7;
-}
-
-#teal {
-	color: rgb(69, 129, 129);
-}
-
-#blue {
-	color: #0000ff;
-}
-
-.card {
-	width: 250px;
 	display: inline-block;
-	height: 300px;
+	font-family: Neucha, sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 23px;
+	outline: none;
+	padding: .75rem;
+	text-decoration: none;
+	transition: all 235ms ease-in-out;
+	border-bottom-left-radius: 15px 255px;
+	border-bottom-right-radius: 225px 15px;
+	border-top-left-radius: 255px 15px;
+	border-top-right-radius: 15px 225px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
 }
 
-.card-img-top {
-	width: 250px;
-	height: 210px;
+.branch_see_more:hover {
+	box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+	transform: translate3d(0, 2px, 0);
 }
 
-.card-body p {
-	margin: 2px;
+.branch_see_more:focus {
+	box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-
-.card-body {
-	padding: 0;
-	padding-left: 2px;
-}
-
-.filter {
-	display: none;
-	padding: 0;
-	margin: 0;
-}
-
-@media(min-width:991px) {
-	.navbar-nav {
-		margin-left: 35%;
-	}
-
-	.nav-item {
-		padding-left: 20px;
-	}
-
-	.card {
-		width: 190px;
-		display: inline-block;
-		height: 300px;
-	}
-
-	.card-img-top {
-		width: 188px;
-		height: 210px;
-	}
-
-	#branch-filter {
-		display: none;
-	}
-}
-
-@media(min-width:768px) and (max-width:991px) {
-	.navbar-nav {
-		margin-left: 20%;
-	}
-
-	.nav-item {
-		padding-left: 10px;
-	}
-
-	.card {
-		width: 230px;
-		display: inline-block;
-		height: 300px;
-		margin-bottom: 10px;
-	}
-
-	.card-img-top {
-		width: 230px;
-		height: 210px;
-	}
-
-	#branch-filter {
-		display: none;
-	}
-}
-
-@media(min-width:568px) and (max-width:767px) {
-	.navbar-nav {
-		margin-left: 20%;
-	}
-
-	.nav-item {
-		padding-left: 10px;
-	}
-
-	.card {
-		width: 205px;
-		display: inline-block;
-		height: 300px;
-		margin-bottom: 10px;
-	}
-
-	.card-img-top {
-		width: 203px;
-		height: 210px;
-	}
-
-	.fa-circle {
-		font-size: 15px;
-	}
-
-	#branch-filter {
-		display: none;
-	}
-}
-
-@media(max-width:567px) {
-	.navbar-nav {
-		margin-left: 0%;
-	}
-
-	.nav-item {
-		padding-left: 10px;
-	}
-
-	#sidebar {
-		width: 100%;
-		padding: 10px;
-		margin: 0;
-		float: left;
-	}
-
-	#products {
-		width: 100%;
-		padding: 5px;
-		margin: 0;
-		float: right;
-	}
-
-	.card {
-		width: 230px;
-		display: inline-block;
-		height: 300px;
-		margin-bottom: 10px;
-		margin-top: 10px;
-	}
-
-	.card-img-top {
-		width: 230px;
-		height: 210px;
-	}
-
-	.list-group-item {
-		padding: 3px;
-	}
-
-	.offset-1 {
-		margin-left: 8%;
-	}
-
-	.filter {
-		display: block;
-		margin-left: 70%;
-		margin-top: 2%;
-	}
-
-	#sidebar {
-		display: none;
-	}
-
-	#branch-filter {
-		padding: 10px;
-	}
-}*/

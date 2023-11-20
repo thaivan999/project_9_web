@@ -20,12 +20,19 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
 
-<link href='<c:url value="/views/user/product_detail/product_detail.css"/>' rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/order/order.css"/>' rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/branches/branches.css"/>' rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/branches_info/branches_info.css"/>' rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/cart/cart.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/views/user/payment/payment.css"/>' rel="stylesheet" type="text/css">
+<link
+	href='<c:url value="/views/user/product_detail/product_detail.css"/>'
+	rel="stylesheet" type="text/css">
+<link href='<c:url value="/views/user/order/order.css"/>'
+	rel="stylesheet" type="text/css">
+<link href='<c:url value="/views/user/branches/branches.css"/>'
+	rel="stylesheet" type="text/css">
+<link
+	href='<c:url value="/views/user/branches_info/branches_info.css"/>'
+	rel="stylesheet" type="text/css">
+<link href='<c:url value="/views/user/cart/cart.css"/>' rel="stylesheet"
+	type="text/css">
 
 <!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
 <link
@@ -38,6 +45,10 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 	<%@ include file="/common/user/header/header.jsp"%>

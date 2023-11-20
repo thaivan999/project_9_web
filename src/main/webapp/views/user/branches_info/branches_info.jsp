@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <div>
-	<div class="container">
+	<div class="container p-4">
 		<div class="row">
 			<section class="col col-6">
-				<div class="branches_info_image"></div>
+				<img src="https://1.bp.blogspot.com/-C0Iq970b4ms/Xj5TM1BXUnI/AAAAAAAAAl0/KK00iHyKQ0MRvy99ZWGJIGhbYdcRNELlwCLcBGAsYHQ/s1600/84495959_545672396048327_2931477984550322176_n.jpg" class="store_image"/>
 			</section>
 			<section class="col col-6">
 				<div class="branches_info_body">
@@ -16,11 +16,11 @@
 						biệt của Cuộc hẹn tròn đầy giữa những ngày hối hả.Hôm nay bạn có
 						hẹn chưa? Mình cà phê nhé!</p>
 					<div class="branches_info_address">
-						<span>Địa chỉ</span>
+						<b>Địa chỉ</b>
 						<p>Số 1 Võ Văn Ngân, Linh Chiểu, Thủ Đức, TP.HCM</p>
 					</div>
 					<div class="branches_info_open">
-						<span>Giờ mở cửa</span>
+						<b>Giờ mở cửa</b>
 						<p>7:00 - 22:00</p>
 					</div>
 					<div class="branches_info_btn">
