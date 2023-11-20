@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/home"})
+@WebServlet(urlPatterns = {"/home", "/payment"})
 public class UserController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +21,9 @@ public class UserController extends HttpServlet {
 	        if (url.equals(contextPath + "/home")) {
 	            req.getRequestDispatcher("/views/user/home/home.jsp").forward(req, resp);
 	        }
+	        else if (url.equals(contextPath + "/payment")) {
+	            req.getRequestDispatcher("/views/user/payment/payment.jsp").forward(req, resp);
+	        }
+	        
 	    }
-
 }
