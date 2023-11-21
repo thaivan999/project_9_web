@@ -8,6 +8,11 @@ body {
 	color: grey;
 }
 
+.branches_container {
+	margin-top: 80px;
+	padding-top: 12px;
+}
+
 .branches_sidebar_list {
 	list-style: none;
 	padding: 0;

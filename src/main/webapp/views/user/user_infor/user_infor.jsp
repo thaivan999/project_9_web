@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <div class="content">
+  <div class="content" style="margin-top: 80px">
         <div class="user-infor-title">Thông tin tài khoản</div>
 
         <div class = "user-infor-container">
@@ -28,7 +28,7 @@
             <input type="radio" name="sex" id="check">Nam
             <input type="radio" name="sex" id="check">Nữ
             <div class = "user-infor user-update">
-                <input type="button" class="user-update-button" value="Cập nhật">
+                <div class="branch_see_more">Cập nhật</div>
             </div>
         </div>
     </div>

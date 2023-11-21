@@ -3,7 +3,7 @@
 <%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <div class="branches_container">
-	<div class="container">
+	<div class="container p-0">
 		<div class="row">
 			<section class="col col-3 branches_sidebar">
 				<ul class="branches_sidebar_list">
