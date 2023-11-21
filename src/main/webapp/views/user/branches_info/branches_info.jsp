@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <div>
-	<div class="container p-4">
+	<div class="container p-4" style="margin-top: 80px">
 		<div class="row">
 			<section class="col col-6">
 				<img src="https://1.bp.blogspot.com/-C0Iq970b4ms/Xj5TM1BXUnI/AAAAAAAAAl0/KK00iHyKQ0MRvy99ZWGJIGhbYdcRNELlwCLcBGAsYHQ/s1600/84495959_545672396048327_2931477984550322176_n.jpg" class="store_image"/>
