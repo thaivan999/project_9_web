@@ -19,7 +19,7 @@ public class UserController extends HttpServlet {
 		String contextPath = req.getContextPath();
 
 		if (url.equals(contextPath + "/home")) {
-			req.getRequestDispatcher("/views/user/home/home.jsp").forward(req, resp);
+			req.getRequestDispatcher("/views/user/products/products.jsp").forward(req, resp);
 		}
 
 	}

@@ -77,7 +77,20 @@
 		</div>
 		<div class="products">
 			<p class="products-title">Sản phẩm bán chạy</p>
-			<div class="row">
+			<div class="row gx-1">
+				<div class="col">
+					<div class="card">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">Trà sữa trân châu trắng</h5>
+							<p class="card-price">25.000đ</p>
+						</div>
+					</div>
+				</div>
 				<div class="col">
 					<div class="card">
 						<div class="img-container">
@@ -135,7 +148,20 @@
 		</div>
 		<div class="products">
 			<p class="products-title">Sản phẩm khuyến mãi</p>
-			<div class="row">
+			<div class="row gx-1">
+				<div class="col">
+					<div class="card">
+						<div class="img-container">
+							<img
+								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+								class="card-image card-img-top" alt="...">
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">Trà sữa trân châu trắng</h5>
+							<p class="card-price">25.000đ</p>
+						</div>
+					</div>
+				</div>
 				<div class="col">
 					<div class="card">
 						<div class="img-container">
