@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%@ include file="/common/manager/header/header.jsp"%>
-	<decorator:body />
+	<sitemesh:write property="body"/>
 	<%@ include file="/common/manager/footer/footer.jsp"%>
 </body>
 </html>

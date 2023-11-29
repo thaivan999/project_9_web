@@ -6,45 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>User</title>
-<link href="views/user/home/home.css" rel="stylesheet" />
-<link href="common/user/header/header.css" rel="stylesheet" />
-<link href="common/user/footer/footer.css" rel="stylesheet" />
-
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
-	rel="stylesheet" type="text/css">
-
-<link href='<c:url value="/views/user/payment/payment.css"/>' rel="stylesheet" type="text/css">
-<link
-	href='<c:url value="/views/user/product_detail/product_detail.css"/>'
-	rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/order/order.css"/>'
-	rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/branches/branches.css"/>'
-	rel="stylesheet" type="text/css">
-<link
-	href='<c:url value="/views/user/branches_info/branches_info.css"/>'
-	rel="stylesheet" type="text/css">
-<link href='<c:url value="/views/user/cart/cart.css"/>' rel="stylesheet"
-	type="text/css">
-<link href='<c:url value="/views/user/user_infor/user_infor.css"/>' rel="stylesheet"
-	type="text/css">
-<link href='<c:url value="/views/user/products/products.css"/>' rel="stylesheet"
-	type="text/css">
-
-<!-- Nghĩa thêm bootstrap bên dưới thực hiện cho security -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-	crossorigin="anonymous">
-<!-- Kha thêm bootstrap bên dưới làm chuyển trang cho slider(HomePage)-->
+<link href='<c:url value="/user/css/header.css" />'rel="stylesheet" />
+<link href='<c:url value="/user/css/footer.css" />'rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/home.css" />'rel="stylesheet" />
+<link href='<c:url value="/user/css/payment.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/product_detail.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/order.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/branches.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/branches_info.css"/>'rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/cart.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/user_infor.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/user/css/products.css"/>' rel="stylesheet" type="text/css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -56,7 +31,7 @@
 </head>
 <body>
 	<%@ include file="/common/user/header/header.jsp"%>
-	<decorator:body />
+	<sitemesh:write property='body'/>
 	<%@ include file="/common/user/footer/footer.jsp"%>
 
 	<!-- JS -->

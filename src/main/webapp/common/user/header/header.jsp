@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<link href='<c:url value="/user/css/header.css" />'rel="stylesheet" />
 </head>
 <body>
 	<header class="header">
