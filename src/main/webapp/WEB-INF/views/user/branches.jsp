@@ -37,7 +37,7 @@
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
-										<span>Xem bản đồ</span>
+										<span>Xem chi tiết</span>
 									</div>
 									<div class="branch_society">
 										<ul class="branch_society_list">
@@ -73,7 +73,7 @@
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
-										<span>Xem bản đồ</span>
+										<span>Xem chi tiết</span>
 									</div>
 									<div class="branch_society">
 										<ul class="branch_society_list">
@@ -109,7 +109,7 @@
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
-										<span>Xem bản đồ</span>
+										<span>Xem chi tiết</span>
 									</div>
 									<div class="branch_society">
 										<ul class="branch_society_list">
@@ -145,7 +145,7 @@
 								<div class="branch_body">
 									<h3 class="branch_name">Chi nhánh 1</h3>
 									<div class="branch_btn">
-										<span>Xem bản đồ</span>
+										<span>Xem chi tiết</span>
 									</div>
 									<div class="branch_society">
 										<ul class="branch_society_list">
