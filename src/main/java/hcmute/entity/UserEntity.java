@@ -1,5 +1,6 @@
 package hcmute.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,8 @@ import hcmute.config.Provider;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "user_id")
@@ -67,7 +69,8 @@ public class UserEntity {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
+	
+	
 /*	public Set<Role> getRoles() {
 		return roles;
 	}

@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import hcmute.security.oauth.CustomOAuth2User;
 import hcmute.security.oauth.CustomOAuth2UserService;
-import hcmute.service.UserService;
+import hcmute.service.IUserService;
 
 @Configuration
 @EnableWebSecurity
@@ -47,45 +47,47 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/", "/security/login", "/oauth/**").permitAll()
-			.anyRequest().authenticated()
-			.and()
-			.formLogin().permitAll()
-				.loginPage("/security/login")
-				.usernameParameter("email")
-				.passwordParameter("pass")
-//				.defaultSuccessUrl("/list")
-			.and()
-			.oauth2Login()
-				.loginPage("/security/login")
-				.userInfoEndpoint()
-					.userService(oauthUserService)
-				.and()
-				.successHandler(new AuthenticationSuccessHandler() {
-					
-					@Override
-					public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-							Authentication authentication) throws IOException, ServletException {
-						System.out.println("AuthenticationSuccessHandler invoked");
-						System.out.println("Authentication name: " + authentication.getName());
-						CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-						
-						userService.processOAuthPostLogin(oauthUser.getEmail(), null);
-						
-						response.sendRedirect("/test");
-					}
-				})
-			.and()
-			.logout().logoutSuccessUrl("/").permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/403")
-			;
+	    http.authorizeRequests()
+	        .antMatchers("/", "/security/login", "/oauth/**").permitAll()
+	        .anyRequest().authenticated()
+	        .and()
+	        .formLogin()
+	            .loginPage("/security/login") // Set the custom login page
+	            .loginProcessingUrl("/security/login") // Set the login processing URL
+	            .usernameParameter("email")
+	            .passwordParameter("pass")
+	            .defaultSuccessUrl("/test") // Set the default success URL after login
+	        .and()
+	        .oauth2Login()
+	            .loginPage("/security/login")
+	            .userInfoEndpoint()
+	                .userService(oauthUserService)
+	            .and()
+	            .successHandler(new AuthenticationSuccessHandler() {
+	                
+	                @Override
+	                public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+	                        Authentication authentication) throws IOException, ServletException {
+	                    System.out.println("AuthenticationSuccessHandler invoked");
+	                    System.out.println("Authentication name: " + authentication.getName());
+	                    CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+	                    
+	                    userService.processOAuthPostLogin(oauthUser.getEmail(), null);
+	                    
+	                    response.sendRedirect("/test");
+	                }
+	            })
+	        .and()
+	        .logout().logoutSuccessUrl("/").permitAll()
+	        .and()
+	        .exceptionHandling().accessDeniedPage("/403");
 	}
+
+
 	
 	@Autowired
 	private CustomOAuth2UserService oauthUserService;
 	
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 }
