@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("security")
 public class SecurityController {
-	@GetMapping("change_password")
+	@GetMapping("change-password")
 	public String IndexChangePassword() {
-		return "security/change_password/change_password";
+		return "security/change-password/change-password";
 	}
-	@GetMapping("edit_account")
+	@GetMapping("edit-account")
 	public String IndexEditAccount() {
-		return "security/edit_account/edit_account";
+		return "security/edit-account/edit-account";
 	}
-	@GetMapping("forgot_password")
+	@GetMapping("forgot-password")
 	public String IndexForgotPassword() {
-		return "security/forgot_password/forgot_password";
+		return "security/forgot-password/forgot-password";
 	}
 	@GetMapping("login")
 	public String IndexLogin() {
