@@ -73,13 +73,6 @@
 									+5.000đ</button>
 							</div>
 							<div class="form-group">
-								<label class="fs-18">Topping</label><br />
-								<button type="button" class="btn btn-outline-dark">Kem
-									phô mai +5000đ</button>
-								<button type="button" class="btn btn-outline-dark ml-1">Thạch
-									cà phê +5000đ</button>
-							</div>
-							<div class="form-group">
 								<button type="button"
 									class="btn btn-outline-dark btn-lg mt-2 bold-text"
 									style="width: 215px;">Thêm vào giỏ hàng</button>
