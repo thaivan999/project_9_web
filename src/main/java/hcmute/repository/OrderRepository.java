@@ -1,5 +1,5 @@
 package hcmute.repository;
 
-public class OrderRepository {
+public interface OrderRepository {
 
 }

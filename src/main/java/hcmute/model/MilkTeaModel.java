@@ -19,4 +19,5 @@ public class MilkTeaModel{
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
 	private BranchModel branchByMilkTea;
 	private CartDetailModel cartDetails;
+	private String size;
 }

@@ -1,5 +1,5 @@
 package hcmute.repository;
 
-public class MilkTeaRepository {
+public interface MilkTeaRepository {
 
 }

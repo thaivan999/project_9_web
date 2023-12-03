@@ -1,5 +1,5 @@
 package hcmute.service;
 
-public class ICartService {
+public interface ICartService {
 
 }

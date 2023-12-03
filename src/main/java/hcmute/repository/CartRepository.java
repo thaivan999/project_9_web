@@ -1,5 +1,5 @@
 package hcmute.repository;
 
-public class CartRepository {
+public interface CartRepository {
 
 }
