@@ -16,6 +16,9 @@ public class MilkTeaModel{
 	private String description;
 	private int remainQuantity;
 	private String image;
+	
+	private String milkTeaType;
+	
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
 	private BranchModel branchByMilkTea;
 	private CartDetailModel cartDetails;

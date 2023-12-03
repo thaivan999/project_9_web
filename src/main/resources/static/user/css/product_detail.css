@@ -8,6 +8,10 @@
 	color: #000!important;
 }
 
+.white-text {
+	color: #fff!important;
+}
+
 .b6-text {
 	color: #B6B6B6!important;
 }
@@ -16,6 +20,9 @@
 	font-weight: bold!important;
 }
 
+.no-decor-text {
+	text-decoration: none!important;
+}
 .ml-1 {
 	margin-left: 1rem!important;
 }
@@ -24,8 +31,16 @@
 	margin-top: 2rem!important;
 }
 
+.mb-2 {
+	margin-bottom: 2rem!important;
+}
+
 .fs-18 {
 	font-size: 1.25rem!important;
+}
+
+.add-to-cart-btn:hover {
+	color: #fff!important;
 }
 
 /* breadcrumb */
