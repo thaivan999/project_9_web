@@ -18,10 +18,6 @@ public class RedirectController {
 	public String IndexBranches() {
 		return "user/branches";
 	}
-	@GetMapping(value="/cart")
-	public String IndexCart() {
-		return "user/cart";
-	}
 	@GetMapping(value="/home")
 	public String IndexHome() {
 		return "user/home";

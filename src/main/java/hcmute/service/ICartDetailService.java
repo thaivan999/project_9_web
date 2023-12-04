@@ -1,6 +1,7 @@
 package hcmute.service;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -30,5 +31,15 @@ public interface ICartDetailService {
 	List<CartDetailEntity> findAll();
 
 	<S extends CartDetailEntity> S save(S entity);
+=======
+>>>>>>> 9a5e4c5a7ac1022044de3c099dba7bc65bdb9261
 
+import hcmute.entity.CartDetailEntity;
+import hcmute.entity.MilkTeaEntity;
+
+public interface ICartDetailService {
+
+	List<MilkTeaEntity> findMilkTeaByCartId(int idCart);
+
+	List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart);
 }

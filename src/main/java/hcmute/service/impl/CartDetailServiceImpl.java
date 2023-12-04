@@ -1,6 +1,7 @@
 package hcmute.service.impl;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,25 @@ import hcmute.repository.CartRepository;
 import hcmute.service.ICartDetailService;
 @Service
 public class CartDetailServiceImpl implements ICartDetailService{
+=======
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Service;
+
+import hcmute.entity.CartDetailEntity;
+import hcmute.entity.MilkTeaEntity;
+import hcmute.repository.CartDetailRepository;
+import hcmute.service.ICartDetailService;
+
+@Service
+public class CartDetailServiceImpl implements ICartDetailService {
+>>>>>>> 9a5e4c5a7ac1022044de3c099dba7bc65bdb9261
 	@Autowired
 	CartDetailRepository cartDetailRepository;
 
 	public CartDetailServiceImpl(CartDetailRepository cartDetailRepository) {
+<<<<<<< HEAD
 		super();
 		this.cartDetailRepository = cartDetailRepository;
 	}
@@ -73,4 +89,18 @@ public class CartDetailServiceImpl implements ICartDetailService{
 		cartDetailRepository.deleteAll();
 	}
 	
+=======
+		this.cartDetailRepository = cartDetailRepository;
+	}
+	
+	@Override
+	public List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart) {
+		return cartDetailRepository.findByCartByCartDetailIdCart(idCart);
+	}
+
+    @Override
+	public List<MilkTeaEntity> findMilkTeaByCartId(int idCart) {
+    	return cartDetailRepository.findMilkTeaByCartId(idCart);
+    }
+>>>>>>> 9a5e4c5a7ac1022044de3c099dba7bc65bdb9261
 }
