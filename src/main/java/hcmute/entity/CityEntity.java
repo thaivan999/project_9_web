@@ -24,6 +24,4 @@ public class CityEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "cityByBranch")
 	private Set<BranchEntity> branches;
-	
-	
 }

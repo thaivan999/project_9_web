@@ -2,6 +2,7 @@ package hcmute.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.*;
 import lombok.*;
@@ -38,5 +39,6 @@ public class AccountEntity implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser",insertable = false, updatable = false)
+
 	private CustomerEntity customerByAccount;
 }

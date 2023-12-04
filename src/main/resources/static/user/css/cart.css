@@ -253,7 +253,8 @@
 	margin-bottom: 8px;
 }
 
-.cart-price {
+.cart-price,
+.cart-sum-price {
 	font-size: 24px;
 	font-weight: 700;
 	color: #cb1c22;

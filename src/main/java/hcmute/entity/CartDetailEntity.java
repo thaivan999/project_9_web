@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 import lombok.*;
+import java.util.Set;
 
+import javax.persistence.*;
+
+import hcmute.embeddedId.CartDetailId;
+import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +31,4 @@ public class CartDetailEntity implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "idMilkTea",insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByCartDetail;
-	
-	
-
 }

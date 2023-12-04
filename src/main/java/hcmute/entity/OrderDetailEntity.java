@@ -38,5 +38,4 @@ public class OrderDetailEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idMilkTea", insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByOrderDetail;
-
 }

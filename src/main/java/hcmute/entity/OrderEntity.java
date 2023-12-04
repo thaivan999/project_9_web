@@ -46,5 +46,4 @@ public class OrderEntity implements Serializable {
 
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
-
 }

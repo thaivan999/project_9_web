@@ -1,5 +1,8 @@
 package hcmute.repository;
 
-public class CartRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import hcmute.entity.CartEntity;
+
+public interface CartRepository extends JpaRepository<CartEntity, Integer>{
 }

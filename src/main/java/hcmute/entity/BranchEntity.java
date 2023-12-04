@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import lombok.*;
 
 
