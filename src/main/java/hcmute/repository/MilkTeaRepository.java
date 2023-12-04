@@ -9,6 +9,6 @@ import hcmute.entity.MilkTeaEntity;
 
 @Repository
 public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Long> {
-
+	// find a product by id
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
 }

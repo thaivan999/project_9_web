@@ -23,6 +23,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
 <body>
+	<!-- Show message -->
+    <c:if test="${message != null}">
+    	<div class="alert alert-primary" role="alert">
+        	<i>${message}</i>
+        </div>
+   </c:if>
+   <!-- End: message -->
+                
 	<!-- Breadcrumb -->
 	<div class="container" style="margin-top: 120px">
 		<div class="row">
@@ -30,13 +38,13 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a class="black-text bold-text" href="">Menu</a>
+							<a class="black-text bold-text" href="/products">Menu</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a class="black-text bold-text" href="">${milktea.milkTeaType}</a>
+							<a class="black-text bold-text" href="">${milkTea.milkTeaType}</a>
 						</li>
 						<li class="breadcrumb-item active bold-text" aria-current="page">
-							${milktea.name}
+							${milkTea.name}
 						</li>
 					</ol>
 				</nav>
@@ -54,7 +62,7 @@
 					<div class="card-body" style="padding: 0;">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
 							class="img-fluid" style="border-radius: 10px;"
-							src=${milktea.image } />
+							src=${milkTea.image } />
 						</a>
 					</div>
 				</div>
@@ -64,8 +72,8 @@
 			<div class="col-12 col-lg-6 add_to_cart_block">
 				<div class="card mb-3 no-border">
 					<div class="card-body">
-						<p class="h3 bold-text">${milktea.name}</p>
-						<p class="h4 price bold-text" style="color: #707070;">${milktea.cost}đ</p>
+						<p class="h3 bold-text">${milkTea.name}</p>
+						<p class="h4 price bold-text" style="color: #707070;">${milkTea.cost}đ</p>
 						<form method="get" action="">
 							<div class="form-group">
 								<label class="mt-2 fs-18">Chọn size</label><br />
@@ -79,17 +87,18 @@
 							<div class="form-group">
 								<button type="button" class="btn btn-outline-dark btn-lg mt-2 bold-text" style="width: 215px;">
 									<a class="no-decor-text black-text add-to-cart-btn" 
-										href="/product_detail/addtocart?id=${milktea.idMilkTea}&&size=Vừa">Thêm vào giỏ hàng</a>
+										href="/product_detail/addtocart?id=${milkTea.idMilkTea}&&size=Vừa">Thêm vào giỏ hàng</a>
 								</button>
 								<button type="button" class="btn btn-dark btn-lg ml-1 mt-2 bold-text" style="width: 215px;">
 									<a class="no-decor-text white-text buy-now-btn" 
-										href="/product_detail/buy?id=${milktea.idMilkTea}&&size=Vừa">Mua ngay</a>
+										href="/product_detail/buy?id=${milkTea.idMilkTea}&&size=Vừa">Mua ngay</a>
 								</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
+			<!-- End: Add to cart | Buy now -->
 		</div>
 		<!-- End: Product detail -->
 
@@ -99,7 +108,7 @@
 				<div class="col-12">
 					<hr style="border: thin solid black;">
 					<h5 class="bold-text black-text mt-2">Mô tả sản phẩm</h5>
-					<p style="font-weight: 500;">${milktea.description}</p>
+					<p style="font-weight: 500;">${milkTea.description}</p>
 					<hr class="mt-2" style="border: thin solid #B6B6B6;">
 				</div>
 			</div>
@@ -166,7 +175,7 @@
 	</div>
 	
 	<script>
-	    function changeSize(size) {
+		function changeSize(size) {
 	        var addToCartBtn = document.querySelector('.add-to-cart-btn');
 	        var buyNowBtn = document.querySelector('.buy-now-btn');
 	        
@@ -177,15 +186,15 @@
 	        	mediumSizeBtn.classList.remove('active');
 		        largeSizeBtn.classList.add('active');
 	            
-		        addToCartBtn.href = '/product_detail/addtocart?id=${milktea.idMilkTea}&&size=Lớn';
-		        buyNowBtn.href = '/product_detail/buy?id=${milktea.idMilkTea}&&size=Lớn';
+		        addToCartBtn.href = '/product_detail/addtocart?id=${milkTea.idMilkTea}&&size=Lớn';
+		        buyNowBtn.href = '/product_detail/buy?id=${milkTea.idMilkTea}&&size=Lớn';
 	        }
 	        else if (size == 'Vừa') {
 	        	mediumSizeBtn.classList.add('active');
 		        largeSizeBtn.classList.remove('active');
 	            
-		        addToCartBtn.href = '/product_detail/addtocart?id=${milktea.idMilkTea}&&size=Vừa';
-		        buyNowBtn.href = '/product_detail/buy?id=${milktea.idMilkTea}&&size=Vừa';
+		        addToCartBtn.href = '/product_detail/addtocart?id=${milkTea.idMilkTea}&&size=Vừa';
+		        buyNowBtn.href = '/product_detail/buy?id=${milkTea.idMilkTea}&&size=Vừa';
 	        }
 	    }
 	</script>
