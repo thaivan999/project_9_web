@@ -25,13 +25,7 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/branch-update">Cập nhật chi nhánh</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/branch-update/create" method="post">
-                        <!-- ID Branch -->
-                        <div class="mb-3">
-                            <label for="exampleInputBranchId" class="form-label">ID Branch*</label> 
-                            <input placeholder="Branch ID" name="id_branch" type="text" class="form-control" id="exampleInputBranchId" aria-describedby="branchIdHelp" value="${branch.idBranch}" ${loguser} required="required" disabled>
-                        </div>
-
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-branch/saveOrUpdate"/>" method="post">
                         <!-- Name -->
                         <div class="mb-3">
                             <label for="exampleInputName" class="form-label">Tên chi nhánh*</label> 
@@ -57,7 +51,7 @@
                         </div>
 						<div class="mb-3">
                             <label for="exampleInputDescription" class="form-label">ID City*</label> 
-                            <textarea placeholder="ID City" name="ID City" class="form-control" id="exampleInputIDCity" rows="4" required="required">${branch.idCity}</textarea>
+                            <input placeholder="ID City" name="idCity" type="text" class="form-control" id="exampleInputIDCity" aria-describedby="imageIDCity" value="${branch.idCity}"required="required">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputDescription" class="form-label">Mô tả*</label> 
