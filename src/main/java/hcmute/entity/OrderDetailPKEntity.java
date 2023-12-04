@@ -10,10 +10,10 @@ import javax.persistence.Embeddable;
 public class OrderDetailPKEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "id_order")
+	@Column(name = "idOrder")
 	private int idOrder;
 	
-	@Column(name = "id_milk_tea")
+	@Column(name = "idMilkTea")
 	private int idMilkTea;
 
 	public int getIdOrder() {

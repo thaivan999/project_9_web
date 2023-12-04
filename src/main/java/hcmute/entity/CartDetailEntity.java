@@ -20,11 +20,11 @@ public class CartDetailEntity implements Serializable{
 	private String size;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cart",insertable = false, updatable = false)
+	@JoinColumn(name = "idCart",insertable = false, updatable = false)
 	private CartEntity cartByCartDetail;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_milk_tea",insertable = false, updatable = false)
+	@JoinColumn(name = "idMilkTea",insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByCartDetail;
 	
 	

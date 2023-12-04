@@ -16,17 +16,17 @@ public class CartEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cart")
+	@Column(name = "idCart")
 	private int idCart;
 	
-	@Column(name = "total_product")
+	@Column(name = "totalProduct")
 	private int totalProduct;
 	
-	@Column(name = "total_price")
+	@Column(name = "totalPrice")
 	private int totalPrice;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_user",insertable = false, updatable = false)
+	@JoinColumn(name = "idUser",insertable = false, updatable = false)
 	private CustomerEntity customerByCart;
 	
 	@OneToMany(mappedBy = "cartByCartDetail")

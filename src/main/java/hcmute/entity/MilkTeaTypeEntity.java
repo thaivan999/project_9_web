@@ -16,14 +16,14 @@ public class MilkTeaTypeEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_type")
+	@Column(name = "idType")
 	private int idType;
 	
 	@Column(name = "name",columnDefinition = "nvarchar(100)")
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_category",insertable = false, updatable = false)
+	@JoinColumn(name = "idCategory",insertable = false, updatable = false)
 	private MilkTeaCategoryEntity milkTeaCategoryByMilkTeaType;
 	
 	@OneToMany(mappedBy = "milkTeaTypeByMilkTea")

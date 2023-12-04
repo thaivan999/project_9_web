@@ -4,9 +4,20 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "OrderDetail")
 public class OrderDetailEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,11 +32,11 @@ public class OrderDetailEntity implements Serializable {
 	private String note;
 
 	@ManyToOne
-	@JoinColumn(name = "id_order", insertable = false, updatable = false)
+	@JoinColumn(name = "idOrder", insertable = false, updatable = false)
 	private OrderEntity orderByOrderDetail;
 
 	@ManyToOne
-	@JoinColumn(name = "id_milk_tea", insertable = false, updatable = false)
+	@JoinColumn(name = "idMilkTea", insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByOrderDetail;
 
 }
