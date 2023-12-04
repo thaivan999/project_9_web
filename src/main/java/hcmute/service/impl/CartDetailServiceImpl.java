@@ -29,4 +29,9 @@ public class CartDetailServiceImpl implements ICartDetailService {
 	public List<MilkTeaEntity> findMilkTeaByCartId(int idCart) {
     	return cartDetailRepository.findMilkTeaByCartId(idCart);
     }
+
+	@Override
+	public void addProductToCart(int idCart, int idMilkTea, String size) {
+		cartDetailRepository.addProductToCart(idCart, idMilkTea, size);		
+	}
 }

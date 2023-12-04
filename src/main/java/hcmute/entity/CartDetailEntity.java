@@ -19,7 +19,7 @@ public class CartDetailEntity implements Serializable{
 	@EmbeddedId
 	private CartDetailId idCartDetail;
 	
-	@Column(name = "size")
+	@Column(name = "size", columnDefinition = "nvarchar(50)")
 	private String size;
 
 	@ManyToOne
