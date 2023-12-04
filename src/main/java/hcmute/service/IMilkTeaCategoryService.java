@@ -1,5 +1,15 @@
 package hcmute.service;
 
-public class IMilkTeaCategoryService {
 
+import java.util.List;
+
+
+
+import hcmute.entity.MilkTeaCategoryEntity;
+
+public interface IMilkTeaCategoryService {
+
+	List<MilkTeaCategoryEntity> findAll();
 }
+
+	

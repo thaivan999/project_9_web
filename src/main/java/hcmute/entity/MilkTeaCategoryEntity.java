@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "MilkTeaCategory")
+@Table(name = "milk_tea_category")
 public class MilkTeaCategoryEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -24,4 +24,5 @@ public class MilkTeaCategoryEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "milkTeaCategoryByMilkTeaType")
 	private Set<MilkTeaTypeEntity> milkTeaTypes;
+
 }

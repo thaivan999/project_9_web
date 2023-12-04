@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "MilkTeaType")
+@Table(name = "milk_tea_type")
 public class MilkTeaTypeEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
