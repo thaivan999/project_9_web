@@ -1,5 +1,5 @@
 package hcmute.repository;
 
-public class PayMethodRepository {
+public interface PayMethodRepository {
 
 }

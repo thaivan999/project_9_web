@@ -2,6 +2,7 @@ package hcmute.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -27,13 +28,13 @@ public class OrderEntity implements Serializable {
     private int totalPrice;
 
     @Column(name = "order_time")
-    private LocalDateTime orderTime;
+    private Date orderTime;
 
     @Column(name = "order_state")
     private int orderState;
 
     @Column(name = "tentative_time")
-    private LocalDateTime tentativeTime;
+    private Date tentativeTime;
 
     @ManyToOne
     @JoinColumn(name = "id_pay_method", insertable = false, updatable = false)

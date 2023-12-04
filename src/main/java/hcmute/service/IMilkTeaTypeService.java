@@ -1,5 +1,5 @@
 package hcmute.service;
 
-public class IMilkTeaTypeService {
+public interface IMilkTeaTypeService {
 
 }

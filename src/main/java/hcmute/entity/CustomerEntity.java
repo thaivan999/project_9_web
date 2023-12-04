@@ -2,6 +2,7 @@ package hcmute.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -27,7 +28,7 @@ public class CustomerEntity implements Serializable{
 	private String name;
 	
 	@Column(name = "birthday")
-	private LocalDate birthday;
+	private Date birthday;
 	
 	@Column(name = "phone_number",columnDefinition = "varchar(50)")
 	private String phoneNumber;

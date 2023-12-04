@@ -2,6 +2,7 @@ package hcmute.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.*;
 import lombok.*;
@@ -26,7 +27,7 @@ public class AccountEntity implements Serializable{
 	private String password;
 	
 	@Column(name = "create_at")
-	private LocalDateTime createAt;
+	private Date createAt;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_branch",insertable = false, updatable = false)
