@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.*;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-
 import lombok.*;
 
 
@@ -20,13 +19,13 @@ public class BranchEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_branch")
+	@Column(name = "idBranch")
 	private int idBranch;
 	
 	@Column(name = "name", columnDefinition = "nvarchar(1000)")
 	private String name;
 	
-	@Column(name = "address_detail",columnDefinition = "nvarchar(1000)")
+	@Column(name = "addressDetail",columnDefinition = "nvarchar(1000)")
 	private String addressDetail;
 	
 	@Column(name = "opentime",columnDefinition = "varchar(50)")
@@ -39,7 +38,7 @@ public class BranchEntity implements Serializable{
 	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_city",insertable = false, updatable = false)
+	@JoinColumn(name = "idCity",insertable = false, updatable = false)
 	private CityEntity cityByBranch;
 	
 	@OneToMany(mappedBy = "branchByAccount")

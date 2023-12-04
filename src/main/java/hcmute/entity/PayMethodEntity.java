@@ -17,7 +17,7 @@ public class PayMethodEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "id_pay_method",columnDefinition = "varchar(100)")
+	@Column(name = "idPayMethod",columnDefinition = "varchar(100)")
 	private String idPayMethod;
 	
 	@Column(name = "name",columnDefinition = "nvarchar(100)")

@@ -18,7 +18,7 @@ public class CustomerEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_user")
+	@Column(name = "idUser")
 	private int idUser;
 	
 	@Column(name = "surname",columnDefinition = "nvarchar(50)")
@@ -28,9 +28,9 @@ public class CustomerEntity implements Serializable{
 	private String name;
 	
 	@Column(name = "birthday")
-	private Date birthday;
+	private LocalDate birthday;
 	
-	@Column(name = "phone_number",columnDefinition = "varchar(50)")
+	@Column(name = "phoneNumber",columnDefinition = "varchar(50)")
 	private String phoneNumber;
 	
 	@Column(name = "email",columnDefinition = "varchar(50)")
