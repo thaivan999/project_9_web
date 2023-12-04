@@ -25,23 +25,28 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/cart-detail-update">Cập nhật chi tiết giỏ hàng</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/cart-detail-update/create" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/customize-cart-detail/saveOrUpdate" method="post">
                         <!-- ID Cart -->
                         <div class="mb-3">
                             <label for="exampleInputCartId" class="form-label">ID Cart*</label> 
-                            <input placeholder="Cart ID" name="id_cart" type="text" class="form-control" id="exampleInputCartId" aria-describedby="cartIdHelp" value="${cartDetail.id_cart}" ${loguser} required="required">
+                            <input placeholder="Cart ID" name="idCart" type="text" class="form-control" id="exampleInputCartId" aria-describedby="cartIdHelp" value="${cartDetail.idCart}" ${loguser} required="required">
                         </div>
 
                         <!-- ID Milk Tea -->
                         <div class="mb-3">
                             <label for="exampleInputMilkTeaId" class="form-label">ID Milk Tea*</label> 
-                            <input placeholder="Milk Tea ID" name="id_milk_tea" type="text" class="form-control" id="exampleInputMilkTeaId" aria-describedby="milkTeaIdHelp" value="${cartDetail.id_milk_tea}" required="required">
+                            <input placeholder="Milk Tea ID" name="idMilkTea" type="text" class="form-control" id="exampleInputMilkTeaId" aria-describedby="milkTeaIdHelp" value="${cartDetail.idMilkTea}" required="required">
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary" formaction="/admin/cart-detail-update/create" ${buttonnolog}>Thêm</button>
-                            <button type="submit" class="btn btn-success" formaction="/admin/cart-detail-update/update" ${buttonlog}>Sửa</button>
-                            <button type="submit" class="btn btn-danger" formaction="/admin/cart-detail-update/delete" ${buttonlog1} ${buttonxoa}>Xóa</button>
+                            <button type="submit" class="btn btn-success">
+                            	<c:if test="${cartDetail.isEdit}">
+                            		<span>Update</span>
+                            	</c:if>
+                            	<c:if test="${!cartDetail.isEdit}">
+                            		<span>Save</span>
+                            	</c:if>
+                            </button>
                         </div>
                     </form>
                     <h6 class="ms-3 text-primary">${message}</h6>

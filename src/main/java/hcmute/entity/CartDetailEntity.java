@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CartDetail")
+@Table(name = "cart_detail")
 public class CartDetailEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId

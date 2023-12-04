@@ -12,4 +12,5 @@ public class CartDetailModel{
 	private String size;
 	private CartModel cartByCartDetail;
 	private MilkTeaModel milkTeaByCartDetail;
+	private Boolean isEdit = false;
 }
