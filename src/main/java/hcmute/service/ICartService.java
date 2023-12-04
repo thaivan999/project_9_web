@@ -1,6 +1,5 @@
 package hcmute.service;
 
-<<<<<<< HEAD
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +32,4 @@ public interface ICartService {
 	<S extends CartEntity> S save(S entity);
 
 	void deleteById(Integer id);
-=======
-public interface ICartService {
->>>>>>> 9a5e4c5a7ac1022044de3c099dba7bc65bdb9261
-
 }

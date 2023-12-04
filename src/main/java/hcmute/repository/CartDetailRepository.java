@@ -1,16 +1,10 @@
 package hcmute.repository;
 
-<<<<<<< HEAD
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import hcmute.entity.CartDetailEntity;
-
-public interface CartDetailRepository extends JpaRepository<CartDetailEntity, Integer>{
-=======
-import java.util.List;
->>>>>>> 9a5e4c5a7ac1022044de3c099dba7bc65bdb9261
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
