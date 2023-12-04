@@ -15,4 +15,5 @@ public class CartModel{
 	private int totalPrice;
 	private CustomerModel customerByCart;
 	private Set<CartDetailModel> cartDetails;
+	private Boolean isEdit = false;
 }

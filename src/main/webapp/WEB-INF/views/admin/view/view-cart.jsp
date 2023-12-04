@@ -53,12 +53,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="cart" items="${carts}">
+                                <c:forEach var="cart" items="${cart}">
                                     <tr>
-                                        <td>${cart.id_cart}</td>
-                                        <td>${cart.id_user}</td>
-                                        <td>${cart.total_product}</td>
-                                        <td>${cart.total_price}</td>
+                                        <td>${cart.idCart}</td>
+                                        <td>${cart.idUser}</td>
+                                        <td>${cart.totalProduct}</td>
+                                        <td>${cart.totalPrice}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
