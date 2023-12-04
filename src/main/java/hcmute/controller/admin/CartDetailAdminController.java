@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,8 +22,9 @@ import hcmute.model.CartDetailModel;
 import hcmute.model.CartModel;
 import hcmute.service.ICartDetailService;
 import hcmute.service.ICartService;
-@Service
-public class CartDetailController {
+
+@Controller
+public class CartDetailAdminController {
 	@Autowired
 	ICartDetailService cartDetailService;
 	@GetMapping("view-cart-detail")
@@ -57,18 +59,18 @@ public class CartDetailController {
 	    model.addAttribute("message", message);
 	    return new ModelAndView("forward:/admin/view-cart-detail", model);
 	}
-	@GetMapping("customize-cart/edit/{idAccount}")
-	public ModelAndView edit(ModelMap model, @PathVariable("idcart") int idcart) {
-	    Optional<CartDetailEntity> opt = cartDetailService.findById(idcart);
-	    CartDetailModel cart = new CartDetailModel();
-	    if(opt.isPresent()) {
-	    	CartDetailEntity entity = opt.get();
-	    	BeanUtils.copyProperties(entity, cart);
-	    	cart.setIsEdit(true);
-	    	model.addAttribute("cart", cart);
-	    	return new ModelAndView("admin/customize/customize-cart", model);
-	    }
-	    model.addAttribute("message", "cart không tồn tại");
-		return new ModelAndView("forward:/admin/view-cart-detail", model);
-	}
+//	@GetMapping("customize-cart/edit/{idAccount}")
+//	public ModelAndView edit(ModelMap model, @PathVariable("idcart") int idcart) {
+//	    Optional<CartDetailEntity> opt = cartDetailService.findById(idcart);
+//	    CartDetailModel cart = new CartDetailModel();
+//	    if(opt.isPresent()) {
+//	    	CartDetailEntity entity = opt.get();
+//	    	BeanUtils.copyProperties(entity, cart);
+//	    	cart.setIsEdit(true);
+//	    	model.addAttribute("cart", cart);
+//	    	return new ModelAndView("admin/customize/customize-cart", model);
+//	    }
+//	    model.addAttribute("message", "cart không tồn tại");
+//		return new ModelAndView("forward:/admin/view-cart-detail", model);
+//	}
 }
