@@ -22,20 +22,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
-<body>
-	<!-- Show message -->
-    <c:if test="${message != null}">
-    	<div class="alert alert-primary" role="alert">
-        	<i>${message}</i>
-        </div>
-   </c:if>
-   <!-- End: message -->
-                
+<body>                 
 	<!-- Breadcrumb -->
 	<div class="container" style="margin-top: 120px">
 		<div class="row">
 			<div class="col">
 				<nav aria-label="breadcrumb">
+					<!-- Show message -->
+					<c:if test="${cartMessage != null}">
+					    <div class="alert" role="alert">					        				        
+					        <c:choose>
+					            <c:when test="${cartMessage eq 'success'}">
+					                <div class="alert alert-success">
+					                	<button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+					                    <i>Bạn đã thêm sản phẩm này vào <a class="black-text bold-text" href="/cart">giỏ hàng</a> thành công.</i>
+					                </div>
+					            </c:when>
+					            <c:when test="${cartMessage eq 'fail'}">
+					                <div class="alert alert-danger">
+					                	<button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+					                    <i>Sản phẩm này đã có trong <a class="black-text bold-text" href="/cart">giỏ hàng</a> của bạn.</i>
+					                </div>
+					            </c:when>
+					        </c:choose>
+					    </div>
+					</c:if>
+					<!-- End: message --> 
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a class="black-text bold-text" href="/products">Menu</a>
@@ -76,7 +88,7 @@
 						<p class="h4 price bold-text" style="color: #707070;">${milkTea.cost}đ</p>
 						<form method="get" action="">
 							<div class="form-group">
-								<label class="mt-2 fs-18">Chọn size</label><br />
+								<label class="mt-2 fs-18 ml-6">Chọn size</label><br />
 								<button type="button" class="btn btn-outline-dark active medium-size-btn" onclick="changeSize('Vừa')">
 									Vừa +0đ
 								</button>
