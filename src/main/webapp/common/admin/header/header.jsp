@@ -87,8 +87,8 @@
 					</a>
 					<div class="collapse" id="collapseBranch" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/view-branch">Danh sách chi nhánh</a> 
-							<a class="nav-link" href="/admin/customize-branch">Cập nhật chi nhánh</a>
+							<a class="nav-link" href="/admin/branch">Danh sách chi nhánh</a> 
+							<a class="nav-link" href="/admin/branch/add">Cập nhật chi nhánh</a>
 						</nav>
 					</div>
 					<!-- Quản lý giỏ hàng-->

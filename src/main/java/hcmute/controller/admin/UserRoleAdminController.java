@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("admin")
-public class UserRoleController {
+public class UserRoleAdminController {
 	@GetMapping("view-user-role")
 	public String IndexViewUserRole() {
 		return "admin/view/view-user-role";

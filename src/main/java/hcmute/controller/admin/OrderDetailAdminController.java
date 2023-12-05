@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("admin")
-public class OrderDetailController {
+public class OrderDetailAdminController {
 	@GetMapping("view-order-detail")
 	public String IndexViewOrderDetail() {
 		return "admin/view/view-order-detail";

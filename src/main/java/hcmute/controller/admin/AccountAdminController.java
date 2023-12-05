@@ -23,7 +23,7 @@ import hcmute.service.IAccountService;
 
 @Controller
 @RequestMapping("admin")
-public class AccountController {
+public class AccountAdminController {
 	@Autowired
 	IAccountService accountService;
 	@GetMapping("customize-account")
