@@ -1,5 +1,6 @@
 package hcmute.controller.user;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import hcmute.entity.MilkTeaEntity;
@@ -34,6 +34,7 @@ public class ProductsDetailController {
 	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, HttpServletRequest request) {
 		Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
 		MilkTeaModel milkTeaModel = new MilkTeaModel();
+		List<MilkTeaEntity> topProducts = milkTeaService.findFourProductsOutstanding();
 		
 		// get info from session
 	    HttpSession session = request.getSession();
@@ -52,6 +53,7 @@ public class ProductsDetailController {
 				model.addAttribute("cartMessage", cartMessage);
 				session.removeAttribute("cartMessage"); 
 			}
+			model.addAttribute("topProducts", topProducts);
 			return new ModelAndView("user/product_detail", model);
 		}
 		
@@ -87,7 +89,6 @@ public class ProductsDetailController {
 	@GetMapping("/addtocart")
 	public RedirectView addToCart(HttpServletRequest request, @RequestParam("id") int id, @RequestParam("size") String size) {
 	    HttpSession session = request.getSession();
-	    session.setAttribute("cartMessage", "Thêm sản phẩm vào giỏ hàng thành công");
 	    
 		try {
 	    	// tạm để id cart là 1
