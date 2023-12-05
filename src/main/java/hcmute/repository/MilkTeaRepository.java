@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import hcmute.entity.MilkTeaEntity;
 
 @Repository
-public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Long> {
+public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer> {
 	// find a product by id
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
 }
