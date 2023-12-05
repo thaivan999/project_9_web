@@ -30,7 +30,6 @@ public class ProductsController {
 	IMilkTeaService milkTeaService;
 
 	@GetMapping("")
-	
 	public String showCategory(Model model) {
 		List<MilkTeaCategoryEntity> categories = milkTeaCategoryService.findAll();
 		List<List<MilkTeaTypeEntity>> types = new ArrayList<List<MilkTeaTypeEntity>>();

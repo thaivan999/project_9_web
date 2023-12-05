@@ -37,9 +37,6 @@ public class BranchEntity implements Serializable{
 	@Column(name = "description",columnDefinition = "nvarchar(1000)")
 	private String description;
 	
-	@Column(name = "id_city",columnDefinition = "nvarchar(1000)")
-	private String idCity;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_city",insertable = false, updatable = false)
 	private CityEntity cityByBranch;
