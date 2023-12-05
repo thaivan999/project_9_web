@@ -20,6 +20,7 @@ public class MilkTeaModel{
 	// use for product detail
 	private String milkTeaType;
 	private String size;
+	private int milkTeaTypeId;
 	
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
 	private BranchModel branchByMilkTea;

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import hcmute.embeddedId.OrderDetailId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,11 @@ public class OrderDetailEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrderDetailPKEntity id;
+	private OrderDetailId idOrderDetail;
 
 	@Column(name = "quantity")
 	private int quantity;
-	@Column(name = "size", columnDefinition = "varchar(50)")
-	private int size;
+	
 	@Column(name = "note", columnDefinition = "nvarchar(1000)")
 	private String note;
 

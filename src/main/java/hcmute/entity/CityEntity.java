@@ -19,7 +19,7 @@ public class CityEntity implements Serializable{
 	@Column(name = "idCity", columnDefinition = "varchar(100)")
 	private String idCity;
 	
-	@Column(name = "name", columnDefinition = "varchar(50)")
+	@Column(name = "name", columnDefinition = "nvarchar(50)")
 	private String name;
 	
 	@OneToMany(mappedBy = "cityByBranch")

@@ -14,8 +14,6 @@ public class BranchModel{
 	private String opentime;
 	private String image;
 	private String description;
-	private CityModel cityByBranch;
-	private AccountModel accounts;
-	private MilkTeaModel milkTeas;
+	private String idCity;
 	private Boolean isEdit = false;
 }

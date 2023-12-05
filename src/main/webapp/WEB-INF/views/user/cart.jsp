@@ -38,7 +38,7 @@
 							class="cart-product-image" />
 						<div class="cart-item-info">
 							<p class="cart-product-name">${milktea.getName() }</p>
-							<span class="cart-size">${milktea.getSize() }</span>
+							<span data-name="${milktea.getSize() }" class="cart-size">${milktea.getSize() }</span>
 							<p data="${milktea.getCost() }" class="cart-price">${milktea.getCost() }đ</p>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						Bạn có muốn xóa sản phẩm <span class="modal-product-id">1</span>?
+						Bạn có muốn xóa sản phẩm <span class="modal-product-id">1</span> và size = <span class="modal-product-size">Lớn</span>?
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"

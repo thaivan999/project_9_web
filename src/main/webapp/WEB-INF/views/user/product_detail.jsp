@@ -41,7 +41,7 @@
 							<a class="black-text bold-text" href="/products">Menu</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a class="black-text bold-text" href="">${milkTea.milkTeaType}</a>
+							<a class="black-text bold-text" href="/products/type/${milkTea.milkTeaTypeId }">${milkTea.milkTeaType}</a>
 						</li>
 						<li class="breadcrumb-item active bold-text" aria-current="page">
 							${milkTea.name}

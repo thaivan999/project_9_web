@@ -25,7 +25,7 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/branch-update">Cập nhật chi nhánh</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-branch/saveOrUpdate"/>" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/branch/saveOrUpdate"/>" method="post">
                         <!-- Name -->
                         <div class="mb-3">
                             <label for="exampleInputName" class="form-label">Tên chi nhánh*</label> 

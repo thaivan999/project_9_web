@@ -7,6 +7,7 @@ const listPrice = document.querySelectorAll('.cart-price');
 const sumPriceEle = document.querySelector('.cart-sum-price');
 const btnSubmit = document.querySelector('.cart-btn-submit');
 const listDeleteBtn = document.querySelectorAll('.cart-btn-delete');
+const listCartSize = document.querySelectorAll('.cart-size');
 
 listDesc.forEach(function(btnDesc) {
 	btnDesc.addEventListener('click', function() {
@@ -71,14 +72,16 @@ btnSubmit.addEventListener("click", function() {
 listDeleteBtn.forEach(function(item, index) {
 	item.addEventListener('click', function(e) {
 		document.querySelector('.modal-product-id').textContent = listDeleteBtn[index].getAttribute('data-id');
+		document.querySelector('.modal-product-size').textContent = listCartSize[index].getAttribute('data-name');
 	})
 })
-
+	
 document.querySelector('.btn-yes').addEventListener('click', function() {
 	var myAnchor = document.createElement('a');
 	var idMilkTea = document.querySelector('.modal-product-id').textContent;
+	var size = document.querySelector('.modal-product-size').textContent;
 	idMilkTea = parseInt(idMilkTea);
-	myAnchor.setAttribute('href', '/cart/delete/' + idMilkTea);
+	myAnchor.setAttribute('href', '/cart/delete/?idMilkTea='+idMilkTea+'&&size='+size);
 	myAnchor.click();
 })
 
