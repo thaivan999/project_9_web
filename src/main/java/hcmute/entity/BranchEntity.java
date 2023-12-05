@@ -20,7 +20,7 @@ public class BranchEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idBranch")
-	private int idBranch;
+	private Integer idBranch;
 	
 	@Column(name = "name", columnDefinition = "nvarchar(1000)")
 	private String name;
