@@ -1,6 +1,10 @@
 package hcmute.controller.user;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
@@ -19,26 +23,37 @@ import hcmute.service.ICartDetailService;
 import hcmute.service.IMilkTeaService;
 
 @Controller
+@RequestMapping("product_detail")
 public class ProductsDetailController {
 	@Autowired
 	IMilkTeaService milkTeaService;
 	@Autowired
 	ICartDetailService cartDetailService;
 	
-	@GetMapping("product_detail/{id}")
-	public ModelAndView detail(ModelMap model, @PathVariable("id") int id) {
+	@GetMapping("/{id}")
+	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, HttpServletRequest request) {
 		Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
 		MilkTeaModel milkTeaModel = new MilkTeaModel();
+		List<MilkTeaEntity> topProducts = milkTeaService.findFourProductsOutstanding();
+		
+		// get info from session
+	    HttpSession session = request.getSession();
+	    String cartMessage = (String) session.getAttribute("cartMessage");
 
 		if (optMilkTea.isPresent()) {
 			MilkTeaEntity entity = optMilkTea.get();
 			
-			// copy từ entity sang model
+			// copy from entity to model
 			BeanUtils.copyProperties(entity, milkTeaModel);
 			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
+			milkTeaModel.setMilkTeaTypeId(entity.getMilkTeaTypeByMilkTea().getIdType());
 
-			// chuyển model ra view
 			model.addAttribute("milkTea", milkTeaModel);
+			if (cartMessage != null) {
+				model.addAttribute("cartMessage", cartMessage);
+				session.removeAttribute("cartMessage"); 
+			}
+			model.addAttribute("topProducts", topProducts);
 			return new ModelAndView("user/product_detail", model);
 		}
 		
@@ -47,20 +62,22 @@ public class ProductsDetailController {
 		return new ModelAndView("forward:/admin/categories", model);
 	}
 	
-	@GetMapping("/product_detail/buy")
-	public String buyNow(ModelMap model, @RequestParam("id") int id, @RequestParam("size") String size, RedirectAttributes redirectAttributes) {
+	@GetMapping("/buy")
+	public String buyNow(ModelMap model, @RequestParam("id") int id, @RequestParam("size") String size, HttpServletRequest request) {
 	    Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
 	    MilkTeaModel milkTeaModel = new MilkTeaModel();
 
 	    if (optMilkTea.isPresent()) {
 	        MilkTeaEntity entity = optMilkTea.get();
 	        
-	        // copy từ entity sang model
+	        // copy from entity to model
 	        BeanUtils.copyProperties(entity, milkTeaModel);
 	        milkTeaModel.setSize(size);
 
-	        // Chuyển hướng đến trang /payment và truyền model thông qua RedirectAttributes
-	        redirectAttributes.addFlashAttribute("milkTea", milkTeaModel);
+	        // redirect to /payment and send milk tea model
+		    HttpSession session = request.getSession();
+		    session.setAttribute("milkTea", milkTeaModel);
+		    
 	        return "redirect:/payment";
 	    }
 	    
@@ -69,30 +86,19 @@ public class ProductsDetailController {
 	    return "forward:/admin/categories";
 	}
 	
-	@GetMapping("/product_detail/addtocart")
-	public ModelAndView addToCart(ModelMap model, @RequestParam("id") int id, @RequestParam("size") String size) {
-		// thêm sản phẩm vào giỏ hàng
-		// tạm để id cart là 1
-		cartDetailService.addProductToCart(1, id, size);
-		
-		// load lại trang và hiển thị thông báo
-		Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
-		MilkTeaModel milkTeaModel = new MilkTeaModel();
-
-		if (optMilkTea.isPresent()) {
-			MilkTeaEntity entity = optMilkTea.get();
-			
-			// copy từ entity sang model
-			BeanUtils.copyProperties(entity, milkTeaModel);
-			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
-
-			// chuyển model ra view
-			model.addAttribute("milkTea", milkTeaModel);
-			model.addAttribute("message", "Thêm sản phẩm vào giỏ hàng thành công");
-			return new ModelAndView("user/product_detail", model);
+	@GetMapping("/addtocart")
+	public RedirectView addToCart(HttpServletRequest request, @RequestParam("id") int id, @RequestParam("size") String size) {
+	    HttpSession session = request.getSession();
+	    
+		try {
+	    	// tạm để id cart là 1
+		    cartDetailService.addProductToCart(1, id, size);
+		    session.setAttribute("cartMessage", "success");
+		} catch (Exception e) {
+		    session.setAttribute("cartMessage", "fail");
 		}
-		
-		model.addAttribute("message", "Thêm sản phẩm vào giỏ hàng thất bại");
-		return new ModelAndView("user/product_detail", model);
+
+	    // redirect
+	    return new RedirectView("/product_detail/" + id);
 	}
 }

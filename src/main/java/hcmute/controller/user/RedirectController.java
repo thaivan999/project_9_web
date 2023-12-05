@@ -26,10 +26,6 @@ public class RedirectController {
 	public String IndexOrder() {
 		return "user/order";
 	}
-	@GetMapping(value="/payment")
-	public String IndexPayment() {
-		return "user/payment";
-	}
 	@GetMapping(value="/product_detail")
 	public String IndexProductDetail() {
 		return "user/product_detail";

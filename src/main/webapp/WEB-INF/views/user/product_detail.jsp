@@ -22,26 +22,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
-<body>
-	<!-- Show message -->
-    <c:if test="${message != null}">
-    	<div class="alert alert-primary" role="alert">
-        	<i>${message}</i>
-        </div>
-   </c:if>
-   <!-- End: message -->
-                
+<body>                 
 	<!-- Breadcrumb -->
 	<div class="container" style="margin-top: 120px">
 		<div class="row">
 			<div class="col">
 				<nav aria-label="breadcrumb">
+					<!-- Show message -->
+					<c:if test="${cartMessage != null}">
+					    <div class="alert" role="alert">					        				        
+					        <c:choose>
+					            <c:when test="${cartMessage eq 'success'}">
+					                <div class="alert alert-success">
+					                	<button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+					                    <i>Bạn đã thêm sản phẩm này vào <a class="black-text bold-text" href="/cart">giỏ hàng</a> thành công.</i>
+					                </div>
+					            </c:when>
+					            <c:when test="${cartMessage eq 'fail'}">
+					                <div class="alert alert-danger">
+					                	<button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+					                    <i>Sản phẩm này đã có trong <a class="black-text bold-text" href="/cart">giỏ hàng</a> của bạn.</i>
+					                </div>
+					            </c:when>
+					        </c:choose>
+					    </div>
+					</c:if>
+					<!-- End: message --> 
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a class="black-text bold-text" href="/products">Menu</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a class="black-text bold-text" href="">${milkTea.milkTeaType}</a>
+							<a class="black-text bold-text" href="/products/type/${milkTea.milkTeaTypeId }">${milkTea.milkTeaType}</a>
 						</li>
 						<li class="breadcrumb-item active bold-text" aria-current="page">
 							${milkTea.name}
@@ -62,7 +74,7 @@
 					<div class="card-body" style="padding: 0;">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
 							class="img-fluid" style="border-radius: 10px;"
-							src=${milkTea.image } />
+							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"/>
 						</a>
 					</div>
 				</div>
@@ -76,7 +88,7 @@
 						<p class="h4 price bold-text" style="color: #707070;">${milkTea.cost}đ</p>
 						<form method="get" action="">
 							<div class="form-group">
-								<label class="mt-2 fs-18">Chọn size</label><br />
+								<label class="mt-2 fs-18 ml-6">Chọn size</label><br />
 								<button type="button" class="btn btn-outline-dark active medium-size-btn" onclick="changeSize('Vừa')">
 									Vừa +0đ
 								</button>
@@ -115,63 +127,30 @@
 		</div>
 		<!-- End: Description -->
 
-		<!-- Relevant products -->
+		<!-- Top products -->
 		<div class="container mb-2">
 			<div class="row">
 				<div class="col-12">
-					<h5 class="bold-text black-text mt-2">Sản phẩm liên quan</h5>
+					<h5 class="bold-text black-text mt-2">Sản phẩm bán chạy</h5>
 				</div>
-				<!-- Product Card 1 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
+				<c:forEach var="milkTea" items="${topProducts }">
+					<div class="col-sm-3 mt-2">
+						<div class="card">
+							<img class="card-img-top" 
+								 src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg" 
+								 alt="Card image cap">
+							<div class="card-body">
+								<p class="card-title bold-text">
+									<a class="black-text" href="/product_detail/${milkTea.idMilkTea }">${milkTea.name }</a>
+								</p>
+								<p class="card-text">${milkTea.cost }đ</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Product Card 2 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
-						</div>
-					</div>
-				</div>
-				<!-- Product Card 3 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
-						</div>
-					</div>
-				</div>
-				<!-- Product Card 4 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
-		<!-- End: Relevant products -->
+		<!-- End: Top products -->
 	</div>
 	
 	<script>

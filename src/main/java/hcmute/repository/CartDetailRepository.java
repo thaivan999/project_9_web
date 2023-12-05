@@ -20,8 +20,8 @@ import hcmute.entity.MilkTeaEntity;
 public interface CartDetailRepository extends JpaRepository<CartDetailEntity, CartDetailId> {
 	List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart);
 
-    @Query("SELECT cd.milkTeaByCartDetail, cd.size FROM CartDetailEntity cd WHERE cd.cartByCartDetail.idCart = :idCart")
-    List<Object[]> findMilkTeaByCartId(int idCart);
+    @Query("SELECT cd.idCartDetail FROM CartDetailEntity cd WHERE cd.cartByCartDetail.idCart = :idCart")
+    List<CartDetailId> findMilkTeaByCartId(int idCart);
     
     // Add new product to cart
     @Modifying

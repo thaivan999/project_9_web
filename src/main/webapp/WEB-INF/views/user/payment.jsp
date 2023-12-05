@@ -6,10 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>User</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
-<link href='<c:url value="/css/payment.css"/>' rel="stylesheet" type="text/css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
+	rel="stylesheet" type="text/css">
+<link href='<c:url value="/css/payment.css"/>' rel="stylesheet"
+	type="text/css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -18,14 +25,20 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	type="text/javascript"></script>
 </head>
 <body>
 	<div class="payment">
 		<div class="payment-content">
-			<h1 style="margin-bottom: 46px; margin-top: 16px">Thanh toán đơn hàng</h1>
+			<h1 style="margin-bottom: 46px; margin-top: 16px">Thanh toán đơn
+				hàng</h1>
 			<div class="row w-100">
 				<div class="col-5">
 					<div class="payment-container">
@@ -41,38 +54,32 @@
 									<label for="surnameInp" class="form-label">Tên khách
 										hàng </label>
 									<div class="d-flex align-items-center">
-										<input id="surnameInp" type="text" class="form-control me-3	"
-											placeholder="Họ khách hàng"> <input type="text"
-											class="form-control" placeholder="Tên khách hàng">
+										<input id="surnameInp" type="text" value="${customer.surname}" class="form-control me-3	"
+											> <input type="text" value="${customer.name}"
+											class="form-control">
 									</div>
 								</div>
 								<div class="mb-3">
 									<label for="phoneNumberInp" class="form-label">Số điện
-										thoại </label> <input id="phoneNumberInp" type="text"
+										thoại </label> <input id="phoneNumberInp"  type="text" value="${customer.phoneNumber}"
 										class="form-control" placeholder="Số điện thoại">
 								</div>
 							</div>
 						</div>
 						<div class="mb-4">
 							<h4>Phương thức thanh toán</h4>
-							<div class="form-check">
-								<input class="form-check-input" type="radio"
-									name="flexRadioDefault" id="flexRadioDefault1"> <label
-									class="form-check-label" for="flexRadioDefault1"> Tiền
-									mặt </label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio"
-									name="flexRadioDefault" id="flexRadioDefault2" checked>
-								<label class="form-check-label" for="flexRadioDefault2">
-									Momo </label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio"
-									name="flexRadioDefault" id="flexRadioDefault3" checked>
-								<label class="form-check-label" for="flexRadioDefault3">
-									Thẻ ngân hàng </label>
-							</div>
+
+							<!-- Lặp qua danh sách phương thức thanh toán và tạo radiobutton -->
+							<c:forEach var="paymentMethod" items="${listPayMethod}">
+								<div class="form-check">
+									<input class="form-check-input" type="radio"
+										name="flexRadioDefault" id="flexRadioDefault${paymentMethod.idPayMethod}"
+										/> <label
+										class="form-check-label"
+										for="flexRadioDefault${paymentMethod.idPayMethod}">
+										${paymentMethod.name} </label>
+								</div>
+							</c:forEach>
 						</div>
 						<div>
 							<div class="form-check">
@@ -186,7 +193,8 @@
 							</li>
 						</ul>
 					</div>
-					<button class="cart-btn-submit payment-btn" type="submit">Đặt hàng</button>
+					<button class="cart-btn-submit payment-btn" type="submit">Đặt
+						hàng</button>
 				</div>
 			</div>
 		</div>
