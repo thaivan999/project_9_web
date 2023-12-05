@@ -36,7 +36,7 @@ public class ProductsController {
 		List<List<MilkTeaTypeEntity>> types = new ArrayList<List<MilkTeaTypeEntity>>();
 		model.addAttribute("categories", categories);
 		for (MilkTeaCategoryEntity category : categories) {
-			List<MilkTeaTypeEntity> categoriesWithTypes = milkTeaTypeService.findAllByCategoryId(category.getId());
+			List<MilkTeaTypeEntity> categoriesWithTypes = milkTeaTypeService.findAllByCategoryId(category.getIdCategory());
 			types.add(categoriesWithTypes);
 		}
 		model.addAttribute("types", types);
@@ -52,7 +52,7 @@ public class ProductsController {
 		List<List<MilkTeaTypeEntity>> types = new ArrayList<List<MilkTeaTypeEntity>>();
 		model.addAttribute("categories", categories);
 		for (MilkTeaCategoryEntity category : categories) {
-			List<MilkTeaTypeEntity> categoriesWithTypes = milkTeaTypeService.findAllByCategoryId(category.getId());
+			List<MilkTeaTypeEntity> categoriesWithTypes = milkTeaTypeService.findAllByCategoryId(category.getIdCategory());
 			types.add(categoriesWithTypes);
 		}
 		model.addAttribute("types", types);

@@ -12,13 +12,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class CustomerEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idUser")
+	@Column(name = "id_user")
 	private int idUser;
 	
 	@Column(name = "surname",columnDefinition = "nvarchar(50)")
@@ -30,7 +30,7 @@ public class CustomerEntity implements Serializable{
 	@Column(name = "birthday")
 	private LocalDate birthday;
 	
-	@Column(name = "phoneNumber",columnDefinition = "varchar(50)")
+	@Column(name = "phone_number",columnDefinition = "varchar(50)")
 	private String phoneNumber;
 	
 	@Column(name = "email",columnDefinition = "varchar(50)")
