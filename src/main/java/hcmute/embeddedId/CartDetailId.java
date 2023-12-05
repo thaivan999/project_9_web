@@ -22,7 +22,7 @@ public class CartDetailId implements Serializable {
 	@Column(name = "idMilkTea")
 	private int idMilkTea;
 	
-	@Column(name = "size")
+	@Column(name = "size", columnDefinition = "nvarchar(50)")
 	private String size;
 	
 }
