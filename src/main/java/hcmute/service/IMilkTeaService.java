@@ -12,5 +12,6 @@ public interface IMilkTeaService {
 	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
 	List<MilkTeaEntity> findAll();
+	List<MilkTeaEntity> findFourProductsOutstanding();
 	
 }

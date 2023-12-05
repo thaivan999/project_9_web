@@ -74,7 +74,7 @@
 					<div class="card-body" style="padding: 0;">
 						<a href="" data-toggle="modal" data-target="#productModal"> <img
 							class="img-fluid" style="border-radius: 10px;"
-							src=${milkTea.image } />
+							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"/>
 						</a>
 					</div>
 				</div>
@@ -127,63 +127,30 @@
 		</div>
 		<!-- End: Description -->
 
-		<!-- Relevant products -->
+		<!-- Top products -->
 		<div class="container mb-2">
 			<div class="row">
 				<div class="col-12">
-					<h5 class="bold-text black-text mt-2">Sản phẩm liên quan</h5>
+					<h5 class="bold-text black-text mt-2">Sản phẩm bán chạy</h5>
 				</div>
-				<!-- Product Card 1 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
+				<c:forEach var="milkTea" items="${topProducts }">
+					<div class="col-sm-3 mt-2">
+						<div class="card">
+							<img class="card-img-top" 
+								 src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg" 
+								 alt="Card image cap">
+							<div class="card-body">
+								<p class="card-title bold-text">
+									<a class="black-text" href="/product_detail/${milkTea.idMilkTea }">${milkTea.name }</a>
+								</p>
+								<p class="card-text">${milkTea.cost }đ</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Product Card 2 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
-						</div>
-					</div>
-				</div>
-				<!-- Product Card 3 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
-						</div>
-					</div>
-				</div>
-				<!-- Product Card 4 -->
-				<div class="col-sm-3 mt-2">
-					<div class="card">
-						<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-title bold-text">Trà Sữa Truyền Thống</p>
-							<p class="card-text">39.000đ</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
-		<!-- End: Relevant products -->
+		<!-- End: Top products -->
 	</div>
 	
 	<script>
