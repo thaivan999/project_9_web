@@ -17,7 +17,7 @@ public interface ICartDetailService {
 
 	void addProductToCart(int idCart, int idMilkTea, String size);
 
-	List<Object[]> findMilkTeaByCartId(int idCart);
+	List<CartDetailId> findMilkTeaByCartId(int idCart);
 
 	List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart);
 
