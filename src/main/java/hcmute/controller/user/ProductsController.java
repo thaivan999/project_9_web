@@ -40,7 +40,10 @@ public class ProductsController {
 			types.add(categoriesWithTypes);
 		}
 		model.addAttribute("types", types);
+		List<MilkTeaEntity> milkTeas = milkTeaService.findAll();
+	    model.addAttribute("milkTeas", milkTeas);
 		return "user/products";
+		
 	}
 
 	@RequestMapping("type/{id}")

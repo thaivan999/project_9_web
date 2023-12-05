@@ -16,4 +16,6 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
 	List<MilkTeaEntity> findAllByTypeId(int typeId);
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
+	List<MilkTeaEntity> findAll();
+	
 }

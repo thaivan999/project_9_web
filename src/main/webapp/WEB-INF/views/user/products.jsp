@@ -28,9 +28,8 @@
 			<div class="col-9 products-item">
 				<div class="row gx-4">
 					<c:forEach var="milkTea" items="${milkTeas}">
-						<div class="col-4"
-							onclick="window.location.href='product_detail/${type.idType}';">
-							<div class="card">
+						<div class="col-4">
+							<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 								<div class="img-container">
 									<img
 										src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
@@ -40,7 +39,7 @@
 									<h5 class="card-title">${milkTea.name}</h5>
 									<p class="card-price">${milkTea.cost}</p>
 								</div>
-							</div>
+							</a>
 						</div>
 					</c:forEach>
 				</div>
