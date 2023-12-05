@@ -36,6 +36,7 @@ public class ProductsDetailController {
 			// copy từ entity sang model
 			BeanUtils.copyProperties(entity, milkTeaModel);
 			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
+			milkTeaModel.setMilkTeaTypeId(entity.getMilkTeaTypeByMilkTea().getIdType());
 
 			// chuyển model ra view
 			model.addAttribute("milkTea", milkTeaModel);

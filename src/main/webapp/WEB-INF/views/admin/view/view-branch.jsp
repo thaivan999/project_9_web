@@ -49,7 +49,7 @@
                                     <th>Address Detail</th>
                                     <th>Open Time</th>
                                     <th>Image</th>
-<!--                                     <th>City Address</th> -->
+                                    <th>City Address</th>
                                     <th>Description</th>
                                     <th>Edit</th>
                                 </tr>
@@ -62,10 +62,10 @@
                                         <td>${branch.addressDetail}</td>
                                         <td>${branch.opentime}</td>
                                         <td>${branch.image}</td>
-<%--                                         <td>${branch.cityByBranch}</td> --%>
+										<td>${branch.idCity}</td>
                                         <td>${branch.description}</td>
-                                        <td><a class="btn btn-success" href="/admin/customize-branch/edit/${item.idBranch}">edit</a></td>
-                                        <td><a class="btn btn-danger" href="/admin/customize-branch/delete/${item.idBranch}">delete</a></td>
+                                        <td><a class="btn btn-success" href="/admin/branch/edit/${branch.idBranch}">edit</a></td>
+                                        <td><a class="btn btn-danger" href="/admin/branch/delete/${branch.idBranch}">delete</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

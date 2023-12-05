@@ -29,4 +29,9 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	public Optional<MilkTeaEntity> findByIdMilkTea(int id) {
 		return milkTeaRepository.findByIdMilkTea(id);
 	}
+
+	@Override
+	public List<MilkTeaEntity> findAll() {
+		return milkTeaRepository.findAll();
+	}
 }

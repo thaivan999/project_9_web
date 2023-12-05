@@ -20,6 +20,10 @@
 
 .col-4 {
 	margin-bottom: 30px;
+	
+}
+.card {
+	text-decoration: none !important;
 }
 
 .products-category ul {
@@ -38,6 +42,8 @@
 	color: #0fb80a !important;
 	font-weight: 700;
 }
+
+
 
 .products-category ul li a:hover {
 	color: #0fb80a !important;
