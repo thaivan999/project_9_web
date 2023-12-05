@@ -29,6 +29,6 @@ public class MilkTeaTypeEntity implements Serializable{
 	@OneToMany(mappedBy = "milkTeaTypeByMilkTea")
 	private Set<MilkTeaEntity> milkTeas;
 	
-	
+		
 	
 }

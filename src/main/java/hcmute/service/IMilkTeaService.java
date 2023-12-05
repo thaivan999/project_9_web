@@ -8,6 +8,6 @@ import hcmute.entity.MilkTeaEntity;
 
 
 public interface IMilkTeaService {
-	List<MilkTeaEntity> findAllByColumn(Integer typeId);
+	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
 
 }

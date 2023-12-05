@@ -25,4 +25,11 @@ public class MilkTeaCategoryEntity implements Serializable{
 	@OneToMany(mappedBy = "milkTeaCategoryByMilkTeaType")
 	private Set<MilkTeaTypeEntity> milkTeaTypes;
 
+    public Integer getId() {
+        return idCategory;
+    }
+
+    public void setId(Integer idCategory) {
+        this.idCategory = idCategory;
+    }
 }

@@ -17,15 +17,8 @@ public class MilkTeaTypeServiceImpl implements IMilkTeaTypeService{
 	@Autowired
 	MilkTeaTypeRepository milkTeaTypeRepository;
 
-
-	
 	@Override
-	public List<MilkTeaTypeEntity> findAllByColumn(Integer id_category) {
-		return milkTeaTypeRepository.findAllByColumn(id_category);
+	public List<MilkTeaTypeEntity> findAllByCategoryId(int categoryId) {
+		return milkTeaTypeRepository.findAllByCategoryId(categoryId);
 	}
-
-	
-
-	
-	
 }

@@ -24,8 +24,8 @@ public class MilkTeaServiceImpl implements IMilkTeaService{
 	
 
 	@Override
-	public List<MilkTeaEntity> findAllByColumn(Integer typeId) {
-		return milkTeaRepository.findAllByColumn(typeId);
+	public List<MilkTeaEntity> findAllByTypeId(Integer typeId) {
+		return milkTeaRepository.findAllByTypeId(typeId);
 	}
 
 	
