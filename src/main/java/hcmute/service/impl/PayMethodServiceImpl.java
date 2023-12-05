@@ -15,6 +15,7 @@ public class PayMethodServiceImpl implements IPayMethodService{
 	PayMethodRepository payMethodRepository;
 
 	public PayMethodServiceImpl(PayMethodRepository payMethodRepository) {
+		super();
 		this.payMethodRepository = payMethodRepository;
 	}
 

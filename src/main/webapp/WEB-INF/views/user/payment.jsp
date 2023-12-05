@@ -55,8 +55,8 @@
 										hàng </label>
 									<div class="d-flex align-items-center">
 										<input id="surnameInp" type="text" value="${customer.surname}" class="form-control me-3	"
-											placeholder="Họ khách hàng"> <input type="text" value="${customer.name}"
-											class="form-control" placeholder="Tên khách hàng">
+											> <input type="text" value="${customer.name}"
+											class="form-control">
 									</div>
 								</div>
 								<div class="mb-3">
@@ -74,7 +74,7 @@
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
 										name="flexRadioDefault" id="flexRadioDefault${paymentMethod.idPayMethod}"
-										checked="${paymentMethod.name}" /> <label
+										/> <label
 										class="form-check-label"
 										for="flexRadioDefault${paymentMethod.idPayMethod}">
 										${paymentMethod.name} </label>
