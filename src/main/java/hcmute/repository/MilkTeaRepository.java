@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import hcmute.entity.MilkTeaEntity;
@@ -16,4 +16,10 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
 	List<MilkTeaEntity> findAllByTypeId(int typeId);
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE id_milk_tea IN " +
+            "(SELECT TOP 5 id_milk_tea FROM order_detail GROUP BY id_milk_tea ORDER BY SUM(quantity) DESC)",
+            nativeQuery = true)
+	List<MilkTeaEntity> findFiveProductOutstanding();
+	
 }

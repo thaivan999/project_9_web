@@ -1,5 +1,6 @@
 package hcmute.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,4 +30,27 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	public Optional<MilkTeaEntity> findByIdMilkTea(int id) {
 		return milkTeaRepository.findByIdMilkTea(id);
 	}
+
+	@Override
+	public List<MilkTeaEntity> findAll() {
+		return milkTeaRepository.findAll();
+	}
+	
+	@Override
+	public List<MilkTeaEntity> findFiveProduct() {
+		List<MilkTeaEntity> temp = milkTeaRepository.findAll();
+		List<MilkTeaEntity> list = new ArrayList<>();
+		if (temp.size() >= 5) {
+		    list.addAll(temp.subList(0, 5));
+		} else {
+		    list.addAll(temp);
+		}
+		return list;
+	}
+
+	@Override
+	public List<MilkTeaEntity> findFiveProductOutstanding() {
+		return milkTeaRepository.findFiveProductOutstanding();
+	}
+	
 }
