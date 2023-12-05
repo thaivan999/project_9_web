@@ -9,5 +9,5 @@ import hcmute.entity.MilkTeaEntity;
 
 public interface IMilkTeaService {
 	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
-
+	Optional<MilkTeaEntity> findByIdMilkTea(int id);
 }

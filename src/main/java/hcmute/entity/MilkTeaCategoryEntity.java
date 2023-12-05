@@ -16,7 +16,7 @@ public class MilkTeaCategoryEntity implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_category")
+	@Column(name = "idCategory")
 	private int idCategory;
 	
 	@Column(name = "name",columnDefinition = "nvarchar(100)")

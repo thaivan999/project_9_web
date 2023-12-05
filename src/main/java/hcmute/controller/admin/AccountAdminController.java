@@ -1,5 +1,6 @@
 package hcmute.controller.admin;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -21,18 +22,28 @@ import hcmute.model.AccountModel;
 import hcmute.service.IAccountService;
 
 @Controller
-@RequestMapping("admin/customize-account")
-public class AccountController {
+@RequestMapping("admin")
+public class AccountAdminController {
 	@Autowired
 	IAccountService accountService;
-	@GetMapping("add")
+	@GetMapping("customize-account")
+	public String IndexCustomizeAccount() {
+		return "admin/customize/customize-account";
+	}
+	@GetMapping("view-account")
+	public String IndexViewAccount(ModelMap model) {
+		List<AccountEntity> account = accountService.findAll();
+		model.addAttribute("account", account);
+		return "admin/view/view-account";
+	}
+	@GetMapping("customize-account/add")
 	public String Add(ModelMap model) {
 		AccountModel account = new AccountModel();
 		account.setIsEdit(false);
 		model.addAttribute("account", account);
 		return "admin/customize/customize-account";
 	}
-	@PostMapping("saveOrUpdate")
+	@PostMapping("customize-account/saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("account") AccountModel account, BindingResult result) {
 	    if (result.hasErrors()) {
 	        return new ModelAndView("admin/account/customize-account");
@@ -47,9 +58,9 @@ public class AccountController {
 	        message = "Book đã được thêm thành công";
 	    }
 	    model.addAttribute("message", message);
-	    return new ModelAndView("forward:/admin/account/view-account", model);
+	    return new ModelAndView("forward:/admin/view-account", model);
 	}
-	@GetMapping("edit/{idAccount}")
+	@GetMapping("customize-account/edit/{idAccount}")
 	public ModelAndView edit(ModelMap model, @PathVariable("idAccount") int idAccount) {
 	    Optional<AccountEntity> opt = accountService.findById(idAccount);
 	    AccountModel account = new AccountModel();
@@ -61,6 +72,6 @@ public class AccountController {
 	    	return new ModelAndView("admin/account/customize-account", model);
 	    }
 	    model.addAttribute("message", "Account không tồn tại");
-		return new ModelAndView("forward:/admin/account/view-account", model);
+		return new ModelAndView("forward:/admin/view-account", model);
 	}
 }

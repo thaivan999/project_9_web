@@ -1,12 +1,15 @@
 package hcmute.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.*;
 import lombok.*;
+import java.util.Set;
 
+import javax.persistence.*;
 
+import hcmute.embeddedId.CartDetailId;
+import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,18 +17,18 @@ import lombok.*;
 @Table(name = "CartDetail")
 public class CartDetailEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name = "id_cart")
-	private int idCart;
 	
-	@Column(name = "id_milk_tea")
-	private int idMilkTea;
-
+	@EmbeddedId
+	private CartDetailId id;
+	
+	@Column(name = "size",columnDefinition = "varchar(100)")
+	private String size;
+	
 	@ManyToOne
-	@JoinColumn(name = "id_cart",insertable = false, updatable = false)
+	@JoinColumn(name = "idCart",insertable = false, updatable = false)
 	private CartEntity cartByCartDetail;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_milk_tea",insertable = false, updatable = false)
+	@JoinColumn(name = "idMilkTea",insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByCartDetail;
 }

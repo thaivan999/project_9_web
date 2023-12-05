@@ -2,6 +2,7 @@ package hcmute.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.*;
 import lombok.*;
@@ -16,7 +17,7 @@ public class AccountEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_account")
+	@Column(name = "idAccount")
 	private int idAccount;
 	
 	@Column(name = "username",columnDefinition = "varchar(50)")
@@ -25,18 +26,19 @@ public class AccountEntity implements Serializable{
 	@Column(name = "password",columnDefinition = "varchar(50)")
 	private String password;
 	
-	@Column(name = "create_at")
+	@Column(name = "createAt")
 	private LocalDateTime createAt;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_branch",insertable = false, updatable = false)
+	@JoinColumn(name = "idBranch",insertable = false, updatable = false)
 	private BranchEntity branchByAccount;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_role",insertable = false, updatable = false)
+	@JoinColumn(name = "idRole",insertable = false, updatable = false)
 	private UserRoleEntity userRoleByAccount;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_user",insertable = false, updatable = false)
+	@JoinColumn(name = "idUser",insertable = false, updatable = false)
+
 	private CustomerEntity customerByAccount;
 }

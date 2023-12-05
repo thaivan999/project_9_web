@@ -12,23 +12,21 @@ import hcmute.repository.MilkTeaRepository;
 import hcmute.service.IMilkTeaService;
 
 @Service
-public class MilkTeaServiceImpl implements IMilkTeaService{
-
+public class MilkTeaServiceImpl implements IMilkTeaService {
 	@Autowired
 	MilkTeaRepository milkTeaRepository;
 
 	public MilkTeaServiceImpl(MilkTeaRepository milkTeaRepository) {
 		this.milkTeaRepository = milkTeaRepository;
 	}
-	
-	
 
 	@Override
 	public List<MilkTeaEntity> findAllByTypeId(Integer typeId) {
 		return milkTeaRepository.findAllByTypeId(typeId);
 	}
 
-	
-
-	
+	@Override
+	public Optional<MilkTeaEntity> findByIdMilkTea(int id) {
+		return milkTeaRepository.findByIdMilkTea(id);
+	}
 }

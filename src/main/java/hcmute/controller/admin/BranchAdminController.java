@@ -24,9 +24,13 @@ import hcmute.model.BranchModel;
 import hcmute.service.IBranchService;
 @Controller
 @RequestMapping("admin")
-public class BranchController {
+public class BranchAdminController {
 	@Autowired
 	IBranchService branchService;
+	@GetMapping("customize-branch")
+	public String IndexCustomizeBranch() {
+		return "admin/customize/customize-branch";
+	}
 	@GetMapping("view-branch")
 	public String IndexViewBranch(ModelMap model) {
 		List<BranchEntity> branch = branchService.findAll();
@@ -43,21 +47,21 @@ public class BranchController {
 	@PostMapping("customize-branch/saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch, BindingResult result) {
 	    if (result.hasErrors()) {
-	        return new ModelAndView("admin/account/customize-branch");
+	        return new ModelAndView("admin/branch/customize-branch");
 	    }
 	    BranchEntity entity = new BranchEntity();
 	    BeanUtils.copyProperties(branch, entity);
 	    branchService.save(entity);
 	    String message = "";
-	    if (branch.getIsEdit()) {
+	    if (branch.getIsEdit()==true) {
 	        message = "Branch đã được cập nhật thành công";
 	    } else {
 	        message = "Branch đã được thêm thành công";
 	    }
 	    model.addAttribute("message", message);
-	    return new ModelAndView("forward:/admin/view-branch", model);
+	    return new ModelAndView("forward:/admin/customize-branch", model);
 	}
-	@GetMapping("customize-branch/edit/{idAccount}")
+	@GetMapping("customize-branch/edit/{idBranch}")
 	public ModelAndView edit(ModelMap model, @PathVariable("idBranch") int idBranch) {
 	    Optional<BranchEntity> opt = branchService.findById(idBranch);
 	    BranchModel branch = new BranchModel();
@@ -66,7 +70,7 @@ public class BranchController {
 	    	BeanUtils.copyProperties(entity, branch);
 	    	branch.setIsEdit(true);
 	    	model.addAttribute("branch", branch);
-	    	return new ModelAndView("admin/branch/customize-branch", model);
+	    	return new ModelAndView("admin/customize/customize-branch", model);
 	    }
 	    model.addAttribute("message", "Branch không tồn tại");
 		return new ModelAndView("forward:/admin/view-branch", model);

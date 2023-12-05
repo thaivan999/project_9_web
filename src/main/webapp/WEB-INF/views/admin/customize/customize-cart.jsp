@@ -25,35 +25,34 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/cart-update">Cập nhật giỏ hàng</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/cart-update/create" method="post">
-                        <!-- ID Cart -->
-                        <div class="mb-3">
-                            <label for="exampleInputCartId" class="form-label">ID Cart*</label> 
-                            <input placeholder="Cart ID" name="id_cart" type="text" class="form-control" id="exampleInputCartId" aria-describedby="cartIdHelp" value="${cart.id_cart}" ${loguser} required="required" disabled>
-                        </div>
-
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-cart/saveOrUpdate"/>" method="post">
                         <!-- ID User -->
                         <div class="mb-3">
                             <label for="exampleInputUserId" class="form-label">ID User*</label> 
-                            <input placeholder="User ID" name="id_user" type="text" class="form-control" id="exampleInputUserId" aria-describedby="userIdHelp" value="${cart.id_user}" ${loguser} required="required">
+                            <input placeholder="User ID" name="idUser" type="text" class="form-control" id="idUser" aria-describedby="userIdHelp" value="${cart.idUser}" required="required">
                         </div>
 
                         <!-- Total Product -->
                         <div class="mb-3">
                             <label for="exampleInputTotalProduct" class="form-label">Số lượng sản phẩm*</label> 
-                            <input placeholder="Total Product" name="total_product" type="text" class="form-control" id="exampleInputTotalProduct" aria-describedby="totalProductHelp" value="${cart.total_product}" required="required">
+                            <input placeholder="Total Product" name="totalProduct" type="text" class="form-control" id="totalProduct" aria-describedby="totalProductHelp" value="${cart.totalProduct}" required="required">
                         </div>
 
                         <!-- Total Price -->
                         <div class="mb-3">
                             <label for="exampleInputTotalPrice" class="form-label">Tổng giá*</label> 
-                            <input placeholder="Total Price" name="total_price" type="text" class="form-control" id="exampleInputTotalPrice" aria-describedby="totalPriceHelp" value="${cart.total_price}" required="required">
+                            <input placeholder="Total Price" name="totalPrice" type="text" class="form-control" id="totalPrice" aria-describedby="totalPriceHelp" value="${cart.totalPrice}" required="required">
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary" formaction="/admin/cart-update/create" ${buttonnolog}>Thêm</button>
-                            <button type="submit" class="btn btn-success" formaction="/admin/cart-update/update" ${buttonlog}>Sửa</button>
-                            <button type="submit" class="btn btn-danger" formaction="/admin/cart-update/delete" ${buttonlog1} ${buttonxoa}>Xóa</button>
+                            <button type="submit" class="btn btn-success">
+                            	<c:if test="${cart.isEdit}">
+                            		<span>Update</span>
+                            	</c:if>
+                            	<c:if test="${!cart.isEdit}">
+                            		<span>Save</span>
+                            	</c:if>
+                            </button>
                         </div>
                     </form>
                     <h6 class="ms-3 text-primary">${message}</h6>
