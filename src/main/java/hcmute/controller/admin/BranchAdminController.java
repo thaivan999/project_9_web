@@ -37,7 +37,7 @@ public class BranchAdminController {
         return "admin/customize/customize-branch";
     }
 
-    @PostMapping("saveOrUpdate")
+    @PostMapping("/saveOrUpdate")
     public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch, BindingResult result) {
         if (result.hasErrors()) {
             return new ModelAndView("admin/customize/customize-branch");

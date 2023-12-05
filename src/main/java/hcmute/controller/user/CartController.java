@@ -28,20 +28,23 @@ public class CartController {
 
 	@Autowired
 	ICartDetailService cartDetailService;
-	
+
 	@Autowired
 	IMilkTeaService milkTeaService;
-	
+
 	private List<MilkTeaModel> getList() {
-		List<Object[]> milkTeas = cartDetailService.findMilkTeaByCartId(1);
+		List<CartDetailId> milkTeas = cartDetailService.findMilkTeaByCartId(1);
 		List<MilkTeaModel> listmilkteas = new ArrayList<MilkTeaModel>();
-		for(Object[] result : milkTeas) {
-			MilkTeaEntity milktea = (MilkTeaEntity) result[0];
-			String size = (String) result[1];
-			MilkTeaModel milkTeaModel = new MilkTeaModel();
-			BeanUtils.copyProperties(milktea, milkTeaModel);
-			milkTeaModel.setSize(size);
-			listmilkteas.add(milkTeaModel);
+		for (CartDetailId result : milkTeas) {
+			Optional<MilkTeaEntity> milktea = milkTeaService.findByIdMilkTea(result.getIdMilkTea());
+			if(milktea.isPresent()) {
+				MilkTeaEntity entity = milktea.get();
+				String size = result.getSize();
+				MilkTeaModel milkTeaModel = new MilkTeaModel();
+				BeanUtils.copyProperties(entity, milkTeaModel);
+				milkTeaModel.setSize(size);
+				listmilkteas.add(milkTeaModel);
+			}
 		}
 		return listmilkteas;
 	}
@@ -50,8 +53,8 @@ public class CartController {
 	public String list(ModelMap model, @RequestParam(value = "status", required = false) String status) {
 		model.addAttribute("listmilkteas", this.getList());
 		model.addAttribute("status", status);
-		if(status != null) {
-			if("success".equals(status)) {
+		if (status != null) {
+			if ("success".equals(status)) {
 				model.addAttribute("message", "Xóa thành công");
 			} else {
 				model.addAttribute("message", "Xóa thất bại");
@@ -59,12 +62,12 @@ public class CartController {
 		}
 		return "user/cart";
 	}
-	
-	@GetMapping("/delete/{idMilkTea}")
-	public String delete(ModelMap model, @PathVariable("idMilkTea") int idMilkTea) {
-		CartDetailId cartDetailId = new CartDetailId(1, idMilkTea);
+
+	@GetMapping("/delete")
+	public String delete(ModelMap model, @RequestParam("idMilkTea") int idMilkTea, @RequestParam("size") String size) {
+		CartDetailId cartDetailId = new CartDetailId(1, idMilkTea, size);
 		Optional<CartDetailEntity> cartDetail = cartDetailService.findById(cartDetailId);
-		if(cartDetail.isPresent()) {
+		if (cartDetail.isPresent()) {
 			CartDetailEntity cartDetailEntity = cartDetail.get();
 			cartDetailService.delete(cartDetailEntity);
 			model.addAttribute("listmilkteas", this.getList());

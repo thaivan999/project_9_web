@@ -19,10 +19,7 @@ public class CartDetailEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private CartDetailId id;
-	
-	@Column(name = "size",columnDefinition = "nvarchar(100)")
-	private String size;
+	private CartDetailId idCartDetail;
 	
 	@ManyToOne
 	@JoinColumn(name = "idCart",insertable = false, updatable = false)

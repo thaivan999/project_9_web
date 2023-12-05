@@ -74,7 +74,7 @@ public class CartDetailServiceImpl implements ICartDetailService {
 	}
 
     @Override
-	public List<Object[]> findMilkTeaByCartId(int idCart) {
+	public List<CartDetailId> findMilkTeaByCartId(int idCart) {
     	return cartDetailRepository.findMilkTeaByCartId(idCart);
     }
 

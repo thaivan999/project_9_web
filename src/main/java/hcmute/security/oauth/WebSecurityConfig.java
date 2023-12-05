@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	                    
 	                    userService.processOAuthPostLogin(oauthUser.getEmail(), null);
 	                   
-	                    response.sendRedirect("/product_detail");
+	                    response.sendRedirect("/cart");
 
 	                }
 	            })
