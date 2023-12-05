@@ -9,16 +9,19 @@ import org.springframework.data.domain.Sort;
 
 import org.springframework.data.repository.query.Param;
 
+import hcmute.embeddedId.CartDetailId;
 import hcmute.entity.CartDetailEntity;
 import hcmute.entity.MilkTeaEntity;
 
 public interface ICartDetailService {
 
-	List<MilkTeaEntity> findMilkTeaByCartId(int idCart);
+	void addProductToCart(int idCart, int idMilkTea, String size);
+
+	List<Object[]> findMilkTeaByCartId(int idCart);
 
 	List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart);
-	
-	void addProductToCart(@Param("idCart") int idCart, @Param("idMilkTea") int idMilkTea, @Param("size") String size);
+
+	Optional<CartDetailEntity> findById(CartDetailId id);
 
 	void deleteAll();
 
@@ -31,4 +34,7 @@ public interface ICartDetailService {
 	List<CartDetailEntity> findAll();
 
 	<S extends CartDetailEntity> S save(S entity);
+	
+	void delete(CartDetailEntity entity);
+	
 }

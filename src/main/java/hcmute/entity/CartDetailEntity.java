@@ -19,7 +19,7 @@ public class CartDetailEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private CartDetailPKEntity id;
+	private CartDetailId id;
 	
 	@Column(name = "size",columnDefinition = "varchar(100)")
 	private String size;

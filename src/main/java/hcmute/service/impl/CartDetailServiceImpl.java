@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import hcmute.embeddedId.CartDetailId;
 import hcmute.entity.CartDetailEntity;
 import hcmute.repository.CartDetailRepository;
 import hcmute.repository.CartRepository;
@@ -48,6 +49,11 @@ public class CartDetailServiceImpl implements ICartDetailService {
 	}
 
 	@Override
+	public void delete(CartDetailEntity entity) {
+		cartDetailRepository.delete(entity);
+	}
+
+	@Override
 	public long count() {
 		return cartDetailRepository.count();
 	}
@@ -57,14 +63,18 @@ public class CartDetailServiceImpl implements ICartDetailService {
 		cartDetailRepository.deleteAll();
 	}
 	
-	
+	@Override
+	public Optional<CartDetailEntity> findById(CartDetailId id) {
+		return cartDetailRepository.findById(id);
+	}
+
 	@Override
 	public List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart) {
 		return cartDetailRepository.findByCartByCartDetailIdCart(idCart);
 	}
 
     @Override
-	public List<MilkTeaEntity> findMilkTeaByCartId(int idCart) {
+	public List<Object[]> findMilkTeaByCartId(int idCart) {
     	return cartDetailRepository.findMilkTeaByCartId(idCart);
     }
 
