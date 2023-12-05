@@ -21,7 +21,7 @@ public class CartDetailEntity implements Serializable{
 	@EmbeddedId
 	private CartDetailId id;
 	
-	@Column(name = "size",columnDefinition = "varchar(100)")
+	@Column(name = "size",columnDefinition = "nvarchar(100)")
 	private String size;
 	
 	@ManyToOne
