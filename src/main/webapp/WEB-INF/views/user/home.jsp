@@ -12,44 +12,33 @@
 </head>
 <body>
 	<div class="home">
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-bs-ride="carousel">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="0" class="active" aria-current="true"
-					aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="2" aria-label="Slide 3"></button>
-			</div>
+		<div id="homeSlider" class="carousel slide" data-ride="carousel">
+			<!--Indicators-->
+			<ul class="carousel-indicators">
+				<li data-target="#homeSlider" data-slide-to="0" class="active"></li>
+				<li data-target="#homeSlider" data-slide-to="1"></li>
+				<li data-target="#homeSlider" data-slide-to="2"></li>
+			</ul>
+			<!--SlideShow-->
 			<div class="carousel-inner">
 				<div class="carousel-item active c-item">
-					<img
-						src="https://file.hstatic.net/1000075078/file/web_desktop_aeb6f5acca5d46adad94c262dcd9ac72.jpg"
-						class=" d-block w-100 c-img" alt="..." />
+					<img class="c-img" src="https://file.hstatic.net/1000075078/file/web_desktop_aeb6f5acca5d46adad94c262dcd9ac72.jpg">
 				</div>
 				<div class="carousel-item c-item">
-					<img
-						src="https://file.hstatic.net/1000075078/file/desktop_b924413014a1448eb0a38024cd8bc270.jpg"
-						class=" d-block w-100 c-img" alt="..." />
+					<img class="c-img" src="https://file.hstatic.net/1000075078/file/desktop_b924413014a1448eb0a38024cd8bc270.jpg">
 				</div>
 				<div class="carousel-item c-item">
-					<img
-						src="https://file.hstatic.net/1000075078/file/web_moi_-_desktop_7f410066fea94545b59667a4063a1e09.jpg"
-						class=" d-block w-100 c-img" alt="..." />
+					<img class="c-img" src="https://file.hstatic.net/1000075078/file/web_moi_-_desktop_7f410066fea94545b59667a4063a1e09.jpg">
 				</div>
 			</div>
-			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			
+			<!--Controls-->
+			<a class="carousel-control-prev" href="#homeSlider" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a>
+			<a class="carousel-control-next" href="#homeSlider" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
 		</div>
 		<div class="introduce">
 			<div class="row">
