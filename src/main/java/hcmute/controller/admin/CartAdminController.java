@@ -25,7 +25,7 @@ import hcmute.service.ICartService;
 
 @Controller
 @RequestMapping("admin")
-public class CartController {
+public class CartAdminController {
 	@Autowired
 	ICartService cartService;
 	@GetMapping("view-cart")

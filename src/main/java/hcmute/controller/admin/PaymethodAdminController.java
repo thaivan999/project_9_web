@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("admin")
-public class PaymethodController {
+public class PaymethodAdminController {
 	@GetMapping("view-paymethod")
 	public String IndexViewMethod() {
 		return "admin/view/view-paymethod";

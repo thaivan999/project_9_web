@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("admin")
-public class MilkTeaTypeController {
+public class MilkTeaTypeAdminController {
 	@GetMapping("view-milk-tea-type")
 	public String IndexViewMilkTeaType() {
 		return "admin/view/view-milk-tea-type";

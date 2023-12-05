@@ -24,7 +24,7 @@ import hcmute.model.BranchModel;
 import hcmute.service.IBranchService;
 @Controller
 @RequestMapping("admin")
-public class BranchController {
+public class BranchAdminController {
 	@Autowired
 	IBranchService branchService;
 	@GetMapping("customize-branch")
