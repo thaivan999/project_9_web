@@ -38,20 +38,14 @@ html::-webkit-scrollbar-thumb:active {
 	background: rgba(0, 0, 0, .9);
 }
 
-
-#carouselExampleIndicators {
-	min-height: 20px;
+.c-item {
+    height: 470px;
 }
-
-.carousel-inner {
-	min-height: 20px;
-}
-
 
 .c-img {
-	object-fit: cover;
-	background-size: cover;
-	height: 463px;
+    height: 100%;
+    object-fit: cover;
+	border-radius: 16px;
 }
 
 .home {
