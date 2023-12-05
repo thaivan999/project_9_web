@@ -38,12 +38,7 @@ public class RedirectController {
 	public String IndexUserInfo() {
 		return "user/user_infor";
 	}
-	
-	@GetMapping(value="/products")
-	public String IndexProducts() {
-		return "user/products";
-	}
-	
+
 	@GetMapping(value="/test")
 	public String IndexTest() {
 		return "user/test";
