@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BranchModel{
-	private int idBranch;
+	private Integer idBranch;
 	private String name;
 	private String addressDetail;
 	private String opentime;
