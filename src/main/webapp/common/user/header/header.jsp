@@ -3,17 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='<c:url value="/user/css/header.css" />'rel="stylesheet" />
+<link href='<c:url value="/user/css/header.css" />' rel="stylesheet" />
 </head>
 <body>
 	<header class="header">
 		<div class="container-left">
-			<img
+			<a class="d-block" href="/home"> <img
 				src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-milk-tea-logo-png-image_5405468.jpg"
 				class="logo" />
+			</a>
 			<ul class="nav-list">
-				<li class="nav-item"><a class="nav-item-link" href="/products">
-						Menu </a>
+				<li class="nav-item"><a class="nav-item-link"
+					href="/products/page"> Menu </a>
 					<div class="header-menu">
 						<div class="row">
 							<div class="col">
@@ -62,10 +63,10 @@
 						hàng</a></li>
 			</ul>
 		</div>
-		
+
 		<form action="/header/search/content=" method="get">
 			<div class="search-container">
-				<input type="text" class="search-inp" name="input-content"/>
+				<input type="text" class="search-inp" name="input-content" />
 				<button class="search-btn" type="submit">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
