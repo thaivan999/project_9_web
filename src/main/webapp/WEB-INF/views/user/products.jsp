@@ -17,7 +17,7 @@
 						<span>${category.name}</span>
 						<ul>
 							<c:forEach var="type" items="${types[index]}">
-								<li><a href="/products/type/${type.idType}">${type.name}</a></li>
+								<li><a class = "${type.idType == idActive ? 'products-category-link-active':''}" href="/products/type/${type.idType}">${type.name}</a></li>
 							</c:forEach>
 						</ul>
 						<c:set var="index" value="${index + 1 }"></c:set>

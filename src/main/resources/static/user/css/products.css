@@ -28,9 +28,10 @@
 
 .products-category ul {
 	list-style: none;
+	margin-left: 32px;
 }
 
-.products-category ul li a {
+.products-category a {
 	display: inline-block;
 	text-decoration: none;
 	font-size: 18px;
@@ -38,7 +39,7 @@
 	margin-bottom: 8px;
 }
 
-.products-category-link-active {
+a.products-category-link-active  {
 	color: #0fb80a !important;
 	font-weight: 700;
 }
