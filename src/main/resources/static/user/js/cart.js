@@ -63,7 +63,7 @@ btnSubmit.addEventListener("click", function() {
 		if(item.checked) {
 			const obj = {};
 			obj.idMilkTea = item.value;
-			obj.quantity = listQuantity[index].value;
+			obj.quantity = parseInt(listQuantity[index].value);
 			let val = listPrice[index].textContent;
 			val = val.slice(0, -1);
 			obj.price = parseInt(val);

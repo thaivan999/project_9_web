@@ -77,8 +77,8 @@
 									<div class="form-check">
 										<input class="form-check-input" type="radio"
 											name="flexRadioDefault"
-											id="flexRadioDefault${paymentMethod.idPayMethod}" />
-										<label class="form-check-label"
+											id="flexRadioDefault${paymentMethod.idPayMethod}" /> <label
+											class="form-check-label"
 											for="flexRadioDefault${paymentMethod.idPayMethod}">
 											${paymentMethod.name} </label>
 									</div>
@@ -105,14 +105,15 @@
 												src="https://cdn.phonebooky.com/blog/wp-content/uploads/2020/04/07010330/Brown-Sugar.jpg"
 												class="cart-product-image payment-product-image" />
 											<div class="cart-item-info">
-												<div class="d-flex align-items-center mb-2">
+												<div class="d-flex align-items-center"
+													style="margin-bottom: 6px">
 													<p class="cart-product-name m-0">${milkTea.getName()}</p>
 													<p class="cart-quantity ms-2">x${milkTea.getOrderQuantity()}</p>
 												</div>
 												<p class="product-size">${milkTea.getSize()}</p>
 											</div>
 										</div>
-										<p class="cart-price">${milkTea.getCost()}</p>
+										<p class="cart-price cart-price-payment">${milkTea.getCost()}đ</p>
 									</li>
 								</c:forEach>
 							</ul>
@@ -128,6 +129,14 @@
 						<div class="payment-price">
 							<h4>Tổng cộng</h4>
 							<ul>
+								<li>
+									<p>Tổng giá tiền</p>
+									<p class="payment-price-value">${orderProduct.getTotalPrice() }đ</p>
+								</li>
+								<li>
+									<p>Tổng số lượng</p>
+									<p class="payment-price-value">${orderProduct.getTotalProduct() }</p>
+								</li>
 								<li>
 									<p>Phí giao hàng</p>
 									<p class="payment-price-value">12.000đ</p>
