@@ -58,6 +58,7 @@ public class ProductsController {
 		model.addAttribute("types", types);
 	    List<MilkTeaEntity> milkTeas = milkTeaService.findAllByTypeId(typeId);
 	    model.addAttribute("milkTeas", milkTeas);
+	    model.addAttribute("idActive", typeId);
 	    return "user/products";
 	}
 
