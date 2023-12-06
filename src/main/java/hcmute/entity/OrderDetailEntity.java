@@ -28,8 +28,8 @@ public class OrderDetailEntity implements Serializable {
 	@Column(name = "quantity")
 	private int quantity;
 	
-	@Column(name = "note", columnDefinition = "nvarchar(1000)")
-	private String note;
+//	@Column(name = "note", columnDefinition = "nvarchar(1000)")
+//	private String note;
 
 	@ManyToOne
 	@JoinColumn(name = "id_order", insertable = false, updatable = false)

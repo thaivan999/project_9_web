@@ -67,29 +67,6 @@ public class ProductsDetailController {
 		return new ModelAndView("user/error", model);
 	}
 	
-	@GetMapping("/buy")
-	public String buyNow(ModelMap model, @RequestParam("id") int id, @RequestParam("size") String size, HttpServletRequest request) {
-	    Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
-	    MilkTeaModel milkTeaModel = new MilkTeaModel();
-
-	    if (optMilkTea.isPresent()) {
-	        MilkTeaEntity entity = optMilkTea.get();
-	        
-	        // copy from entity to model
-	        BeanUtils.copyProperties(entity, milkTeaModel);
-	        milkTeaModel.setSize(size);
-
-	        // redirect to /payment and send milk tea model
-		    HttpSession session = request.getSession();
-		    session.setAttribute("milkTea", milkTeaModel);
-		    
-	        return "redirect:/payment";
-	    }
-	    
-	    model.addAttribute("message", "Sản phẩm này không tồn tại");
-	    return "forward:/user/error";
-	}
-	
 	@GetMapping("/addtocart")
 	public RedirectView addToCart(HttpServletRequest request, @RequestParam("id") int id, @RequestParam("size") String size) {
 	    HttpSession session = request.getSession();

@@ -10,10 +10,6 @@ public class RedirectController {
     public String Index() {
         return "redirect:/security/login";
     }
-	@GetMapping(value="/home")
-	public String IndexHome() {
-		return "user/home";
-	}
 	@GetMapping(value="/order")
 	public String IndexOrder() {
 		return "user/order";
