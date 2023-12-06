@@ -15,7 +15,7 @@ public interface IMilkTeaService {
 	List<MilkTeaEntity> findAll();
 	
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
-	List<MilkTeaEntity> findFourProductsOutstanding();
+
 	List<MilkTeaEntity>findFiveProduct(); 
 	List<MilkTeaEntity> findFiveProductOutstanding();
 }
