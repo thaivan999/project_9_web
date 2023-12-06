@@ -25,9 +25,9 @@
 						<b>Giờ mở cửa</b>
 						<p>${branch.opentime}</p>
 					</div>
-					<div class="branches_info_btn">
+					<a href = "/products" class="branches_info_btn">
 						<span>Xem menu quán</span>
-					</div>
+					</a>
 				</div>
 
 			</section>

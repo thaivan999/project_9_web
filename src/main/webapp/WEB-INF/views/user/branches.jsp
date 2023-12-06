@@ -27,7 +27,7 @@
 							<div class="container">
 								<div class="row gx-5">
 									<c:forEach var="branch" items="${city.getBranches()}">
-										<div class="col col-6">
+										<div class="col col-6 branch-item">
 											<div class="branch">
 												<div class="branch_image-container">
 													<img src="${branch.image}" class="branch-image" />
@@ -74,5 +74,6 @@
 		</div>
 
 	</div>
+<script type="text/javascript" src='<c:url value="/user/js/branches.js" />'></script>
 </body>
 </html>

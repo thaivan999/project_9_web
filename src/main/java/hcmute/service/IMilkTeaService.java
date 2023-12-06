@@ -24,16 +24,14 @@ public interface IMilkTeaService {
 
 	List<MilkTeaEntity> findFourProductsOutstanding();
 
+	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
+	Optional<MilkTeaEntity> findByIdMilkTea(int id);
+	
+	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
+
+	List<MilkTeaEntity>findFiveProduct(); 
 	List<MilkTeaEntity> findFiveProductOutstanding();
 
-	List<MilkTeaEntity> findFiveProduct();
-
-	List<MilkTeaEntity> findRelevantProducts(int typeId, int milkTeaId);
-
 	List<MilkTeaEntity> findAll();
-
-	Optional<MilkTeaEntity> findByIdMilkTea(int id);
-
-	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
 
 }

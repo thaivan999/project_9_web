@@ -6,9 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Table(name = "milk_tea_type")
 public class MilkTeaTypeEntity implements Serializable{
@@ -28,4 +26,50 @@ public class MilkTeaTypeEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "milkTeaTypeByMilkTea")
 	private Set<MilkTeaEntity> milkTeas;
+
+	public int getIdType() {
+		return idType;
+	}
+
+	public void setIdType(int idType) {
+		this.idType = idType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public MilkTeaCategoryEntity getMilkTeaCategoryByMilkTeaType() {
+		return milkTeaCategoryByMilkTeaType;
+	}
+
+	public void setMilkTeaCategoryByMilkTeaType(MilkTeaCategoryEntity milkTeaCategoryByMilkTeaType) {
+		this.milkTeaCategoryByMilkTeaType = milkTeaCategoryByMilkTeaType;
+	}
+
+	public Set<MilkTeaEntity> getMilkTeas() {
+		return milkTeas;
+	}
+
+	public void setMilkTeas(Set<MilkTeaEntity> milkTeas) {
+		this.milkTeas = milkTeas;
+	}
+
+	public MilkTeaTypeEntity(int idType, String name, MilkTeaCategoryEntity milkTeaCategoryByMilkTeaType,
+			Set<MilkTeaEntity> milkTeas) {
+		super();
+		this.idType = idType;
+		this.name = name;
+		this.milkTeaCategoryByMilkTeaType = milkTeaCategoryByMilkTeaType;
+		this.milkTeas = milkTeas;
+	}
+
+	public MilkTeaTypeEntity() {
+		super();
+	}
+	
 }
