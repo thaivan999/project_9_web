@@ -12,7 +12,7 @@
 				src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-milk-tea-logo-png-image_5405468.jpg"
 				class="logo" />
 			<ul class="nav-list">
-				<li class="nav-item"><a class="nav-item-link" href="#">
+				<li class="nav-item"><a class="nav-item-link" href="/products">
 						Menu </a>
 					<div class="header-menu">
 						<div class="row">
@@ -58,7 +58,7 @@
 							</div>
 						</div>
 					</div></li>
-				<li class="nav-item"><a class="nav-item-link" href="#">Cửa
+				<li class="nav-item"><a class="nav-item-link" href="/branches">Cửa
 						hàng</a></li>
 			</ul>
 		</div>
@@ -80,9 +80,9 @@
 					<li class="header-action-item"><a class="header-action-link"
 						href="#">Quản lý tài khoản</a></li>
 					<li class="header-action-item"><a class="header-action-link"
-						href="#">Giỏ hàng của tôi</a></li>
+						href="/cart">Giỏ hàng của tôi</a></li>
 					<li class="header-action-item"><a class="header-action-link"
-						href="#">Đơn hàng của tôi</a></li>
+						href="/order">Đơn hàng của tôi</a></li>
 					<li class="header-action-item"><a class="header-action-link"
 						href="#">Trợ giúp</a></li>
 					<li class="header-action-item"><a class="header-action-link"
