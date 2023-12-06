@@ -20,5 +20,4 @@ public class ProjectApplication {
 		filterRegistrationBean.addUrlPatterns("/*");
 		return filterRegistrationBean;
 	}
-
 }

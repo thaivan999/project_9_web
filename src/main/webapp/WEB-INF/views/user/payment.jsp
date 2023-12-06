@@ -35,6 +35,7 @@
 	type="text/javascript"></script>
 </head>
 <body>
+	<form action ="<c:url value="/payment/order"/>" method="POST">
 	<div class="payment">
 		<div class="payment-content">
 			<h1 style="margin-bottom: 46px; margin-top: 16px">Thanh toán đơn
@@ -54,8 +55,8 @@
 									<label for="surnameInp" class="form-label">Tên khách
 										hàng </label>
 									<div class="d-flex align-items-center">
-										<input id="surnameInp" type="text" value="${customer.surname}" class="form-control me-3	"
-											> <input type="text" value="${customer.name}"
+										<input id="surnameInp" type="text" readonly="readonly" value="${customer.surname}" class="form-control me-3	"
+											> <input type="text" readonly="readonly" value="${customer.name}"
 											class="form-control">
 									</div>
 								</div>
@@ -199,5 +200,6 @@
 			</div>
 		</div>
 	</div>
+	</form>
 </body>
 </html>
