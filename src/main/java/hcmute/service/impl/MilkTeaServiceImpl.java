@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import hcmute.entity.MilkTeaEntity;
@@ -69,6 +70,22 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	}
 
 	@Override
+
+	public List<MilkTeaEntity> findByNameContaining(String name) {
+		return milkTeaRepository.findByNameContaining(name);
+	}
+
+	@Override
+	public List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name) {
+		return milkTeaRepository.findByNameContainingAndSortAscendingByCost(name);
+	}
+
+	@Override
+	public List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name) {
+		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name);
+	}
+	
+
 	public Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable) {
 		return milkTeaRepository.findBynameContaining(name, pageable);
 	}
@@ -87,5 +104,6 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	public Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable) {
 		return milkTeaRepository.findByidTypeContaining(idType, pageable);
 	}
+
 	
 }

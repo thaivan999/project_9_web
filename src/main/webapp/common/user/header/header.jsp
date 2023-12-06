@@ -62,12 +62,15 @@
 						hàng</a></li>
 			</ul>
 		</div>
-		<div class="search-container">
-			<input type="text" class="search-inp" />
-			<button class="search-btn">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</button>
-		</div>
+		
+		<form action="/moveToSearchPage" method="get">
+			<div class="search-container">
+				<input type="text" class="search-inp" name="input-content"/>
+				<button class="search-btn" type="submit">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+		</form>
 		<div class="container-right">
 			<!-- <button class="btn btn-outline-warning btn-signup">Đăng ký</button> -->
 			<!--<button class="btn btn-info btn-login">Đăng nhập</button>  -->
