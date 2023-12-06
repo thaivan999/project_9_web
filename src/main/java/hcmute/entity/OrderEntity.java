@@ -49,11 +49,11 @@ public class OrderEntity implements Serializable {
 	private String phoneNumber;
 
 	@ManyToOne
-	@JoinColumn(name = "id_pay_method", insertable = false, updatable = false)
+	@JoinColumn(name = "id_pay_method")
 	private PayMethodEntity payMethodByOrder;
 
 	@ManyToOne
-	@JoinColumn(name = "id_user", insertable = false, updatable = false)
+	@JoinColumn(name = "id_user")
 	private CustomerEntity customerByOrder;
 
 	@OneToMany(mappedBy = "orderByOrderDetail")
