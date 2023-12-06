@@ -14,7 +14,6 @@ import hcmute.entity.MilkTeaEntity;
 
 public interface IMilkTeaService {
 
-	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
 
 	Page<MilkTeaEntity> findAll(Pageable pageable);
 
@@ -24,7 +23,7 @@ public interface IMilkTeaService {
 
 	List<MilkTeaEntity> findFourProductsOutstanding();
 
-	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
+	List<MilkTeaEntity> findAllByTypeId(int typeId);
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
 	
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
@@ -33,5 +32,11 @@ public interface IMilkTeaService {
 	List<MilkTeaEntity> findFiveProductOutstanding();
 
 	List<MilkTeaEntity> findAll();
+
+
+
+	int countByTypeId(int typeId);
+	
+	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
 
 }

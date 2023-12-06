@@ -26,10 +26,6 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		this.milkTeaRepository = milkTeaRepository;
 	}
 
-	@Override
-	public List<MilkTeaEntity> findAllByTypeId(Integer typeId) {
-		return milkTeaRepository.findAllByTypeId(typeId);
-	}
 
 	@Override
 	public Optional<MilkTeaEntity> findByIdMilkTea(int id) {
@@ -84,8 +80,20 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	}
 	
 	@Override
-	public Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable) {
-		return milkTeaRepository.findByidTypeContaining(idType, pageable);
+	public List<MilkTeaEntity> findAllByTypeId(int typeId) {
+		return milkTeaRepository.findAllByTypeId(typeId);
 	}
-	
+
+
+
+	@Override
+	public int countByTypeId(int typeId) {
+		return milkTeaRepository.countByTypeId(typeId);
+	}
+
+
+	@Override
+	public Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable) {
+		return  milkTeaRepository.findAllByTypeId(idType, pageable);
+	}
 }

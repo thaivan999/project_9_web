@@ -85,39 +85,45 @@ public class ProductsController {
 
 	}
 
-	/*
-	 * @RequestMapping("type/{id}") public String getMilkTeaByType(Model
-	 * model, @PathVariable("id") Integer typeId, int idType,
-	 * 
-	 * @RequestParam("page") Optional<Integer> page) { List<MilkTeaCategoryEntity>
-	 * categories = milkTeaCategoryService.findAll(); List<List<MilkTeaTypeEntity>>
-	 * types = new ArrayList<List<MilkTeaTypeEntity>>();
-	 * model.addAttribute("categories", categories); for (MilkTeaCategoryEntity
-	 * category : categories) { List<MilkTeaTypeEntity> categoriesWithTypes =
-	 * milkTeaTypeService.findAllByCategoryId(category.getIdCategory());
-	 * types.add(categoriesWithTypes); } model.addAttribute("types", types); //
-	 * List<MilkTeaEntity> milkTeas = milkTeaService.findAllByTypeId(typeId); //
-	 * model.addAttribute("milkTeas", milkTeas); int count = (int)
-	 * milkTeaTypeService.count(); int currentPage = page.orElse(1); int pageSize =
-	 * 6;
-	 * 
-	 * Pageable pageable = PageRequest.of(currentPage - 1, pageSize,
-	 * Sort.by("idMilkTea")); Page<MilkTeaTypeModel> resultpaPage = null;
-	 * 
-	 * if (idType != 0) { resultpaPage =
-	 * milkTeaTypeService.findByidTypeContaining(idType, pageable);
-	 * model.addAttribute("milkTeas", idType); } else { resultpaPage =
-	 * milkTeaTypeService.findAll(pageable); }
-	 * 
-	 * int totalPages = resultpaPage.getTotalPages(); if (totalPages > 0) { int
-	 * start = Math.max(1, currentPage - 2); int end = Math.min(currentPage + 2,
-	 * totalPages); if (totalPages > count) { if (end == totalPages) start = end -
-	 * count; else if (start == 1) end = start + count; } List<Integer> pageNumbers
-	 * = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
-	 * model.addAttribute("pageNumbers", pageNumbers);
-	 * 
-	 * } model.addAttribute("milkTeas", resultpaPage);
-	 * model.addAttribute("idActive", typeId); return "user/products"; }
-	 */
+	@RequestMapping("type/{id}")
+	public String getMilkTeaByType(Model model, @PathVariable("id") int typeId,
+			@RequestParam("page") Optional<Integer> page) {
+		List<MilkTeaCategoryEntity> categories = milkTeaCategoryService.findAll();
+		List<List<MilkTeaTypeEntity>> types = new ArrayList<List<MilkTeaTypeEntity>>();
+		model.addAttribute("categories", categories);
+		for (MilkTeaCategoryEntity category : categories) {
+			List<MilkTeaTypeEntity> categoriesWithTypes = milkTeaTypeService
+					.findAllByCategoryId(category.getIdCategory());
+			types.add(categoriesWithTypes);
+		}
+		model.addAttribute("types", types);
+
+		int count = milkTeaService.countByTypeId(typeId);
+		int currentPage = page.orElse(1);
+		int pageSize = 6;
+
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
+		Page<MilkTeaEntity> resultpaPage = null;
+
+		resultpaPage = milkTeaService.findAllByTypeId(typeId, pageable);
+
+		int totalPages = resultpaPage.getTotalPages();
+		if (totalPages > 0) {
+			int start = Math.max(1, currentPage - 2);
+			int end = Math.min(currentPage + 2, totalPages);
+			if (totalPages > count) {
+				if (end == totalPages)
+					start = end - count;
+				else if (start == 1)
+					end = start + count;
+			}
+			List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+
+		}
+		model.addAttribute("milkTeaByTypes", resultpaPage);
+		model.addAttribute("idActive", typeId);
+		return "user/products";
+	}
 
 }

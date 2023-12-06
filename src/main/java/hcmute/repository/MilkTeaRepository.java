@@ -17,25 +17,30 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	// find a product by id
 	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
 	List<MilkTeaEntity> findAllByTypeId(int typeId);
+
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
-	
-	@Query(value = "SELECT * FROM milk_tea WHERE id_milk_tea IN " +
-            "(SELECT TOP 5 id_milk_tea FROM order_detail GROUP BY id_milk_tea ORDER BY SUM(quantity) DESC)",
-            nativeQuery = true)
+
+	@Query(value = "SELECT * FROM milk_tea WHERE id_milk_tea IN "
+			+ "(SELECT TOP 5 id_milk_tea FROM order_detail GROUP BY id_milk_tea ORDER BY SUM(quantity) DESC)", nativeQuery = true)
 	List<MilkTeaEntity> findFiveProductOutstanding();
-	
+
 	List<MilkTeaEntity> findAll();
-	
+
 	// find relevant products
 	// choose 4 products has the same type except the current product
 	@Query(value = "SELECT TOP 4 * FROM milk_tea WHERE id_type = :typeId AND id_milk_tea <> :milkTeaId", nativeQuery = true)
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
-	
+
 	long count();
+
 	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
-	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
+
+
 	Page<MilkTeaEntity> findAll(Pageable pageable);
 
+	@Query("SELECT COUNT(mt) FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
+	int countByTypeId(int typeId);
+
+	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :idType")
+	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
 }
-
-
