@@ -10,9 +10,7 @@ import javax.persistence.*;
 
 import hcmute.embeddedId.CartDetailId;
 import lombok.*;
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Table(name = "cart_detail")
 public class CartDetailEntity implements Serializable{
@@ -28,4 +26,40 @@ public class CartDetailEntity implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "id_milk_tea",insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByCartDetail;
+
+	public CartDetailId getIdCartDetail() {
+		return idCartDetail;
+	}
+
+	public void setIdCartDetail(CartDetailId idCartDetail) {
+		this.idCartDetail = idCartDetail;
+	}
+
+	public CartEntity getCartByCartDetail() {
+		return cartByCartDetail;
+	}
+
+	public void setCartByCartDetail(CartEntity cartByCartDetail) {
+		this.cartByCartDetail = cartByCartDetail;
+	}
+
+	public MilkTeaEntity getMilkTeaByCartDetail() {
+		return milkTeaByCartDetail;
+	}
+
+	public void setMilkTeaByCartDetail(MilkTeaEntity milkTeaByCartDetail) {
+		this.milkTeaByCartDetail = milkTeaByCartDetail;
+	}
+
+	public CartDetailEntity(CartDetailId idCartDetail, CartEntity cartByCartDetail, MilkTeaEntity milkTeaByCartDetail) {
+		super();
+		this.idCartDetail = idCartDetail;
+		this.cartByCartDetail = cartByCartDetail;
+		this.milkTeaByCartDetail = milkTeaByCartDetail;
+	}
+
+	public CartDetailEntity() {
+		super();
+	}
+	
 }

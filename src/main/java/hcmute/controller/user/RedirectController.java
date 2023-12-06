@@ -10,10 +10,7 @@ public class RedirectController {
     public String Index() {
         return "redirect:/security/login";
     }
-	@GetMapping(value="/order")
-	public String IndexOrder() {
-		return "user/order";
-	}
+	
 	@GetMapping(value="/product_detail")
 	public String IndexProductDetail() {
 		return "user/product_detail";
