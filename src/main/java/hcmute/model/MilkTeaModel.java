@@ -15,6 +15,7 @@ public class MilkTeaModel{
 	private int cost;
 	private String description;
 	private int remainQuantity;
+	private int orderQuantity;
 	private String image;
 	
 	// use for product detail

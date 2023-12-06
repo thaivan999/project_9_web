@@ -77,8 +77,9 @@ btnSubmit.addEventListener("click", function() {
 		data.totalProduct += item.quantity;
 		data.totalPrice += item.price * item.quantity;
 	})
+	var encodedJSONdata = encodeURIComponent(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', '/payment?data=' + JSON.stringify(data));
+	myAnchor.setAttribute('href', '/payment?data=' + encodedJSONdata);
 	myAnchor.click();
 })
 
