@@ -9,6 +9,16 @@ const btnSubmit = document.querySelector('.cart-btn-submit');
 const listDeleteBtn = document.querySelectorAll('.cart-btn-delete');
 const listCartSize = document.querySelectorAll('.cart-size');
 
+listPrice.forEach(function(item, index) {
+	var price = listPrice[index].textContent;
+	price = price.slice(0, -1);
+	price = parseInt(price);
+	if(listCartSize[index].textContent === "Lớn") {
+		price += 5000;
+	}
+	item.textContent = price + "đ";
+}) 
+
 listDesc.forEach(function(btnDesc) {
 	btnDesc.addEventListener('click', function() {
 		var quantityInput = btnDesc.nextElementSibling;
