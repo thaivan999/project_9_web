@@ -75,6 +75,7 @@ public class PaymentController {
 					BeanUtils.copyProperties(entity.get(), milkTeaModel);
 					milkTeaModel.setSize(item.getSize());
 					milkTeaModel.setOrderQuantity(Integer.parseInt(item.getQuantity()));
+					milkTeaModel.setCost(item.getPrice());
 					listMilkTea.add(milkTeaModel);
 				}
 			}
@@ -82,12 +83,7 @@ public class PaymentController {
 			model.addAttribute("listMilkTea", listMilkTea);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		
-		
-		
-		
+		}	
 		return "user/payment";
 	}
 	

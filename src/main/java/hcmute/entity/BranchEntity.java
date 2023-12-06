@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import lombok.*;
 
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "branch")
 public class BranchEntity implements Serializable{
@@ -46,5 +43,95 @@ public class BranchEntity implements Serializable{
 		
 	@OneToMany(mappedBy = "branchByMilkTea")
 	private Set<MilkTeaEntity> milkTeas;
+
+	public int getIdBranch() {
+		return idBranch;
+	}
+
+	public void setIdBranch(int idBranch) {
+		this.idBranch = idBranch;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
+
+	public String getOpentime() {
+		return opentime;
+	}
+
+	public void setOpentime(String opentime) {
+		this.opentime = opentime;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public CityEntity getCityByBranch() {
+		return cityByBranch;
+	}
+
+	public void setCityByBranch(CityEntity cityByBranch) {
+		this.cityByBranch = cityByBranch;
+	}
+
+	public Set<AccountEntity> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<AccountEntity> accounts) {
+		this.accounts = accounts;
+	}
+
+	public Set<MilkTeaEntity> getMilkTeas() {
+		return milkTeas;
+	}
+
+	public void setMilkTeas(Set<MilkTeaEntity> milkTeas) {
+		this.milkTeas = milkTeas;
+	}
+
+	public BranchEntity(int idBranch, String name, String addressDetail, String opentime, String image,
+			String description, CityEntity cityByBranch, Set<AccountEntity> accounts, Set<MilkTeaEntity> milkTeas) {
+		super();
+		this.idBranch = idBranch;
+		this.name = name;
+		this.addressDetail = addressDetail;
+		this.opentime = opentime;
+		this.image = image;
+		this.description = description;
+		this.cityByBranch = cityByBranch;
+		this.accounts = accounts;
+		this.milkTeas = milkTeas;
+	}
+
+	public BranchEntity() {
+		super();
+	}
 	
 }

@@ -1,15 +1,20 @@
 package hcmute.service.impl;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import hcmute.entity.MilkTeaEntity;
+import hcmute.entity.MilkTeaTypeEntity;
 import hcmute.repository.MilkTeaRepository;
 import hcmute.service.IMilkTeaService;
 
@@ -65,6 +70,7 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	}
 
 	@Override
+
 	public List<MilkTeaEntity> findByNameContaining(String name) {
 		return milkTeaRepository.findByNameContaining(name);
 	}
@@ -79,5 +85,25 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name);
 	}
 	
+
+	public Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable) {
+		return milkTeaRepository.findBynameContaining(name, pageable);
+	}
+
+	@Override
+	public long count() {
+		return milkTeaRepository.count();
+	}
+
+	@Override
+	public Page<MilkTeaEntity> findAll(Pageable pageable) {
+		return milkTeaRepository.findAll(pageable);
+	}
+	
+	@Override
+	public Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable) {
+		return milkTeaRepository.findByidTypeContaining(idType, pageable);
+	}
+
 	
 }

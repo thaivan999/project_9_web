@@ -3,6 +3,8 @@ package hcmute.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,4 +39,11 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost DESC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name);
+	long count();
+	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
+	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
+	Page<MilkTeaEntity> findAll(Pageable pageable);
+
 }
+
+
