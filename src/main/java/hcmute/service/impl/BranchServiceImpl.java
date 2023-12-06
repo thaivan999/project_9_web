@@ -77,6 +77,13 @@ public class BranchServiceImpl implements IBranchService{
 		return branchRepository.findById(id);
 	}
 
+	@Override
+	public BranchEntity getById(Integer id) {
+		return branchRepository.getById(id);
+	}
+
+	
+
 	
 	
 }

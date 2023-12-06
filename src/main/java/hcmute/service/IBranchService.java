@@ -33,4 +33,7 @@ public interface IBranchService {
 
 	Optional<BranchEntity> findById(Integer id);
 
+	BranchEntity getById(Integer id);
+
+
 }

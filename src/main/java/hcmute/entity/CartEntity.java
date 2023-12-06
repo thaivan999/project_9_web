@@ -10,23 +10,23 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Cart")
+@Table(name = "cart")
 public class CartEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idCart")
+	@Column(name = "id_cart")
 	private int idCart;
 	
-	@Column(name = "totalProduct")
+	@Column(name = "total_product")
 	private int totalProduct;
 	
-	@Column(name = "totalPrice")
+	@Column(name = "total_price")
 	private int totalPrice;
 	
 	@ManyToOne
-	@JoinColumn(name = "idUser",insertable = false, updatable = false)
+	@JoinColumn(name = "id_user",insertable = false, updatable = false)
 	private CustomerEntity customerByCart;
 	
 	@OneToMany(mappedBy = "cartByCartDetail")
