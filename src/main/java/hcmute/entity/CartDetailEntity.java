@@ -14,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CartDetail")
+@Table(name = "cart_detail")
 public class CartDetailEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -22,10 +22,10 @@ public class CartDetailEntity implements Serializable{
 	private CartDetailId idCartDetail;
 	
 	@ManyToOne
-	@JoinColumn(name = "idCart",insertable = false, updatable = false)
+	@JoinColumn(name = "id_cart",insertable = false, updatable = false)
 	private CartEntity cartByCartDetail;
 	
 	@ManyToOne
-	@JoinColumn(name = "idMilkTea",insertable = false, updatable = false)
+	@JoinColumn(name = "id_milk_tea",insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByCartDetail;
 }

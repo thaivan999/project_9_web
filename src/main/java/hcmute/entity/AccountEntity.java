@@ -11,13 +11,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Account")
+@Table(name = "account")
 public class AccountEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idAccount")
+	@Column(name = "id_account")
 	private int idAccount;
 	
 	@Column(name = "username",columnDefinition = "varchar(50)")
@@ -26,19 +26,19 @@ public class AccountEntity implements Serializable{
 	@Column(name = "password",columnDefinition = "varchar(50)")
 	private String password;
 	
-	@Column(name = "createAt")
+	@Column(name = "create_at")
 	private LocalDateTime createAt;
 	
 	@ManyToOne
-	@JoinColumn(name = "idBranch",insertable = false, updatable = false)
+	@JoinColumn(name = "id_branch",insertable = false, updatable = false)
 	private BranchEntity branchByAccount;
 	
 	@ManyToOne
-	@JoinColumn(name = "idRole",insertable = false, updatable = false)
+	@JoinColumn(name = "id_role",insertable = false, updatable = false)
 	private UserRoleEntity userRoleByAccount;
 	
 	@ManyToOne
-	@JoinColumn(name = "idUser",insertable = false, updatable = false)
+	@JoinColumn(name = "id_user",insertable = false, updatable = false)
 
 	private CustomerEntity customerByAccount;
 }

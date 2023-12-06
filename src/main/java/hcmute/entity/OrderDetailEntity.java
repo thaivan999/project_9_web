@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "order_detail")
 public class OrderDetailEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,10 +32,10 @@ public class OrderDetailEntity implements Serializable {
 	private String note;
 
 	@ManyToOne
-	@JoinColumn(name = "idOrder", insertable = false, updatable = false)
+	@JoinColumn(name = "id_order", insertable = false, updatable = false)
 	private OrderEntity orderByOrderDetail;
 
 	@ManyToOne
-	@JoinColumn(name = "idMilkTea", insertable = false, updatable = false)
+	@JoinColumn(name = "id_milk_tea", insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByOrderDetail;
 }

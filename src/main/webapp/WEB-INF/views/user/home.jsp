@@ -22,22 +22,24 @@
 			<!--SlideShow-->
 			<div class="carousel-inner">
 				<div class="carousel-item active c-item">
-					<img class="c-img" src="https://file.hstatic.net/1000075078/file/web_desktop_aeb6f5acca5d46adad94c262dcd9ac72.jpg">
+					<img class="c-img"
+						src="https://file.hstatic.net/1000075078/file/web_desktop_aeb6f5acca5d46adad94c262dcd9ac72.jpg">
 				</div>
 				<div class="carousel-item c-item">
-					<img class="c-img" src="https://file.hstatic.net/1000075078/file/desktop_b924413014a1448eb0a38024cd8bc270.jpg">
+					<img class="c-img"
+						src="https://file.hstatic.net/1000075078/file/desktop_b924413014a1448eb0a38024cd8bc270.jpg">
 				</div>
 				<div class="carousel-item c-item">
-					<img class="c-img" src="https://file.hstatic.net/1000075078/file/web_moi_-_desktop_7f410066fea94545b59667a4063a1e09.jpg">
+					<img class="c-img"
+						src="https://file.hstatic.net/1000075078/file/web_moi_-_desktop_7f410066fea94545b59667a4063a1e09.jpg">
 				</div>
 			</div>
-			
+
 			<!--Controls-->
 			<a class="carousel-control-prev" href="#homeSlider" data-slide="prev">
 				<span class="carousel-control-prev-icon"></span>
-			</a>
-			<a class="carousel-control-next" href="#homeSlider" data-slide="next">
-				<span class="carousel-control-next-icon"></span>
+			</a> <a class="carousel-control-next" href="#homeSlider"
+				data-slide="next"> <span class="carousel-control-next-icon"></span>
 			</a>
 		</div>
 		<div class="introduce">
@@ -67,144 +69,42 @@
 		<div class="products">
 			<p class="products-title">Sản phẩm bán chạy</p>
 			<div class="row gx-1">
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
+				<c:forEach var="milkTea" items="${list1}">
+					<div class="col">
+						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
+							<div class="img-container">
+								<img
+									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+									class="card-image card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">${milkTea.name}</h5>
+								<p class="card-price">${milkTea.cost}</p>
+							</div>
+						</a>
 					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-
+				</c:forEach>
 			</div>
 		</div>
 		<div class="products">
 			<p class="products-title">Sản phẩm khuyến mãi</p>
 			<div class="row gx-1">
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
+				<c:forEach var="milkTea" items="${list2}">
+					<div class="col">
+						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
+							<div class="img-container">
+								<img
+									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+									class="card-image card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">${milkTea.name}</h5>
+								<p class="card-price">${milkTea.cost}</p>
+							</div>
+						</a>
 					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<div class="img-container">
-							<img
-								src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-								class="card-image card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Trà sữa trân châu trắng</h5>
-							<p class="card-price">25.000đ</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
