@@ -16,7 +16,7 @@ public class MilkTeaCategoryEntity implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idCategory")
+	@Column(name = "id_category")
 	private int idCategory;
 	
 	@Column(name = "name",columnDefinition = "nvarchar(100)")
@@ -25,11 +25,4 @@ public class MilkTeaCategoryEntity implements Serializable{
 	@OneToMany(mappedBy = "milkTeaCategoryByMilkTeaType")
 	private Set<MilkTeaTypeEntity> milkTeaTypes;
 
-    public Integer getId() {
-        return idCategory;
-    }
-
-    public void setId(Integer idCategory) {
-        this.idCategory = idCategory;
-    }
 }

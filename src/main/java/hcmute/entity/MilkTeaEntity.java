@@ -10,13 +10,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "MilkTea")
+@Table(name = "milk_tea")
 public class MilkTeaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idMilkTea")
+	@Column(name = "id_milk_tea")
 	private int idMilkTea;
 
 	@Column(name = "name", columnDefinition = "nvarchar(100)")
@@ -28,18 +28,18 @@ public class MilkTeaEntity implements Serializable {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "remainQuantity")
+	@Column(name = "remain_quantity")
 	private int remainQuantity;
 
 	@Column(name = "image", columnDefinition = "varchar(1000)")
 	private String image;
 
 	@ManyToOne
-	@JoinColumn(name = "idType", insertable = false, updatable = false)
+	@JoinColumn(name = "id_type", insertable = false, updatable = false)
 	private MilkTeaTypeEntity milkTeaTypeByMilkTea;
 
 	@ManyToOne
-	@JoinColumn(name = "idBranch", insertable = false, updatable = false)
+	@JoinColumn(name = "id_branch", insertable = false, updatable = false)
 	private BranchEntity branchByMilkTea;
 
 	@OneToMany(mappedBy = "milkTeaByCartDetail")

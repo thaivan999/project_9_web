@@ -23,8 +23,17 @@
 .no-decor-text {
 	text-decoration: none!important;
 }
+
 .ml-1 {
 	margin-left: 1rem!important;
+}
+
+.ml-6 {
+	margin-left: 6px !important;
+}
+
+.mb-2 {
+	margin-bottom: 2rem!important;
 }
 
 .mt-2 {

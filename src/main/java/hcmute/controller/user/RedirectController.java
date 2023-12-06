@@ -10,18 +10,6 @@ public class RedirectController {
     public String Index() {
         return "redirect:/security/login";
     }
-	@GetMapping(value="/branches_info")
-	public String IndexBranchesInfo() {
-		return "user/branches_info";
-	}
-	@GetMapping(value="/branches")
-	public String IndexBranches() {
-		return "user/branches";
-	}
-	@GetMapping(value="/home")
-	public String IndexHome() {
-		return "user/home";
-	}
 	@GetMapping(value="/order")
 	public String IndexOrder() {
 		return "user/order";

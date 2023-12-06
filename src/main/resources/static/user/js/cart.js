@@ -57,16 +57,29 @@ function calculateSumPrice() {
 
 
 btnSubmit.addEventListener("click", function() {
-	const data = []
+	const data = {};
+	data.list = [];
 	listCheckbox.forEach(function(item, index) {
 		if(item.checked) {
 			const obj = {};
 			obj.idMilkTea = item.value;
 			obj.quantity = listQuantity[index].value;
-			data.push(obj);
+			let val = listPrice[index].textContent;
+			val = val.slice(0, -1);
+			obj.price = parseInt(val);
+			obj.size = listCartSize[index].textContent;
+			data.list.push(obj);
 		}
 	})
-	alert(JSON.stringify(data));
+	data.totalProduct = 0;
+	data.totalPrice = 0;
+	data.list.forEach(function(item, index) {
+		data.totalProduct += item.quantity;
+		data.totalPrice += item.price * item.quantity;
+	})
+	var myAnchor = document.createElement('a');
+	myAnchor.setAttribute('href', '/payment?data=' + JSON.stringify(data));
+	myAnchor.click();
 })
 
 listDeleteBtn.forEach(function(item, index) {
