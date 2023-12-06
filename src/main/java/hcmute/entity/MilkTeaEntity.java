@@ -6,7 +6,9 @@ import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
 
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "milk_tea")
 public class MilkTeaEntity implements Serializable {
@@ -125,26 +127,4 @@ public class MilkTeaEntity implements Serializable {
 	public void setOrderDetails(Set<OrderDetailEntity> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-
-	public MilkTeaEntity(int idMilkTea, String name, int cost, String description, int remainQuantity, String image,
-			MilkTeaTypeEntity milkTeaTypeByMilkTea, BranchEntity branchByMilkTea, Set<CartDetailEntity> cartDetails,
-			Set<OrderDetailEntity> orderDetails) {
-		super();
-		this.idMilkTea = idMilkTea;
-		this.name = name;
-		this.cost = cost;
-		this.description = description;
-		this.remainQuantity = remainQuantity;
-		this.image = image;
-		this.milkTeaTypeByMilkTea = milkTeaTypeByMilkTea;
-		this.branchByMilkTea = branchByMilkTea;
-		this.cartDetails = cartDetails;
-		this.orderDetails = orderDetails;
-	}
-
-	public MilkTeaEntity() {
-		super();
-	}
-	
-
 }

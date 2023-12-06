@@ -18,7 +18,7 @@ import hcmute.entity.MilkTeaEntity;
 
 public interface IMilkTeaService {
 
-	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
+//	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
 
 	Page<MilkTeaEntity> findAll(Pageable pageable);
 

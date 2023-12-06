@@ -37,8 +37,6 @@ public class HeaderController {
 	@RequestMapping("search/content={name}")
 	public String getMilkTeaByNameContaining(@PathVariable("name") String name, Model model) {
 	    milkTeas = milkTeaService.findByNameContaining(name);
-//		milkTeas = milkTeaService.findByNameContainingAndSortAscendingByCost(name);
-//	    milkTeas = milkTeaService.findByNameContainingAndSortDescendingByCost(name);
 	    model.addAttribute("milkTeas", milkTeas);
 	    return "user/search";
 	}

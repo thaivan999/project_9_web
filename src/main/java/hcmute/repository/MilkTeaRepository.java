@@ -25,6 +25,7 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	List<MilkTeaEntity> findFiveProductOutstanding();
 	
 	List<MilkTeaEntity> findAll();
+	Page<MilkTeaEntity> findAll(Pageable pageable);
 	
 	// find relevant products
 	// choose 4 products has the same type except the current product
@@ -33,6 +34,7 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%'))", nativeQuery = true)
     List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
+	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
 	
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost ASC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name);
@@ -40,9 +42,7 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost DESC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name);
 	long count();
-	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
-	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
-	Page<MilkTeaEntity> findAll(Pageable pageable);
+//	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
 
 }
 
