@@ -57,5 +57,10 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	public List<MilkTeaEntity> findFiveProductOutstanding() {
 		return milkTeaRepository.findFiveProductOutstanding();
 	}
+
+	@Override
+	public List<MilkTeaEntity> findFourProductsOutstanding() {
+		return null;
+	}
 	
 }
