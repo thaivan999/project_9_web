@@ -63,9 +63,9 @@
 			</ul>
 		</div>
 		
-		<form action="/header/search/content=" method="get">
+		<form action="/header/moveToSearchPage" method="get" accept-charset="UTF-8">
 			<div class="search-container">
-				<input type="text" class="search-inp" name="input-content"/>
+				<input type="text" class="search-inp" name="content"/>
 				<button class="search-btn" type="submit">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
