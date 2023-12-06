@@ -127,13 +127,13 @@
 		</div>
 		<!-- End: Description -->
 
-		<!-- Top products -->
+		<!-- Relevant products -->
 		<div class="container mb-2">
 			<div class="row">
 				<div class="col-12">
-					<h5 class="bold-text black-text mt-2">Sản phẩm bán chạy</h5>
+					<h5 class="bold-text black-text mt-2">Sản phẩm liên quan</h5>
 				</div>
-				<c:forEach var="milkTea" items="${topProducts }">
+				<c:forEach var="milkTea" items="${relevantProducts }">
 					<div class="col-sm-3 mt-2">
 						<div class="card">
 							<img class="card-img-top" 
@@ -150,7 +150,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<!-- End: Top products -->
+		<!-- End: Relevant products -->
 	</div>
 	
 	<script>

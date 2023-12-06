@@ -23,9 +23,9 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	List<MilkTeaEntity> findFiveProductOutstanding();
 	
 	List<MilkTeaEntity> findAll();
-	//top products
-	@Query(value = "SELECT * FROM milk_tea WHERE id_milk_tea IN " +
-		            "(SELECT TOP 4 id_milk_tea FROM order_detail GROUP BY id_milk_tea ORDER BY SUM(quantity) DESC)",
-		            nativeQuery = true)
-	List<MilkTeaEntity> findFourProductsOutstanding();
+	
+	// find relevant products
+	// choose 4 products has the same type except the current product
+	@Query(value = "SELECT TOP 4 * FROM milk_tea WHERE id_type = :typeId AND id_milk_tea <> :milkTeaId", nativeQuery = true)
+	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
 }

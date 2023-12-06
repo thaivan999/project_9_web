@@ -34,26 +34,31 @@ public class ProductsDetailController {
 	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, HttpServletRequest request) {
 		Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
 		MilkTeaModel milkTeaModel = new MilkTeaModel();
-		List<MilkTeaEntity> topProducts = milkTeaService.findFourProductsOutstanding();
-		
-		// get info from session
-	    HttpSession session = request.getSession();
-	    String cartMessage = (String) session.getAttribute("cartMessage");
 
 		if (optMilkTea.isPresent()) {
 			MilkTeaEntity entity = optMilkTea.get();
 			
 			// copy from entity to model
 			BeanUtils.copyProperties(entity, milkTeaModel);
+			int typeId = entity.getMilkTeaTypeByMilkTea().getIdType();
+			
 			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
-			milkTeaModel.setMilkTeaTypeId(entity.getMilkTeaTypeByMilkTea().getIdType());
+			milkTeaModel.setMilkTeaTypeId(typeId);
+			
+			List<MilkTeaEntity> relevantProducts = milkTeaService.findRelevantProducts(typeId, id);
 
-			model.addAttribute("milkTea", milkTeaModel);
+			// get info from session
+		    HttpSession session = request.getSession();
+		    String cartMessage = (String) session.getAttribute("cartMessage");
+			
 			if (cartMessage != null) {
 				model.addAttribute("cartMessage", cartMessage);
 				session.removeAttribute("cartMessage"); 
 			}
-			model.addAttribute("topProducts", topProducts);
+			
+			model.addAttribute("milkTea", milkTeaModel);
+			model.addAttribute("relevantProducts", relevantProducts);
+			
 			return new ModelAndView("user/product_detail", model);
 		}
 		
