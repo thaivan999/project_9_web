@@ -69,9 +69,9 @@
 		<div class="products">
 			<p class="products-title">Sản phẩm bán chạy</p>
 			<div class="row gx-1">
-				<c:forEach items="${list1}" var="milkTea">
+				<c:forEach var="milkTea" items="${list1}">
 					<div class="col">
-						<div class="card">
+						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 							<div class="img-container">
 								<img
 									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
@@ -81,11 +81,9 @@
 								<h5 class="card-title">${milkTea.name}</h5>
 								<p class="card-price">${milkTea.cost}</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</c:forEach>
-
-
 			</div>
 		</div>
 		<div class="products">
@@ -93,7 +91,7 @@
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list2}">
 					<div class="col">
-						<div class="card">
+						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 							<div class="img-container">
 								<img
 									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
@@ -103,7 +101,7 @@
 								<h5 class="card-title">${milkTea.name}</h5>
 								<p class="card-price">${milkTea.cost}</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</c:forEach>
 			</div>
