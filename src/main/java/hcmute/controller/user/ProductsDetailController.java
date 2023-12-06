@@ -42,6 +42,7 @@ public class ProductsDetailController {
 			BeanUtils.copyProperties(entity, milkTeaModel);
 			int typeId = entity.getMilkTeaTypeByMilkTea().getIdType();
 			
+			// set attributes for model
 			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
 			milkTeaModel.setMilkTeaTypeId(typeId);
 			
@@ -62,9 +63,8 @@ public class ProductsDetailController {
 			return new ModelAndView("user/product_detail", model);
 		}
 		
-		// Sẽ làm trang hiển thị lỗi sau
 		model.addAttribute("message", "Sản phẩm này không tồn tại");
-		return new ModelAndView("forward:/admin/categories", model);
+		return new ModelAndView("user/error", model);
 	}
 	
 	@GetMapping("/buy")
@@ -86,9 +86,8 @@ public class ProductsDetailController {
 	        return "redirect:/payment";
 	    }
 	    
-	    // Sẽ làm trang hiển thị lỗi sau
 	    model.addAttribute("message", "Sản phẩm này không tồn tại");
-	    return "forward:/admin/categories";
+	    return "forward:/user/error";
 	}
 	
 	@GetMapping("/addtocart")
