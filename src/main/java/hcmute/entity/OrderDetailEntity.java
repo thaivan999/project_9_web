@@ -28,9 +28,9 @@ public class OrderDetailEntity implements Serializable {
 	@Column(name = "quantity")
 	private int quantity;
 	
-//	@Column(name = "note", columnDefinition = "nvarchar(1000)")
-//	private String note;
-
+	@Column(name = "curr_price")
+	private int currPrice;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_order", insertable = false, updatable = false)
 	private OrderEntity orderByOrderDetail;

@@ -26,15 +26,18 @@ public class OrderEntity implements Serializable {
 
 	@Column(name = "total_price")
 	private int totalPrice;
+	
+	@Column(name = "final_price")
+	private int finalPrice;
 
-	@Column(name = "order_time")
-	private LocalDateTime orderTime;
+	@Column(name = "order_day")
+	private LocalDate orderDay;
 
 	@Column(name = "order_state")
 	private int orderState;
 
-	@Column(name = "tentative_time")
-	private LocalDateTime tentativeTime;
+	@Column(name = "ship_day")
+	private LocalDate shipDay;
 	
 	@Column(name = "note", columnDefinition = "nvarchar(1000)")
 	private String note;

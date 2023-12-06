@@ -1,5 +1,6 @@
 package hcmute.model;
 
+import hcmute.embeddedId.OrderDetailId;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.OrderEntity;
 import lombok.AllArgsConstructor;
@@ -9,9 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetailModel{
+	private OrderDetailId idOrderDetail;
 	private int quantity;
+	private int currPrice;
 	private int size;
-	private String note;
-	private OrderEntity orderByOrderDetail;
-	private MilkTeaEntity milkTeaByOrderDetail;
+	private OrderModel orderByOrderDetail;
+	private MilkTeaModel milkTeaByOrderDetail;
 }
