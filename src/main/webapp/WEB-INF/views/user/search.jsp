@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="search.css" />
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="search.css" />
 </head>
 <body>
 	<p class="search-content">Kết quả tìm kiếm cho từ khóa xxx</p>
@@ -15,11 +15,20 @@
 		<div class="btn-group">
 			<button type="button" class="btn btn-warning dropdown-toggle"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Giá
-			</button>
+				Giá</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="/low-to-high">Giá: Thấp đến cao</a> 
-				<a class="dropdown-item" href="/high-to-low">Giá: Cao đến thấp</a>
+				<script>
+					function redirectToNewUrl(url) {
+						window.location.href = url;
+					}
+				</script>
+
+				<a class="dropdown-item" href="javascript:void(0);"
+					onclick="redirectToNewUrl('${newUrlLowToHigh}')">Giá: Thấp đến cao
+				</a> 
+				<a class="dropdown-item" href="javascript:void(0);"
+					onclick="redirectToNewUrl('${newUrlHighToLow}')">Giá: Cao đến thấp
+				</a>
 			</div>
 		</div>
 	</div>

@@ -63,7 +63,7 @@
 			</ul>
 		</div>
 		
-		<form action="/moveToSearchPage" method="get">
+		<form action="/header/search/content=" method="get">
 			<div class="search-container">
 				<input type="text" class="search-inp" name="input-content"/>
 				<button class="search-btn" type="submit">

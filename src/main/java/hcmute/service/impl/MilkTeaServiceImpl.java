@@ -100,10 +100,10 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		return milkTeaRepository.findAll(pageable);
 	}
 	
-	@Override
-	public Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable) {
-		return milkTeaRepository.findByidTypeContaining(idType, pageable);
-	}
+//	@Override
+//	public Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable) {
+//		return milkTeaRepository.findByidTypeContaining(idType, pageable);
+//	}
 
 	
 }
