@@ -36,11 +36,11 @@ public class PaymentController {
 	{
 		List<PayMethodEntity> listPayMethod = payMethodService.findAll();
 		model.addAttribute("listPayMethod", listPayMethod);
-		System.out.print(listPayMethod);
 		
-		Optional<CustomerEntity> customer = customerService.findById(1);
-		if(customer.isPresent())
+		Optional<CustomerEntity> optCustomer = customerService.findById(1);
+		if(optCustomer.isPresent())
 		{
+			CustomerEntity customer = optCustomer.get();
 			model.addAttribute("customer", customer);
 		}
 		return "user/payment";

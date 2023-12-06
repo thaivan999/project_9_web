@@ -13,19 +13,19 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Branch")
+@Table(name = "branch")
 public class BranchEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idBranch")
-	private Integer idBranch;
+	@Column(name = "id_branch")
+	private int idBranch;
 	
 	@Column(name = "name", columnDefinition = "nvarchar(1000)")
 	private String name;
 	
-	@Column(name = "addressDetail",columnDefinition = "nvarchar(1000)")
+	@Column(name = "address_detail",columnDefinition = "nvarchar(1000)")
 	private String addressDetail;
 	
 	@Column(name = "opentime",columnDefinition = "varchar(50)")
@@ -38,7 +38,7 @@ public class BranchEntity implements Serializable{
 	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name = "idCity",insertable = false, updatable = false)
+	@JoinColumn(name = "id_city",insertable = false, updatable = false)
 	private CityEntity cityByBranch;
 	
 	@OneToMany(mappedBy = "branchByAccount")

@@ -8,12 +8,12 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "City")
+@Table(name = "city")
 public class CityEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "idCity", columnDefinition = "varchar(100)")
+	@Column(name = "id_city", columnDefinition = "varchar(100)")
 	private String idCity;
 	
 	@Column(name = "name", columnDefinition = "nvarchar(50)")

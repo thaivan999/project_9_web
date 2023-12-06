@@ -9,12 +9,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "UserRole")
+@Table(name = "user_role")
 public class UserRoleEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "idRole",columnDefinition = "varchar(50)")
+	@Column(name = "id_role",columnDefinition = "varchar(50)")
 	private String idRole;
 	
 	@Column(name = "name",columnDefinition = "varchar(50)")
