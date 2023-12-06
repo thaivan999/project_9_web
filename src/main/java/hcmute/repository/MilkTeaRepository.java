@@ -28,4 +28,13 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	// choose 4 products has the same type except the current product
 	@Query(value = "SELECT TOP 4 * FROM milk_tea WHERE id_type = :typeId AND id_milk_tea <> :milkTeaId", nativeQuery = true)
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%'))", nativeQuery = true)
+    List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost ASC", nativeQuery = true)
+	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost DESC", nativeQuery = true)
+	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name);
 }

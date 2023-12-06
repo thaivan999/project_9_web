@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import hcmute.entity.MilkTeaEntity;
@@ -62,5 +63,21 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	public List<MilkTeaEntity> findFourProductsOutstanding() {
 		return null;
 	}
+
+	@Override
+	public List<MilkTeaEntity> findByNameContaining(String name) {
+		return milkTeaRepository.findByNameContaining(name);
+	}
+
+	@Override
+	public List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name) {
+		return milkTeaRepository.findByNameContainingAndSortAscendingByCost(name);
+	}
+
+	@Override
+	public List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name) {
+		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name);
+	}
+	
 	
 }
