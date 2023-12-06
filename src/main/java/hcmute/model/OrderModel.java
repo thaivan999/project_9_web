@@ -16,8 +16,11 @@ public class OrderModel{
 	private int totalProduct;
 	private int totalPrice;
 	private LocalDateTime orderTime;
-	private int orderState;
 	private LocalDateTime tentativeTime;
+	private int orderState;
+	private String note;
+	private String address;
+	private String phoneNumber;
 	private PayMethodModel payMethodByOrder;
 	private CustomerModel customerByOrder;
 }

@@ -35,6 +35,15 @@ public class OrderEntity implements Serializable {
 
 	@Column(name = "tentative_time")
 	private LocalDateTime tentativeTime;
+	
+	@Column(name = "note", columnDefinition = "nvarchar(1000)")
+	private String note;
+	
+	@Column(name = "address", columnDefinition = "nvarchar(1000)")
+	private String address;
+	
+	@Column(name = "phoneNumber",columnDefinition = "varchar(50)")
+	private String phoneNumber;
 
 	@ManyToOne
 	@JoinColumn(name = "id_pay_method", insertable = false, updatable = false)

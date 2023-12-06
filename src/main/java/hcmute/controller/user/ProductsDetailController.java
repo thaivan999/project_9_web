@@ -42,6 +42,7 @@ public class ProductsDetailController {
 			BeanUtils.copyProperties(entity, milkTeaModel);
 			int typeId = entity.getMilkTeaTypeByMilkTea().getIdType();
 			
+			// set attributes for model
 			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
 			milkTeaModel.setMilkTeaTypeId(typeId);
 			
@@ -62,33 +63,8 @@ public class ProductsDetailController {
 			return new ModelAndView("user/product_detail", model);
 		}
 		
-		// Sẽ làm trang hiển thị lỗi sau
 		model.addAttribute("message", "Sản phẩm này không tồn tại");
-		return new ModelAndView("forward:/admin/categories", model);
-	}
-	
-	@GetMapping("/buy")
-	public String buyNow(ModelMap model, @RequestParam("id") int id, @RequestParam("size") String size, HttpServletRequest request) {
-	    Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
-	    MilkTeaModel milkTeaModel = new MilkTeaModel();
-
-	    if (optMilkTea.isPresent()) {
-	        MilkTeaEntity entity = optMilkTea.get();
-	        
-	        // copy from entity to model
-	        BeanUtils.copyProperties(entity, milkTeaModel);
-	        milkTeaModel.setSize(size);
-
-	        // redirect to /payment and send milk tea model
-		    HttpSession session = request.getSession();
-		    session.setAttribute("milkTea", milkTeaModel);
-		    
-	        return "redirect:/payment";
-	    }
-	    
-	    // Sẽ làm trang hiển thị lỗi sau
-	    model.addAttribute("message", "Sản phẩm này không tồn tại");
-	    return "forward:/admin/categories";
+		return new ModelAndView("user/error", model);
 	}
 	
 	@GetMapping("/addtocart")

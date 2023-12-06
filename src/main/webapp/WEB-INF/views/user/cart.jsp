@@ -39,7 +39,7 @@
 						<div class="cart-item-info">
 							<p class="cart-product-name">${milktea.getName() }</p>
 							<span data-name="${milktea.getSize() }" class="cart-size">${milktea.getSize() }</span>
-							<p data="${milktea.getCost() }" class="cart-price">${milktea.getCost() }đ</p>
+							<p data-name="${milktea.getCost() }" class="cart-price">${milktea.getCost() }đ</p>
 						</div>
 					</div>
 					<div class="cart-action">
