@@ -7,7 +7,7 @@
 </div>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
-	<a class="navbar-brand ps-3" href="/ASM_Java4/admin/index">PolyTube</a>
+	<a class="navbar-brand ps-3" href="/admin/index">MilkTea</a>
 
 	<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 		id="sidebarToggle" href="#!">
@@ -27,21 +27,19 @@
 				class="fas fa-user fa-fw"></i></a>
 			<ul class="dropdown-menu dropdown-menu-end"
 				aria-labelledby="navbarDropdown">
-				<li><a class="dropdown-item" href="/ASM_Java4/login"
+				<li><a class="dropdown-item" href="/security/login"
 					${login_pass}>Đăng nhập</a></li>
-				<li><a class="dropdown-item" href="/ASM_Java4/register"
+				<li><a class="dropdown-item" href="/security/register"
 					${login_pass}>Đăng ký</a></li>
-				<li><a class="dropdown-item" href="/ASM_Java4/logout"
+				<li><a class="dropdown-item" href="/security/logout"
 					${login_no}>Đăng xuất</a></li>
 				<li><hr class="dropdown-divider" ${login_no}></li>
-				<li><a class="dropdown-item" href="/ASM_Java4/changePassword"
+				<li><a class="dropdown-item" href="/security/change-password"
 					${login_no}>Đổi mật khẩu</a></li>
-				<li><a class="dropdown-item" href="/ASM_Java4/forgotPassword"
+				<li><a class="dropdown-item" href="/security/forgot-password"
 					${login_pass}>Quên mật khẩu</a></li>
-				<li><a class="dropdown-item" href="/ASM_Java4/editAccount"
-					${login_no}>Sửa tài khoản</a></li>
 				<li><hr class="dropdown-divider" ${login_admin}></li>
-				<li><a class="dropdown-item" href="/ASM_Java4/index">Giao
+				<li><a class="dropdown-item" href="/home">Giao
 						diện User</a></li>
 			</ul></li>
 	</ul>
@@ -61,21 +59,6 @@
 
 
 					<div class="sb-sidenav-menu-heading">Trang quản lý</div>
-					<!-- Quản lý tài khoản-->
-					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAccount" aria-expanded="false" aria-controls="collapseAccount">
-						<div class="sb-nav-link-icon">
-							
-						</div> Quản lý tài khoản
-						<div class="sb-sidenav-collapse-arrow">
-							<i class="fas fa-angle-down"></i>
-						</div>
-					</a>
-					<div class="collapse" id="collapseAccount" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/view-account">Danh sách tài khoản</a> 
-							<a class="nav-link" href="/admin/customize-account/add">Cập nhật tài khoản</a>
-						</nav>
-					</div>
 					<!-- Quản lý chi nhánh -->
 					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBranch" aria-expanded="false" aria-controls="collapseBranch">
 						<div class="sb-nav-link-icon">
@@ -89,6 +72,21 @@
 						<nav class="sb-sidenav-menu-nested nav">
 							<a class="nav-link" href="/admin/branch">Danh sách chi nhánh</a> 
 							<a class="nav-link" href="/admin/branch/add">Cập nhật chi nhánh</a>
+						</nav>
+					</div>
+					<!-- Quản lý thành phố -->
+					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCity" aria-expanded="false" aria-controls="collapseCity">
+						<div class="sb-nav-link-icon">
+							
+						</div> Quản lý thành phố
+						<div class="sb-sidenav-collapse-arrow">
+							<i class="fas fa-angle-down"></i>
+						</div>
+					</a>
+					<div class="collapse" id="collapseCity" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+						<nav class="sb-sidenav-menu-nested nav">
+							<a class="nav-link" href="/admin/city">Danh sách thành phố</a> 
+							<a class="nav-link" href="/admin/city/add">Cập nhật thành phố</a>
 						</nav>
 					</div>
 					<!-- Quản lý giỏ hàng-->
