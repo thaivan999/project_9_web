@@ -12,6 +12,23 @@
 </head>
 <body>
 	<div class="home">
+		<c:if test="${orderMessage != null }">
+			<div id="toast">
+				<div class="toast toast--success">
+					<div class="toast__icon">
+						<i class="fas fa-check-circle"></i>
+					</div>
+					<div class="toast__body">
+						<h3 class="toast__title">Success</h3>
+						<p class="toast__msg">${orderMessage }</p>
+					</div>
+					<a href="/order" class="btn btn-warning ms-2" style="font-size: 12px !important">Xem đơn hàng</a>
+					<div class="toast__close">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+			</div>
+		</c:if>
 		<div id="homeSlider" class="carousel slide" data-ride="carousel">
 			<!--Indicators-->
 			<ul class="carousel-indicators">
@@ -55,23 +72,24 @@
 						style="height: 100%">
 						<div class="introduce-item">
 							<div class="introduce-title">Câu chuyện thương hiệu</div>
-							<p>Được trồng trọt và chăm chút kỹ lưỡng, nuôi dưỡng từ thổ
+							<p class="home-desc">Được trồng trọt và chăm chút kỹ lưỡng, nuôi dưỡng từ thổ
 								nhưỡng phì nhiêu, nguồn nước mát lành, bao bọc bởi mây và sương
 								cùng nền nhiệt độ mát mẻ quanh năm, những búp trà ở Tây Bắc mập
 								mạp và xanh mướt, hội tụ đầy đủ dưỡng chất, sinh khí, và tinh
 								hoa đất trời.</p>
-							<button class="btn-explore">Khám phá</button>
+							<a href="https://homitatea.com/about/cau-chuyen-thuong-hieu.html" class="btn-explore">Khám phá</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="products">
-			<p class="products-title">Sản phẩm bán chạy</p>
+			<p class="products-title">Sản phẩm bán chạy${user.getFullname()}</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list1}">
 					<div class="col">
-						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
+						<a href="/product_detail/${milkTea.idMilkTea}" class="card outstanding-item">
+							<span class="outstanding-title">BEST SELLER</span>
 							<div class="img-container">
 								<img
 									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
@@ -79,14 +97,14 @@
 							</div>
 							<div class="card-body">
 								<h5 class="card-title">${milkTea.name}</h5>
-								<p class="card-price">${milkTea.cost}</p>
+								<p class="card-price">${milkTea.cost}đ</p>
 							</div>
 						</a>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
-		<div class="products">
+		<div class="products pb-4">
 			<p class="products-title">Sản phẩm khuyến mãi</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list2}">
@@ -99,12 +117,15 @@
 							</div>
 							<div class="card-body">
 								<h5 class="card-title">${milkTea.name}</h5>
-								<p class="card-price">${milkTea.cost}</p>
+								<p class="card-price">${milkTea.cost}đ</p>
 							</div>
 						</a>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
+	</div>
+	<script type="text/javascript"
+		src='<c:url value="/user/js/toast.js" />'></script>
 </body>
 </html>

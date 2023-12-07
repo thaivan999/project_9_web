@@ -35,8 +35,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="text" id="email" name="email" class="form-control" placeholder="Email" />
-                                        <label class="form-label">Email</label>
+                                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+                                        <label class="form-label">User Name</label>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -67,6 +67,8 @@
                                     </svg>
                                     Sign in with Facebook
                                 </a>
+                                					<span>${username}</span>
+                                
                             </form>
                         </div>
                     </div>

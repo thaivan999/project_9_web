@@ -100,13 +100,15 @@
 
 			<!-- Add to cart | Buy now -->
 			<div class="col-12 col-lg-6 add_to_cart_block">
-				<div data-name="${milkTea.idMilkTea }" id="card-id" class="card mb-3 no-border">
+				<div data-name="${milkTea.idMilkTea }" id="card-id"
+					class="card mb-3 no-border">
 					<div class="card-body">
 						<p class="h3 bold-text">${milkTea.name}</p>
-						<p data-name="${milkTea.cost }" class="h4 price bold-text" style="color: #707070;">${milkTea.cost}đ</p>
+						<p data-name="${milkTea.cost }" class="h4 price bold-text text-danger"
+							>${milkTea.cost}đ</p>
 						<form method="get" action="">
 							<div class="form-group">
-								<label class="mt-2 fs-18 ml-6">Chọn size</label><br />
+								<label class="mt-2 fs-18 ml-6 bold-text fst-italic">Chọn size</label><br />
 								<button type="button"
 									class="btn btn-outline-dark active medium-size-btn"
 									onclick="changeSize('Vừa')">Vừa +0đ</button>
@@ -158,18 +160,17 @@
 				</div>
 				<c:forEach var="milkTea" items="${relevantProducts }">
 					<div class="col-sm-3 mt-2">
-						<div class="card">
+						<a href="/product_detail/${milkTea.idMilkTea }" class="card">
 							<img class="card-img-top"
-								src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-								alt="Card image cap">
+							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
+							alt="Card image cap">
 							<div class="card-body">
-								<p class="card-title bold-text">
-									<a class="black-text"
-										href="/product_detail/${milkTea.idMilkTea }">${milkTea.name }</a>
+								<p class="card-title bold-text">${milkTea.name }
+								<p class="black-text"></p>
 								</p>
-								<p class="card-text">${milkTea.cost }đ</p>
+								<p class="card-price" style="font-size: 20px">${milkTea.cost }đ</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</c:forEach>
 			</div>
@@ -177,6 +178,7 @@
 		<!-- End: Relevant products -->
 	</div>
 
-	<script type="text/javascript" src='<c:url value="/user/js/product_detail.js" />'></script>
+	<script type="text/javascript"
+		src='<c:url value="/user/js/product_detail.js" />'></script>
 </body>
 </html>

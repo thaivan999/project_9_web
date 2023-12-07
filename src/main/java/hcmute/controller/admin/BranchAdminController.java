@@ -7,15 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import hcmute.entity.BranchEntity;
-import hcmute.entity.CityEntity;
 import hcmute.model.BranchModel;
 import hcmute.service.IBranchService;
 
 import javax.validation.Valid;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +26,8 @@ public class BranchAdminController {
 
     @GetMapping("")
     public String indexViewBranch(ModelMap model) {
-        List<BranchEntity> branch = branchService.findAll();
-        model.addAttribute("branch", branch);  // Updated attribute name to "branches"
+        List<BranchEntity> branches = branchService.findAll();
+        model.addAttribute("branches", branches);  // Updated attribute name to "branches"
         return "admin/view/view-branch";
     }
 
@@ -41,15 +39,15 @@ public class BranchAdminController {
         return "admin/customize/customize-branch";
     }
     
-    @PostMapping("saveOrUpdate")
-    public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch, BindingResult result) {
-        if (result.hasErrors()) {
+    @PostMapping("saveOrUpdate/{idBranch}")
+    public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch,@PathVariable("idBranch") int idBranch, BindingResult result) {
+    	if (result.hasErrors()) {
             return new ModelAndView("admin/customize/customize-branch");
         }
         if (branch != null) {
             BranchEntity entity = new BranchEntity();
             if (branch.getIdBranch() != null) {
-                entity.setIdBranch(branch.getIdBranch());
+                entity.setIdBranch(idBranch);
             }
             if (branch.getName() != null) {
                 entity.setName(branch.getName());
@@ -65,6 +63,9 @@ public class BranchAdminController {
             }
             if (branch.getDescription() != null) {
                 entity.setDescription(branch.getDescription());
+            }
+            if (branch.getIdCity() != null) {
+                entity.setIdCity(branch.getIdCity());
             }
             branchService.save(entity);
             String message = branch.getIsEdit() ? "Branch đã được cập nhật thành công" : "Branch đã được thêm thành công";

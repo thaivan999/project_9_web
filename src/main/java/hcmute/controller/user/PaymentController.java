@@ -101,9 +101,10 @@ public class PaymentController {
 	}
 
 	@GetMapping("/order")
-	private ModelAndView insertOrder(ModelMap model, @RequestParam("data") String data) throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException
+	private String insertOrder(ModelMap model, @RequestParam("data") String data) throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException
 	{
-		data = URLDecoder.decode(data, "UTF-8");
+		byte[] decodedBytes = Base64.getDecoder().decode(data);
+        data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		try {
@@ -157,12 +158,12 @@ public class PaymentController {
 				orderDetailEntity.setIdOrderDetail(idOrderDetail);
 				
 				orderDetailService.save(orderDetailEntity);
+				model.addAttribute("orderMessage", "Bạn đã đặt hàng thành công!");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return new ModelAndView("", model);
+		return "user/home";
 	}
 }

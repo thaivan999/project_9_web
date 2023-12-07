@@ -78,9 +78,13 @@ paymentBtn.addEventListener('click', function() {
     
 	orderData.list = data.list;
 	orderData.orderState = 0;
-	var orderDataEncoded = encodeURIComponent(JSON.stringify(orderData));
+	function customBase64Encode(str) {
+		return btoa(unescape(encodeURIComponent(str)));
+	}
+
+	var encodedData = customBase64Encode(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', '/payment/order?data=' + orderDataEncoded);
+	myAnchor.setAttribute('href', '/payment/order?data=' + encodedData);
 	myAnchor.click();
 })
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import hcmute.entity.MilkTeaEntity;
@@ -24,10 +26,13 @@ import hcmute.repository.UserRepository;
 import hcmute.service.IForgotPasswordService;
 import hcmute.service.IMilkTeaService;
 import hcmute.service.IUserService;
+import hcmute.service.impl.CookieServiceImpl;
+import hcmute.service.impl.SessionServiceImpl;
 import hcmute.utils.CommonUtils;
 import net.bytebuddy.utility.RandomString;
 @Controller
 @RequestMapping("security")
+@SessionAttributes("username")
 public class SecurityController {
 	@Autowired
     IUserService userService;
@@ -36,7 +41,10 @@ public class SecurityController {
 
     @Autowired
     IForgotPasswordService passService;
-    
+    @Autowired
+    CookieServiceImpl cookieService;
+    @Autowired
+    SessionServiceImpl sessionService;
     
     @GetMapping("change-password")
     public String showResetPasswordForm(@RequestParam("token") String token, ModelMap model) {
@@ -60,7 +68,27 @@ public class SecurityController {
 		return "security/register/register";
 	}
 	
-	
+	@PostMapping("login")
+	public String login(ModelMap model, HttpServletRequest req, HttpSession session) throws MessagingException {
+	    String username = req.getParameter("username");
+	    String password = req.getParameter("password");
+	    String remember = req.getParameter("remember-me");
+	    Optional<UserEntity> user = userService.findByUsername(username);
+	    sessionService.setAttribute("user", user);
+	    if (remember != null && !remember.isEmpty()) {
+	        cookieService.Add("username", username, 1);
+	        cookieService.Add("password", password, 1);
+	        model.addAttribute("username", cookieService.getValuẹ("username"));
+	        model.addAttribute("password", cookieService.getValuẹ("password"));
+	    } else {
+	        session.removeAttribute("username");
+	        cookieService.remove("username");
+	        cookieService.remove("password");
+	    }
+
+	    return "redirect:/security/login";
+	}
+
 	
 	
 	
@@ -92,9 +120,9 @@ public class SecurityController {
 	@GetMapping("/verify")
     public String verifyAcc(@RequestParam String code) {
         if (userService.verify(code)) {
-            return "security/verify/verify-success";
+            return "redirect:/home";
         } else {
-            return "security/verify/verify-fail";
+            return "security/login/login";
         }
     }
 	
@@ -152,6 +180,14 @@ public class SecurityController {
             model.addAttribute("message", "You have successfully changed your password.");
         }
         return new ModelAndView("redirect:/", model);
+    }
+    
+    
+    @GetMapping("logout")
+    public String logoffSuccess(Model model, HttpSession session) {
+        model.addAttribute("message", "You have log out!");
+        session.removeAttribute("username");
+        return "security/login/login";
     }
 	
 }
