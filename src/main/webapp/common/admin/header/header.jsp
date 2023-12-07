@@ -74,6 +74,21 @@
 							<a class="nav-link" href="/admin/branch/add">Cập nhật chi nhánh</a>
 						</nav>
 					</div>
+					<!-- Quản lý thành phố -->
+					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCity" aria-expanded="false" aria-controls="collapseCity">
+						<div class="sb-nav-link-icon">
+							
+						</div> Quản lý thành phố
+						<div class="sb-sidenav-collapse-arrow">
+							<i class="fas fa-angle-down"></i>
+						</div>
+					</a>
+					<div class="collapse" id="collapseCity" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+						<nav class="sb-sidenav-menu-nested nav">
+							<a class="nav-link" href="/admin/city">Danh sách thành phố</a> 
+							<a class="nav-link" href="/admin/city/add">Cập nhật thành phố</a>
+						</nav>
+					</div>
 					<!-- Quản lý giỏ hàng-->
 					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCart" aria-expanded="false" aria-controls="collapseCart">
 						<div class="sb-nav-link-icon">
