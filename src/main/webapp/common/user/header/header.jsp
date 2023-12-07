@@ -14,7 +14,7 @@
 			</a>
 			<ul class="nav-list">
 				<li class="nav-item"><a class="nav-item-link"
-					href="/products/page"> Menu </a>
+					href="/products"> Menu </a>
 					<div class="header-menu">
 						<div class="row">
 							<div class="col">
