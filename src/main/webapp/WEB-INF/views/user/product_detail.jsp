@@ -165,10 +165,8 @@
 							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
 							alt="Card image cap">
 							<div class="card-body">
-								<p class="card-title bold-text">${milkTea.name }
-								<p class="black-text"></p>
-								</p>
-								<p class="card-text">${milkTea.cost }đ</p>
+								<p class="card-title bold-text black-text">${milkTea.name }</p>
+								<p class="card-text black-text">${milkTea.cost }đ</p>
 							</div>
 						</a>
 					</div>

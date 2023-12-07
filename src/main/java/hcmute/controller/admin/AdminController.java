@@ -10,12 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import hcmute.entity.BranchEntity;
 import hcmute.service.IBranchService;
+import hcmute.service.IUserRoleService;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
+	@Autowired
+	private IUserRoleService userRoleService;
+	
 	@GetMapping("index")
-	public String Index() {
+	public String Index(ModelMap model) {
+		int countUser = userRoleService.countUser();
+		
+		model.addAttribute("countUser", countUser );
+		
 		return "admin/index";
 	}
 }

@@ -26,5 +26,4 @@ public interface CartDetailRepository extends JpaRepository<CartDetailEntity, Ca
     @Transactional
     @Query(value = "INSERT INTO cart_detail (id_cart, id_milk_tea, size) VALUES (:idCart, :idMilkTea, :size)", nativeQuery = true)
     void addProductToCart(@Param("idCart") int idCart, @Param("idMilkTea") int idMilkTea, @Param("size") String size);
-
 }
