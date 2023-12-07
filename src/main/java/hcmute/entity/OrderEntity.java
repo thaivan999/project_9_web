@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import hcmute.model.PaypalPaymentMethod;
 import lombok.*;
 
 
@@ -43,6 +45,9 @@ public class OrderEntity implements Serializable {
 	@Column(name = "phoneNumber",columnDefinition = "varchar(50)")
 	private String phoneNumber;
 
+	@Enumerated(EnumType.STRING)
+    private PaypalPaymentMethod payment_method;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_pay_method", insertable = false, updatable = false)
 	private PayMethodEntity payMethodByOrder;

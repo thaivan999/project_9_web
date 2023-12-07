@@ -108,10 +108,10 @@ public class UserServiceImpl implements IUserService {
         user.setProvider(AuthProvider.DATABASE);
         UserEntity savedUser = userRepo.save(user);
         Optional<RoleEntity> role = roleRepo.findById("USER");
-        userRoleRepo.save(new UserRoleEntity(savedUser, role.get()));
+        role.ifPresent(userRole -> userRoleRepo.save(new UserRoleEntity(savedUser, userRole)));
         sendVerifyEmail(savedUser, url);
-
     }
+
 
     @Override
     public void sendVerifyEmail(UserEntity user, String url) throws MessagingException {
