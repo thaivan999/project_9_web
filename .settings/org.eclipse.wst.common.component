@@ -21,7 +21,7 @@
                 
         
         <property name="context-root" value="project"/>
-        <property name="java-output-path" value="/project/target/classes"/>
+        <property name="java-output-path" value="/project_9_web/target/classes"/>
             
     
     </wb-module>
