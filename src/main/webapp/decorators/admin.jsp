@@ -33,6 +33,7 @@
 <script src="<c:url value='/admin/js/jquery.min.js'/>"></script>
 <script src="<c:url value='/admin/js/jszip.min.js'/>"></script>
 <script src="<c:url value='/admin/js/pdfmake.min.js'/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 	$(window).on("load", function() {
 		$('body').addClass('loaded');
