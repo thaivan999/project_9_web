@@ -19,7 +19,7 @@
 							<c:forEach var="type" items="${types[index]}">
 								<li><a
 									class="${type.idType == idActive ? 'products-category-link-active':''}"
-									href="/products/page/type/${type.idType}">${type.name}</a></li>
+									href="/products/type/${type.idType}">${type.name}</a></li>
 							</c:forEach>
 						</ul>
 						<c:set var="index" value="${index + 1 }"></c:set>
@@ -65,7 +65,7 @@
 								<li
 									class="${1==milkTeas.number + 1 ? 'page-item active' : 'page-item'}"><a
 									class="page-link"
-									href="<c:url value='/products/page?page=${1}'/>" tabindex="-1"
+									href="<c:url value='/products?page=${1}'/>" tabindex="-1"
 									aria-disabled="true">First</a></li>
 
 								<c:forEach items="${pageNumbers}" var="pageNumber">
@@ -73,14 +73,14 @@
 										<li
 											class="${pageNumber == milkTeas.number + 1 ? 'page-item active' : 'page-item'}">
 											<a class="page-link"
-											href="<c:url value='/products/page?page=${pageNumber}'/>">${pageNumber}</a>
+											href="<c:url value='/products?page=${pageNumber}'/>">${pageNumber}</a>
 										</li>
 									</c:if>
 								</c:forEach>
 								<li
 									class="${milkTeas.totalPages == milkTeas.number + 1 ? 'page-item active' : 'page-item'}"><a
 									class="page-link"
-									href="<c:url value='/products/page?page=${milkTeas.totalPages}'/>">Last</a></li>
+									href="<c:url value='/products?page=${milkTeas.totalPages}'/>">Last</a></li>
 							</ul>
 						</nav>
 					</c:if>
@@ -96,7 +96,7 @@
 					<div class="row gx-4">
 						<c:forEach var="milkTea" items="${milkTeaByTypes.content}">
 							<div class="col-4">
-								<a href="/product_detail/${milkTeaByType.idMilkTea}"
+								<a href="/product_detail/${milkTea.idMilkTea}"
 									class="card">
 									<div class="img-container">
 										<img
@@ -118,7 +118,7 @@
 								<li
 									class="${1==milkTeaByTypes.number + 1 ? 'page-item active' : 'page-item'}"><a
 									class="page-link"
-									href="<c:url value='/products/page/type/${id}?page=${1}'/>"
+									href="<c:url value='/products/type/${id}?page=${1}'/>"
 									tabindex="-1" aria-disabled="true">First</a></li>
 
 								<c:forEach items="${pageNumbers}" var="pageNumber">
@@ -126,14 +126,14 @@
 										<li
 											class="${pageNumber == milkTeaByTypes.number + 1 ? 'page-item active' : 'page-item'}">
 											<a class="page-link"
-											href="<c:url value='/products/page/type/${id}?page=${pageNumber}'/>">${pageNumber}</a>
+											href="<c:url value='/products/type/${id}?page=${pageNumber}'/>">${pageNumber}</a>
 										</li>
 									</c:if>
 								</c:forEach>
 								<li
 									class="${milkTeaByTypes.totalPages == milkTeaByTypes.number + 1 ? 'page-item active' : 'page-item'}"><a
 									class="page-link"
-									href="<c:url value='/products/page/type/${id}?page=${milkTeaByTypes.totalPages}'/>">Last</a></li>
+									href="<c:url value='/products/type/${id}?page=${milkTeaByTypes.totalPages}'/>">Last</a></li>
 							</ul>
 						</nav>
 					</c:if>

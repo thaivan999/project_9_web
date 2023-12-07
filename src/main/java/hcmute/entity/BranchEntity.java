@@ -95,6 +95,14 @@ public class BranchEntity implements Serializable{
 		this.description = description;
 	}
 
+	public String getIdCity() {
+		return idCity;
+	}
+
+	public void setIdCity(String idCity) {
+		this.idCity = idCity;
+	}
+
 	public CityEntity getCityByBranch() {
 		return cityByBranch;
 	}
@@ -120,6 +128,7 @@ public class BranchEntity implements Serializable{
 		this.opentime = opentime;
 		this.image = image;
 		this.description = description;
+		this.idCity = idCity;
 		this.cityByBranch = cityByBranch;
 		this.milkTeas = milkTeas;
 	}
@@ -127,5 +136,6 @@ public class BranchEntity implements Serializable{
 	public BranchEntity() {
 		super();
 	}
+	
 	
 }

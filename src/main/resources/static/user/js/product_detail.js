@@ -37,8 +37,11 @@ function changeSize(size) {
 }
 
 buyNowBtn.addEventListener('click', function() {
-	const dataEncoded = encodeURIComponent(JSON.stringify(data));
+	function customBase64Encode(str) {
+		return btoa(unescape(encodeURIComponent(str)));
+	}
+	var encodedData = customBase64Encode(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', "/payment?data=" + dataEncoded);
+	myAnchor.setAttribute('href', "/payment?data=" + encodedData);
 	myAnchor.click();
 })

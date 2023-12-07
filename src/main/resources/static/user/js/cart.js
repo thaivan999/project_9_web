@@ -13,11 +13,11 @@ listPrice.forEach(function(item, index) {
 	var price = listPrice[index].textContent;
 	price = price.slice(0, -1);
 	price = parseInt(price);
-	if(listCartSize[index].textContent === "Lớn") {
+	if (listCartSize[index].textContent === "Lớn") {
 		price += 5000;
 	}
 	item.textContent = price + "đ";
-}) 
+})
 
 listDesc.forEach(function(btnDesc) {
 	btnDesc.addEventListener('click', function() {
@@ -53,10 +53,14 @@ listCheckbox.forEach(function(btn) {
 	})
 })
 
+checkboxAll.addEventListener('click', function() {
+	calculateSumPrice();
+})
+
 function calculateSumPrice() {
 	var sumPrice = 0;
 	listCheckbox.forEach(function(item, index) {
-		if(item.checked) {
+		if (item.checked) {
 			let val = listPrice[index].textContent;
 			val = val.slice(0, -1);
 			sumPrice += parseInt(val) * parseInt(listQuantity[index].value);
@@ -70,7 +74,7 @@ btnSubmit.addEventListener("click", function() {
 	const data = {};
 	data.list = [];
 	listCheckbox.forEach(function(item, index) {
-		if(item.checked) {
+		if (item.checked) {
 			const obj = {};
 			obj.idMilkTea = item.value;
 			obj.quantity = parseInt(listQuantity[index].value);
@@ -88,24 +92,30 @@ btnSubmit.addEventListener("click", function() {
 		data.totalPrice += item.price * item.quantity;
 	})
 	var encodedJSONdata = encodeURIComponent(JSON.stringify(data));
+	function customBase64Encode(str) {
+		return btoa(unescape(encodeURIComponent(str)));
+	}
+
+	var encodedData = customBase64Encode(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', '/payment?data=' + encodedJSONdata);
+	myAnchor.setAttribute('href', '/payment?data=' + encodedData);
 	myAnchor.click();
 })
 
 listDeleteBtn.forEach(function(item, index) {
 	item.addEventListener('click', function(e) {
 		document.querySelector('.modal-product-id').textContent = listDeleteBtn[index].getAttribute('data-id');
+		document.querySelector('.modal-product-name').textContent = listDeleteBtn[index].getAttribute('data-name');
 		document.querySelector('.modal-product-size').textContent = listCartSize[index].getAttribute('data-name');
 	})
 })
-	
+
 document.querySelector('.btn-yes').addEventListener('click', function() {
 	var myAnchor = document.createElement('a');
 	var idMilkTea = document.querySelector('.modal-product-id').textContent;
 	var size = document.querySelector('.modal-product-size').textContent;
 	idMilkTea = parseInt(idMilkTea);
-	myAnchor.setAttribute('href', '/cart/delete/?idMilkTea='+idMilkTea+'&&size='+size);
+	myAnchor.setAttribute('href', '/cart/delete/?idMilkTea=' + idMilkTea + '&&size=' + size);
 	myAnchor.click();
 })
 

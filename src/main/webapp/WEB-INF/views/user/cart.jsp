@@ -17,12 +17,20 @@
 		<p class="cart-title">Giỏ hàng của tôi</p>
 
 		<c:if test="${message != null }">
-			<c:if test="${'success' eq status }">
-				<div class="alert alert-success" role="alert">${message }</div>
-			</c:if>
-			<c:if test="${'fail' eq status }">
-				<div class="alert alert-danger" role="alert">${message }</div>
-			</c:if>
+			<div id="toast">
+				<div class="toast ${status == 'success' ? 'toast--success' : 'toast--error' }">
+					<div class="toast__icon">
+						<i class="${status == 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle' }"></i>
+					</div>
+					<div class="toast__body">
+						<h3 class="toast__title">${status == 'success' ? 'Success' : 'Error' }</h3>
+						<p class="toast__msg">${message }</p>
+					</div>
+					<div class="toast__close">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+			</div>
 		</c:if>
 		<!-- List Cart -->
 		<ul class="list-cart">
@@ -43,7 +51,7 @@
 						</div>
 					</div>
 					<div class="cart-action">
-						<div data-id="${milktea.idMilkTea }" class="cart-btn-delete"
+						<div data-id="${milktea.idMilkTea }" data-name="${milktea.getName() }" class="cart-btn-delete"
 							data-bs-toggle="modal" data-bs-target="#exampleModal">
 							<i class="fa-solid fa-trash"></i>
 						</div>
@@ -72,7 +80,9 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						Bạn có muốn xóa sản phẩm <span class="modal-product-id">1</span> và size = <span class="modal-product-size">Lớn</span>?
+						<span class="d-none modal-product-id"></span>
+						Bạn có muốn xóa sản phẩm <span class="modal-product-name">1</span>
+						và size = <span class="modal-product-size">Lớn</span>?
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
@@ -105,7 +115,7 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src='<c:url value="/user/js/cart.js" />'></script>
+	<script type="text/javascript" src='<c:url value="/user/js/toast.js" />'></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

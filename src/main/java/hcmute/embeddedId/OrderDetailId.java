@@ -1,12 +1,22 @@
 package hcmute.embeddedId;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import hcmute.model.OrderData;
+import hcmute.model.OrderData.OrderItem;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Embeddable
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderDetailId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -59,18 +69,4 @@ public class OrderDetailId implements Serializable {
 		OrderDetailId other = (OrderDetailId) obj;
 		return idMilkTea == other.idMilkTea && idOrder == other.idOrder && Objects.equals(size, other.size);
 	}
-
-	public OrderDetailId(int idOrder, int idMilkTea, String size) {
-		super();
-		this.idOrder = idOrder;
-		this.idMilkTea = idMilkTea;
-		this.size = size;
-	}
-
-	public OrderDetailId() {
-		super();
-	}
-	
-	
-	
 }

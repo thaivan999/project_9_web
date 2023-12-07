@@ -14,50 +14,24 @@
 				class="logo" />
 			</a>
 			<ul class="nav-list">
-				<li class="nav-item"><a class="nav-item-link"
-					href="/products/page"> Menu </a>
+				<li class="nav-item"><a class="nav-item-link" href="/products">
+						Menu </a>
 					<div class="header-menu">
 						<div class="row">
-							<div class="col">
-								<p class="header-category">Trà</p>
-								<ul class="type-product-list">
-									<li class="type-product-item"><a href="#"
-										class="type-product-link"> Trà thảo mộc </a></li>
-									<li class="type-product-item"><a href='#'
-										class="type-product-link"> Trà trái cây </a></li>
-								</ul>
-							</div>
-							<div class="col">
-								<p class="header-category">Trà sữa</p>
-								<ul class="type-product-list">
-									<li class="type-product-item"><a href="#"
-										class="type-product-link"> Trà sữa nguyên vị </a></li>
-									<li class="type-product-item"><a href='#'
-										class="type-product-link"> Trà sữa topping </a></li>
-									<li class="type-product-item"><a href='#'
-										class="type-product-link"> Trà sữa Macchiato </a></li>
-								</ul>
-							</div>
-							<div class="col">
-								<p class="header-category">Đá xay</p>
-								<ul class="type-product-list">
-									<li class="type-product-item"><a href="#"
-										class="type-product-link"> Yogurt </a></li>
-									<li class="type-product-item"><a href='#'
-										class="type-product-link"> Cockies </a></li>
-									<li class="type-product-item"><a href='#'
-										class="type-product-link"> Caramel </a></li>
-								</ul>
-							</div>
-							<div class="col">
-								<p class="header-category">Sữa tươi</p>
-								<ul class="type-product-list">
-									<li class="type-product-item"><a href="#"
-										class="type-product-link"> Đường đen </a></li>
-									<li class="type-product-item"><a href='#'
-										class="type-product-link"> Chocolate </a></li>
-								</ul>
-							</div>
+							<c:set var="index" value="0"></c:set>
+							<c:forEach var="category" items="${categories}">
+								<div class="col">
+									<p class="header-category">${category.name}</p>
+									<ul class="type-product-list">
+										<c:forEach var="type" items="${types[index]}">
+											<li class="type-product-item"><a
+												href="/products/type/${type.idType}"
+												class="type-product-link">${type.name}</a></li>
+										</c:forEach>
+									</ul>
+								</div>
+								<c:set var="index" value="${index + 1 }"></c:set>
+							</c:forEach>
 						</div>
 					</div></li>
 				<li class="nav-item"><a class="nav-item-link" href="/branches">Cửa
