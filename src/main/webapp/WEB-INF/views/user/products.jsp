@@ -17,7 +17,9 @@
 						<span>${category.name}</span>
 						<ul>
 							<c:forEach var="type" items="${types[index]}">
-								<li><a class = "${type.idType == idActive ? 'products-category-link-active':''}" href="/products/type/${type.idType}">${type.name}</a></li>
+								<li><a
+									class="${type.idType == idActive ? 'products-category-link-active':''}"
+									href="/products/page/type/${type.idType}">${type.name}</a></li>
 							</c:forEach>
 						</ul>
 						<c:set var="index" value="${index + 1 }"></c:set>
@@ -25,25 +27,120 @@
 				</div>
 			</div>
 
-			<div class="col-9 products-item">
-				<div class="row gx-4">
-					<c:forEach var="milkTea" items="${milkTeas}">
-						<div class="col-4">
-							<a href="/product_detail/${milkTea.idMilkTea}" class="card">
-								<div class="img-container">
-									<img
-										src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-										class="card-image card-img-top" alt="...">
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">${milkTea.name}</h5>
-									<p class="card-price">${milkTea.cost}</p>
-								</div>
-							</a>
+			<c:if
+				test="${!milkTeas.hasContent()} && ${!milkTeaByTypes.hasContent()}">
+				<div class="row">
+					<div class="col">
+						<div class="alter alter-danger">
+							<h2>Không tìm thấy sản phẩm!</h2>
 						</div>
-					</c:forEach>
+					</div>
 				</div>
-			</div>
+			</c:if>
+			<!-- List tất cả sản phẩm-->
+
+			<c:if test="${milkTeas.hasContent()}">
+				<div class="col-9 products-item">
+					<div class="row gx-4">
+						<c:forEach var="milkTea" items="${milkTeas.content}">
+							<div class="col-4">
+								<a href="/product_detail/${milkTea.idMilkTea}" class="card">
+									<div class="img-container">
+										<img
+											src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+											class="card-image card-img-top" alt="...">
+									</div>
+									<div class="card-body">
+										<h5 class="card-title">${milkTea.name}</h5>
+										<p class="card-price">${milkTea.cost}</p>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+					<!-- Phan trang -->
+					<c:if test="${milkTeas.totalPages > 1}">
+						<nav aria-label="Page navigation">
+							<ul class="pagination">
+								<li
+									class="${1==milkTeas.number + 1 ? 'page-item active' : 'page-item'}"><a
+									class="page-link"
+									href="<c:url value='/products/page?page=${1}'/>" tabindex="-1"
+									aria-disabled="true">First</a></li>
+
+								<c:forEach items="${pageNumbers}" var="pageNumber">
+									<c:if test="${milkTeas.totalPages > 1}">
+										<li
+											class="${pageNumber == milkTeas.number + 1 ? 'page-item active' : 'page-item'}">
+											<a class="page-link"
+											href="<c:url value='/products/page?page=${pageNumber}'/>">${pageNumber}</a>
+										</li>
+									</c:if>
+								</c:forEach>
+								<li
+									class="${milkTeas.totalPages == milkTeas.number + 1 ? 'page-item active' : 'page-item'}"><a
+									class="page-link"
+									href="<c:url value='/products/page?page=${milkTeas.totalPages}'/>">Last</a></li>
+							</ul>
+						</nav>
+					</c:if>
+					<!-- Ket thuc phan trang -->
+				</div>
+
+			</c:if>
+
+
+			<!-- List theo loại sản phẩm -->
+			<c:if test="${milkTeaByTypes.hasContent()}">
+				<div class="col-9 products-item">
+					<div class="row gx-4">
+						<c:forEach var="milkTea" items="${milkTeaByTypes.content}">
+							<div class="col-4">
+								<a href="/product_detail/${milkTeaByType.idMilkTea}"
+									class="card">
+									<div class="img-container">
+										<img
+											src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
+											class="card-image card-img-top" alt="...">
+									</div>
+									<div class="card-body">
+										<h5 class="card-title">${milkTea.name}</h5>
+										<p class="card-price">${milkTea.cost}</p>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+					<!-- Phan trang -->
+					<c:if test="${milkTeaByTypes.totalPages > 1}">
+						<nav aria-label="Page navigation">
+							<ul class="pagination">
+								<li
+									class="${1==milkTeaByTypes.number + 1 ? 'page-item active' : 'page-item'}"><a
+									class="page-link"
+									href="<c:url value='/products/page/type/${id}?page=${1}'/>"
+									tabindex="-1" aria-disabled="true">First</a></li>
+
+								<c:forEach items="${pageNumbers}" var="pageNumber">
+									<c:if test="${milkTeaByTypes.totalPages > 1}">
+										<li
+											class="${pageNumber == milkTeaByTypes.number + 1 ? 'page-item active' : 'page-item'}">
+											<a class="page-link"
+											href="<c:url value='/products/page/type/${id}?page=${pageNumber}'/>">${pageNumber}</a>
+										</li>
+									</c:if>
+								</c:forEach>
+								<li
+									class="${milkTeaByTypes.totalPages == milkTeaByTypes.number + 1 ? 'page-item active' : 'page-item'}"><a
+									class="page-link"
+									href="<c:url value='/products/page/type/${id}?page=${milkTeaByTypes.totalPages}'/>">Last</a></li>
+							</ul>
+						</nav>
+					</c:if>
+					<!-- Ket thuc phan trang -->
+				</div>
+
+			</c:if>
 		</div>
 	</div>
 </body>

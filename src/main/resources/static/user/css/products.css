@@ -14,6 +14,10 @@
 	margin-bottom: 6px;
 }
 
+.pagination {
+	display: flex;
+    justify-content: flex-end;
+}
 .card-title {
 	min-height: 50px;
 }

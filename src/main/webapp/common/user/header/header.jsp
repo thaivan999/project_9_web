@@ -3,17 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='<c:url value="/user/css/header.css" />'rel="stylesheet" />
+<link href='<c:url value="/user/css/header.css" />' rel="stylesheet" />
 </head>
 <body>
 	<header class="header">
 		<div class="container-left">
-			<img
+			<a class="d-block" href="/home"> <img
 				src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-milk-tea-logo-png-image_5405468.jpg"
 				class="logo" />
+			</a>
 			<ul class="nav-list">
-				<li class="nav-item"><a class="nav-item-link" href="#">
-						Menu </a>
+				<li class="nav-item"><a class="nav-item-link"
+					href="/products/page"> Menu </a>
 					<div class="header-menu">
 						<div class="row">
 							<div class="col">
@@ -58,16 +59,19 @@
 							</div>
 						</div>
 					</div></li>
-				<li class="nav-item"><a class="nav-item-link" href="#">Cửa
+				<li class="nav-item"><a class="nav-item-link" href="/branches">Cửa
 						hàng</a></li>
 			</ul>
 		</div>
-		<div class="search-container">
-			<input type="text" class="search-inp" />
-			<button class="search-btn">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</button>
-		</div>
+		
+		<form action="/header/moveToSearchPage" method="get" accept-charset="UTF-8">
+			<div class="search-container">
+				<input type="text" class="search-inp" name="content"/>
+				<button class="search-btn" type="submit">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+		</form>
 		<div class="container-right">
 			<!-- <button class="btn btn-outline-warning btn-signup">Đăng ký</button> -->
 			<!--<button class="btn btn-info btn-login">Đăng nhập</button>  -->
@@ -80,9 +84,9 @@
 					<li class="header-action-item"><a class="header-action-link"
 						href="#">Quản lý tài khoản</a></li>
 					<li class="header-action-item"><a class="header-action-link"
-						href="#">Giỏ hàng của tôi</a></li>
+						href="/cart">Giỏ hàng của tôi</a></li>
 					<li class="header-action-item"><a class="header-action-link"
-						href="#">Đơn hàng của tôi</a></li>
+						href="/order">Đơn hàng của tôi</a></li>
 					<li class="header-action-item"><a class="header-action-link"
 						href="#">Trợ giúp</a></li>
 					<li class="header-action-item"><a class="header-action-link"
