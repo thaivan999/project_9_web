@@ -11,5 +11,7 @@ public interface IOrderService {
 	List<OrderEntity> findAll();
 
 	OrderEntity getById(Integer id);
+	
+	int count();
 
 }

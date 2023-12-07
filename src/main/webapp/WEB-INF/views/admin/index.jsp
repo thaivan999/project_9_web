@@ -16,7 +16,7 @@
 					</ol>
 					<div id= "report" class="row">
 						
-						<div class="col-xl-3 col-md-6">
+						<div class="col-xl-4 col-md-6">
 							<div class="card bg-primary text-white mb-4">
 								<div class="card-body">Tổng số người dùng</div>
 								<h2 class="ms-3">${countUser}<i
@@ -24,27 +24,19 @@
 								</h2>
 							</div>
 						</div>
-						<div class="col-xl-3 col-md-6">
+						<div class="col-xl-4 col-md-6">
 							<div class="card bg-warning text-white mb-4">
-								<div class="card-body">Tổng số Video</div>
-								<h2 class="ms-3">${countVideo}<i
-										class="fas fad fa-video float-end me-2"></i>
+								<div class="card-body">Tổng số đơn hàng</div>
+								<h2 class="ms-3">${countOrder}<i
+										class="fas fad fa-shopping-cart float-end me-2"></i>
 								</h2>
 							</div>
 						</div>
-						<div class="col-xl-3 col-md-6">
+						<div class="col-xl-4 col-md-6">
 							<div class="card bg-success text-white mb-4">
-								<div class="card-body">Tổng lượt xem</div>
-								<h2 class="ms-3">${countViews}<i
-										class="fas fad fa-eye float-end me-2"></i>
-								</h2>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">Tổng lượt thích</div>
-								<h2 class="ms-3">${countLike}<i
-										class="fas fad fa-heart float-end me-2"></i>
+								<div class="card-body">Tổng số sản phẩm</div>
+								<h2 class="ms-3">${countProduct}<i
+										class="fas fad fa-glass-martini float-end me-2"></i>
 								</h2>
 							</div>
 						</div>
