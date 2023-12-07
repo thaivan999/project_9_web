@@ -37,6 +37,16 @@ public class OrderServiceImpl implements IOrderService{
 	public int count() {
 		return (int) orderRepository.count();
 	}
+
+	@Override
+	public List<Object[]> getRevenueByDay() {
+		return orderRepository.getRevenueByDay();
+	}
+
+	@Override
+	public List<Object[]> getRevenueByMonth() {
+		return orderRepository.getRevenueByMonth();
+	}
 	
 	
 	

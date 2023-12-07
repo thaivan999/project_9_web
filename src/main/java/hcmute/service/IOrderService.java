@@ -2,6 +2,8 @@ package hcmute.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import hcmute.entity.OrderEntity;
 
 public interface IOrderService {
@@ -13,5 +15,7 @@ public interface IOrderService {
 	OrderEntity getById(Integer id);
 	
 	int count();
-
+	
+	List<Object[]> getRevenueByDay();
+	List<Object[]> getRevenueByMonth();
 }
