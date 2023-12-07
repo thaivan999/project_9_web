@@ -8,25 +8,22 @@
 <link rel="stylesheet" type="text/css" href="search.css" />
 </head>
 <body>
-	<p class="search-content">Kết quả tìm kiếm cho từ khóa xxx</p>
+	<p class="search-content">Kết quả tìm kiếm cho từ khóa "<span style="color: red;">${content}</span>"</p>
 	<div style="margin-top: 20px; margin-left: 50px;">
-		<button type="button" class="btn btn-success">bán chạy</button>
+		<h3 style="display: inline-block;">Sắp xếp theo: </h3>
+		<a href="/header/search/content=${content}/method=outstanding">
+			<button type="button" class="btn btn-success">bán chạy</button>
+		</a>
 		<div class="btn-group">
 			<button type="button" class="btn btn-warning dropdown-toggle"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Giá</button>
 			<div class="dropdown-menu">
-				<script>
-					function redirectToNewUrl(url) {
-						window.location.href = url;
-					}
-				</script>
-
-				<a class="dropdown-item" href="javascript:void(0);"
-					onclick="redirectToNewUrl('${newUrlLowToHigh}')">Giá: Thấp đến cao
+				<a class="dropdown-item" 
+					href="/header/search/content=${content}/method=low-to-high">Giá: Thấp đến cao
 				</a> 
-				<a class="dropdown-item" href="javascript:void(0);"
-					onclick="redirectToNewUrl('${newUrlHighToLow}')">Giá: Cao đến thấp
+				<a class="dropdown-item" 
+					href="/header/search/content=${content}/method=high-to-low">Giá: Cao đến thấp
 				</a>
 			</div>
 		</div>

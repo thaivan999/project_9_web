@@ -43,6 +43,8 @@ public interface IMilkTeaService {
 
 	List<MilkTeaEntity> findAll();
 
+	void sortByOrderDetailQuantity(List<MilkTeaEntity> milkTeaList);
+
 
 
 	int countByTypeId(int typeId);
