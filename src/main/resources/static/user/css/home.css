@@ -10,32 +10,39 @@
 	--clr-wht: #fffcf6;
 }
 
+* {
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
 html {
 	box-sizing: border-box;
 	color: #000;
 }
 
 html::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+	width: 6px !important;
+	height: 6px !important;
 }
 
 html::-webkit-scrollbar-track {
-	border-radius: 10px;
-	background: rgba(0, 0, 0, 0.1);
+	border-radius: 10px !important;
+	background: rgba(0, 0, 0, 0.1) !important;
 }
 
 html::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	background: rgba(0, 0, 0, 0.2);
+	border-radius: 10px !important;
+	background: rgba(0, 0, 0, 0.2) !important;
 }
 
 html::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4) !important;
 }
 
 html::-webkit-scrollbar-thumb:active {
-	background: rgba(0, 0, 0, .9);
+	background: rgba(0, 0, 0, .9) !important;
 }
 
 .c-item {
@@ -54,6 +61,7 @@ html::-webkit-scrollbar-thumb:active {
 	min-height: 200px;
 	background-color: #edf0f3;
 	margin-top: 80px;
+	background-image: url("https://phuclong.com.vn/images/background/bg_tealeaf.svg");
 }
 
 .home-title {
@@ -113,7 +121,7 @@ html::-webkit-scrollbar-thumb:active {
 }
 
 .introduce-title {
-	font-size: 36px;
+	font-size: 42px;
 	font-weight: 700;
 	font-style: italic;
 	margin-bottom: 6px;
@@ -129,6 +137,7 @@ html::-webkit-scrollbar-thumb:active {
 }
 
 .btn-explore {
+	display: block;
 	width: 100%;
 	padding: 12px 24px;
 	font-size: 19px;
@@ -139,10 +148,17 @@ html::-webkit-scrollbar-thumb:active {
 	margin-top: 12px;
 	cursor: pointer;
 	transition: all .2s;
+	text-align: center;
+	text-decoration: none !important;
 }
 
 .btn-explore:hover {
 	opacity: .7;
+	text-decoration: none !important;
+}
+
+.home-desc {
+	line-height: 30px;
 }
 
 .products-title {
@@ -153,7 +169,7 @@ html::-webkit-scrollbar-thumb:active {
 	width: 100%;
 	text-align: left;
 	padding-left: 12px;
-	margin-bottom: 6px;
+	margin-bottom: 12px;
 }
 
 .products {
@@ -162,12 +178,28 @@ html::-webkit-scrollbar-thumb:active {
 }
 
 .card {
+	position: relative;
 	margin: 0 !important;
 	transition: all .3s;
 	min-height: 200px !important;
-	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 	border-radius: 24px !important;
 }
+
+.outstanding-title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: red;
+	color: #fff;
+	border-top-left-radius: 24px;
+	border-bottom-right-radius: 24px;
+	padding: 6px 12px;
+	z-index: 10;
+	font-size: 14px;
+	font-weight: 600;
+}
+
 
 .card:hover {
 	cursor: pointer;

@@ -40,7 +40,7 @@
 			<!-- List tất cả sản phẩm-->
 
 			<c:if test="${milkTeas.hasContent()}">
-				<div class="col-9 products-item">
+				<div class="col-9 products-item" style="background-image: url('https://phuclong.com.vn/images/background/bg_tealeaf.svg')">
 					<div class="row gx-4">
 						<c:forEach var="milkTea" items="${milkTeas.content}">
 							<div class="col-4">
@@ -61,7 +61,7 @@
 					<!-- Phan trang -->
 					<c:if test="${milkTeas.totalPages > 1}">
 						<nav aria-label="Page navigation">
-							<ul class="pagination">
+							<ul class="pagination"  style="background-image: url('https://phuclong.com.vn/images/background/bg_tealeaf.svg')">
 								<li
 									class="${1==milkTeas.number + 1 ? 'page-item active' : 'page-item'}"><a
 									class="page-link"

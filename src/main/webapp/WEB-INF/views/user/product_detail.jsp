@@ -104,11 +104,11 @@
 					class="card mb-3 no-border">
 					<div class="card-body">
 						<p class="h3 bold-text">${milkTea.name}</p>
-						<p data-name="${milkTea.cost }" class="h4 price bold-text"
-							style="color: #707070;">${milkTea.cost}đ</p>
+						<p data-name="${milkTea.cost }" class="h4 price bold-text text-danger"
+							>${milkTea.cost}đ</p>
 						<form method="get" action="">
 							<div class="form-group">
-								<label class="mt-2 fs-18 ml-6">Chọn size</label><br />
+								<label class="mt-2 fs-18 ml-6 bold-text fst-italic">Chọn size</label><br />
 								<button type="button"
 									class="btn btn-outline-dark active medium-size-btn"
 									onclick="changeSize('Vừa')">Vừa +0đ</button>
@@ -168,7 +168,7 @@
 								<p class="card-title bold-text">${milkTea.name }
 								<p class="black-text"></p>
 								</p>
-								<p class="card-text">${milkTea.cost }đ</p>
+								<p class="card-price" style="font-size: 20px">${milkTea.cost }đ</p>
 							</div>
 						</a>
 					</div>

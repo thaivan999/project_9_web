@@ -25,11 +25,11 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/milk-tea-update">Cập nhật trà sữa</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/milk-tea-update/create" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-milk-tea/saveOrUpdate"/>" method="post">
                         <!-- ID Milk Tea -->
                         <div class="mb-3">
                             <label for="exampleInputMilkTeaId" class="form-label">ID Milk Tea*</label> 
-                            <input placeholder="Milk Tea ID" name="id_milk_tea" type="text" class="form-control" id="exampleInputMilkTeaId" aria-describedby="milkTeaIdHelp" value="${milkTea.id_milk_tea}" ${loguser} required="required" disabled>
+                            <input placeholder="Milk Tea ID" name="idMilkTea" type="text" class="form-control" id="exampleInputMilkTeaId" aria-describedby="milkTeaIdHelp" value="${milkTea.idMilkTea}" ${loguser} required="required" disabled>
                         </div>
 
                         <!-- Name -->
@@ -53,19 +53,19 @@
                         <!-- ID Type -->
                         <div class="mb-3">
                             <label for="exampleInputTypeId" class="form-label">ID Type*</label> 
-                            <input placeholder="Type ID" name="id_type" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTea.id_type}" required="required">
+                            <input placeholder="Type ID" ${milkTea.isEdit ? 'readonly':'' } name="idType" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTea.milkTeaTypeByMilkTea.idType}" required="required">
                         </div>
 
                         <!-- Remain Quantity -->
                         <div class="mb-3">
                             <label for="exampleInputRemainQuantity" class="form-label">Số lượng còn lại*</label> 
-                            <input placeholder="Remain Quantity" name="remain_quantity" type="text" class="form-control" id="exampleInputRemainQuantity" aria-describedby="remainQuantityHelp" value="${milkTea.remain_quantity}" required="required">
+                            <input placeholder="Remain Quantity" name="remainQuantity" type="text" class="form-control" id="exampleInputRemainQuantity" aria-describedby="remainQuantityHelp" value="${milkTea.remainQuantity}" required="required">
                         </div>
 
                         <!-- ID Branch -->
                         <div class="mb-3">
                             <label for="exampleInputBranchId" class="form-label">ID Branch*</label> 
-                            <input placeholder="Branch ID" name="id_branch" type="text" class="form-control" id="exampleInputBranchId" aria-describedby="branchIdHelp" value="${milkTea.id_branch}" required="required">
+                            <input placeholder="Branch ID" ${milkTea.isEdit ? 'readonly':'' } name="idBranch" type="text" class="form-control" id="exampleInputBranchId" aria-describedby="branchIdHelp" value="${milkTea.branchByMilkTea.idBranch}" required="required">
                         </div>
 
                         <!-- Image -->
@@ -75,9 +75,14 @@
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary" formaction="/admin/milk-tea-update/create" ${buttonnolog}>Thêm</button>
-                            <button type="submit" class="btn btn-success" formaction="/admin/milk-tea-update/update" ${buttonlog}>Sửa</button>
-                            <button type="submit" class="btn btn-danger" formaction="/admin/milk-tea-update/delete" ${buttonlog1} ${buttonxoa}>Xóa</button>
+                            <button type="submit" class="btn btn-success">
+                            	<c:if test="${milkTea.isEdit}">
+                            		<span>Update</span>
+                            	</c:if>
+                            	<c:if test="${!milkTea.isEdit}">
+                            		<span>Save</span>
+                            	</c:if>
+                            </button>
                         </div>
                     </form>
                     <h6 class="ms-3 text-primary">${message}</h6>

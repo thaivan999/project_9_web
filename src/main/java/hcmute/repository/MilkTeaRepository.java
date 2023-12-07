@@ -29,7 +29,7 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	
 	// find relevant products
 	// choose 4 products has the same type except the current product
-	@Query(value = "SELECT TOP 4 * FROM milk_tea WHERE id_type = :typeId AND id_milk_tea <> :milkTeaId", nativeQuery = true)
+	@Query("SELECT m FROM MilkTeaEntity m WHERE m.milkTeaTypeByMilkTea.idType = :typeId AND m.idMilkTea <> :milkTeaId")
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
 
 	long count();
