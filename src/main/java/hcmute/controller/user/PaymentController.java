@@ -101,9 +101,10 @@ public class PaymentController {
 	}
 
 	@GetMapping("/order")
-	private ModelAndView insertOrder(ModelMap model, @RequestParam("data") String data) throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException
+	private String insertOrder(ModelMap model, @RequestParam("data") String data) throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException
 	{
-		data = URLDecoder.decode(data, "UTF-8");
+		byte[] decodedBytes = Base64.getDecoder().decode(data);
+        data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		try {
@@ -111,10 +112,10 @@ public class PaymentController {
 			OrderEntity orderEntity = new OrderEntity();
 			orderEntity.setTotalProduct(orderData.getTotalProduct());
 			orderEntity.setTotalPrice(orderData.getTotalPrice());
-			orderEntity.setFinalPrice(orderData.getFinalPrice());
-			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
+//			orderEntity.setFinalPrice(orderData.getFinalPrice());
+//			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
 			orderEntity.setOrderState(orderData.getOrderState());
-			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
+//			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
 			orderEntity.setNote(orderData.getNote());
 			orderEntity.setAddress(orderData.getAddress());
 			orderEntity.setPhoneNumber(orderData.getPhoneNumber());
@@ -139,7 +140,7 @@ public class PaymentController {
 			{
 				OrderDetailEntity orderDetailEntity = new OrderDetailEntity();
 				orderDetailEntity.setQuantity(item.getQuantity());
-				orderDetailEntity.setCurrPrice(item.getPrice());
+//				orderDetailEntity.setCurrPrice(item.getPrice());
 				
 				Optional<MilkTeaEntity> milkTeaEntity = milkTeaService.findByIdMilkTea(item.getIdMilkTea());
 				
@@ -157,12 +158,12 @@ public class PaymentController {
 				orderDetailEntity.setIdOrderDetail(idOrderDetail);
 				
 				orderDetailService.save(orderDetailEntity);
+				model.addAttribute("orderMessage", "Bạn đã đặt hàng thành công!");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return new ModelAndView("", model);
+		return "user/home";
 	}
 }

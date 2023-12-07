@@ -117,8 +117,8 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		return  milkTeaRepository.findAllByTypeId(idType, pageable);
 	}
 
-	private int getQuantity(List<OrderDetailEntity> oderDetails) {
-		
+	private int getQuantity(MilkTeaEntity milkTea) {
+		List<OrderDetailEntity> oderDetails = orderDetailRepository.findOrderDetailsByIDMilkTea(milkTea.getIdMilkTea());
 		if (oderDetails != null && !oderDetails.isEmpty()) {
 			int res = 0;
 			for (OrderDetailEntity orderDetail : oderDetails) {
@@ -135,10 +135,8 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 			int n = milkTeaList.size();
 	        for (int i = 0; i < n - 1; i++) {
 	            for (int j = 0; j < n - i - 1; j++) {
-	            	List<OrderDetailEntity> oderDetails1 = orderDetailRepository.findOrderDetailsByIDMilkTea(milkTeaList.get(j).getIdMilkTea());
-	            	List<OrderDetailEntity> oderDetails2 = orderDetailRepository.findOrderDetailsByIDMilkTea(milkTeaList.get(j + 1).getIdMilkTea());
-	                int quantity1 = getQuantity(oderDetails1);
-	                int quantity2 = getQuantity(oderDetails2);
+	                int quantity1 = getQuantity(milkTeaList.get(j));
+	                int quantity2 = getQuantity(milkTeaList.get(j + 1));
 
 	                if (quantity1 < quantity2) {
 	                    MilkTeaEntity temp = milkTeaList.get(j);
