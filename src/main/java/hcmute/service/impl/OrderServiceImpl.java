@@ -1,5 +1,7 @@
 package hcmute.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,6 @@ public class OrderServiceImpl implements IOrderService{
 	OrderRepository orderRepository;
 
 	public OrderServiceImpl(OrderRepository orderRepository) {
-		super();
 		this.orderRepository = orderRepository;
 	}
 
@@ -21,6 +22,17 @@ public class OrderServiceImpl implements IOrderService{
 	public <S extends OrderEntity> S save(S entity) {
 		return orderRepository.save(entity);
 	}
+
+	@Override
+	public List<OrderEntity> findAll() {
+		return orderRepository.findAll();
+	}
+
+	@Override
+	public OrderEntity getById(Integer id) {
+		return orderRepository.getById(id);
+	}
+	
 	
 	
 }

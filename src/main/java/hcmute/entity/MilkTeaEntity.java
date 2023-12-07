@@ -48,4 +48,83 @@ public class MilkTeaEntity implements Serializable {
 	@OneToMany(mappedBy = "milkTeaByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
 
+	public int getIdMilkTea() {
+		return idMilkTea;
+	}
+
+	public void setIdMilkTea(int idMilkTea) {
+		this.idMilkTea = idMilkTea;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getRemainQuantity() {
+		return remainQuantity;
+	}
+
+	public void setRemainQuantity(int remainQuantity) {
+		this.remainQuantity = remainQuantity;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public MilkTeaTypeEntity getMilkTeaTypeByMilkTea() {
+		return milkTeaTypeByMilkTea;
+	}
+
+	public void setMilkTeaTypeByMilkTea(MilkTeaTypeEntity milkTeaTypeByMilkTea) {
+		this.milkTeaTypeByMilkTea = milkTeaTypeByMilkTea;
+	}
+
+	public BranchEntity getBranchByMilkTea() {
+		return branchByMilkTea;
+	}
+
+	public void setBranchByMilkTea(BranchEntity branchByMilkTea) {
+		this.branchByMilkTea = branchByMilkTea;
+	}
+
+	public Set<CartDetailEntity> getCartDetails() {
+		return cartDetails;
+	}
+
+	public void setCartDetails(Set<CartDetailEntity> cartDetails) {
+		this.cartDetails = cartDetails;
+	}
+
+	public Set<OrderDetailEntity> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetailEntity> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 }
