@@ -1,30 +1,39 @@
 package hcmute.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
-import hcmute.config.*;
-import hcmute.entity.*;
-import hcmute.repository.*;
+import javax.mail.MessagingException;
 
-@Service
-public class IUserService {
+import hcmute.entity.UserEntity;
 
-	@Autowired
-	private UserRepository repo;
+public interface IUserService {
 
-	public void processOAuthPostLogin(String username, Provider provider) {
-		UserEntity existUser = repo.getUserByUsername(username);
+    Optional<UserEntity> findById(Integer id);
 
-		if (existUser == null) {
-			UserEntity newUser = new UserEntity();
-			newUser.setUsername(username);
-			newUser.setProvider(provider);
-			newUser.setEnabled(true);
+    Optional<UserEntity> findByUsername(String username);
 
-			repo.save(newUser);
-		}
+    Optional<UserEntity> findByEmail(String email);
 
-	}
+    UserEntity save(UserEntity user);
 
+    UserEntity update(UserEntity user);
+
+    void deleteByUsername(String id);
+
+    List<UserEntity> findAll();
+
+    List<UserEntity> getAdministators();
+
+    void register(UserEntity user, String url) throws MessagingException;
+
+    void sendVerifyEmail(UserEntity user, String url) throws MessagingException;
+
+    boolean verify(String verifyCode);
+
+    void processOAuthPostLogin(String username, String email, String image, String oauth2ClientName);
+
+    void updateAuthenticationTypeOAuth(String username, String oauth2ClientName);
+
+    void updateAuthenticationTypeDB(String username, String oauth2ClientName);
 }

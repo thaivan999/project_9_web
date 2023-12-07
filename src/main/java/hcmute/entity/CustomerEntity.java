@@ -42,8 +42,8 @@ public class CustomerEntity implements Serializable{
 	@OneToMany(mappedBy = "customerByCart")
 	private Set<CartEntity> carts;
 	
-	@OneToMany(mappedBy = "customerByAccount")
-	private Set<AccountEntity> accounts;
+//	@OneToMany(mappedBy = "customerByUser")
+//	private Set<UserEntity> accounts;
 	
 	@OneToMany(mappedBy = "customerByOrder")
 	private Set<OrderEntity> orders;

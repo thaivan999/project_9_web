@@ -34,12 +34,15 @@ public class BranchEntity implements Serializable{
 	@Column(name = "description",columnDefinition = "nvarchar(1000)")
 	private String description;
 	
+	@Column(name = "id_city",columnDefinition = "varchar(100)")
+	private String idCity;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_city",insertable = false, updatable = false)
 	private CityEntity cityByBranch;
 	
-	@OneToMany(mappedBy = "branchByAccount")
-	private Set<AccountEntity> accounts;
+	@OneToMany(mappedBy = "branchByUser")
+	private Set<UserEntity> accounts;
 		
 	@OneToMany(mappedBy = "branchByMilkTea")
 	private Set<MilkTeaEntity> milkTeas;
