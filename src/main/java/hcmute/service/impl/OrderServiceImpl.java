@@ -32,6 +32,21 @@ public class OrderServiceImpl implements IOrderService{
 	public OrderEntity getById(Integer id) {
 		return orderRepository.getById(id);
 	}
+
+	@Override
+	public int count() {
+		return (int) orderRepository.count();
+	}
+
+	@Override
+	public List<Object[]> getRevenueByDay() {
+		return orderRepository.getRevenueByDay();
+	}
+
+	@Override
+	public List<Object[]> getRevenueByMonth() {
+		return orderRepository.getRevenueByMonth();
+	}
 	
 	
 	

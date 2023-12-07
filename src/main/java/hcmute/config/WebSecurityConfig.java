@@ -24,106 +24,103 @@ import hcmute.service.IUserService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-        @Autowired
-        IUserService userService;
+    @Autowired
+    IUserService userService;
 
-        @Autowired
-        private CustomUserDetailsService service;
+    @Autowired
+    private CustomUserDetailsService service;
 
-        @Autowired
-        private CustomOAuth2UserService oauthUserService;
-        @Autowired
-        private OAuthLoginSuccessHandler oauthLoginSuccessHandler;
+    @Autowired
+    private CustomOAuth2UserService oauthUserService;
+    @Autowired
+    private OAuthLoginSuccessHandler oauthLoginSuccessHandler;
 
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-                return new BCryptPasswordEncoder();
-        }
+    // Bean để tạo PasswordEncoder sử dụng BCrypt
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-        @Bean
-        public DaoAuthenticationProvider getDaoAuthenticationProvider() {
-                DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-                provider.setPasswordEncoder(passwordEncoder());
-                provider.setUserDetailsService(service);
-                return provider;
-        }
+    // Bean để tạo DaoAuthenticationProvider, cung cấp thông tin xác thực từ CustomUserDetailsService và sử dụng BCryptPasswordEncoder
+    @Bean
+    public DaoAuthenticationProvider getDaoAuthenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(service);
+        return provider;
+    }
 
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-                auth.authenticationProvider(getDaoAuthenticationProvider());
-        }
+    // Configure AuthenticationManagerBuilder để sử dụng DaoAuthenticationProvider
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(getDaoAuthenticationProvider());
+    }
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-                http.csrf().disable().cors();
-                http.authorizeRequests()
-                                .antMatchers("/", "/login**","/**").permitAll()
-                                .antMatchers(
-                                                "/home/**",
-                                                "/security/**",
-                                                "/admin/index/**",
-                                                "/admin/branch/**",
-                                                "/payment/order/**",
-                                                "/admin/branch/saveOrUpdate/**",
-                                                "/cart/**",
-                                                "/account/**",
-                                                "/security/verify/**",
-                                                "/security/register",
-                                                "/oauth2/**",
-                                                "/oauth/authorize",
-                                                "/product/**",
-                                                "/callback/",
-                                                "/webjars/**",
-                                                "/error**",
-                                                "/assets/**",
-                                                "/file/**/*.*",
-                                                "/*.html",
-                                                "/favicon.ico",
-                                                "/**/*.html",
-                                                "/**/*.css",
-                                                "/**/*.js")
-                                .permitAll()
-                                .antMatchers("/account/editprofile").authenticated()
-                                .antMatchers("/admin/**")
-                                .hasAnyRole("ADMIN")
-                                .anyRequest().authenticated();
+    // Configure HttpSecurity để cấu hình quy tắc bảo mật cho ứng dụng
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().cors();
+        http.authorizeRequests()
+            // Cấu hình quy tắc truy cập kể cả chưa đăng nhập
+            .antMatchers("/**", "/login**").permitAll()
+            .antMatchers(
+                "/home/**",
+                "/security/**",
+                "/admin/index/**",
+                "/payment/order/**",
+                "/admin/branch/saveOrUpdate/**",
+                "/security/verify/**",
+                "/security/register",
+                "/oauth2/**",
+                "/oauth/authorize"
+            ).permitAll()
+            .antMatchers("/admin/**").hasAnyRole("ADMIN")
+            //đối với các yêu cầu còn lại thì cần đăng nhập
+            .anyRequest().authenticated();
 
-                http.formLogin()
-                                .loginPage("/security/login")
-                                .loginProcessingUrl("/security/login")
-                                .defaultSuccessUrl("/home", false)
-                                .failureUrl("/security/login/error");
+        // Cấu hình xác thực form login
+        http.formLogin()
+            .loginPage("/security/login")
+            .loginProcessingUrl("/security/login")
+            .defaultSuccessUrl("/home", false)
+            .failureUrl("/security/login/error")
+            .permitAll();
 
-                http.rememberMe()
-                                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // expired after 21 days
-                                .key("superhumanisnotsuperjustoverpowered")
-                                .userDetailsService(service);
-                http.logout()
-                                .logoutUrl("/security/logoff")
-                                .logoutSuccessUrl("/security/logoff/success")
-                                .clearAuthentication(true)
-                                .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID");
+        // Cấu hình remember me
+        http.rememberMe()
+            .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // expired after 21 days
+            .key("superhumanisnotsuperjustoverpowered")
+            .userDetailsService(service);
 
-                http.exceptionHandling()
-                                .accessDeniedPage("/security/unauthorized");
+        // Cấu hình logout
+        http.logout()
+            .logoutUrl("/security/logout")
+            .logoutSuccessUrl("/security/login")
+            .clearAuthentication(true)
+            .invalidateHttpSession(true)
+            .deleteCookies("JSESSIONID");
 
-                http.oauth2Login()
-                                .loginPage("/security/login")
-                                .defaultSuccessUrl("/home", true)
-                                .failureUrl("/security/login/error")
-                                .authorizationEndpoint()
-                                .baseUri("/oauth2/authorization")
-                                .and()
-                                .userInfoEndpoint()
-                                .userService(oauthUserService)
-                                .and()
-                                .successHandler(oauthLoginSuccessHandler);
-        }
+        // Cấu hình xử lý exception handling
+        http.exceptionHandling()
+            .accessDeniedPage("/security/unauthorized");
 
-        @Override
-        public void configure(WebSecurity web) throws Exception {
-                web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-        }
+        // Cấu hình xác thực OAuth2
+        http.oauth2Login()
+            .loginPage("/security/login")
+            .defaultSuccessUrl("/home", true)
+            .failureUrl("/security/login/error")
+            .authorizationEndpoint()
+            .baseUri("/oauth2/authorization")
+            .and()
+            .userInfoEndpoint()
+            .userService(oauthUserService)
+            .and()
+            .successHandler(oauthLoginSuccessHandler);
+    }
 
+    // Configure WebSecurity để bỏ qua các request không cần xác thực (ví dụ: các file tĩnh)
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+    }
 }

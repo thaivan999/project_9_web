@@ -16,10 +16,13 @@
 
 .pagination {
 	display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .card-title {
-	min-height: 50px;
+	min-height: 30px;
+	font-size: 22px;
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.6);
 }
 
 .col-4 {
@@ -47,8 +50,6 @@ a.products-category-link-active  {
 	color: #0fb80a !important;
 	font-weight: 700;
 }
-
-
 
 .products-category ul li a:hover {
 	color: #0fb80a !important;
