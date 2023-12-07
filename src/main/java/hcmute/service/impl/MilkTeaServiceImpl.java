@@ -150,4 +150,10 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		}
 	}
 
+
+	@Override
+	public <S extends MilkTeaEntity> S save(S entity) {
+		return milkTeaRepository.save(entity);
+	}
+
 }

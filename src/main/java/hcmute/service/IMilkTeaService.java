@@ -51,4 +51,6 @@ public interface IMilkTeaService {
 	
 	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
 
+	<S extends MilkTeaEntity> S save(S entity);
+
 }

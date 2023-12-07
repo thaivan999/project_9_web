@@ -38,5 +38,22 @@ public class MilkTeaTypeServiceImpl implements IMilkTeaTypeService{
 	public List<MilkTeaTypeEntity> findAllByCategoryId(int categoryId) {
 		return milkTeaTypeRepository.findAllByCategoryId(categoryId);
 	}
+
+	@Override
+	public <S extends MilkTeaTypeEntity> S save(S entity) {
+		return milkTeaTypeRepository.save(entity);
+	}
+	
+	@Override
+	public Optional<MilkTeaTypeEntity> findById(Integer id) {
+		return milkTeaTypeRepository.findById(id);
+	}
+
+	@Override
+	public List<MilkTeaTypeEntity> findAll() {
+		return milkTeaTypeRepository.findAll();
+	}
+	
+	
 	
 }

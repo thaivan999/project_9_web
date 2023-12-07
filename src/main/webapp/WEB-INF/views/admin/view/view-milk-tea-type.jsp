@@ -50,9 +50,10 @@
                             	<tbody>
                                 	<c:forEach var="type" items="${milkTeaTypes}">
                                     	<tr>
-                                        	<td>${type.id_type}</td>
+                                        	<td>${type.idType}</td>
                                         	<td>${type.name}</td>
-                                        	<td>${type.category.name}</td>
+                                        	<td>${type.milkTeaCategoryByMilkTeaType.name}</td>
+                                        	<td><a class="btn btn-success" href="/admin/customize-milk-tea-type/saveOrUpdate/${type.idType}">edit</a></td>
                                    	 	</tr>
                                 	</c:forEach>
                             	</tbody>

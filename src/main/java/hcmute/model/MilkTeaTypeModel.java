@@ -14,4 +14,6 @@ public class MilkTeaTypeModel{
 	private String name;
 	private MilkTeaCategoryModel milkTeaCategoryByMilkTeaType;
 	private MilkTeaModel milkTeas;
+	private Boolean isEdit = false;
+	
 }
