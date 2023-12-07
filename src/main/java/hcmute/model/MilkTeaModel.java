@@ -26,4 +26,6 @@ public class MilkTeaModel{
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
 	private BranchModel branchByMilkTea;
 	private CartDetailModel cartDetails;
+	
+	private Boolean isEdit = false;
 }
