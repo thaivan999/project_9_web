@@ -60,5 +60,30 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		type="text/javascript"></script>
+	    <script type="text/javascript" src="https://popupsmart.com/freechat.js"></script>
+	
+	<script>
+    window.start.init({
+        title: "AloTra support",
+        message: "Chào quý khách, tôi là nhân viên chăm sóc khách hàng của AloTra, tôi có thể giúp gì cho quý khách ạ",
+        color: "#1C86FA",
+        position: "right",
+        placeholder: "Nhập tin nhắn của bạn vào đâ",
+        withText: "Write with",
+        gty: "Go to your",
+        awu: "and write us",
+        connect: "Connect now",
+        button: "Chat with us",
+        device: "everywhere",
+        logo: "https://png.pngtree.com/png-clipart/20200701/original/pngtree-milk-tea-logo-png-image_5405468.jpg",
+        person: "https://png.pngtree.com/png-vector/20190115/ourlarge/pngtree-avatar-male-icon-design-vector-png-image_316168.jpg",
+        services: [
+            {
+                "name": "messenger",
+                "content": "61554287493977"
+            }
+        ]
+    });
+</script>
 </body>
 </html>
