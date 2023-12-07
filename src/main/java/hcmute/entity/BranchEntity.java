@@ -111,14 +111,6 @@ public class BranchEntity implements Serializable{
 		this.cityByBranch = cityByBranch;
 	}
 
-	public Set<UserEntity> getAccounts() {
-		return accounts;
-	}
-
-	public void setAccounts(Set<UserEntity> accounts) {
-		this.accounts = accounts;
-	}
-
 	public Set<MilkTeaEntity> getMilkTeas() {
 		return milkTeas;
 	}
@@ -128,8 +120,7 @@ public class BranchEntity implements Serializable{
 	}
 
 	public BranchEntity(int idBranch, String name, String addressDetail, String opentime, String image,
-			String description, String idCity, CityEntity cityByBranch, Set<UserEntity> accounts,
-			Set<MilkTeaEntity> milkTeas) {
+			String description, CityEntity cityByBranch, Set<MilkTeaEntity> milkTeas) {
 		super();
 		this.idBranch = idBranch;
 		this.name = name;
@@ -139,7 +130,6 @@ public class BranchEntity implements Serializable{
 		this.description = description;
 		this.idCity = idCity;
 		this.cityByBranch = cityByBranch;
-		this.accounts = accounts;
 		this.milkTeas = milkTeas;
 	}
 
