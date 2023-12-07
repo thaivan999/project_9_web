@@ -52,7 +52,7 @@
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">${milkTea.name}</h5>
-										<p class="card-price">${milkTea.cost}</p>
+										<p class="card-price">${milkTea.cost}đ</p>
 									</div>
 								</a>
 							</div>
@@ -105,7 +105,7 @@
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">${milkTea.name}</h5>
-										<p class="card-price">${milkTea.cost}</p>
+										<p class="card-price">${milkTea.cost}đ</p>
 									</div>
 								</a>
 							</div>
