@@ -1,19 +1,52 @@
 package hcmute.controller.security;
 
+import java.util.List;
+import java.util.Optional;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import hcmute.entity.MilkTeaEntity;
+import hcmute.entity.UserEntity;
+import hcmute.model.AuthProvider;
+import hcmute.repository.UserRepository;
+import hcmute.service.IForgotPasswordService;
+import hcmute.service.IMilkTeaService;
+import hcmute.service.IUserService;
+import hcmute.utils.CommonUtils;
+import net.bytebuddy.utility.RandomString;
 @Controller
 @RequestMapping("security")
 public class SecurityController {
-	@GetMapping("change-password")
-	public String IndexChangePassword() {
-		return "security/change-password/change-password";
-	}
-	@GetMapping("edit-account")
-	public String IndexEditAccount() {
-		return "security/edit-account/edit-account";
-	}
+	@Autowired
+    IUserService userService;
+	@Autowired
+    UserRepository repo;
+
+    @Autowired
+    IForgotPasswordService passService;
+    
+    
+    @GetMapping("change-password")
+    public String showResetPasswordForm(@RequestParam("token") String token, ModelMap model) {
+        UserEntity user = passService.getByResetPasswordToken(token);
+        model.addAttribute("token", token);
+        if (user == null) {
+            model.addAttribute("message", "Invalid Token");
+        }
+        return "security/change-password/change-password";
+    }
 	@GetMapping("forgot-password")
 	public String IndexForgotPassword() {
 		return "security/forgot-password/forgot-password";
@@ -23,7 +56,102 @@ public class SecurityController {
 		return "security/login/login";
 	}
 	@GetMapping("register")
-	public String IndexRegister() {
+	public String IndexRegister(ModelMap model) {
 		return "security/register/register";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@PostMapping("register")
+	public String register(Model model, @ModelAttribute UserEntity user, HttpServletRequest req) throws MessagingException {
+        Optional<UserEntity> existUserByEmail = userService.findByEmail(user.getEmail());
+        Optional<UserEntity> existUserByUsername = userService.findByUsername(user.getUsername());
+        System.out.println("User with email " + user.getEmail() + " already exists.");
+        System.out.println("User with email " + user.getUsername() + " already exists.");
+        if (existUserByEmail.isPresent()) {
+            model.addAttribute("message", "User with email " + user.getEmail() + " is already registered");
+            return "security/register/register";
+        }
+        if (existUserByUsername.isPresent()) {
+            model.addAttribute("message", "User with username " + user.getUsername() + " is already registered");
+            return "security/register/register";
+        }
+        userService.register(user, CommonUtils.getSiteURL(req));
+        model.addAttribute("message", "Please check your email to verify your account");
+        return "security/register/register";
+    }
+	@GetMapping("/verify")
+    public String verifyAcc(@RequestParam String code) {
+        if (userService.verify(code)) {
+            return "security/verify/verify-success";
+        } else {
+            return "security/verify/verify-fail";
+        }
+    }
+	
+
+
+
+    @PostMapping("forgot-password")
+    public ModelAndView postsend(ModelMap model, HttpServletRequest req) throws MessagingException {
+        String email = req.getParameter("forgotEmail");
+        String token = RandomString.make(30);
+        UserEntity user = repo.findByEmail(email).orElse(null);
+        if (!repo.existsUserByEmail(email)) {
+            model.addAttribute("message", "Email not existed!!");
+            return new ModelAndView("security/forgot-password/forgot-password", model);
+        }
+        if (user.getProvider() != AuthProvider.DATABASE) {
+            model.addAttribute("message", "Can't recover account!!");
+            return new ModelAndView("security/forgot-password/forgot-password", model);
+        }
+
+        try {
+            passService.updateResetPasswordToken(token, email);
+            String resetPasswordLink = CommonUtils.getSiteURL(req) + "/security/forgot-password?token=" + token;
+            passService.sendEmail(email, resetPasswordLink);
+            model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+            System.out.println("""
+
+
+                    We have sent a reset password link to your email. Please check.
+
+
+                    """);
+            System.out.println("Forgot Email: " + email);
+        } catch (Exception e) {
+            model.addAttribute("message", "Something went wrong. Please try again later.");
+        }
+        return new ModelAndView("redirect:/", model);
+    }
+
+    
+
+    @PostMapping("change-password")
+    public ModelAndView processResetPassword(HttpServletRequest request, ModelMap model) {
+        String token = request.getParameter("token");
+        System.out.println(token);
+        String password = request.getParameter("password");
+        UserEntity user = passService.getByResetPasswordToken(token);
+        if (user == null) {
+            model.addAttribute("message", "Invalid Token");
+            System.out.println("Invalid Token");
+            return new ModelAndView("redirect:/", model);
+        } else {
+            passService.updatePassword(user, password);
+            System.out.println("You have successfully changed your password.");
+            model.addAttribute("message", "You have successfully changed your password.");
+        }
+        return new ModelAndView("redirect:/", model);
+    }
+	
 }

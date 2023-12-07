@@ -1,5 +1,12 @@
 package hcmute.service;
 
-public interface IRoleService {
 
+
+
+import java.util.List;
+
+import hcmute.entity.RoleEntity;
+
+public interface IRoleService {
+    public List<RoleEntity> findAll() ;
 }
