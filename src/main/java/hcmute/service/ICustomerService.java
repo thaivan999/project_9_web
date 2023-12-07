@@ -8,4 +8,5 @@ public interface ICustomerService {
 
 	Optional<CustomerEntity> findById(Integer id);
 
+	CustomerEntity updateCustomer(CustomerEntity customer);
 }

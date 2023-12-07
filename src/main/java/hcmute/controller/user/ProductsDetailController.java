@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import hcmute.entity.MilkTeaEntity;
@@ -31,7 +32,7 @@ public class ProductsDetailController {
 	ICartDetailService cartDetailService;
 	
 	@GetMapping("/{id}")
-	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, HttpServletRequest request) {
+	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 		Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
 		MilkTeaModel milkTeaModel = new MilkTeaModel();
 
@@ -48,13 +49,11 @@ public class ProductsDetailController {
 			
 			List<MilkTeaEntity> relevantProducts = milkTeaService.findRelevantProducts(typeId, id);
 
-			// get info from session
-		    HttpSession session = request.getSession();
-		    String cartMessage = (String) session.getAttribute("cartMessage");
+			// get flash attributes from previous request 
+	        String cartMessage = (String) redirectAttributes.getFlashAttributes().get("cartMessage");
 			
 			if (cartMessage != null) {
 				model.addAttribute("cartMessage", cartMessage);
-				session.removeAttribute("cartMessage"); 
 			}
 			
 			model.addAttribute("milkTea", milkTeaModel);
@@ -68,15 +67,14 @@ public class ProductsDetailController {
 	}
 	
 	@GetMapping("/addtocart")
-	public RedirectView addToCart(HttpServletRequest request, @RequestParam("id") int id, @RequestParam("size") String size) {
-	    HttpSession session = request.getSession();
+	public RedirectView addToCart(RedirectAttributes redirectAttributes, @RequestParam("id") int id, @RequestParam("size") String size) {
 	    
 		try {
 	    	// tạm để id cart là 1
 		    cartDetailService.addProductToCart(1, id, size);
-		    session.setAttribute("cartMessage", "success");
+		    redirectAttributes.addFlashAttribute("cartMessage", "success");
 		} catch (Exception e) {
-		    session.setAttribute("cartMessage", "fail");
+			 redirectAttributes.addFlashAttribute("cartMessage", "fail");
 		}
 
 	    // redirect
