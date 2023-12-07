@@ -22,12 +22,13 @@ import hcmute.service.impl.SessionServiceImpl;
 public class HomeController {
 	@Autowired
 	IMilkTeaService milkTeaService;
+
 	@GetMapping("")
 	public String LoadData(ModelMap model, HttpSession session) {
-			List<MilkTeaEntity> list1 = milkTeaService.findFiveProductOutstanding();
-			model.addAttribute("list1", list1);
-			List<MilkTeaEntity> list2 = milkTeaService.findFiveProduct();
-			model.addAttribute("list2", list2);
-			return "user/home";
+		List<MilkTeaEntity> list1 = milkTeaService.findFiveProductOutstanding();
+		model.addAttribute("list1", list1);
+		List<MilkTeaEntity> list2 = milkTeaService.findFiveProduct();
+		model.addAttribute("list2", list2);
+		return "user/home";
 	}
 }
