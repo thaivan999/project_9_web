@@ -2,10 +2,12 @@ package hcmute.controller.user;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +64,9 @@ public class PaymentController {
 	@GetMapping("")
 	private String displayPayment(ModelMap model, @RequestParam("data") String data)
 			throws UnsupportedEncodingException {
-		data = URLDecoder.decode(data, "UTF-8");
+//		data = URLDecoder.decode(data, "UTF-8");
+		byte[] decodedBytes = Base64.getDecoder().decode(data);
+        data = new String(decodedBytes, StandardCharsets.UTF_8);
 		model.addAttribute("dataJSON", data);
 		List<PayMethodEntity> listPayMethod = payMethodService.findAll();
 		model.addAttribute("listPayMethod", listPayMethod);

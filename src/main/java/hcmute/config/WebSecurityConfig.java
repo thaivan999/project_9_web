@@ -63,6 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                                 "/security/**",
                                                 "/admin/index/**",
                                                 "/admin/branch/**",
+                                                "/payment/order/**",
                                                 "/admin/branch/saveOrUpdate/**",
                                                 "/cart/**",
                                                 "/account/**",
