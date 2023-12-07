@@ -1,3 +1,4 @@
+
 package hcmute.entity;
 
 import java.io.Serializable;

@@ -36,13 +36,9 @@ public class UserEntity implements Serializable{
     private String username;
     private String password;
     private String email;
-    private String phone;
-
-    private String image_url;
 
     @Enumerated(EnumType.STRING) 
     private AuthProvider provider;
-    private String provider_id;
     private Boolean enabled;
     private String verify_code;
     private String reset_pwd_token;

@@ -33,7 +33,7 @@ public class CartController {
 	IMilkTeaService milkTeaService;
 
 	private List<MilkTeaModel> getList() {
-		List<CartDetailId> milkTeas = cartDetailService.findMilkTeaByCartId(1);
+		List<CartDetailId> milkTeas = cartDetailService.findMilkTeaByCartId(3);
 		List<MilkTeaModel> listmilkteas = new ArrayList<MilkTeaModel>();
 		for (CartDetailId result : milkTeas) {
 			Optional<MilkTeaEntity> milktea = milkTeaService.findByIdMilkTea(result.getIdMilkTea());
@@ -52,6 +52,7 @@ public class CartController {
 	@GetMapping("")
 	public String list(ModelMap model, @RequestParam(value = "status", required = false) String status) {
 		model.addAttribute("listmilkteas", this.getList());
+		System.out.println(this.getList());
 		model.addAttribute("status", status);
 		if (status != null) {
 			if ("success".equals(status)) {
@@ -65,7 +66,7 @@ public class CartController {
 
 	@GetMapping("/delete")
 	public String delete(ModelMap model, @RequestParam("idMilkTea") int idMilkTea, @RequestParam("size") String size) {
-		CartDetailId cartDetailId = new CartDetailId(1, idMilkTea, size);
+		CartDetailId cartDetailId = new CartDetailId(3, idMilkTea, size);
 		Optional<CartDetailEntity> cartDetail = cartDetailService.findById(cartDetailId);
 		if (cartDetail.isPresent()) {
 			CartDetailEntity cartDetailEntity = cartDetail.get();

@@ -70,13 +70,10 @@ public class OrderDetailEntity implements Serializable {
 		this.milkTeaByOrderDetail = milkTeaByOrderDetail;
 	}
 
-	
-
 	public OrderDetailEntity(OrderDetailId idOrderDetail, int quantity, OrderEntity orderByOrderDetail,
 			MilkTeaEntity milkTeaByOrderDetail) {
 		super();
 		this.idOrderDetail = idOrderDetail;
-	
 		this.quantity = quantity;
 		this.orderByOrderDetail = orderByOrderDetail;
 		this.milkTeaByOrderDetail = milkTeaByOrderDetail;

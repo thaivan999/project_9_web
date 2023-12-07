@@ -77,7 +77,6 @@ public class UserServiceImpl implements IUserService {
             newAcc.setUsername(username);
             newAcc.setEmail(email);
             newAcc.setProvider(authProvider);
-            newAcc.setImage_url(image);
             newAcc.setEnabled(true);
             
             System.out.println(newAcc.toString());
