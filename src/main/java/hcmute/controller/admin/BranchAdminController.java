@@ -90,7 +90,7 @@ public class BranchAdminController {
 
         return new ModelAndView("redirect:/admin/branch", model);
     }
-    @GetMapping("edit/{idBranch}")
+    @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Resource> serverFile(@PathVariable String filename) {
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file.getFilename() + "\"").body(file);
