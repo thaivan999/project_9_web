@@ -105,6 +105,7 @@ btnSubmit.addEventListener("click", function() {
 listDeleteBtn.forEach(function(item, index) {
 	item.addEventListener('click', function(e) {
 		document.querySelector('.modal-product-id').textContent = listDeleteBtn[index].getAttribute('data-id');
+		document.querySelector('.modal-product-name').textContent = listDeleteBtn[index].getAttribute('data-name');
 		document.querySelector('.modal-product-size').textContent = listCartSize[index].getAttribute('data-name');
 	})
 })

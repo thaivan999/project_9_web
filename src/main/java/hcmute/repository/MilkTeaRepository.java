@@ -40,14 +40,10 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
 	
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost ASC", nativeQuery = true)
-//	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost ASC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name);
 	
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost DESC", nativeQuery = true)
-//	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost DESC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name);
-//	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
-
 
 	@Query("SELECT COUNT(mt) FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
 	int countByTypeId(int typeId);

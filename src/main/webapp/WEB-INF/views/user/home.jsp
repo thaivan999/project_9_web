@@ -12,6 +12,23 @@
 </head>
 <body>
 	<div class="home">
+		<c:if test="${orderMessage != null }">
+			<div id="toast">
+				<div class="toast toast--success">
+					<div class="toast__icon">
+						<i class="fas fa-check-circle"></i>
+					</div>
+					<div class="toast__body">
+						<h3 class="toast__title">Success</h3>
+						<p class="toast__msg">${orderMessage }</p>
+					</div>
+					<a href="/order" class="btn btn-warning ms-2" style="font-size: 12px !important">Xem đơn hàng</a>
+					<div class="toast__close">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+			</div>
+		</c:if>
 		<div id="homeSlider" class="carousel slide" data-ride="carousel">
 			<!--Indicators-->
 			<ul class="carousel-indicators">
@@ -106,5 +123,8 @@
 				</c:forEach>
 			</div>
 		</div>
+	</div>
+	<script type="text/javascript"
+		src='<c:url value="/user/js/toast.js" />'></script>
 </body>
 </html>
