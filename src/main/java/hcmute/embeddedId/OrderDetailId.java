@@ -69,18 +69,4 @@ public class OrderDetailId implements Serializable {
 		OrderDetailId other = (OrderDetailId) obj;
 		return idMilkTea == other.idMilkTea && idOrder == other.idOrder && Objects.equals(size, other.size);
 	}
-
-	public OrderDetailId(int idOrder, int idMilkTea, String size) {
-		super();
-		this.idOrder = idOrder;
-		this.idMilkTea = idMilkTea;
-		this.size = size;
-	}
-
-	public OrderDetailId() {
-		super();
-	}
-	
-	
-	
 }

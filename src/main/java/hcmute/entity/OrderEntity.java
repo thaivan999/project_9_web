@@ -83,11 +83,12 @@ public class OrderEntity implements Serializable {
 	}
 
 	public LocalDateTime getOrderTime() {
-		return orderTime;
+		return null;
+//		return orderTime;
 	}
 
 	public void setOrderTime(LocalDateTime orderTime) {
-		this.orderTime = orderTime;
+//		this.orderTime = orderTime;
 	}
 
 	public int getOrderState() {
@@ -99,11 +100,12 @@ public class OrderEntity implements Serializable {
 	}
 
 	public LocalDateTime getTentativeTime() {
-		return tentativeTime;
+		return null;
+//		return tentativeTime;
 	}
 
 	public void setTentativeTime(LocalDateTime tentativeTime) {
-		this.tentativeTime = tentativeTime;
+//		this.tentativeTime = tentativeTime;
 	}
 
 	public String getNote() {
@@ -161,9 +163,9 @@ public class OrderEntity implements Serializable {
 		this.idOrder = idOrder;
 		this.totalProduct = totalProduct;
 		this.totalPrice = totalPrice;
-		this.orderTime = orderTime;
+//		this.orderTime = orderTime;
 		this.orderState = orderState;
-		this.tentativeTime = tentativeTime;
+//		this.tentativeTime = tentativeTime;
 		this.note = note;
 		this.address = address;
 		this.phoneNumber = phoneNumber;

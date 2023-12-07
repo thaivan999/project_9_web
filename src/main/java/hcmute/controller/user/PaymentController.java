@@ -107,10 +107,10 @@ public class PaymentController {
 			OrderEntity orderEntity = new OrderEntity();
 			orderEntity.setTotalProduct(orderData.getTotalProduct());
 			orderEntity.setTotalPrice(orderData.getTotalPrice());
-			orderEntity.setFinalPrice(orderData.getFinalPrice());
-			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
+//			orderEntity.setFinalPrice(orderData.getFinalPrice());
+//			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
 			orderEntity.setOrderState(orderData.getOrderState());
-			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
+//			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
 			orderEntity.setNote(orderData.getNote());
 			orderEntity.setAddress(orderData.getAddress());
 			orderEntity.setPhoneNumber(orderData.getPhoneNumber());
@@ -135,7 +135,7 @@ public class PaymentController {
 			{
 				OrderDetailEntity orderDetailEntity = new OrderDetailEntity();
 				orderDetailEntity.setQuantity(item.getQuantity());
-				orderDetailEntity.setCurrPrice(item.getPrice());
+//				orderDetailEntity.setCurrPrice(item.getPrice());
 				
 				Optional<MilkTeaEntity> milkTeaEntity = milkTeaService.findByIdMilkTea(item.getIdMilkTea());
 				
