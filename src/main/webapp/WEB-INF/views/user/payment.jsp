@@ -70,46 +70,42 @@
 						</div>
 						<div class="mb-4">
 							<h4>Phương thức thanh toán</h4>
-								<!-- Lặp qua danh sách phương thức thanh toán và tạo radiobutton -->
-								<c:forEach var="paymentMethod" items="${listPayMethod}">
-									<div class="form-check">
-										<input class="form-check-input" type="radio"
-											name="flexRadioDefault"
-											id="flexRadioDefault${paymentMethod.idPayMethod}" /> <label
-											class="form-check-label"
-											for="flexRadioDefault${paymentMethod.idPayMethod}">
-											${paymentMethod.name} </label>
-									</div>
-								</c:forEach>
-								<div class="row mb-3">
-    <div class="mb-1">Payment method:</div>
-    <div class="col-md-6 mb-2">
-        <div class="d-grid gap-2">
-            <input type="radio" ng-model="order.payment_method" class="btn-check" value="cod" name="payment_method" id="paymentMethod1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary shadow-none" for="paymentMethod1"><i class="fa-solid fa-truck-fast fa-xl"></i> Cash On Delivery (+20.000đ)</label>
-        </div>
-    </div>
-    <div class="col-md-6 mb-2">
-        <div class="d-grid gap-2 pretty p-icon p-round">
-            <!-- <button type="submit" class="btn btn-outline-primary"><i class="fa-brands fa-cc-paypal fa-xl"></i> Pay now</button> -->
-            <input type="radio" ng-model="order.payment_method" class="btn-check" value="paypal" name="payment_method" id="paymentMethod2" autocomplete="off">
-            <label class="btn btn-outline-primary shadow-none" for="paymentMethod2"><i class="fa-brands fa-cc-paypal fa-xl"></i> Pay now</label>
-        </div>
-    </div>
-</div>
-								
-							</div>
-							<div>
+							<!-- Lặp qua danh sách phương thức thanh toán và tạo radiobutton -->
+							<c:forEach var="paymentMethod" items="${listPayMethod}">
 								<div class="form-check">
-									<input class="form-check-input-radio" type="radio"
-										data-id="${paymentMethod.idPayMethod}"
-										name="payMethodByOrder"
+									<input class="form-check-input" type="radio"
+										name="flexRadioDefault"
 										id="flexRadioDefault${paymentMethod.idPayMethod}" /> <label
 										class="form-check-label"
 										for="flexRadioDefault${paymentMethod.idPayMethod}">
 										${paymentMethod.name} </label>
 								</div>
 							</c:forEach>
+							<div class="row mb-3">
+								<div class="mb-1">Payment method:</div>
+								<div class="col-md-6 mb-2">
+									<div class="d-grid gap-2">
+										<input type="radio" ng-model="order.payment_method"
+											class="btn-check" value="cod" name="payment_method"
+											id="paymentMethod1" autocomplete="off" checked> <label
+											class="btn btn-outline-primary shadow-none"
+											for="paymentMethod1"><i
+											class="fa-solid fa-truck-fast fa-xl"></i> Cash On Delivery
+											(+20.000đ)</label>
+									</div>
+								</div>
+								<div class="col-md-6 mb-2">
+									<div class="d-grid gap-2 pretty p-icon p-round">
+										<!-- <button type="submit" class="btn btn-outline-primary"><i class="fa-brands fa-cc-paypal fa-xl"></i> Pay now</button> -->
+										<input type="radio" ng-model="order.payment_method"
+											class="btn-check" value="paypal" name="payment_method"
+											id="paymentMethod2" autocomplete="off"> <label
+											class="btn btn-outline-primary shadow-none"
+											for="paymentMethod2"><i
+											class="fa-brands fa-cc-paypal fa-xl"></i> Pay now</label>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div>
 							<div class="form-check">
@@ -182,12 +178,12 @@
 							</li>
 						</ul>
 					</div>
-					<button class="cart-btn-submit payment-btn">Đặt
-						hàng</button>
+					<button class="cart-btn-submit payment-btn">Đặt hàng</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src='<c:url value="/user/js/payment.js" />'></script>
+	<script type="text/javascript"
+		src='<c:url value="/user/js/payment.js" />'></script>
 </body>
 </html>
