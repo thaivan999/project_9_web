@@ -1,12 +1,22 @@
 package hcmute.embeddedId;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import hcmute.model.OrderData;
+import hcmute.model.OrderData.OrderItem;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Embeddable
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderDetailId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

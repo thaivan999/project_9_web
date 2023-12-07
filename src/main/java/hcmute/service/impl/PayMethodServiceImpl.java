@@ -1,6 +1,7 @@
 package hcmute.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,16 @@ public class PayMethodServiceImpl implements IPayMethodService{
 	@Override
 	public List<PayMethodEntity> findAll() {
 		return payMethodRepository.findAll();
+	}
+
+	@Override
+	public List<PayMethodEntity> findAllById(Iterable<String> ids) {
+		return payMethodRepository.findAllById(ids);
+	}
+
+	@Override
+	public Optional<PayMethodEntity> findById(String id) {
+		return payMethodRepository.findById(id);
 	}
 
 }

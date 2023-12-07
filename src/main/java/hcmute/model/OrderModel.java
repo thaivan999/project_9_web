@@ -15,9 +15,9 @@ public class OrderModel{
 	private int idOrder;
 	private int totalProduct;
 	private int totalPrice;
-	private LocalDateTime orderTime;
-	private LocalDateTime tentativeTime;
+	private LocalDateTime orderDay;
 	private int orderState;
+	private LocalDateTime shipDay;
 	private String note;
 	private String address;
 	private String phoneNumber;
