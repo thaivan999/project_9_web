@@ -9,10 +9,6 @@ import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
 
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "user_order")
 public class OrderEntity implements Serializable {
@@ -60,4 +56,131 @@ public class OrderEntity implements Serializable {
 
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
+
+	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDate orderDay,
+			int orderState, LocalDate shipDay, String note, String address, String phoneNumber,
+			PayMethodEntity payMethodByOrder, CustomerEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
+		super();
+		this.idOrder = idOrder;
+		this.totalProduct = totalProduct;
+		this.totalPrice = totalPrice;
+		this.finalPrice = finalPrice;
+		this.orderDay = orderDay;
+		this.orderState = orderState;
+		this.shipDay = shipDay;
+		this.note = note;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.payMethodByOrder = payMethodByOrder;
+		this.customerByOrder = customerByOrder;
+		this.orderDetails = orderDetails;
+	}
+
+	public OrderEntity() {
+		super();
+	}
+
+	public Integer getIdOrder() {
+		return idOrder;
+	}
+
+	public void setIdOrder(Integer idOrder) {
+		this.idOrder = idOrder;
+	}
+
+	public int getTotalProduct() {
+		return totalProduct;
+	}
+
+	public void setTotalProduct(int totalProduct) {
+		this.totalProduct = totalProduct;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+
+	public LocalDate getOrderDay() {
+		return orderDay;
+	}
+
+	public void setOrderDay(LocalDate orderDay) {
+		this.orderDay = orderDay;
+	}
+
+	public int getOrderState() {
+		return orderState;
+	}
+
+	public void setOrderState(int orderState) {
+		this.orderState = orderState;
+	}
+
+	public LocalDate getShipDay() {
+		return shipDay;
+	}
+
+	public void setShipDay(LocalDate shipDay) {
+		this.shipDay = shipDay;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public PayMethodEntity getPayMethodByOrder() {
+		return payMethodByOrder;
+	}
+
+	public void setPayMethodByOrder(PayMethodEntity payMethodByOrder) {
+		this.payMethodByOrder = payMethodByOrder;
+	}
+
+	public CustomerEntity getCustomerByOrder() {
+		return customerByOrder;
+	}
+
+	public void setCustomerByOrder(CustomerEntity customerByOrder) {
+		this.customerByOrder = customerByOrder;
+	}
+
+	public Set<OrderDetailEntity> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetailEntity> orderDetails) {
+		this.orderDetails = orderDetails;
+	}	
 }

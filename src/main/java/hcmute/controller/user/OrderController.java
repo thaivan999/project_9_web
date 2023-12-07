@@ -46,6 +46,7 @@ public class OrderController {
 			OrderEntity userOrder = orderService.getById(idOrder);
 			model.addAttribute("orders", list);
 			model.addAttribute("userOrder", userOrder);	
+			model.addAttribute("idOrder", idOrder);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
