@@ -4,6 +4,7 @@
 	background-color: #edf0f3;
 	padding: 24px 0;
 	margin-top: 80px;
+	background-image: url("https://phuclong.com.vn/images/background/bg_tealeaf.svg");
 }
 
 .cart-title {
@@ -319,6 +320,7 @@
 	border: 1px solid #e4e8ed;
 	text-align: center;
 	font-size: 18px;
+	border-radius: 0 !important;
 }
 
 

@@ -22,10 +22,10 @@
 }
 
 .logo {
-	--size: 68px;
-	width: var(--size);
+	--size: 60px;
+	width: 200px;
 	height: var(--size);
-	border-radius: 0 0 48px 48px;
+	margin-right: 6px;
 }
 
 .nav-list {

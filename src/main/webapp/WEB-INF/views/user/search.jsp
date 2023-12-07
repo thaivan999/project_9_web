@@ -33,7 +33,7 @@
 		<div class="col-9 products-item">
 			<div class="row gx-4">
 				<c:forEach var="milkTea" items="${milkTeas}">
-					<div class="col-4">
+					<div class="col-3">
 						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 							<div class="img-container">
 								<img
