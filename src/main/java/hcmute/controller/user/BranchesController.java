@@ -24,6 +24,7 @@ public class BranchesController {
 	public String listDefault(ModelMap model) {
 		List<CityEntity> cities = cityService.findAll();
 		model.addAttribute("cities", cities);
+		System.out.println(cities.size());
 		if(cities.size()> 0) {
 			model.addAttribute("idCity", cities.get(0).getIdCity());
 		}
