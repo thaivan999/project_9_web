@@ -4,3 +4,29 @@
 .list-group .btn-outline-dark {
 	margin-bottom: 10px;
 }
+
+.container .order-item {
+	margin-bottom: 16px !important;
+}
+
+.container .order-item-active {
+	background-color: #000 !important;
+	color: #fff !important;
+}
+
+.card {
+	margin-bottom: 16px !important;
+	background-color: transparent !important;
+}
+
+.card-header {
+	border-top-left-radius: 24px !important;
+	border-top-right-radius: 24px !important;
+}
+
+.order-title {
+	font-size: 32px;
+	font-weight: 700;
+	font-style: italic;
+	margin-bottom: 16px;
+}

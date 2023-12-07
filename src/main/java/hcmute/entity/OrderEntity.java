@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
 
-
 @Entity
 @Table(name = "user_order")
 public class OrderEntity implements Serializable {
@@ -58,6 +57,29 @@ public class OrderEntity implements Serializable {
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
 
+	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDate orderDay,
+			int orderState, LocalDate shipDay, String note, String address, String phoneNumber,
+			PayMethodEntity payMethodByOrder, CustomerEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
+		super();
+		this.idOrder = idOrder;
+		this.totalProduct = totalProduct;
+		this.totalPrice = totalPrice;
+		this.finalPrice = finalPrice;
+		this.orderDay = orderDay;
+		this.orderState = orderState;
+		this.shipDay = shipDay;
+		this.note = note;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.payMethodByOrder = payMethodByOrder;
+		this.customerByOrder = customerByOrder;
+		this.orderDetails = orderDetails;
+	}
+
+	public OrderEntity() {
+		super();
+	}
+
 	public Integer getIdOrder() {
 		return idOrder;
 	}
@@ -82,13 +104,20 @@ public class OrderEntity implements Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-	public LocalDateTime getOrderTime() {
-		return null;
-//		return orderTime;
+	public int getFinalPrice() {
+		return finalPrice;
 	}
 
-	public void setOrderTime(LocalDateTime orderTime) {
-//		this.orderTime = orderTime;
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+
+	public LocalDate getOrderDay() {
+		return orderDay;
+	}
+
+	public void setOrderDay(LocalDate orderDay) {
+		this.orderDay = orderDay;
 	}
 
 	public int getOrderState() {
@@ -99,13 +128,12 @@ public class OrderEntity implements Serializable {
 		this.orderState = orderState;
 	}
 
-	public LocalDateTime getTentativeTime() {
-		return null;
-//		return tentativeTime;
+	public LocalDate getShipDay() {
+		return shipDay;
 	}
 
-	public void setTentativeTime(LocalDateTime tentativeTime) {
-//		this.tentativeTime = tentativeTime;
+	public void setShipDay(LocalDate shipDay) {
+		this.shipDay = shipDay;
 	}
 
 	public String getNote() {
@@ -154,28 +182,5 @@ public class OrderEntity implements Serializable {
 
 	public void setOrderDetails(Set<OrderDetailEntity> orderDetails) {
 		this.orderDetails = orderDetails;
-	}
-
-	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, LocalDateTime orderTime, int orderState,
-			LocalDateTime tentativeTime, String note, String address, String phoneNumber,
-			PayMethodEntity payMethodByOrder, CustomerEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
-		super();
-		this.idOrder = idOrder;
-		this.totalProduct = totalProduct;
-		this.totalPrice = totalPrice;
-//		this.orderTime = orderTime;
-		this.orderState = orderState;
-//		this.tentativeTime = tentativeTime;
-		this.note = note;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.payMethodByOrder = payMethodByOrder;
-		this.customerByOrder = customerByOrder;
-		this.orderDetails = orderDetails;
-	}
-
-	public OrderEntity() {
-		super();
-	}
-	
+	}	
 }

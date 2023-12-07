@@ -97,7 +97,6 @@
 				<div class="col-7">
 					<div class="products-choosen">
 						<h4>Các món đã chọn</h4>
-						<div class="btnnn">OKKKss</div>
 						<ul class="list-product-choosen">
 							<c:forEach var="milkTea" items="${listMilkTea}">
 								<li class="cart-item payment-item">

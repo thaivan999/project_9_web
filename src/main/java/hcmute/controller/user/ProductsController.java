@@ -28,7 +28,7 @@ import hcmute.service.IMilkTeaService;
 import hcmute.service.IMilkTeaTypeService;
 
 @Controller
-@RequestMapping("products/page")
+@RequestMapping("products")
 public class ProductsController {
 
 	@Autowired
