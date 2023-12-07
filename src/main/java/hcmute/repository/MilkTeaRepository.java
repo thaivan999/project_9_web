@@ -49,8 +49,6 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 //	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
 
 
-	Page<MilkTeaEntity> findAll(Pageable pageable);
-
 	@Query("SELECT COUNT(mt) FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
 	int countByTypeId(int typeId);
 
