@@ -18,7 +18,5 @@ public class CustomerModel{
 	private String phoneNumber;
 	private String email;
 	private int gender;
-	private CartModel carts;
-	private AccountModel accounts;
 	private OrderModel orders;
 }

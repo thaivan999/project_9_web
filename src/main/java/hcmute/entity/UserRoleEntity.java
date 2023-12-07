@@ -1,26 +1,34 @@
 package hcmute.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.*;
+
+
 import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user_role")
+@Table(name = "user_role", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "user_id", "role_id" })
+})
 public class UserRoleEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name = "id_role",columnDefinition = "varchar(50)")
-	private String idRole;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private UserEntity user;
+
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private RoleEntity role;
 	
-	@Column(name = "name",columnDefinition = "varchar(50)")
-	private String name;
-	
-	@OneToMany(mappedBy = "userRoleByAccount")
-	private Set<AccountEntity> accounts;
-	
+	 public UserRoleEntity(UserEntity user, RoleEntity role) {
+	        this.user = user;
+	        this.role = role;
+	    }
 }

@@ -3,12 +3,13 @@ package hcmute.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
+import hcmute.embeddedId.CartDetailId;
 import lombok.*;
 import java.util.Set;
 
 import javax.persistence.*;
 
-import hcmute.embeddedId.CartDetailId;
 import lombok.*;
 @Data
 @NoArgsConstructor

@@ -49,7 +49,7 @@
                                     <th>Address Detail</th>
                                     <th>Open Time</th>
                                     <th>Image</th>
-                                    <th>City Address</th>
+                                    <th>ID City</th>
                                     <th>Description</th>
                                     <th>Edit</th>
                                 </tr>
