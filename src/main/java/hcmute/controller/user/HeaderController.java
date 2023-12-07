@@ -47,6 +47,7 @@ public class HeaderController {
 	        String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
 	        milkTeas = milkTeaService.findByNameContaining(name);
 	        model.addAttribute("milkTeas", milkTeas);
+	        model.addAttribute("content", name);
 	        return "user/search";
 	    } catch (UnsupportedEncodingException e) {
 	        e.printStackTrace();
@@ -58,7 +59,12 @@ public class HeaderController {
 	public String searchAndSort(@PathVariable("name") String encodedName, @PathVariable("method") String method, Model model) {
 		try {
 			 String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
+			 model.addAttribute("content", name);
+			 
 			if ("outstanding".equals(method)) {
+				milkTeas = milkTeaService.findByNameContaining(name);
+				System.out.println("outstanding method");
+				milkTeaService.sortByOrderDetailQuantity(milkTeas);
 		    	
 		    }
 		    else if ("low-to-high".equals(method)) {
