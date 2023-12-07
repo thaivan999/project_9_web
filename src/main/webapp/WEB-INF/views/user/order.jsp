@@ -37,127 +37,130 @@
 <body>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<div class="container p-3" style="margin-top: 92px">
-		<div class="row gx-5">
-			<div class="col-4">
-				<h2 class="order-title">Đơn hàng của bạn</h2>
-				<c:if test="${message != null }">
-					<c:if test="${'success' eq status }">
-						<div class="alert alert-success" role="alert">${message }</div>
+	<div class="orderr">
+		<div class="container p-3" style="margin-top: 92px">
+			<div class="row gx-5">
+				<div class="col-4">
+					<h2 class="order-title">Đơn hàng của bạn</h2>
+					<c:if test="${message != null }">
+						<c:if test="${'success' eq status }">
+							<div class="alert alert-success" role="alert">${message }</div>
+						</c:if>
+						<c:if test="${'fail' eq status }">
+							<div class="alert alert-danger" role="alert">${message }</div>
+						</c:if>
 					</c:if>
-					<c:if test="${'fail' eq status }">
-						<div class="alert alert-danger" role="alert">${message }</div>
-					</c:if>
-				</c:if>
-				<div class="list-group">
-					<c:if test="${not empty orders }">
-						<!-- Đơn hàng 1 -->
-						<c:forEach var="order" items="${orders}">
-							<a class="btn btn-outline-dark order-item ${order.idOrder == idOrder ? 'order-item-active' : '' }"
-								href="/order/order-detail/${order.idOrder}" role="button">
-								<div class="d-flex w-100 justify-content-between">
-									<h5 class="mb-1">Mã đơn: ${order.idOrder}</h5>
-									<small>Giao hàng tận nơi</small>
-								</div>
-								<div class="d-flex w-100 justify-content-between">
-									<p class="mb-1">${order.totalProduct} món</p>
-									<h5 class="mb-1">${order.totalPrice}đ</h5>
-								</div>
-							</a>
-						</c:forEach>
-					</c:if>
-					<c:if test="${empty orders}">
-						<div class="alert alert-info" role="alert">Không có đơn hàng
-							nào.</div>
-					</c:if>
-				</div>
-			</div>
-			<c:if test="${userOrder != null}">
-				<div class="col-8">
-					<h2 class="order-title">Chi tiết đơn hàng</h2>
-					<div>
-						<!-- Thông tin khách hàng -->
-						<div class="card border">
-							<div class="card-header">
-								<h5>Khách hàng</h5>
-							</div>
-							<div class="card-body">
-								<div class="card-text" style="color: #707070;">
-									<p style="font-weight: bold">${userOrder.customerByOrder.surname}
-										${userOrder.customerByOrder.name}</p>
-									<p class="text-danger" style="font-weight: 700">${userOrder.phoneNumber}</p>
-									<p>${userOrder.address}</p>
-								</div>
-							</div>
-						</div>
-
-						<!-- Thông tin đơn hàng -->
-						<div class="card border">
-							<div class="card-header">
-								<h5>Đơn hàng: ${userOrder.idOrder}</h5>
-							</div>
-							<div class="card-body">
-								<!-- Danh sách món -->
-								<div class="card-text" style="color: #707070;">
-									<c:forEach var="orderDetail" items="${userOrder.orderDetails}">
-										<div class="listproduct">
-											<div class="d-flex justify-content-between">
-												<p style="font-weight: bold">${orderDetail.quantity}x
-													${orderDetail.milkTeaByOrderDetail.name}</p>
-												<h5 class="text-danger">${orderDetail.milkTeaByOrderDetail.cost}đ</h5>
-											</div> 
-											<p>${orderDetail.idOrderDetail.size}</p>
-											<hr style="border: thin solid #D6D6D6;">
-										</div>
-									</c:forEach>
-									<!-- Tổng giá --> 	
-									<div class="total_price">
-										<div class="d-flex justify-content-between">
-											<p style="font-weight: 700">Tổng đơn</p>
-											<h3 class="text-danger">${userOrder.totalPrice}đ</h3>
-										</div>
+					<div class="list-group">
+						<c:if test="${not empty orders }">
+							<!-- Đơn hàng 1 -->
+							<c:forEach var="order" items="${orders}">
+								<a
+									class="btn btn-outline-dark order-item ${order.idOrder == idOrder ? 'order-item-active' : '' }"
+									href="/order/order-detail/${order.idOrder}" role="button">
+									<div class="d-flex w-100 justify-content-between">
+										<h5 class="mb-1">Mã đơn: ${order.idOrder}</h5>
+										<small>Giao hàng tận nơi</small>
 									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Thông tin thanh toán -->
-						<div class="card border">
-							<div class="card-header">
-								<h5>Thanh toán</h5>
-							</div>
-							<div class="card-body">
-								<div class="card-text" style="color: #707070;">
-									<p>${userOrder.payMethodByOrder.name}</p>
-								</div>
-							</div>
-						</div>
-
-						<!-- Thời gian -->
-						<div class="card border">
-							<div class="card-header">
-								<h5>Thời gian</h5>
-							</div>
-							<div class="card-body">
-								<div class="card-text" style="color: #707070;">
-									<div class="time_order">
-										<div class="d-flex justify-content-between">
-											<p style="font-weight: 700">Thời gian đặt hàng</p>
-											<p class="text-danger" style="font-weight: 700">${userOrder.orderDay}</p>
-										</div>
-										<div class="d-flex justify-content-between">
-											<p style="font-weight: 700">Giao hàng dự kiến</p>
-											<p class="text-danger" style="font-weight: 700">${userOrder.shipDay}</p>
-										</div>
+									<div class="d-flex w-100 justify-content-between">
+										<p class="mb-1">${order.totalProduct}món</p>
+										<h5 class="mb-1">${order.totalPrice}đ</h5>
 									</div>
-								</div>
-							</div>
-						</div>
-
+								</a>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty orders}">
+							<div class="alert alert-info" role="alert">Không có đơn
+								hàng nào.</div>
+						</c:if>
 					</div>
 				</div>
-			</c:if>
+				<c:if test="${userOrder != null}">
+					<div class="col-8">
+						<h2 class="order-title">Chi tiết đơn hàng</h2>
+						<div>
+							<!-- Thông tin khách hàng -->
+							<div class="card border">
+								<div class="card-header">
+									<h5>Khách hàng</h5>
+								</div>
+								<div class="card-body">
+									<div class="card-text" style="color: #707070;">
+										<p style="font-weight: bold">${userOrder.customerByOrder.surname}
+											${userOrder.customerByOrder.name}</p>
+										<p class="text-danger" style="font-weight: 700">${userOrder.phoneNumber}</p>
+										<p>${userOrder.address}</p>
+									</div>
+								</div>
+							</div>
 
+							<!-- Thông tin đơn hàng -->
+							<div class="card border">
+								<div class="card-header">
+									<h5>Đơn hàng: ${userOrder.idOrder}</h5>
+								</div>
+								<div class="card-body">
+									<!-- Danh sách món -->
+									<div class="card-text" style="color: #707070;">
+										<c:forEach var="orderDetail" items="${userOrder.orderDetails}">
+											<div class="listproduct">
+												<div class="d-flex justify-content-between">
+													<p style="font-weight: bold">${orderDetail.quantity}x
+														${orderDetail.milkTeaByOrderDetail.name}</p>
+													<h5 class="text-danger">${orderDetail.milkTeaByOrderDetail.cost}đ</h5>
+												</div>
+												<p>${orderDetail.idOrderDetail.size}</p>
+												<hr style="border: thin solid #D6D6D6;">
+											</div>
+										</c:forEach>
+										<!-- Tổng giá -->
+										<div class="total_price">
+											<div class="d-flex justify-content-between">
+												<p style="font-weight: 700">Tổng đơn</p>
+												<h3 class="text-danger">${userOrder.totalPrice}đ</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Thông tin thanh toán -->
+							<div class="card border">
+								<div class="card-header">
+									<h5>Thanh toán</h5>
+								</div>
+								<div class="card-body">
+									<div class="card-text" style="color: #707070;">
+										<p>${userOrder.payMethodByOrder.name}</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Thời gian -->
+							<div class="card border">
+								<div class="card-header">
+									<h5>Thời gian</h5>
+								</div>
+								<div class="card-body">
+									<div class="card-text" style="color: #707070;">
+										<div class="time_order">
+											<div class="d-flex justify-content-between">
+												<p style="font-weight: 700">Thời gian đặt hàng</p>
+												<p class="text-danger" style="font-weight: 700">${userOrder.orderDay}</p>
+											</div>
+											<div class="d-flex justify-content-between">
+												<p style="font-weight: 700">Giao hàng dự kiến</p>
+												<p class="text-danger" style="font-weight: 700">${userOrder.shipDay}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</c:if>
+
+			</div>
 		</div>
 	</div>
 </body>

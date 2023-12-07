@@ -11,4 +11,6 @@ public interface IUserRoleService {
     UserRoleEntity create(UserRoleEntity auth);
 
     void delete(Integer id);
+    
+    int countUser();
 }

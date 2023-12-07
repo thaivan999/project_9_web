@@ -71,7 +71,7 @@ public class ProductsDetailController {
 	    
 		try {
 	    	// tạm để id cart là 1
-		    cartDetailService.addProductToCart(1, id, size);
+		    cartDetailService.addProductToCart(3, id, size);
 		    redirectAttributes.addFlashAttribute("cartMessage", "success");
 		} catch (Exception e) {
 			 redirectAttributes.addFlashAttribute("cartMessage", "fail");

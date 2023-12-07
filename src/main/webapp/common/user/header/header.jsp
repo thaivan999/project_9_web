@@ -10,7 +10,7 @@
 	<header class="header">
 		<div class="container-left">
 			<a class="d-block" href="/home"> <img
-				src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-milk-tea-logo-png-image_5405468.jpg"
+				src="https://raw.githubusercontent.com/ThaiVanHandSome/logo/master/alotra-high-resolution-logo-black-transparent.png"
 				class="logo" />
 			</a>
 			<ul class="nav-list">
@@ -51,14 +51,13 @@
 		<div class="container-right">
 			<div class="header-info">
 				<img
-					src="https://scontent.fsgn7-1.fna.fbcdn.net/v/t39.30808-6/241464176_1242056446291086_5810272849317935739_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEvXXHV2qYOwuZ1Ler5Oz3GHNzvHW711J0c3O8dbvXUnZK01qMq-02S7vfQK1uJFJvsm4u8tTMtyDFv9wnqoDzk&_nc_ohc=m5Y76dkiCxwAX81owvC&_nc_ht=scontent.fsgn7-1.fna&oh=00_AfBWc4lElhsgkNiEwMjcu3LVqNk275LrwcJZv9AjP74S2w&oe=6560930D"
+					src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/241464176_1242056446291086_5810272849317935739_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=2tzcJr-V8XwAX_Jrr1h&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfAmVlLJ6-h-sZlmoma56shb3pX1V4kcYdrmo3ytCNKJsg&oe=657653CD"
 					class="avatar" />
-				<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+				<p class="username">
 					<c:if test="${not empty pageContext.request.remoteUser}">
 						<span class="fw-bold"><c:out value="${pageContext.request.remoteUser}" /></span>
 					</c:if>
-					<i class="fa-solid fa-user"></i>
-				</button>
+				</p>
 				<ul class="header-action">
     				<c:choose>
         				<c:when test="${not empty pageContext.request.remoteUser}">

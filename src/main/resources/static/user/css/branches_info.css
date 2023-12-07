@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.branch_info {
+	background-image: url("https://phuclong.com.vn/images/background/bg_tealeaf.svg");
+}
+
 .store_image {
 	width: 100%;
 	flex-shrink: 0;
