@@ -37,10 +37,10 @@
 <body>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<div class="container p-3" style="margin-top: 80px">
+	<div class="container p-3" style="margin-top: 92px">
 		<div class="row gx-5">
 			<div class="col-4">
-				<h3>Đơn hàng của bạn</h3>
+				<h2 class="order-title">Đơn hàng của bạn</h2>
 				<c:if test="${message != null }">
 					<c:if test="${'success' eq status }">
 						<div class="alert alert-success" role="alert">${message }</div>
@@ -53,15 +53,15 @@
 					<c:if test="${not empty orders }">
 						<!-- Đơn hàng 1 -->
 						<c:forEach var="order" items="${orders}">
-							<a class="btn btn-outline-dark"
+							<a class="btn btn-outline-dark order-item ${order.idOrder == idOrder ? 'order-item-active' : '' }"
 								href="/order/order-detail/${order.idOrder}" role="button">
 								<div class="d-flex w-100 justify-content-between">
-									<h5 class="mb-1">${order.idOrder}</h5>
+									<h5 class="mb-1">Mã đơn: ${order.idOrder}</h5>
 									<small>Giao hàng tận nơi</small>
 								</div>
 								<div class="d-flex w-100 justify-content-between">
 									<p class="mb-1">${order.totalProduct} món</p>
-									<h5 class="mb-1">${order.totalPrice} đ</h5>
+									<h5 class="mb-1">${order.totalPrice}đ</h5>
 								</div>
 							</a>
 						</c:forEach>
@@ -74,7 +74,7 @@
 			</div>
 			<c:if test="${userOrder != null}">
 				<div class="col-8">
-					<h3>Chi tiết đơn hàng</h3>
+					<h2 class="order-title">Chi tiết đơn hàng</h2>
 					<div>
 						<!-- Thông tin khách hàng -->
 						<div class="card border">
@@ -85,7 +85,7 @@
 								<div class="card-text" style="color: #707070;">
 									<p style="font-weight: bold">${userOrder.customerByOrder.surname}
 										${userOrder.customerByOrder.name}</p>
-									<p>${userOrder.phoneNumber}</p>
+									<p class="text-danger" style="font-weight: 700">${userOrder.phoneNumber}</p>
 									<p>${userOrder.address}</p>
 								</div>
 							</div>
@@ -104,8 +104,8 @@
 											<div class="d-flex justify-content-between">
 												<p style="font-weight: bold">${orderDetail.quantity}x
 													${orderDetail.milkTeaByOrderDetail.name}</p>
-												<h5>${orderDetail.milkTeaByOrderDetail.cost}</h5>
-											</div>
+												<h5 class="text-danger">${orderDetail.milkTeaByOrderDetail.cost}đ</h5>
+											</div> 
 											<p>${orderDetail.idOrderDetail.size}</p>
 											<hr style="border: thin solid #D6D6D6;">
 										</div>
@@ -113,8 +113,8 @@
 									<!-- Tổng giá --> 	
 									<div class="total_price">
 										<div class="d-flex justify-content-between">
-											<p>Tổng đơn</p>
-											<h3>${userOrder.totalPrice}</h3>
+											<p style="font-weight: 700">Tổng đơn</p>
+											<h3 class="text-danger">${userOrder.totalPrice}đ</h3>
 										</div>
 									</div>
 								</div>
@@ -142,12 +142,12 @@
 								<div class="card-text" style="color: #707070;">
 									<div class="time_order">
 										<div class="d-flex justify-content-between">
-											<p>Thời gian đặt hàng</p>
-											<p>${userOrder.orderTime}</p>
+											<p style="font-weight: 700">Thời gian đặt hàng</p>
+											<p class="text-danger" style="font-weight: 700">${userOrder.orderDay}</p>
 										</div>
 										<div class="d-flex justify-content-between">
-											<p>Giao hàng dự kiến</p>
-											<p>${userOrder.tentativeTime}</p>
+											<p style="font-weight: 700">Giao hàng dự kiến</p>
+											<p class="text-danger" style="font-weight: 700">${userOrder.shipDay}</p>
 										</div>
 									</div>
 								</div>

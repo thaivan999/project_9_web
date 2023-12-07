@@ -19,7 +19,7 @@
 					<p class="branches_info_desc">${branch.description}</p>
 					<div class="branches_info_address">
 						<b>Địa chỉ</b>
-						<p>${branch.addressDetail}</p>
+						<p class="branches_info_address_link">${branch.addressDetail}</p>
 					</div>
 					<div class="branches_info_open">
 						<b>Giờ mở cửa</b>
@@ -28,6 +28,9 @@
 					<a href = "/products" class="branches_info_btn">
 						<span>Xem menu quán</span>
 					</a>
+					<button class="branches_info_btn" onclick="openGoogleMaps()">
+						<span>Xem bản đồ</span>
+					</button>
 				</div>
 
 			</section>
@@ -36,5 +39,6 @@
 	</div>
 
 </div>
+<script type="text/javascript" src='<c:url value="/user/js/branches_info.js" />'></script>
 </body>
 </html>
