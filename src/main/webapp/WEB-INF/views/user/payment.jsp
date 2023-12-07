@@ -74,7 +74,7 @@
 							<!-- Lặp qua danh sách phương thức thanh toán và tạo radiobutton -->
 							<c:forEach var="paymentMethod" items="${listPayMethod}">
 								<div class="form-check">
-									<input class="form-check-input" type="radio"
+									<input class="form-check-input-radio" type="radio"
 										data-id="${paymentMethod.idPayMethod}"
 										name="payMethodByOrder"
 										id="flexRadioDefault${paymentMethod.idPayMethod}" /> <label

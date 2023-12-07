@@ -1,6 +1,6 @@
 const address = document.querySelector('#addressInp');
 const phoneNumber = document.querySelector('#phoneNumberInp');
-const listRadio = document.querySelectorAll('.form-check-input');
+const listRadio = document.querySelectorAll('.form-check-input-radio');
 const note = document.querySelector('#exampleFormControlTextarea1');
 const price = document.querySelector('.payment-price-val');
 const product = document.querySelector('.payment-product');
@@ -9,6 +9,7 @@ const finalPrice = document.querySelector('.payment-final-price');
 const orderDay = document.querySelector('.payment-order-day');
 const shipDay = document.querySelector('.payment-ship-day');
 const paymentBtn = document.querySelector('.payment-btn');
+const agreeCheckbox = document.querySelector('#flexCheckDefault')
 
 var currentDate = new Date();
 var day = currentDate.getDate();
@@ -69,6 +70,12 @@ paymentBtn.addEventListener('click', function() {
 			orderData.idPayMethod = item.getAttribute('data-id');
 		}
 	})
+	
+	 if (!agreeCheckbox.checked) {
+        alert('Bạn cần đồng ý với điều khoản trước khi thanh toán.');
+        return;
+    }
+    
 	orderData.list = data.list;
 	orderData.orderState = 0;
 	var orderDataEncoded = encodeURIComponent(JSON.stringify(orderData));
