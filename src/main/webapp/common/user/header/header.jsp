@@ -62,7 +62,7 @@
 				<ul class="header-action">
     				<c:choose>
         				<c:when test="${not empty pageContext.request.remoteUser}">
-            				<li class="header-action-item"><a class="header-action-link" href="/editprofile">Quản lý tài khoản</a></li>
+            				<li class="header-action-item"><a class="header-action-link" href="/user_info/1">Quản lý tài khoản</a></li>
             				<li class="header-action-item"><a class="header-action-link" href="/cart">Giỏ hàng của tôi</a></li>
             				<li class="header-action-item"><a class="header-action-link" href="/order">Đơn hàng của tôi</a></li>
 
