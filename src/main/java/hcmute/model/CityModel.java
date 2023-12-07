@@ -14,4 +14,5 @@ public class CityModel{
 	private String idCity;
 	private String name;
 	private BranchModel branches;
+	private Boolean isEdit = false;
 }

@@ -15,4 +15,12 @@ public class RedirectController {
 	public String IndexTest() {
 		return "user/test";
 	}
+//	@GetMapping(value="/admin/city/add")
+//	public String CustomizeCity() {
+//		return "admin/customize/customize-city";
+//	}
+//	@GetMapping(value="/admin/city")
+//	public String ViewCity() {
+//		return "admin/view/view-city";
+//	}
 }

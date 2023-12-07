@@ -1,6 +1,7 @@
 package hcmute.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,18 @@ public class CityServiceImpl implements ICityService{
 	@Override
 	public List<CityEntity> findAll() {
 		return cityRepository.findAll();
+	}
+	@Override
+	public <S extends CityEntity> S save(S entity) {
+		return cityRepository.save(entity);
+	}
+	@Override
+	public Optional<CityEntity> findById(String id) {
+		return cityRepository.findById(id);
+	}
+	@Override
+	public void deleteById(String id) {
+		cityRepository.deleteById(id);
 	}
 	
 	

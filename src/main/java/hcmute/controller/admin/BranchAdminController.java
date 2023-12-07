@@ -28,8 +28,8 @@ public class BranchAdminController {
 
     @GetMapping("")
     public String indexViewBranch(ModelMap model) {
-        List<BranchEntity> branch = branchService.findAll();
-        model.addAttribute("branch", branch);  // Updated attribute name to "branches"
+        List<BranchEntity> branches = branchService.findAll();
+        model.addAttribute("branches", branches);  // Updated attribute name to "branches"
         return "admin/view/view-branch";
     }
 

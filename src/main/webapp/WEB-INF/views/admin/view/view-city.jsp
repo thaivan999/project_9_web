@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DANH SÁCH CHI NHÁNH</title>
+    <title>DANH SÁCH THÀNH PHỐ</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="<c:url value='/templates/admin/css/styles.css'/>" rel="stylesheet" />
     <link href="<c:url value='/templates/admin/css/my-style.css'/>" rel="stylesheet" />
@@ -20,14 +20,14 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">DANH SÁCH CHI NHÁNH</h1>
+                <h1 class="mt-4">DANH SÁCH THÀNH PHỐ</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="/admin/index">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/view-branch">Danh sách chi nhánh</a></li>
+                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/view-branch">Danh sách thành phố</a></li>
                 </ol>
                 <div class="card mb-4">
                 	<div class="card-header">
-                            <i class="fas fa-table me-1"></i>BẢNG DANH SÁCH CHI NHÁNH
+                            <i class="fas fa-table me-1"></i>BẢNG DANH SÁCH THÀNH PHỐ
                         	<button class="btn btn-primary" onclick="exportToExcel()" style="margin-left: 15px">
 									<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
 										<style>svg{fill:#e8e8e8}</style><path d="M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm90.9 233.3c-8.1-10.5-23.2-12.3-33.7-4.2s-12.3 23.2-4.2 33.7L161.6 320l-44.5 57.3c-8.1 10.5-6.3 25.5 4.2 33.7s25.5 6.3 33.7-4.2L192 359.1l37.1 47.6c8.1 10.5 23.2 12.3 33.7 4.2s12.3-23.2 4.2-33.7L222.4 320l44.5-57.3c8.1-10.5 6.3-25.5-4.2-33.7s-25.5-6.3-33.7 4.2L192 280.9l-37.1-47.6z"/>
@@ -44,28 +44,17 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID Branch</th>
-                                    <th>Name</th>
-                                    <th>Address Detail</th>
-                                    <th>Open Time</th>
-                                    <th>Image</th>
                                     <th>ID City</th>
-                                    <th>Description</th>
+                                    <th>Name</th>
                                     <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="branch" items="${branches}">
+                                <c:forEach var="city" items="${cities}">
                                     <tr>
-                                        <td>${branch.idBranch}</td>
-                                        <td>${branch.name}</td>
-                                        <td>${branch.addressDetail}</td>
-                                        <td>${branch.opentime}</td>
-                                        <td>${branch.image}</td>
-										<td>${branch.idCity}</td>
-                                        <td>${branch.description}</td>
-                                        <td><a class="btn btn-success" href="/admin/branch/edit/${branch.idBranch}">edit</a></td>
-                                        <td><a class="btn btn-danger" href="/admin/branch/delete/${branch.idBranch}">delete</a></td>
+                                        <td>${city.idCity}</td>
+                                        <td>${city.name}</td>
+                                        <td><a class="btn btn-success" href="/admin/city/edit/${city.idCity}">edit</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -83,7 +72,7 @@
     	        $(this).find('th:last, td:last').remove();
     	    });
     	    var wb = XLSX.utils.table_to_book(tableClone[0], { sheet: "Sheet JS" });
-            XLSX.writeFile(wb, "Danh Sách Chi Nhánh.xlsx");
+            XLSX.writeFile(wb, "Danh Sách Thành Phố.xlsx");
         }
         function exportToWord() {
             var tableClone = $('#example1').clone();
@@ -95,7 +84,7 @@
             var url = URL.createObjectURL(blob);
             var a = document.createElement('a');
             a.href = url;
-            a.download = 'Danh Sách Chi Nhánh.doc';
+            a.download = 'Danh Sách Thành Phố.doc';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
