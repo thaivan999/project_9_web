@@ -10,7 +10,6 @@
 <body>
 	<p class="search-content">Kết quả tìm kiếm cho từ khóa xxx</p>
 	<div style="margin-top: 20px; margin-left: 50px;">
-		<button type="button" class="btn btn-primary">Mới nhất</button>
 		<button type="button" class="btn btn-success">bán chạy</button>
 		<div class="btn-group">
 			<button type="button" class="btn btn-warning dropdown-toggle"
