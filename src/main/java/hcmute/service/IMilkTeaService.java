@@ -28,7 +28,7 @@ public interface IMilkTeaService {
 
 	List<MilkTeaEntity> findFourProductsOutstanding();
 
-	List<MilkTeaEntity> findAllByTypeId(Integer typeId);
+	List<MilkTeaEntity> findAllByTypeId(int typeId);
 	Optional<MilkTeaEntity> findByIdMilkTea(int id);
 	
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
@@ -43,5 +43,12 @@ public interface IMilkTeaService {
 
 	List<MilkTeaEntity> findAll();
 
+	void sortByOrderDetailQuantity(List<MilkTeaEntity> milkTeaList);
+
+
+
+	int countByTypeId(int typeId);
+	
+	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
 
 }

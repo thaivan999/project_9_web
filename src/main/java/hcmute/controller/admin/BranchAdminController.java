@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import hcmute.entity.BranchEntity;
+import hcmute.entity.CityEntity;
 import hcmute.model.BranchModel;
 import hcmute.service.IBranchService;
 
 import javax.validation.Valid;
+
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,19 +40,39 @@ public class BranchAdminController {
         model.addAttribute("branch", branch);
         return "admin/customize/customize-branch";
     }
-
-    @PostMapping("/saveOrUpdate")
+    
+    @PostMapping("saveOrUpdate")
     public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch, BindingResult result) {
         if (result.hasErrors()) {
             return new ModelAndView("admin/customize/customize-branch");
         }
+        if (branch != null) {
+            BranchEntity entity = new BranchEntity();
+            if (branch.getIdBranch() != null) {
+                entity.setIdBranch(branch.getIdBranch());
+            }
+            if (branch.getName() != null) {
+                entity.setName(branch.getName());
+            }
+            if (branch.getAddressDetail() != null) {
+                entity.setAddressDetail(branch.getAddressDetail());
+            }
+            if (branch.getOpentime() != null) {
+                entity.setOpentime(branch.getOpentime());
+            }
+            if (branch.getImage() != null) {
+                entity.setImage(branch.getImage());
+            }
+            if (branch.getDescription() != null) {
+                entity.setDescription(branch.getDescription());
+            }
+            branchService.save(entity);
+            String message = branch.getIsEdit() ? "Branch đã được cập nhật thành công" : "Branch đã được thêm thành công";
+            model.addAttribute("message", message);
+        } else {
+            model.addAttribute("message", "Không thể lưu Branch với dữ liệu null");
+        }
 
-        BranchEntity entity = new BranchEntity();
-        BeanUtils.copyProperties(branch, entity);
-        branchService.save(entity);
-
-        String message = branch.getIsEdit() ? "Branch đã được cập nhật thành công" : "Branch đã được thêm thành công";
-        model.addAttribute("message", message);
         return new ModelAndView("redirect:/admin/branch", model);
     }
 

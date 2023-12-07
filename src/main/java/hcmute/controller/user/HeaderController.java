@@ -1,5 +1,9 @@
 package hcmute.controller.user;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import hcmute.entity.MilkTeaEntity;
 import hcmute.service.IMilkTeaCategoryService;
@@ -35,31 +42,59 @@ public class HeaderController {
 	}
 	
 	@RequestMapping("search/content={name}")
-	public String getMilkTeaByNameContaining(@PathVariable("name") String name, Model model) {
-	    milkTeas = milkTeaService.findByNameContaining(name);
-	    model.addAttribute("milkTeas", milkTeas);
-	    return "user/search";
+	public String getMilkTeaByNameContaining(@PathVariable("name") String encodedName, Model model) {
+	    try {
+	        String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
+	        milkTeas = milkTeaService.findByNameContaining(name);
+	        model.addAttribute("milkTeas", milkTeas);
+	        model.addAttribute("content", name);
+	        return "user/search";
+	    } catch (UnsupportedEncodingException e) {
+	        e.printStackTrace();
+	        return "error";
+	    }
 	}
 	
 	@RequestMapping("search/content={name}/method={method}")
-	public String searchAndSort(@PathVariable("name") String name, @PathVariable("method") String method, Model model) {
-	    if ("newness".equals(method)) {
-	    	
+	public String searchAndSort(@PathVariable("name") String encodedName, @PathVariable("method") String method, Model model) {
+		try {
+			 String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
+			 model.addAttribute("content", name);
+			 
+			if ("outstanding".equals(method)) {
+				milkTeas = milkTeaService.findByNameContaining(name);
+				System.out.println("outstanding method");
+				milkTeaService.sortByOrderDetailQuantity(milkTeas);
+		    	
+		    }
+		    else if ("low-to-high".equals(method)) {
+		    	milkTeas = milkTeaService.findByNameContainingAndSortAscendingByCost(name);
+		    	System.out.println("low-to-high");
+		    }
+		    else if ("high-to-low".equals(method)) {
+		    	milkTeas = milkTeaService.findByNameContainingAndSortDescendingByCost(name);
+		    	System.out.println("high-to-low");
+		    }
+		    
+		    model.addAttribute("milkTeas", milkTeas);
+		    return "user/search";
+		    
+		}
+		catch(UnsupportedEncodingException e) {
+	        e.printStackTrace();
+	        return "error";
+		}
+	}
+	
+	@GetMapping("/moveToSearchPage")
+	public RedirectView moveToSearchPage(RedirectAttributes redirectAttributes, @RequestParam("content") String content) {
+		try {
+	        String encodedContent = URLEncoder.encode(content, StandardCharsets.UTF_8.toString());
+	        return new RedirectView("/header/search/content=" + encodedContent);
+	    } catch (UnsupportedEncodingException e) {
+	        e.printStackTrace();
+	        return new RedirectView("/error");
 	    }
-	    else if ("outstanding".equals(method)) {
-	    	
-	    }
-	    else if ("low-to-high".equals(method)) {
-	    	milkTeas = milkTeaService.findByNameContainingAndSortAscendingByCost(name);
-	    	System.out.println("low-to-high");
-	    }
-	    else if ("high-to-low".equals(method)) {
-	    	milkTeas = milkTeaService.findByNameContainingAndSortDescendingByCost(name);
-	    	System.out.println("high-to-low");
-	    }
-	    
-	    model.addAttribute("milkTeas", milkTeas);
-	    return "user/search";
 	}
 
 }

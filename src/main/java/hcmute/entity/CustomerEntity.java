@@ -33,6 +33,9 @@ public class CustomerEntity implements Serializable{
 	@Column(name = "phone_number",columnDefinition = "varchar(50)")
 	private String phoneNumber;
 	
+	@Column(name = "image_url", columnDefinition = "varchar(255)")
+	private String image_url;
+	
 	@Column(name = "email",columnDefinition = "varchar(50)")
 	private String email;
 	
@@ -42,8 +45,8 @@ public class CustomerEntity implements Serializable{
 	@OneToMany(mappedBy = "customerByCart")
 	private Set<CartEntity> carts;
 	
-	@OneToMany(mappedBy = "customerByAccount")
-	private Set<AccountEntity> accounts;
+//	@OneToMany(mappedBy = "customerByUser")
+//	private Set<UserEntity> accounts;
 	
 	@OneToMany(mappedBy = "customerByOrder")
 	private Set<OrderEntity> orders;

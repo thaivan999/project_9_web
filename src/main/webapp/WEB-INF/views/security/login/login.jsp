@@ -19,7 +19,9 @@
         <div class="container py-2 h-100"> 
             <div class="row d-flex justify-content-center align-items-center">
                
-              
+              <div class="col-md-6">
+                    		<img src='<c:url value="/security/img/login.jpg" />'alt="Image" class="img-fluid me-3"style="margin-left: -50px;">
+                		</div>
                 <div class="col-md-6">
                     <div class="card rounded-4 shadow">
                         <div class="card-body p-md-5 p-sm-2">
@@ -29,9 +31,7 @@
                                     <c:if test="${not empty message}">
                                         <div class="alert alert-success">${message}</div>
                                     </c:if>
-                                    <c:if test="${not empty error}">
-                                        <div class="alert alert-danger">${error}</div>
-                                    </c:if>
+                                   
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-floating">
@@ -48,7 +48,7 @@
                                 <div class="form-check d-flex justify-content-start mb-4">
                                     <input class="form-check-input me-2" type="checkbox" name="remember-me" id="form1Example3" />
                                     <label class="form-check-label"> Remember password? </label>
-                                    <a href="/security/redirect-forgotpassword" class="ms-auto text-decoration-none">Forgot password?</a>
+                                    <a href="/security/forgot-password" class="ms-auto text-decoration-none">Forgot password?</a>
                                 </div>
                                 <div class="d-grid gap-2 mb-2">
                                     <button formaction="/security/login" type="submit" id="submit" class="btn btn-lg rounded-3 btn-primary">Sign In</button>
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 offset-md-4 text-end mb-3">
+        <div class="col-md-6 offset-md-4 text-end mb-3">
 		<div class="d-inline">
 			<p class="d-inline">
 				<b>Bạn chưa có tài khoản ?</b>

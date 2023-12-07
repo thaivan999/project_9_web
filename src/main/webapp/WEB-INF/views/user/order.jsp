@@ -106,7 +106,7 @@
 													${orderDetail.milkTeaByOrderDetail.name}</p>
 												<h5>${orderDetail.milkTeaByOrderDetail.cost}</h5>
 											</div>
-											<p>${orderDetail.size}</p>
+											<p>${orderDetail.idOrderDetail.size}</p>
 											<hr style="border: thin solid #D6D6D6;">
 										</div>
 									</c:forEach>
