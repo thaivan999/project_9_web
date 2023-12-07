@@ -28,23 +28,25 @@
         <div class="user-infor-title">Thông tin tài khoản</div>
 
         <div class = "user-infor-container">
-            <div class = "user-infor user-name">Tên khách hàng</div>
-            <div class ="user-infor user-name-textbox">
-            <input type="text" class = "user-lastname-textbox textbox">
-            <input type="text" class = "user-surname-textbox textbox">
-            </div>
-
-            <div class = "user-infor user-phone">Số điện thoại</div>
-            <input type="text" class = "user-phone-textbox textbox">
-            <div class = "user-infor user-birthday">Sinh nhật</div>
-            <input type="text" class = "user-birthday-textbox textbox">
-            <div class = "user-infor user-email">Email</div>
-            <input type="email" class = "user-email-textbox textbox">
-            <input type="radio" name="sex" id="check">Nam
-            <input type="radio" name="sex" id="check">Nữ
-            <div class = "user-infor user-update">
-                <div class="branch_see_more">Cập nhật</div>
-            </div>
+            <form action="/user_infor/${customer.idUser}/update" method="post">
+                <input type="text" name="id_user" id="id_user" hidden="hidden">
+                <div class = "user-infor user-name">Tên khách hàng</div>
+                <div class ="user-infor user-name-textbox">
+                <input type="text" class = "user-lastname-textbox textbox" value="${customer.name}" required placeholder="Tên khách hàng">
+                <input type="text" class = "user-surname-textbox textbox" value="${customer.surname}" required placeholder="Họ khách hàng">
+                </div>
+    
+                <div class = "user-infor user-phone">Số điện thoại</div>
+                <input type="tel" name = "phone" id="phone" class = "user-phone-textbox textbox" value="${customer.phoneNumber}" readonly>
+                <div class = "user-infor user-birthday">Sinh nhật</div>
+                <input type="date" class = "user-birthday-textbox textbox" value="${customer.birthday}" required>
+                <div class = "user-infor user-email">Email</div>
+                <input type="email" class = "user-email-textbox textbox" value="${customer.email}" readonly>
+                <input type="radio" name="sex" id="nam" ${customer.gender == 1 ? 'checked="checked"' : ""} required>Nam
+                <input type="radio" name="sex" id="nu" ${customer.gender == 0 ? 'checked="checked"' : ""}>Nữ
+                <input type="submit" class="user-update-button" value="Cập nhật" >
+                
+            </form>
         </div>
     </div>
 

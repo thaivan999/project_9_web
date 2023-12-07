@@ -25,7 +25,8 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	List<MilkTeaEntity> findFiveProductOutstanding();
 
 	List<MilkTeaEntity> findAll();
-
+	Page<MilkTeaEntity> findAll(Pageable pageable);
+	
 	// find relevant products
 	// choose 4 products has the same type except the current product
 	@Query(value = "SELECT TOP 4 * FROM milk_tea WHERE id_type = :typeId AND id_milk_tea <> :milkTeaId", nativeQuery = true)
@@ -34,6 +35,18 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	long count();
 
 	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%'))", nativeQuery = true)
+	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost ASC", nativeQuery = true)
+//	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost ASC", nativeQuery = true)
+	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name);
+	
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost DESC", nativeQuery = true)
+//	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(name) LIKE LOWER(CONCAT('%', :name, '%')) ORDER BY cost DESC", nativeQuery = true)
+	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name);
+//	Page<MilkTeaEntity> findByidTypeContaining(int idType, Pageable pageable);
 
 
 	Page<MilkTeaEntity> findAll(Pageable pageable);
