@@ -19,4 +19,5 @@ public class CustomerModel{
 	private String email;
 	private int gender;
 	private OrderModel orders;
+	private Boolean isEdit=false;
 }
