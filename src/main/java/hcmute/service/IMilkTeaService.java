@@ -28,9 +28,9 @@ public interface IMilkTeaService {
 
 	List<MilkTeaEntity> findFiveProductOutstanding();
 
-	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name);
+	Page<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name, Pageable pageable);
+	Page<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name, Pageable pageable);
 
-	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name);
 
 	List<MilkTeaEntity> findAll();
 	

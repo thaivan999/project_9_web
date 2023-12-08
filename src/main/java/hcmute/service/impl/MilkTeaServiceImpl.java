@@ -69,15 +69,6 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		return null;
 	}
 
-	@Override
-	public List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name) {
-		return milkTeaRepository.findByNameContainingAndSortAscendingByCost(name);
-	}
-
-	@Override
-	public List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name) {
-		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name);
-	}
 
 	@Override
 	public long count() {
@@ -162,6 +153,18 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	@Override
 	public List<MilkTeaEntity> findByNameContaining(String name) {
 		return milkTeaRepository.findByNameContaining(name);
+	}
+
+
+	@Override
+	public Page<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name, Pageable pageable) {
+		return milkTeaRepository.findByNameContainingAndSortAscendingByCost(name, pageable);
+	}
+
+
+	@Override
+	public Page<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name, Pageable pageable) {
+		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name, pageable);
 	}
 
 

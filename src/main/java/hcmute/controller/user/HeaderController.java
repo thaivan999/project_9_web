@@ -115,29 +115,42 @@ public class HeaderController {
 			String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
 			model.addAttribute("content", name);
 
+			int count = milkTeaService.countByNameContaining(name);
 			int currentPage = page.orElse(1);
 			int pageSize = 8;
+
 			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
-			Page<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name, pageable);
-
-			int totalPages = milkTeas.getTotalPages();
-
+			Page<MilkTeaEntity> resultPage = milkTeaService.findByNameContaining(name, pageable);
+			int totalPages = resultPage.getTotalPages();
 			if (totalPages > 0) {
 				int start = Math.max(1, currentPage - 2);
 				int end = Math.min(currentPage + 2, totalPages);
-				if (totalPages > milkTeas.getSize()) {
+				if (totalPages > count) {
 					if (end == totalPages)
-						start = end - milkTeas.getSize();
+						start = end - count;
 					else if (start == 1)
-						end = start + milkTeas.getSize();
+						end = start + count;
 				}
 				List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
 				model.addAttribute("pageNumbers", pageNumbers);
 			}
+			model.addAttribute("milkTeaBySorts", resultPage);
 
-			model.addAttribute("milkTeaBySorts", milkTeas);
+			if ("outstanding".equals(method)) {
+				List<MilkTeaEntity> milkTeas = resultPage.getContent();
+				milkTeaService.sortByOrderDetailQuantity(milkTeas);
+				model.addAttribute("milkTeaBySorts", resultPage);
+			} else if ("low-to-high".equals(method)) {
+				Pageable sortPageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("cost").ascending());
+				Page<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name, sortPageable);
+				model.addAttribute("milkTeaBySorts", milkTeas);
+			} else if ("high-to-low".equals(method)) {
+				Pageable sortPageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("cost").descending());
+				Page<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name, sortPageable);
+				model.addAttribute("milkTeaBySorts", milkTeas);
+			}
+
 			return "user/search";
-
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return "error";
