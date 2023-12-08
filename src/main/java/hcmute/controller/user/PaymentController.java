@@ -27,21 +27,21 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hcmute.embeddedId.OrderDetailId;
-import hcmute.entity.CustomerEntity;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.OrderDetailEntity;
 import hcmute.entity.OrderEntity;
 import hcmute.entity.PayMethodEntity;
+import hcmute.entity.UserEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.model.OrderData;
 import hcmute.model.OrderModel;
 import hcmute.model.OrderProduct;
 import hcmute.model.OrderProduct.OrderItem;
-import hcmute.service.ICustomerService;
 import hcmute.service.IMilkTeaService;
 import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
 import hcmute.service.IPayMethodService;
+import hcmute.service.IUserService;
 
 @Controller
 @RequestMapping("payment")
@@ -53,7 +53,7 @@ public class PaymentController {
 	IOrderDetailService orderDetailService;
 
 	@Autowired
-	ICustomerService customerService;
+	IUserService userService;
 
 	@Autowired
 	IPayMethodService payMethodService;
@@ -70,9 +70,9 @@ public class PaymentController {
 		model.addAttribute("dataJSON", data);
 		List<PayMethodEntity> listPayMethod = payMethodService.findAll();
 		model.addAttribute("listPayMethod", listPayMethod);
-		Optional<CustomerEntity> optCustomer = customerService.findById(1);
+		Optional<UserEntity> optCustomer = userService.findById(1);
 		if (optCustomer.isPresent()) {
-			CustomerEntity customer = optCustomer.get();
+			UserEntity customer = optCustomer.get();
 			model.addAttribute("customer", customer);
 		}
 
@@ -129,7 +129,7 @@ public class PaymentController {
 				}
 			}
 			
-			Optional<CustomerEntity> optCustomer = customerService.findById(1);
+			Optional<UserEntity> optCustomer = userService.findById(1);
 			if(optCustomer.isPresent())
 			{
 				orderEntity.setCustomerByOrder(optCustomer.get());

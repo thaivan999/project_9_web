@@ -52,19 +52,19 @@ public class OrderEntity implements Serializable {
 	private PayMethodEntity payMethodByOrder;
 
 	@ManyToOne
-	@JoinColumn(name = "id_user")
-	private CustomerEntity customerByOrder;
-	
-	@ManyToOne
 	@JoinColumn(name = "id_branch")
 	private BranchEntity branchByOrder;
+  
+  @ManyToOne
+	@JoinColumn(name = "id")
+	private UserEntity customerByOrder;
 
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
 
 	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDate orderDay,
 			int orderState, LocalDate shipDay, String note, String address, String phoneNumber,
-			PayMethodEntity payMethodByOrder, CustomerEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
+			PayMethodEntity payMethodByOrder, UserEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
 		super();
 		this.idOrder = idOrder;
 		this.totalProduct = totalProduct;
@@ -173,11 +173,11 @@ public class OrderEntity implements Serializable {
 		this.payMethodByOrder = payMethodByOrder;
 	}
 
-	public CustomerEntity getCustomerByOrder() {
+	public UserEntity getCustomerByOrder() {
 		return customerByOrder;
 	}
 
-	public void setCustomerByOrder(CustomerEntity customerByOrder) {
+	public void setCustomerByOrder(UserEntity customerByOrder) {
 		this.customerByOrder = customerByOrder;
 	}
 

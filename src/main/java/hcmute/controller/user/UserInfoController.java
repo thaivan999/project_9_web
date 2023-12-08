@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import hcmute.entity.CustomerEntity;
-import hcmute.model.CustomerModel;
-import hcmute.service.ICustomerService;
+import hcmute.entity.UserEntity;
+import hcmute.model.UserModel;
+import hcmute.service.IUserService;
 
 @Controller
 @RequestMapping("user_infor")
 public class UserInfoController {
 
 	@Autowired
-	ICustomerService customerService;
+	IUserService userService;
 
 	@GetMapping("/{user_id}")
 	public String viewCustomer(ModelMap model, @PathVariable("user_id") Integer userId) {
-		Optional<CustomerEntity> opt = customerService.findById(userId);
+		Optional<UserEntity> opt = userService.findById(userId);
 
 		if (opt.isPresent()) {
-			CustomerEntity customer = opt.get();
+			UserEntity customer = opt.get();
 			model.addAttribute("customer", customer);
 			return "user/user_infor";
 		} else {
@@ -43,12 +43,12 @@ public class UserInfoController {
 
 	@PostMapping("/saveOrUpdate/{user_id}") // chuyển hướng tới đâu đây
 	public ModelAndView saveOrUpdate(ModelMap model, @PathVariable("user_id") Integer userId,
-			@Valid @ModelAttribute("customer") CustomerModel customer, BindingResult result) {
+			@Valid @ModelAttribute("customer") UserModel customer, BindingResult result) {
 		if (result.hasErrors()) {
 			return new ModelAndView("user/error");
 		}
 		if (customer != null) {
-			CustomerEntity entity = new CustomerEntity();
+			UserEntity entity = new UserEntity();
 			if (customer.getName() != null) {
 				entity.setName(customer.getName());
 			}
@@ -63,7 +63,7 @@ public class UserInfoController {
 			}
 			
 			BeanUtils.copyProperties(customer, entity);
-			customerService.save(entity);
+//			userService.save(entity);
             String message = customer.getIsEdit() ? "Customer đã được cập nhật thành công" : "Customer đã được thêm thành công";
             model.addAttribute("message", message);
         } else {
@@ -73,15 +73,13 @@ public class UserInfoController {
 		return new ModelAndView("forward:/user_infor/" + userId); // chuyển hướng tới đâu đây
 
 	}
-
-
     
     @GetMapping("saveOrUpdate/{user_id}")
     public ModelAndView edit(ModelMap model, @PathVariable("user_id") Integer userId) {
-        Optional<CustomerEntity> opt = customerService.findById(userId);
-        CustomerModel customer = new CustomerModel();
+        Optional<UserEntity> opt = userService.findById(userId);
+        UserModel customer = new UserModel();
         if (opt.isPresent()) {
-            CustomerEntity entity = opt.get();
+            UserEntity entity = opt.get();
             BeanUtils.copyProperties(entity, customer);
             customer.setIsEdit(true);
             model.addAttribute("customer", customer);
