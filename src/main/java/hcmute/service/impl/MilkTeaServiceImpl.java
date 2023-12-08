@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.OrderDetailEntity;
@@ -153,7 +154,19 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 
 	@Override
 	public <S extends MilkTeaEntity> S save(S entity) {
-		return milkTeaRepository.save(entity);
+		if (entity.getIdMilkTea() == 0) {
+			return milkTeaRepository.save(entity);
+		} else {
+			Optional<MilkTeaEntity> opt = findByIdMilkTea(entity.getIdMilkTea());
+			if (opt.isPresent()) {
+				if (StringUtils.isEmpty(entity.getImage())) {
+					entity.setImage(opt.get().getImage());
+				} else {
+					entity.setImage(entity.getImage());
+				}
+			}
+			return milkTeaRepository.save(entity);
+		}
 	}
 	
 	@Override
