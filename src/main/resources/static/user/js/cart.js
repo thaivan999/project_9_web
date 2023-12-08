@@ -98,7 +98,11 @@ btnSubmit.addEventListener("click", function() {
 
 	var encodedData = customBase64Encode(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', '/payment?data=' + encodedData);
+	var noChoose = "false";
+	if(sumPriceEle.textContent === "0đ") {
+		noChoose = "true";
+	}
+	myAnchor.setAttribute('href', '/cart/check?data=' + encodedData + "&noChoose="+noChoose);
 	myAnchor.click();
 })
 
@@ -117,6 +121,32 @@ document.querySelector('.btn-yes').addEventListener('click', function() {
 	idMilkTea = parseInt(idMilkTea);
 	myAnchor.setAttribute('href', '/cart/delete/?idMilkTea=' + idMilkTea + '&&size=' + size);
 	myAnchor.click();
+})
+
+listQuantity.forEach(function(item, index) {
+	item.addEventListener("keyup", function() {
+		var inputVal = item.value;
+		var number = parseInt(inputVal);
+
+		function checkIfStringIsNumeric(inputString) {
+			return !isNaN(inputString) && !isNaN(parseFloat(inputString));
+		}
+
+		if (checkIfStringIsNumeric(inputVal) && number > 0) {
+			calculateSumPrice();
+		} else {
+			item.value = inputVal.slice(0, -1);
+		}
+	})
+
+	item.addEventListener("blur", function() {
+		var inputVal = item.value;
+
+		if (inputVal == "") {
+			item.value = "1";
+			calculateSumPrice();
+		}
+	})
 })
 
 
