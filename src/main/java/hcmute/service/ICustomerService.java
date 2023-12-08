@@ -8,5 +8,5 @@ public interface ICustomerService {
 
 	Optional<CustomerEntity> findById(Integer id);
 
-	CustomerEntity updateCustomer(CustomerEntity customer);
+	<S extends CustomerEntity> S save(S entity);
 }

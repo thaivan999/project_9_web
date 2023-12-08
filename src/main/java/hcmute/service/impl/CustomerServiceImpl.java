@@ -22,9 +22,10 @@ public class CustomerServiceImpl implements ICustomerService{
 	public Optional<CustomerEntity> findById(Integer id) {
 		return customerRepository.findById(id);
 	}
+
 	@Override
-    public CustomerEntity updateCustomer(CustomerEntity customer) {
-        // Thực hiện cập nhật thông tin khách hàng trong cơ sở dữ liệu
-        return customerRepository.save(customer);
-    }
+	public <S extends CustomerEntity> S save(S entity) {
+		return customerRepository.save(entity);
+	}
+	
 }
