@@ -29,7 +29,7 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	
 	// find relevant products
 	// choose 4 products has the same type except the current product
-	@Query(value = "SELECT TOP 4 * FROM milk_tea WHERE id_type = :typeId AND id_milk_tea <> :milkTeaId", nativeQuery = true)
+	@Query("SELECT m FROM MilkTeaEntity m WHERE m.milkTeaTypeByMilkTea.idType = :typeId AND m.idMilkTea <> :milkTeaId")
 	List<MilkTeaEntity> findRelevantProducts(@Param("typeId") int typeId, @Param("milkTeaId") int milkTeaId);
 
 	long count();
@@ -50,4 +50,7 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 
 	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :idType")
 	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
+	
+	@Query("SELECT COALESCE(m.remainQuantity, 0) FROM MilkTeaEntity m WHERE m.idMilkTea = :idMilkTea AND m.branchByMilkTea.idBranch = :idBranch")
+	Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(@Param("idMilkTea") int idMilkTea, @Param("idBranch") int idBranch);
 }

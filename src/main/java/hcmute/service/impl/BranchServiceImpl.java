@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 
 import hcmute.entity.BranchEntity;
 import hcmute.repository.BranchRepository;
@@ -26,7 +28,19 @@ public class BranchServiceImpl implements IBranchService{
 	}
 	@Override
 	public <S extends BranchEntity> S save(S entity) {
-		return branchRepository.save(entity);
+		if (entity.getIdBranch() == 0) {
+			return branchRepository.save(entity);
+		} else {
+			Optional<BranchEntity> opt = findById(entity.getIdBranch());
+			if (opt.isPresent()) {
+				if (StringUtils.isEmpty(entity.getImage())) {
+					entity.setImage(opt.get().getImage());
+				} else {
+					entity.setImage(entity.getImage());
+				}
+			}
+			return branchRepository.save(entity);
+		}
 	}
 	@Override
 	public Page<BranchEntity> findAll(Pageable pageable) {

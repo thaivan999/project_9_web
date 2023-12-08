@@ -67,20 +67,14 @@ public class SecurityController {
 	public String IndexRegister(ModelMap model) {
 		return "security/register/register";
 	}
-	// lấy giá trị cookie
-//	@PostMapping("/login")
-//	public String login_index(Model model) {
-//		model.addAttribute("username",cookieService.getValuẹ("username"));
-//		model.addAttribute("password",cookieService.getValuẹ("password"));
-//		return "security/login/login";
-//	}
 	
 	@PostMapping("login")
 	public String login(ModelMap model, HttpServletRequest req, HttpSession session) throws MessagingException {
 	    String username = req.getParameter("username");
 	    String password = req.getParameter("password");
 	    String remember = req.getParameter("remember-me");
-	    sessionService.set("username", username);
+	    Optional<UserEntity> user = userService.findByUsername(username);
+	    sessionService.setAttribute("user", user);
 	    if (remember != null && !remember.isEmpty()) {
 	        cookieService.Add("username", username, 1);
 	        cookieService.Add("password", password, 1);

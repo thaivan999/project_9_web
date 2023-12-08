@@ -25,11 +25,11 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/milk-tea-type-update">Cập nhật loại trà sữa</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/milk-tea-type-update/create" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-milk-tea-type/saveOrUpdate"/>" method="post">
                         <!-- ID Type -->
                         <div class="mb-3">
                             <label for="exampleInputTypeId" class="form-label">ID Type*</label> 
-                            <input placeholder="Type ID" name="id_type" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTeaType.id_type}" ${loguser} required="required" disabled>
+                            <input placeholder="Type ID" name="idType" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTeaType.idType}" ${loguser} required="required" disabled>
                         </div>
 
                         <!-- Name -->
@@ -41,13 +41,18 @@
                         <!-- ID Category -->
                         <div class="mb-3">
                             <label for="exampleInputCategoryId" class="form-label">ID Category*</label> 
-                            <input placeholder="Category ID" name="id_category" type="text" class="form-control" id="exampleInputCategoryId" aria-describedby="categoryIdHelp" value="${milkTeaType.id_category}" required="required">
+                            <input placeholder="Category ID" ${milkTeaType.isEdit ? 'readonly':'' } name="idCategory" type="text" class="form-control" id="exampleInputCategoryId" aria-describedby="categoryIdHelp" value="${milkTeaType.milkTeaCategoryByMilkTeaType.idCategory}" required="required">
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary" formaction="/admin/milk-tea-type-update/create" ${buttonnolog}>Thêm</button>
-                            <button type="submit" class="btn btn-success" formaction="/admin/milk-tea-type-update/update" ${buttonlog}>Sửa</button>
-                            <button type="submit" class="btn btn-danger" formaction="/admin/milk-tea-type-update/delete" ${buttonlog1} ${buttonxoa}>Xóa</button>
+                            <button type="submit" class="btn btn-success">
+                            	<c:if test="${milkTeaType.isEdit}">
+                            		<span>Update</span>
+                            	</c:if>
+                            	<c:if test="${!milkTeaType.isEdit}">
+                            		<span>Save</span>
+                            	</c:if>
+                            </button>
                         </div>
                     </form>
                     <h6 class="ms-3 text-primary">${message}</h6>

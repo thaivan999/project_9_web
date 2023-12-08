@@ -1,23 +1,25 @@
 package hcmute.controller.admin;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.http.HttpHeaders;
 import hcmute.entity.BranchEntity;
-import hcmute.entity.CityEntity;
 import hcmute.model.BranchModel;
 import hcmute.service.IBranchService;
+import hcmute.service.IStorageService;
+
 
 import javax.validation.Valid;
-
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("admin/branch")
@@ -25,6 +27,9 @@ public class BranchAdminController {
 
     @Autowired
     private IBranchService branchService;
+    
+    @Autowired
+    private IStorageService storageService;
 
     @GetMapping("")
     public String indexViewBranch(ModelMap model) {
@@ -41,15 +46,15 @@ public class BranchAdminController {
         return "admin/customize/customize-branch";
     }
     
-    @PostMapping("saveOrUpdate")
-    public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch, BindingResult result) {
-        if (result.hasErrors()) {
+    @PostMapping("saveOrUpdate/{idBranch}")
+    public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch,@PathVariable("idBranch") int idBranch, BindingResult result) {
+    	if (result.hasErrors()) {
             return new ModelAndView("admin/customize/customize-branch");
         }
         if (branch != null) {
             BranchEntity entity = new BranchEntity();
             if (branch.getIdBranch() != null) {
-                entity.setIdBranch(branch.getIdBranch());
+                entity.setIdBranch(idBranch);
             }
             if (branch.getName() != null) {
                 entity.setName(branch.getName());
@@ -66,6 +71,16 @@ public class BranchAdminController {
             if (branch.getDescription() != null) {
                 entity.setDescription(branch.getDescription());
             }
+            if (branch.getIdCity() != null) {
+                entity.setIdCity(branch.getIdCity());
+            }
+            
+            if(!branch.getImageFile().isEmpty()) {
+            	UUID uuid = UUID.randomUUID();
+            	String uuString = uuid.toString();
+            	entity.setImage(storageService.getStorageFilename(branch.getImageFile(), uuString));
+            	storageService.store(branch.getImageFile(), entity.getImage());
+            }
             branchService.save(entity);
             String message = branch.getIsEdit() ? "Branch đã được cập nhật thành công" : "Branch đã được thêm thành công";
             model.addAttribute("message", message);
@@ -75,7 +90,11 @@ public class BranchAdminController {
 
         return new ModelAndView("redirect:/admin/branch", model);
     }
-
+    @GetMapping("/images/{filename:.+}")
+    public ResponseEntity<Resource> serverFile(@PathVariable String filename) {
+        Resource file = storageService.loadAsResource(filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file.getFilename() + "\"").body(file);
+    }
     @GetMapping("edit/{idBranch}")
     public ModelAndView edit(ModelMap model, @PathVariable("idBranch") int idBranch) {
         Optional<BranchEntity> opt = branchService.findById(idBranch);
