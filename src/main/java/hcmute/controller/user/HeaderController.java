@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -43,7 +44,6 @@ public class HeaderController {
 	@Autowired
 	IMilkTeaService milkTeaService;
 
-
 	@GetMapping("/search")
 	public String showCategory(Model model, @RequestParam("page") Optional<Integer> page) {
 		int count = (int) milkTeaService.count();
@@ -73,70 +73,76 @@ public class HeaderController {
 	}
 
 	@RequestMapping("search/content={name}")
-	public String getMilkTeaByNameContaining(@PathVariable("name") String encodedName, Model model, @RequestParam("page") Optional<Integer> page) {
-		int count = milkTeaService.countByNameContaining(encodedName);
-		int currentPage = page.orElse(1);
-		int pageSize = 8;
-
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
-		Page<MilkTeaEntity> resultpaPage = null;
-		resultpaPage = milkTeaService.findByNameContaining(encodedName, pageable);
-		int totalPages = resultpaPage.getTotalPages();
-		if (totalPages > 0) {
-			int start = Math.max(1, currentPage - 2);
-			int end = Math.min(currentPage + 2, totalPages);
-			if (totalPages > count) {
-				if (end == totalPages)
-					start = end - count;
-				else if (start == 1)
-					end = start + count;
-			}
-			List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
-			model.addAttribute("pageNumbers", pageNumbers);
-		}
-		model.addAttribute("milkTeasByNames", resultpaPage);
+	public String getMilkTeaByNameContaining(@PathVariable("name") String encodedName, Model model,
+			@RequestParam("page") Optional<Integer> page) {
 		String name;
 		try {
 			name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
 			model.addAttribute("content", name);
+			int count = milkTeaService.countByNameContaining(name);
+			int currentPage = page.orElse(1);
+			int pageSize = 8;
+
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
+			Page<MilkTeaEntity> resultpaPage = null;
+			resultpaPage = milkTeaService.findByNameContaining(name, pageable);
+			int totalPages = resultpaPage.getTotalPages();
+			if (totalPages > 0) {
+				int start = Math.max(1, currentPage - 2);
+				int end = Math.min(currentPage + 2, totalPages);
+				if (totalPages > count) {
+					if (end == totalPages)
+						start = end - count;
+					else if (start == 1)
+						end = start + count;
+				}
+				List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+				model.addAttribute("pageNumbers", pageNumbers);
+			}
+			model.addAttribute("milkTeasByNames", resultpaPage);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return "user/search";
 	}
 
-//	private List<MilkTeaEntity> milkTeas;
-//	@RequestMapping("search/content={name}/method={method}")
-//	public String searchAndSort(@PathVariable("name") String encodedName, @PathVariable("method") String method,
-//			Model model) {
-//		try {
-//			String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
-//			model.addAttribute("content", name);
-//
-//			if ("outstanding".equals(method)) {
-//				milkTeas = milkTeaService.findByNameContaining(name);
-//				System.out.println("outstanding method");
-//				milkTeaService.sortByOrderDetailQuantity(milkTeas);
-//
-//			} else if ("low-to-high".equals(method)) {
-//				milkTeas = milkTeaService.findByNameContainingAndSortAscendingByCost(name);
-//				System.out.println("low-to-high");
-//			} else if ("high-to-low".equals(method)) {
-//				milkTeas = milkTeaService.findByNameContainingAndSortDescendingByCost(name);
-//				System.out.println("high-to-low");
-//			}
-//
-//			
-//			model.addAttribute("milkTeas", milkTeas);
-//			return "user/search";
-//
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//			return "error";
-//		}
-//	}
+	@RequestMapping("search/content={name}/method={method}")
+	public String searchAndSort(@PathVariable("name") String encodedName, @PathVariable("method") String method,
+			Model model, @RequestParam("page") Optional<Integer> page) {
+		try {
+			String name = URLDecoder.decode(encodedName, StandardCharsets.UTF_8.toString());
+			model.addAttribute("content", name);
+
+			int currentPage = page.orElse(1);
+			int pageSize = 8;
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
+			Page<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name, pageable);
+
+			int totalPages = milkTeas.getTotalPages();
+
+			if (totalPages > 0) {
+				int start = Math.max(1, currentPage - 2);
+				int end = Math.min(currentPage + 2, totalPages);
+				if (totalPages > milkTeas.getSize()) {
+					if (end == totalPages)
+						start = end - milkTeas.getSize();
+					else if (start == 1)
+						end = start + milkTeas.getSize();
+				}
+				List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+				model.addAttribute("pageNumbers", pageNumbers);
+			}
+
+			model.addAttribute("milkTeaBySorts", milkTeas);
+			return "user/search";
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
 
 	@GetMapping("/moveToSearchPage")
 	public RedirectView moveToSearchPage(RedirectAttributes redirectAttributes,

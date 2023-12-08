@@ -14,7 +14,7 @@ public interface IMilkTeaService {
 
 	long count();
 
-	Page<MilkTeaEntity> findByNameContaining(@Param("name") String name, Pageable pageable);
+	//Page<MilkTeaEntity> findByNameContaining(@Param("name") String name, Pageable pageable);
 
 	List<MilkTeaEntity> findFourProductsOutstanding();
 
@@ -33,6 +33,10 @@ public interface IMilkTeaService {
 	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name);
 
 	List<MilkTeaEntity> findAll();
+	
+	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
+	
+	Page<MilkTeaEntity> findByNameContaining(String name, Pageable pageable);
 
 	void sortByOrderDetailQuantity(List<MilkTeaEntity> milkTeaList);
 

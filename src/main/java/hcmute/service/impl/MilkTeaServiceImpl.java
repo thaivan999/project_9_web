@@ -159,6 +159,12 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	}
 
 
+	@Override
+	public List<MilkTeaEntity> findByNameContaining(String name) {
+		return milkTeaRepository.findByNameContaining(name);
+	}
+
+
 
 
 

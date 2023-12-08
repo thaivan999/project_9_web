@@ -36,8 +36,8 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 
 	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
 	
-//	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%'))", nativeQuery = true)
-//	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
+	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%'))", nativeQuery = true)
+	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
 	
 	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost ASC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name);
@@ -54,6 +54,8 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :idType")
 	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%'))", nativeQuery = true)
-	Page<MilkTeaEntity> findByNameContaining(@Param("name") String name,  Pageable pageable);
+//	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%'))", nativeQuery = true)
+//	Page<MilkTeaEntity> findByNameContaining(@Param("name") String name,  Pageable pageable);
+	
+	Page<MilkTeaEntity> findByNameContaining(String name, Pageable pageable);
 }
