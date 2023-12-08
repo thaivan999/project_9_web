@@ -35,4 +35,9 @@ public class PayMethodServiceImpl implements IPayMethodService{
 		return payMethodRepository.findById(id);
 	}
 
+	@Override
+	public <S extends PayMethodEntity> S save(S entity) {
+		return payMethodRepository.save(entity);
+	}
+
 }

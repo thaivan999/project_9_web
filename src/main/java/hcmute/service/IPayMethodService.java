@@ -13,4 +13,6 @@ public interface IPayMethodService {
 
 	Optional<PayMethodEntity> findById(String id);
 
+	<S extends PayMethodEntity> S save(S entity);
+
 }
