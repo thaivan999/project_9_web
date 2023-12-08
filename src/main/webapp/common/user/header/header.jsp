@@ -1,6 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
+<%@ page import="java.util.List"%>
+<%@ page import="hcmute.entity.MilkTeaCategoryEntity"%>
+<%@ page import="hcmute.entity.MilkTeaTypeEntity"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="hcmute.service.IMilkTeaCategoryService"%>
+<%@ page import="hcmute.service.IMilkTeaTypeService"%>
+<%@ page import="org.springframework.web.context.WebApplicationContext"%>
+<%@ page
+	import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%
+WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
+
+// Retrieve the beans
+IMilkTeaCategoryService milkTeaCategoryService = context.getBean(IMilkTeaCategoryService.class);
+IMilkTeaTypeService milkTeaTypeService = context.getBean(IMilkTeaTypeService.class);
+
+List<MilkTeaCategoryEntity> categories = milkTeaCategoryService.findAll();
+List<List<MilkTeaTypeEntity>> types = new ArrayList<>();
+
+request.setAttribute("categories", categories);
+
+for (MilkTeaCategoryEntity category : categories) {
+	List<MilkTeaTypeEntity> typesForCategory = milkTeaTypeService.findAllByCategoryId(category.getIdCategory());
+	types.add(typesForCategory);
+}
+
+request.setAttribute("types", types);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +43,10 @@
 				class="logo" />
 			</a>
 			<ul class="nav-list">
-				<li class="nav-item"><a class="nav-item-link" href="/products">
-						Menu </a>
+				<li class="nav-item"><a class="nav-item-link" href="/products">Menu</a>
 					<div class="header-menu">
 						<div class="row">
-							<c:set var="index" value="0"></c:set>
+							<c:set var="index" value="0" />
 							<c:forEach var="category" items="${categories}">
 								<div class="col">
 									<p class="header-category">${category.name}</p>
@@ -30,7 +58,7 @@
 										</c:forEach>
 									</ul>
 								</div>
-								<c:set var="index" value="${index + 1 }"></c:set>
+								<c:set var="index" value="${index + 1}" />
 							</c:forEach>
 						</div>
 					</div></li>
@@ -48,6 +76,7 @@
 				</button>
 			</div>
 		</form>
+
 		<div class="container-right">
 			<div class="header-info">
 				<img
@@ -59,25 +88,16 @@
 					</c:if>
 				</p>
 				<ul class="header-action">
-    				<c:choose>
-        				<c:when test="${not empty pageContext.request.remoteUser}">
-            				<li class="header-action-item"><a class="header-action-link" href="/user_info/1">Quản lý tài khoản</a></li>
-            				<li class="header-action-item"><a class="header-action-link" href="/cart">Giỏ hàng của tôi</a></li>
-            				<li class="header-action-item"><a class="header-action-link" href="/order">Đơn hàng của tôi</a></li>
-
-            				<c:if test="${isAdmin}">
-                				<li class="header-action-item"><a class="header-action-link" href="/admin/index">Quản lý Admin</a></li>
-            				</c:if>
-
-            				<li class="header-action-item"><a class="header-action-link" href="#">Trợ giúp</a></li>
-            				<li class="header-action-item"><a class="header-action-link" href="/security/logout">Đăng xuất</a></li>
-        				</c:when>
-        				<c:otherwise>
-            				<li class="header-action-item"><a class="header-action-link" href="/security/login">Đăng nhập</a></li>
-            				<li class="header-action-item"><a class="header-action-link" href="/security/register">Đăng ký</a></li>
-            				<li class="header-action-item"><a class="header-action-link" href="/security/forgot-password">Quên mật khẩu</a></li>
-        				</c:otherwise>
-    				</c:choose>
+					<li class="header-action-item"><a class="header-action-link"
+						href="#">Quản lý tài khoản</a></li>
+					<li class="header-action-item"><a class="header-action-link"
+						href="/cart">Giỏ hàng của tôi</a></li>
+					<li class="header-action-item"><a class="header-action-link"
+						href="/order">Đơn hàng của tôi</a></li>
+					<li class="header-action-item"><a class="header-action-link"
+						href="#">Trợ giúp</a></li>
+					<li class="header-action-item"><a class="header-action-link"
+						href="#">Đăng xuất</a></li>
 				</ul>
 			</div>
 		</div>

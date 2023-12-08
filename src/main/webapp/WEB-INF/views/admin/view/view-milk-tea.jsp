@@ -59,14 +59,15 @@
                             <tbody>
                                 <c:forEach var="milkTea" items="${milkTeas}">
                                     <tr>
-                                        <td>${milkTea.id_milk_tea}</td>
+                                        <td>${milkTea.idMilkTea}</td>
                                         <td>${milkTea.name}</td>
                                         <td>${milkTea.cost}</td>
                                         <td>${milkTea.description}</td>
-                                        <td>${milkTea.id_type}</td>
-                                        <td>${milkTea.remain_quantity}</td>
-                                        <td>${milkTea.id_branch}</td>
+                                        <td>${milkTea.milkTeaTypeByMilkTea.idType}</td>
+                                        <td>${milkTea.remainQuantity}</td>
+                                        <td>${milkTea.branchByMilkTea.idBranch}</td>
                                         <td>${milkTea.image}</td>
+                                        <td><a class="btn btn-success" href="/admin/customize-milk-tea/saveOrUpdate/${milkTea.idMilkTea}">edit</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
