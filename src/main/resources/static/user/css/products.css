@@ -19,7 +19,7 @@
     justify-content: center;
 }
 .card-title {
-	min-height: 30px;
+	min-height: 56px;
 	font-size: 22px;
 	font-weight: 700;
 	color: rgba(0, 0, 0, 0.6);

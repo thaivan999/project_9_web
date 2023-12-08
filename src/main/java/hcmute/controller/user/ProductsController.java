@@ -39,8 +39,7 @@ public class ProductsController {
 	IMilkTeaService milkTeaService;
 
 	@GetMapping("")
-	public String showCategory(Model model, @RequestParam(name = "name", required = false) String name,
-			@RequestParam("page") Optional<Integer> page) {
+	public String showCategory(Model model, @RequestParam("page") Optional<Integer> page) {
 		List<MilkTeaCategoryEntity> categories = milkTeaCategoryService.findAll();
 		List<List<MilkTeaTypeEntity>> types = new ArrayList<List<MilkTeaTypeEntity>>();
 		model.addAttribute("categories", categories);
@@ -58,12 +57,7 @@ public class ProductsController {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
 		Page<MilkTeaEntity> resultpaPage = null;
 
-		if (StringUtils.hasText(name)) {
-			resultpaPage = milkTeaService.findBynameContaining(name, pageable);
-			model.addAttribute("milkTeas", name);
-		} else {
-			resultpaPage = milkTeaService.findAll(pageable);
-		}
+		resultpaPage = milkTeaService.findAll(pageable);
 
 		int totalPages = resultpaPage.getTotalPages();
 		if (totalPages > 0) {
