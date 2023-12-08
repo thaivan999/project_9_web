@@ -36,13 +36,27 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 
 	Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%'))", nativeQuery = true)
+	@Query(value = "SELECT * "
+				+ "FROM milk_tea "
+				+ "WHERE "
+				+ "(LOWER(name) LIKE CONCAT('%', :name, '%') COLLATE Vietnamese_CI_AI) OR "
+				+ "(LOWER(name) LIKE CONCAT('%', :name, '%') COLLATE SQL_Latin1_General_CP1253_CI_AI)", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
 	
-	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost ASC", nativeQuery = true)
+	@Query(value = "SELECT * "
+				+ "FROM milk_tea "
+				+ "WHERE "
+				+ "(LOWER(name) LIKE CONCAT('%', :name, '%') COLLATE Vietnamese_CI_AI) OR "
+				+ "(LOWER(name) LIKE CONCAT('%', :name, '%') COLLATE SQL_Latin1_General_CP1253_CI_AI) "
+				+ "ORDER BY cost ASC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(@Param("name") String name);
 	
-	@Query(value = "SELECT * FROM milk_tea WHERE LOWER(cast(name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS) LIKE LOWER(CONCAT('%', cast(:name as varchar(1000)) collate SQL_Latin1_General_Cp1251_CS_AS, '%')) ORDER BY cost DESC", nativeQuery = true)
+	@Query(value = "SELECT * "
+				+ "FROM milk_tea "
+				+ "WHERE "
+				+ "(LOWER(name) LIKE CONCAT('%', :name, '%') COLLATE Vietnamese_CI_AI) OR "
+				+ "(LOWER(name) LIKE CONCAT('%', :name, '%') COLLATE SQL_Latin1_General_CP1253_CI_AI) "
+				+ "ORDER BY cost DESC", nativeQuery = true)
 	List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(@Param("name") String name);
 
 	@Query("SELECT COUNT(mt) FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :typeId")
