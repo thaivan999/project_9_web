@@ -1,5 +1,7 @@
 package hcmute.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ public class BranchModel{
 	private String addressDetail;
 	private String opentime;
 	private String image;
+	private MultipartFile imageFile;
 	private String description;
 	private String idCity;
 	private Boolean isEdit = false;
