@@ -52,6 +52,10 @@ public class OrderEntity implements Serializable {
 	private PayMethodEntity payMethodByOrder;
 
 	@ManyToOne
+	@JoinColumn(name = "id_branch")
+	private BranchEntity branchByOrder;
+  
+  @ManyToOne
 	@JoinColumn(name = "id")
 	private UserEntity customerByOrder;
 
