@@ -36,5 +36,10 @@ public class OrderDetailServiceImpl implements IOrderDetailService{
 		return orderDetailRepository.getById(id);
 	}
 
+	@Override
+	public List<Object[]> getQuantityByMilkTeaType() {
+		return orderDetailRepository.getQuantityByMilkTeaType();
+	}
+
 	
 }
