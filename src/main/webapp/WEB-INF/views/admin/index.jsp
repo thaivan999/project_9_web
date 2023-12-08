@@ -103,7 +103,6 @@
 		createChart(revenueDataByDay, 'revenueChartByDay');
 	
 		var revenueDataByMonth = <c:out value="${revenueDataByMonthJson}" />;
-		console.log(revenueDataByMonth);
 		createChart(revenueDataByMonth, 'revenueChartByMonth');
 	</script>	
 </body>

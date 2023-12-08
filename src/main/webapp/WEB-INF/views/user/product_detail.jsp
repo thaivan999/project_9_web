@@ -159,7 +159,7 @@
 					<h5 class="bold-text black-text mt-2">Sản phẩm liên quan</h5>
 				</div>
 				<c:forEach var="milkTea" items="${relevantProducts }">
-					<div class="col-sm-3 mt-2">
+					<div class="col-lg-3 col-sm-12 mt-2">
 						<a href="/product_detail/${milkTea.idMilkTea }" class="card">
 							<img class="card-img-top"
 							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
