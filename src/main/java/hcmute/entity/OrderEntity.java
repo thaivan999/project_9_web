@@ -54,6 +54,10 @@ public class OrderEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_user")
 	private CustomerEntity customerByOrder;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_branch")
+	private BranchEntity branchByOrder;
 
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;

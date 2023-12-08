@@ -70,6 +70,7 @@ paymentBtn.addEventListener('click', function() {
 			orderData.idPayMethod = item.getAttribute('data-id');
 		}
 	})
+	const check = orderData.idPayMethod == 'VNPAY';
 	
 	 if (!agreeCheckbox.checked) {
         alert('Bạn cần đồng ý với điều khoản trước khi thanh toán.');
@@ -84,7 +85,15 @@ paymentBtn.addEventListener('click', function() {
 
 	var encodedData = customBase64Encode(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', '/payment/order?data=' + encodedData);
+	
+	if(check)
+	{
+		myAnchor.setAttribute('href', '/api/payment/create_payment?cost=' + orderData.finalPrice + '&data=' + encodedData);
+	}
+	else
+	{
+		myAnchor.setAttribute('href', '/payment/order?data=' + encodedData);
+	}
 	myAnchor.click();
 })
 
