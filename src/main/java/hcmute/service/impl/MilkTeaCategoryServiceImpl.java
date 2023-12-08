@@ -2,7 +2,7 @@ package hcmute.service.impl;
 
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,6 +26,16 @@ public class MilkTeaCategoryServiceImpl implements IMilkTeaCategoryService{
     public List<MilkTeaCategoryEntity> findAll() {
         return milkTeaCategoryRepository.findAll();
     }
+
+	@Override
+	public Optional<MilkTeaCategoryEntity> findById(int id) {
+		return milkTeaCategoryRepository.findById(id);
+	}
+
+	@Override
+	public <S extends MilkTeaCategoryEntity> S save(S entity) {
+		return milkTeaCategoryRepository.save(entity);
+	}
 
 
 	
