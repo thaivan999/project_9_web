@@ -87,7 +87,7 @@
 			<p class="products-title">Sản phẩm bán chạy${user.getFullname()}</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list1}">
-					<div class="col">
+					<div class="col col-1-2">
 						<a href="/product_detail/${milkTea.idMilkTea}" class="card outstanding-item">
 							<span class="outstanding-title">BEST SELLER</span>
 							<div class="img-container">
@@ -108,7 +108,7 @@
 			<p class="products-title">Sản phẩm khuyến mãi</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list2}">
-					<div class="col">
+					<div class="col col-1-2">
 						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 							<div class="img-container">
 								<img

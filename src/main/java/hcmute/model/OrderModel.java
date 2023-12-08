@@ -22,5 +22,5 @@ public class OrderModel{
 	private String address;
 	private String phoneNumber;
 	private PayMethodModel payMethodByOrder;
-	private CustomerModel customerByOrder;
+	private UserModel customerByOrder;
 }
