@@ -50,7 +50,7 @@ public class CustomerAdminController {
 		}
 		if (customer != null) {
 			CustomerEntity entity = new CustomerEntity();
-			customerService.updateCustomer(entity);
+//			customerService.updateCustomer(entity);
 			String message = customer.getIsEdit() ? "City đã được cập nhật thành công" : "City đã được thêm thành công";
 			model.addAttribute("message", message);
 		} else {
