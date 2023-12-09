@@ -67,14 +67,15 @@
 									</div>
 									<div class="mb-3">
 										<div class="form-floating d-flex align-items-center">
-											<div>
+											<!-- <div>
 												<input type="radio" name="gender" id="nam" checked required>
 												<label>Nam</label>
 											</div>
 											<div>
 												<input class="ms-4" type="radio" name="gender" id="nu">
 												<label>Nữ</label>
-											</div>
+											</div> -->
+											<input value="1" name="gender" />
 										</div>
 									</div>
 									<div class="mb-3  ">

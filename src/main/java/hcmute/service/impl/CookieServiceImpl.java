@@ -13,7 +13,7 @@ public class CookieServiceImpl {
 	HttpServletRequest request;
 	@Autowired 
 	HttpServletResponse response;
-	public String getValuẹ(String name) {
+	public String getValue(String name) {
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
 			for(Cookie cookie: cookies) {
