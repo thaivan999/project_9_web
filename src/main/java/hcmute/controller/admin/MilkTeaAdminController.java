@@ -2,11 +2,15 @@ package hcmute.controller.admin;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.IStorageService;
 
 @Controller
 @RequestMapping("admin")
@@ -27,6 +32,9 @@ public class MilkTeaAdminController {
 
 	@Autowired
 	private IMilkTeaService milkTeaService;
+
+	@Autowired
+	private IStorageService storageService;
 
 	@GetMapping("view-milk-tea")
 	public String IndexViewMilkTea(ModelMap model) {
@@ -74,6 +82,14 @@ public class MilkTeaAdminController {
 			if (milkTea.getImage() != null) {
 				entity.setImage(milkTea.getImage());
 			}
+			if (milkTea.getImageFile() != null && !milkTea.getImageFile().isEmpty()) {
+				UUID uuid = UUID.randomUUID();
+				String uuString = uuid.toString();
+				entity.setImage(storageService.getStorageFilename(milkTea.getImageFile(), uuString));
+				storageService.store(milkTea.getImageFile(), entity.getImage());
+			} else {
+				model.addAttribute("message", "Không thể lưu milkTea với dữ liệu null");
+			}
 			milkTeaService.save(entity);
 			String message = milkTea.getIsEdit() ? "milkTea đã được cập nhật thành công"
 					: "milkTea đã được thêm thành công";
@@ -90,6 +106,14 @@ public class MilkTeaAdminController {
 		 * "milkTea đã được thêm thành công"; } model.addAttribute("message", message);
 		 */
 		return new ModelAndView("redirect:/admin/view-milk-tea", model);
+	}
+
+	@GetMapping("/images/{filename:.+}")
+	public ResponseEntity<Resource> serverFile(@PathVariable String filename) {
+		Resource file = storageService.loadAsResource(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file.getFilename() + "\"")
+				.body(file);
 	}
 
 	@GetMapping("customize-milk-tea/saveOrUpdate/{idMilkTea}")
