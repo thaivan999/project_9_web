@@ -185,9 +185,4 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name, pageable);
 	}
 
-
-
-
-
-
 }
