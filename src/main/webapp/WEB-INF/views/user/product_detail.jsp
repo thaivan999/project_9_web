@@ -37,6 +37,24 @@
 <body>
 	<!-- Breadcrumb -->
 	<div class="container" style="margin-top: 120px">
+		<c:if test="${message != null }">
+			<div id="toast">
+				<div
+					class="toast ${status == 'success' ? 'toast--success' : 'toast--error' }">
+					<div class="toast__icon">
+						<i
+							class="${status == 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle' }"></i>
+					</div>
+					<div class="toast__body">
+						<h3 class="toast__title">${status == 'success' ? 'Success' : 'Error' }</h3>
+						<p class="toast__msg">${message }</p>
+					</div>
+					<div class="toast__close">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+			</div>
+		</c:if>
 		<div class="row">
 			<div class="col">
 				<nav aria-label="breadcrumb">
@@ -104,11 +122,12 @@
 					class="card mb-3 no-border">
 					<div class="card-body">
 						<p class="h3 bold-text">${milkTea.name}</p>
-						<p data-name="${milkTea.cost }" class="h4 price bold-text text-danger"
-							>${milkTea.cost}đ</p>
+						<p data-name="${milkTea.cost }"
+							class="h4 price bold-text text-danger">${milkTea.cost}đ</p>
 						<form method="get" action="">
 							<div class="form-group">
-								<label class="mt-2 fs-18 ml-6 bold-text fst-italic">Chọn size</label><br />
+								<label class="mt-2 fs-18 ml-6 bold-text fst-italic">Chọn
+									size</label><br />
 								<button type="button"
 									class="btn btn-outline-dark active medium-size-btn"
 									onclick="changeSize('Vừa')">Vừa +0đ</button>
@@ -178,6 +197,8 @@
 		<!-- End: Relevant products -->
 	</div>
 
+	<script type="text/javascript"
+		src='<c:url value="/user/js/toast.js" />'></script>
 	<script type="text/javascript"
 		src='<c:url value="/user/js/product_detail.js" />'></script>
 </body>

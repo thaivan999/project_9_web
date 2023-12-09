@@ -36,7 +36,7 @@
 </head>
 <body>
 	<div class="payment">
-		<div data-name='${dataJSON}' class="payment-content">
+		<div data-name='${dataJSON}' data-id="${idBranch }" class="payment-content">
 			<h1 class="bold-text" style="margin-bottom: 46px; margin-top: 16px">Thanh toán đơn
 				hàng</h1>
 			<div class="row w-100">
