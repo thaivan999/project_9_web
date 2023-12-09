@@ -71,7 +71,7 @@
                         <!-- Image -->
                         <div class="mb-3">
                             <label for="exampleInputImage" class="form-label">Ảnh*</label> 
-                            <input placeholder="Image" name="image" type="text" class="form-control" id="exampleInputImage" aria-describedby="imageHelp" value="${milkTea.image}" required="required">
+                            <input placeholder="Image" name="image" type="file" class="form-control" id="exampleInputImage" aria-describedby="imageHelp" value="${milkTea!=null?milkTea.image:''}" required="required">
                         </div>
 
                         <div class="text-end">

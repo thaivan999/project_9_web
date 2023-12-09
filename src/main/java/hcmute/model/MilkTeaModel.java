@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.*;
 
 @Data
@@ -28,4 +31,6 @@ public class MilkTeaModel{
 	private CartDetailModel cartDetails;
 	
 	private Boolean isEdit = false;
+	private MultipartFile imageFile;
+	
 }

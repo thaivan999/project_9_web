@@ -107,8 +107,8 @@ public class UserServiceImpl implements IUserService {
         user.setProvider(AuthProvider.DATABASE);
         UserEntity savedUser = userRepo.save(user);
         Optional<RoleEntity> role = roleRepo.findById("USER");
-        role.ifPresent(userRole -> userRoleRepo.save(new UserRoleEntity(savedUser, userRole)));
-        sendVerifyEmail(savedUser, url);
+        userRoleRepo.save(new UserRoleEntity(user, role.get()));
+        sendVerifyEmail(user, url);
     }
 
 

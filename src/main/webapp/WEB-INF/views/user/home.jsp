@@ -84,7 +84,7 @@
 			</div>
 		</div>
 		<div class="products">
-			<p class="products-title">Sản phẩm bán chạy${user.getFullname()}</p>
+			<p class="products-title">Sản phẩm bán chạy${user}</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list1}">
 					<div class="col">
