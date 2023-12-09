@@ -94,6 +94,8 @@ request.setAttribute("types", types);
 						<li class="header-action-item"><a class="header-action-link"
 							href="/cart">Giỏ hàng của tôi</a></li>
 						<li class="header-action-item"><a class="header-action-link"
+							href="/product_favorite">Sản phẩm yêu thích của tôi</a></li>
+						<li class="header-action-item"><a class="header-action-link"
 							href="/order">Đơn hàng của tôi</a></li>
 						<li class="header-action-item"><a class="header-action-link"
 							href="/help">Trợ giúp</a></li>

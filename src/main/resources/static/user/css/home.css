@@ -342,3 +342,11 @@ html::-webkit-scrollbar-thumb:active {
 	color: rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 }
+
+.favourite-icon {
+	position: absolute;
+	top: 2px;
+	right: 24px;
+	font-size: 20px;
+	color: #000;
+}

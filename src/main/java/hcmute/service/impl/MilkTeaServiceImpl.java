@@ -152,7 +152,7 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	
 	@Override
 	public Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(int idMilkTea, int idBranch) {
-		return milkTeaRepository.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
+		return null;
 	}
 
 

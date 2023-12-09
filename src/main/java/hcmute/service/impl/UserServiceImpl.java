@@ -67,9 +67,9 @@ public class UserServiceImpl implements IUserService {
     public List<UserEntity> findAll() {
         return userRepo.findAll();
     }
-
+///////////////OAuth///////////////
     @Override
-    public void processOAuthPostLogin(String username, String email, String image, String oauth2ClientName) {
+    public void processOAuthPostLogin(String username, String email, String oauth2ClientName) {
         Optional<UserEntity> existAcc = userRepo.findByEmail(email);
         if (!existAcc.isPresent()) {
             UserEntity newAcc = new UserEntity();
@@ -78,8 +78,6 @@ public class UserServiceImpl implements IUserService {
             newAcc.setEmail(email);
             newAcc.setProvider(authProvider);
             newAcc.setEnabled(true);
-            
-            System.out.println(newAcc.toString());
             userRepo.save(newAcc);
         }
     }
@@ -89,13 +87,15 @@ public class UserServiceImpl implements IUserService {
         AuthProvider authProvider = AuthProvider.valueOf(oauth2ClientName.toUpperCase());
         userRepo.updateAuthenticationTypeOAuth(username, authProvider);
     }
-
+///////////////Database///////////////
+    //Cập nhật thông tin về nhà cung cấp của từng user
     @Override
     public void updateAuthenticationTypeDB(String username, String oauth2ClientName) {
         AuthProvider authProvider = AuthProvider.valueOf(oauth2ClientName.toUpperCase());
         userRepo.updateAuthenticationTypeDB(username, authProvider);
     }
 
+    //Thực hiện set thông tin khi đăng ký
     @Override
     public void register(UserEntity user, String url) throws MessagingException {
         // save user
@@ -111,7 +111,7 @@ public class UserServiceImpl implements IUserService {
         sendVerifyEmail(user, url);
     }
 
-
+    //Gửi mail xác thực khi đăng ký
     @Override
     public void sendVerifyEmail(UserEntity user, String url) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -134,6 +134,7 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    //Lưu mật khẩu mã hóa
     @Override
     public UserEntity save(UserEntity user) {
         String encodedPassword = encoder.encode(user.getPassword());
@@ -141,6 +142,7 @@ public class UserServiceImpl implements IUserService {
         return userRepo.save(user);
     }
 
+    //Thực hiện cập nhật mật khẩu mới có trùng với mật khẩu hiện tại không 
     @Override
     public UserEntity update(UserEntity user) {
         Optional<UserEntity> findUser = userRepo.findByUsername(user.getUsername());
@@ -156,11 +158,13 @@ public class UserServiceImpl implements IUserService {
         return userRepo.save(user);
     }
 
+    //Thực hiện xóa username
     @Override
     public void deleteByUsername(String username) {
         userRepo.deleteByUsername(username);
     }
 
+    //Thực hiện xác thực, nếu có xác thực qua email thì set enabled bằng true và lưu lại
     @Override
     public boolean verify(String verifyCode) {
         UserEntity user = userRepo.findByVerifyCode(verifyCode);

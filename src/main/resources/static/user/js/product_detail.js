@@ -42,6 +42,6 @@ buyNowBtn.addEventListener('click', function() {
 	}
 	var encodedData = customBase64Encode(JSON.stringify(data));
 	var myAnchor = document.createElement('a');
-	myAnchor.setAttribute('href', "/product_detail/checkProduct?data=" + encodedData);
+	myAnchor.setAttribute('href', "/product_detail/check?data=" + encodedData);
 	myAnchor.click();
 })

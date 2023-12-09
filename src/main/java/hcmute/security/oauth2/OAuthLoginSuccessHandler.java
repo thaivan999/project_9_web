@@ -22,14 +22,17 @@ public class OAuthLoginSuccessHandler extends SavedRequestAwareAuthenticationSuc
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws ServletException, IOException {
-        CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
-        String oauth2ClientName = oauth2User.getOauth2ClientName();
+        //Lấy thông tin người dung từ đối tượng Authentication
+    	CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+        //Với đối tượng đó lấy thông tin clientName, username, email
+    	String oauth2ClientName = oauth2User.getOauth2ClientName();
         String username = oauth2User.getName();
         String email = oauth2User.getEmail();
-        String image = (String) oauth2User.getAttributes().get("picture");
-
-        userService.processOAuthPostLogin(username, email, image, oauth2ClientName);
+        //Set thông tin người dùng xuống csdl
+        userService.processOAuthPostLogin(username, email, oauth2ClientName);
+        //Cập nhật thông tin người dùng xuống csdl
         userService.updateAuthenticationTypeOAuth(email, oauth2ClientName);
+        //Chuyển hướng
         getRedirectStrategy().sendRedirect(request, response, "/home");
     }
 }

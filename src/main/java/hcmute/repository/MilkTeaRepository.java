@@ -77,8 +77,4 @@ public interface MilkTeaRepository extends JpaRepository<MilkTeaEntity, Integer>
 
 	@Query("SELECT mt FROM MilkTeaEntity mt WHERE mt.milkTeaTypeByMilkTea.idType = :idType")
 	Page<MilkTeaEntity> findAllByTypeId(int idType, Pageable pageable);
-
-	@Query("SELECT COALESCE(m.remainQuantity, 0) FROM MilkTeaEntity m WHERE m.idMilkTea = :idMilkTea AND m.branchByMilkTea.idBranch = :idBranch")
-	Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(@Param("idMilkTea") int idMilkTea,
-			@Param("idBranch") int idBranch);
 }

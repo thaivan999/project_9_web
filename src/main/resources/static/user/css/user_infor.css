@@ -28,9 +28,6 @@ input{
 .user-birthday-textbox,
 .user-email-textbox{
     width:100%;
-}
-.user-phone-textbox,
-.user-email-textbox{
     background-color: #d6d6d6;
     border: none;
 }
