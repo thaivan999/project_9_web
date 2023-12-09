@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,27 +90,15 @@ public class SecurityController {
 
 	    return "redirect:/security/login";
 	}
-
-	
-	
-	
-	
-	
-	
 	@GetMapping("unauthorized")
     public String unauthoried(Model model) {
         model.addAttribute("message", "Access denied!");
         return "security/login/login";
     }
-	
-	
-	
 	@PostMapping("register")
 	public String register(Model model, @ModelAttribute UserEntity user, HttpServletRequest req) throws MessagingException {
         Optional<UserEntity> existUserByEmail = userService.findByEmail(user.getEmail());
         Optional<UserEntity> existUserByUsername = userService.findByUsername(user.getUsername());
-        System.out.println("User with email " + user.getEmail() + " already exists.");
-        System.out.println("User with email " + user.getUsername() + " already exists.");
         if (existUserByEmail.isPresent()) {
             model.addAttribute("message", "User with email " + user.getEmail() + " is already registered");
             return "security/register/register";

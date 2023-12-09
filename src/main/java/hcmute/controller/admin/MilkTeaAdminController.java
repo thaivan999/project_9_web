@@ -82,11 +82,14 @@ public class MilkTeaAdminController {
 			if (milkTea.getImage() != null) {
 				entity.setImage(milkTea.getImage());
 			}
-			if (!milkTea.getImageFile().isEmpty()) {
+
+			if (milkTea.getImageFile() != null && !milkTea.getImageFile().isEmpty()) {
 				UUID uuid = UUID.randomUUID();
 				String uuString = uuid.toString();
 				entity.setImage(storageService.getStorageFilename(milkTea.getImageFile(), uuString));
 				storageService.store(milkTea.getImageFile(), entity.getImage());
+			} else {
+				model.addAttribute("message", "Không thể lưu milkTea với dữ liệu null");
 			}
 			milkTeaService.save(entity);
 			String message = milkTea.getIsEdit() ? "milkTea đã được cập nhật thành công"

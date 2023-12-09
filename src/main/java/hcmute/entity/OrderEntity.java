@@ -46,21 +46,26 @@ public class OrderEntity implements Serializable {
 	
 	@Column(name = "phoneNumber",columnDefinition = "varchar(50)")
 	private String phoneNumber;
-
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_pay_method")
 	private PayMethodEntity payMethodByOrder;
 
 	@ManyToOne
-	@JoinColumn(name = "id_user")
-	private CustomerEntity customerByOrder;
+	@JoinColumn(name = "id_branch")
+	private BranchEntity branchByOrder;
+  
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private UserEntity customerByOrder;
 
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
 
 	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDate orderDay,
 			int orderState, LocalDate shipDay, String note, String address, String phoneNumber,
-			PayMethodEntity payMethodByOrder, CustomerEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
+			PayMethodEntity payMethodByOrder, UserEntity customerByOrder, Set<OrderDetailEntity> orderDetails, BranchEntity branchByOrder) {
 		super();
 		this.idOrder = idOrder;
 		this.totalProduct = totalProduct;
@@ -75,6 +80,15 @@ public class OrderEntity implements Serializable {
 		this.payMethodByOrder = payMethodByOrder;
 		this.customerByOrder = customerByOrder;
 		this.orderDetails = orderDetails;
+		this.branchByOrder = branchByOrder;
+	}
+
+	public BranchEntity getBranchByOrder() {
+		return branchByOrder;
+	}
+
+	public void setBranchByOrder(BranchEntity branchByOrder) {
+		this.branchByOrder = branchByOrder;
 	}
 
 	public OrderEntity() {
@@ -169,11 +183,11 @@ public class OrderEntity implements Serializable {
 		this.payMethodByOrder = payMethodByOrder;
 	}
 
-	public CustomerEntity getCustomerByOrder() {
+	public UserEntity getCustomerByOrder() {
 		return customerByOrder;
 	}
 
-	public void setCustomerByOrder(CustomerEntity customerByOrder) {
+	public void setCustomerByOrder(UserEntity customerByOrder) {
 		this.customerByOrder = customerByOrder;
 	}
 

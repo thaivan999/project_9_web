@@ -25,7 +25,7 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/milk-tea-update">Cập nhật trà sữa</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-milk-tea/saveOrUpdate"/>" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-milk-tea/saveOrUpdate"/>" method="post" enctype="multipart/from-data">
                         <!-- ID Milk Tea -->
                         <div class="mb-3">
                             <label for="exampleInputMilkTeaId" class="form-label">ID Milk Tea*</label> 
@@ -71,7 +71,7 @@
                         <!-- Image -->
                         <div class="mb-3">
                             <label for="exampleInputImage" class="form-label">Ảnh*</label> 
-                            <input placeholder="Image" name="image" type="file" class="form-control" id="exampleInputImage" aria-describedby="imageHelp" value="${milkTea!=null?milkTea.image:''}" required="required">
+                            <input placeholder="Image" name="image" type="file" class="form-control" id="exampleInputImage" aria-describedby="imageHelp" value="${milkTea!=null?milkTea.image:'' }" required="required">
                         </div>
 
                         <div class="text-end">

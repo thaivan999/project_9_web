@@ -1,6 +1,8 @@
 package hcmute.controller.admin;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,6 +23,7 @@ import hcmute.entity.BranchEntity;
 import hcmute.entity.UserEntity;
 import hcmute.service.IBranchService;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
 import hcmute.service.IUserRoleService;
 
@@ -33,9 +36,10 @@ public class AdminController {
 	private IOrderService orderService;
 	@Autowired
 	private IMilkTeaService milkTeaService;
+	@Autowired IOrderDetailService orderDetailService;
 	
 	@GetMapping("index")
-	public String Index(ModelMap model) throws JsonProcessingException {
+	public String Index(ModelMap model) throws JsonProcessingException, UnsupportedEncodingException {
 		int countUser = userRoleService.countUser();
 		int countOrder = orderService.count();
 		int countProduct = (int) milkTeaService.count();
@@ -53,8 +57,14 @@ public class AdminController {
         List<Object[]> revenueDataByMonth = orderService.getRevenueByMonth();
         String revenueDataByMonthJson = objectMapper.writeValueAsString(revenueDataByMonth);
         
+        List<Object[]> quantityDataOfMilkTeaType = orderDetailService.getQuantityByMilkTeaType();
+        String quantityDataOfMilkTeaTypeJson = objectMapper.writeValueAsString(quantityDataOfMilkTeaType);
+        // Encode the Vietnamese characters in the JSON string
+        quantityDataOfMilkTeaTypeJson = URLEncoder.encode(quantityDataOfMilkTeaTypeJson, "UTF-8");
+        
         model.addAttribute("revenueDataByDayJson", revenueDataByDayJson);
         model.addAttribute("revenueDataByMonthJson", revenueDataByMonthJson);
+        model.addAttribute("quantityDataOfMilkTeaTypeJson", quantityDataOfMilkTeaTypeJson);
 		
 		return "admin/index";
 	}

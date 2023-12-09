@@ -88,7 +88,7 @@ request.setAttribute("types", types);
 					</c:if>
 				</p>
 				<ul class="header-action">
-					<li class="header-action-item"><a class="header-action-link"
+					<li class="header-action-item"><a href="/user_infor/1" class="header-action-link"
 						href="#">Quản lý tài khoản</a></li>
 					<li class="header-action-item"><a class="header-action-link"
 						href="/cart">Giỏ hàng của tôi</a></li>

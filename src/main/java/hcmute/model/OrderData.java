@@ -22,6 +22,7 @@ public class OrderData {
 	    private String idPayMethod;
 	    private List<OrderItem> list;
 	    private int orderState;
+	    private int idBranch;
 
 	    @Data
 	    @NoArgsConstructor

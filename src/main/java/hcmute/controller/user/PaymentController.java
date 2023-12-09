@@ -27,21 +27,23 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hcmute.embeddedId.OrderDetailId;
-import hcmute.entity.CustomerEntity;
+import hcmute.entity.BranchEntity;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.OrderDetailEntity;
 import hcmute.entity.OrderEntity;
 import hcmute.entity.PayMethodEntity;
+import hcmute.entity.UserEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.model.OrderData;
 import hcmute.model.OrderModel;
 import hcmute.model.OrderProduct;
 import hcmute.model.OrderProduct.OrderItem;
-import hcmute.service.ICustomerService;
+import hcmute.service.IBranchService;
 import hcmute.service.IMilkTeaService;
 import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
 import hcmute.service.IPayMethodService;
+import hcmute.service.IUserService;
 
 @Controller
 @RequestMapping("payment")
@@ -53,26 +55,29 @@ public class PaymentController {
 	IOrderDetailService orderDetailService;
 
 	@Autowired
-	ICustomerService customerService;
+	IUserService userService;
 
 	@Autowired
 	IPayMethodService payMethodService;
 
 	@Autowired
 	IMilkTeaService milkTeaService;
+	
+	@Autowired
+	IBranchService branchService;
 
 	@GetMapping("")
-	private String displayPayment(ModelMap model, @RequestParam("data") String data)
+	private String displayPayment(ModelMap model, @RequestParam("data") String data, @RequestParam("idBranch") int idBranch)
 			throws UnsupportedEncodingException {
 //		data = URLDecoder.decode(data, "UTF-8");
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
-        data = new String(decodedBytes, StandardCharsets.UTF_8);
+		data = new String(decodedBytes, StandardCharsets.UTF_8);
 		model.addAttribute("dataJSON", data);
 		List<PayMethodEntity> listPayMethod = payMethodService.findAll();
 		model.addAttribute("listPayMethod", listPayMethod);
-		Optional<CustomerEntity> optCustomer = customerService.findById(1);
+		Optional<UserEntity> optCustomer = userService.findById(1);
 		if (optCustomer.isPresent()) {
-			CustomerEntity customer = optCustomer.get();
+			UserEntity customer = optCustomer.get();
 			model.addAttribute("customer", customer);
 		}
 
@@ -94,6 +99,7 @@ public class PaymentController {
 			}
 			model.addAttribute("orderProduct", orderProduct);
 			model.addAttribute("listMilkTea", listMilkTea);
+			model.addAttribute("idBranch", idBranch);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,66 +107,65 @@ public class PaymentController {
 	}
 
 	@GetMapping("/order")
-	private String insertOrder(ModelMap model, @RequestParam("data") String data) throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException
-	{
+	private String insertOrder(ModelMap model, @RequestParam("data") String data)
+			throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException {
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
-        data = new String(decodedBytes, StandardCharsets.UTF_8);
+		data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
 		try {
 			OrderData orderData = objectMapper.readValue(data, OrderData.class);
 			OrderEntity orderEntity = new OrderEntity();
 			orderEntity.setTotalProduct(orderData.getTotalProduct());
 			orderEntity.setTotalPrice(orderData.getTotalPrice());
-//			orderEntity.setFinalPrice(orderData.getFinalPrice());
-//			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
+			orderEntity.setFinalPrice(orderData.getFinalPrice());
+			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
 			orderEntity.setOrderState(orderData.getOrderState());
-//			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
+			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
 			orderEntity.setNote(orderData.getNote());
 			orderEntity.setAddress(orderData.getAddress());
 			orderEntity.setPhoneNumber(orderData.getPhoneNumber());
-			
-			if(orderData.getIdPayMethod()!= null)
-			{
+			Optional<BranchEntity> optBranch = branchService.findById(orderData.getIdBranch());
+			if(optBranch.isPresent()) {
+				orderEntity.setBranchByOrder(optBranch.get());
+			}
+
+			if (orderData.getIdPayMethod() != null) {
 				Optional<PayMethodEntity> payMethodOpt = payMethodService.findById(orderData.getIdPayMethod());
-				if(payMethodOpt.isPresent())
-				{
+				if (payMethodOpt.isPresent()) {
 					orderEntity.setPayMethodByOrder(payMethodOpt.get());
 				}
 			}
-			
-			Optional<CustomerEntity> optCustomer = customerService.findById(1);
-			if(optCustomer.isPresent())
-			{
+
+			Optional<UserEntity> optCustomer = userService.findById(1);
+			if (optCustomer.isPresent()) {
 				orderEntity.setCustomerByOrder(optCustomer.get());
 			}
 			orderService.save(orderEntity);
-			
-			for(OrderData.OrderItem item : orderData.getList())
-			{
+
+			for (OrderData.OrderItem item : orderData.getList()) {
 				OrderDetailEntity orderDetailEntity = new OrderDetailEntity();
 				orderDetailEntity.setQuantity(item.getQuantity());
 //				orderDetailEntity.setCurrPrice(item.getPrice());
-				
+
 				Optional<MilkTeaEntity> milkTeaEntity = milkTeaService.findByIdMilkTea(item.getIdMilkTea());
-				
-				if(milkTeaEntity.isPresent())
-				{
+
+				if (milkTeaEntity.isPresent()) {
 					orderDetailEntity.setMilkTeaByOrderDetail(milkTeaEntity.get());
 				}
-				
+
 				orderDetailEntity.setOrderByOrderDetail(orderEntity);
-				
+
 				OrderDetailId idOrderDetail = new OrderDetailId();
 				idOrderDetail.setSize(item.getSize());
 				idOrderDetail.setIdOrder(orderDetailEntity.getOrderByOrderDetail().getIdOrder());
 				idOrderDetail.setIdMilkTea(orderDetailEntity.getMilkTeaByOrderDetail().getIdMilkTea());
 				orderDetailEntity.setIdOrderDetail(idOrderDetail);
-				
+
 				orderDetailService.save(orderDetailEntity);
 				model.addAttribute("orderMessage", "Bạn đã đặt hàng thành công!");
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

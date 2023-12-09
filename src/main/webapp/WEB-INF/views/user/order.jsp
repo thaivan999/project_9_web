@@ -5,34 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User</title>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
-	rel="stylesheet" type="text/css">
-<link href='<c:url value="/css/order.css"/>' rel="stylesheet"
-	type="text/css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	type="text/javascript"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	type="text/javascript"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	type="text/javascript"></script>
 </head>
 <body>
 	<script
@@ -63,7 +37,7 @@
 									</div>
 									<div class="d-flex w-100 justify-content-between">
 										<p class="mb-1">${order.totalProduct}món</p>
-										<h5 class="mb-1">${order.totalPrice}đ</h5>
+										<h5 class="mb-1">${order.finalPrice}đ</h5>
 									</div>
 								</a>
 							</c:forEach>
@@ -85,10 +59,12 @@
 								</div>
 								<div class="card-body">
 									<div class="card-text" style="color: #707070;">
-										<p style="font-weight: bold">${userOrder.customerByOrder.surname}
+										<p style="font-weight: bold">Tên khách hàng:
+											${userOrder.customerByOrder.surname}
 											${userOrder.customerByOrder.name}</p>
-										<p class="text-danger" style="font-weight: 700">${userOrder.phoneNumber}</p>
-										<p>${userOrder.address}</p>
+										<p class="text-danger" style="font-weight: 700">Số điện
+											thoại: ${userOrder.phoneNumber}</p>
+										<p>Địa chỉ giao hàng: ${userOrder.address}</p>
 									</div>
 								</div>
 							</div>
@@ -108,7 +84,15 @@
 														${orderDetail.milkTeaByOrderDetail.name}</p>
 													<h5 class="text-danger">${orderDetail.milkTeaByOrderDetail.cost}đ</h5>
 												</div>
-												<p>${orderDetail.idOrderDetail.size}</p>
+												<div class="d-flex justify-content-between">
+													<p style="font-weight: bold">${orderDetail.idOrderDetail.size}</p>
+													<h5 class="text-danger">${orderDetail.idOrderDetail.size == 'Lớn' ? '+ 5000đ' : '+ 0đ'}</h5>
+												</div>
+												<hr style="border: thin solid #D6D6D6;">
+												<div class="d-flex justify-content-between">
+													<p style="font-weight: bold">Phí giao hàng</p>
+													<h5 class="text-danger">+ 12000đ</h5>
+												</div>
 												<hr style="border: thin solid #D6D6D6;">
 											</div>
 										</c:forEach>
@@ -116,7 +100,7 @@
 										<div class="total_price">
 											<div class="d-flex justify-content-between">
 												<p style="font-weight: 700">Tổng đơn</p>
-												<h3 class="text-danger">${userOrder.totalPrice}đ</h3>
+												<h3 class="text-danger">${userOrder.finalPrice}đ</h3>
 											</div>
 										</div>
 									</div>

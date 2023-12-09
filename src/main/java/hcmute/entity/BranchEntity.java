@@ -46,6 +46,9 @@ public class BranchEntity implements Serializable{
 		
 	@OneToMany(mappedBy = "branchByMilkTea")
 	private Set<MilkTeaEntity> milkTeas;
+	
+	@OneToMany(mappedBy = "branchByOrder")
+	private Set<OrderEntity> orders;
 
 	public int getIdBranch() {
 		return idBranch;

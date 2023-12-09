@@ -29,7 +29,6 @@ import hcmute.service.IUserService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
     IUserService userService;
 
@@ -191,3 +190,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //            .csrf().disable();
 //    }
 }
+

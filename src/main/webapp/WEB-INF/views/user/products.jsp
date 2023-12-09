@@ -90,7 +90,7 @@
 			</c:if>
 
 
-			<!-- List theo loại sản phẩm -->
+			<!-- List theo sản phẩm tìm kiếm-->
 			<c:if test="${milkTeaByTypes.hasContent()}">
 				<div class="col-9 products-item">
 					<div class="row gx-4">

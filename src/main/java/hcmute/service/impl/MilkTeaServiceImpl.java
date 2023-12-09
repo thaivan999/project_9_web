@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.OrderDetailEntity;
@@ -69,25 +70,6 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		return null;
 	}
 
-	@Override
-
-	public List<MilkTeaEntity> findByNameContaining(String name) {
-		return milkTeaRepository.findByNameContaining(name);
-	}
-
-	@Override
-	public List<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name) {
-		return milkTeaRepository.findByNameContainingAndSortAscendingByCost(name);
-	}
-
-	@Override
-	public List<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name) {
-		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name);
-	}
-
-	public Page<MilkTeaEntity> findBynameContaining(String name, Pageable pageable) {
-		return milkTeaRepository.findBynameContaining(name, pageable);
-	}
 
 	@Override
 	public long count() {
@@ -153,12 +135,59 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 
 	@Override
 	public <S extends MilkTeaEntity> S save(S entity) {
-		return milkTeaRepository.save(entity);
+		if (entity.getIdMilkTea() == 0) {
+			return milkTeaRepository.save(entity);
+		} else {
+			Optional<MilkTeaEntity> opt = findByIdMilkTea(entity.getIdMilkTea());
+			if (opt.isPresent()) {
+				if (StringUtils.isEmpty(entity.getImage())) {
+					entity.setImage(opt.get().getImage());
+				} else {
+					entity.setImage(entity.getImage());
+				}
+			}
+			return milkTeaRepository.save(entity);
+		}
 	}
 	
 	@Override
 	public Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(int idMilkTea, int idBranch) {
 		return milkTeaRepository.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
 	}
+
+
+	@Override
+	public Page<MilkTeaEntity> findByNameContaining(String name, Pageable pageable) {
+		return milkTeaRepository.findBynameContaining(name, pageable);
+	}
+
+
+	@Override
+	public int countByNameContaining(String name) {
+		return milkTeaRepository.countByNameContaining(name);
+	}
+
+
+	@Override
+	public List<MilkTeaEntity> findByNameContaining(String name) {
+		return milkTeaRepository.findByNameContaining(name);
+	}
+
+
+	@Override
+	public Page<MilkTeaEntity> findByNameContainingAndSortAscendingByCost(String name, Pageable pageable) {
+		return milkTeaRepository.findByNameContainingAndSortAscendingByCost(name, pageable);
+	}
+
+
+	@Override
+	public Page<MilkTeaEntity> findByNameContainingAndSortDescendingByCost(String name, Pageable pageable) {
+		return milkTeaRepository.findByNameContainingAndSortDescendingByCost(name, pageable);
+	}
+
+
+
+
+
 
 }
