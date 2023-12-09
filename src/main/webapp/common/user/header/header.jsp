@@ -88,18 +88,30 @@ request.setAttribute("types", types);
 					</c:if>
 				</p>
 				<ul class="header-action">
-					<li class="header-action-item"><a href="/user_infor/1" class="header-action-link"
-						href="#">Quản lý tài khoản</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/cart">Giỏ hàng của tôi</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/order">Đơn hàng của tôi</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/help">Trợ giúp</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/admin/index">Quản trị</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/security/logout">Đăng xuất</a></li>
+					<c:if test="${not empty pageContext.request.remoteUser}">
+						<li class="header-action-item"><a href="/user_infor/1" class="header-action-link"
+							href="#">Quản lý tài khoản</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/cart">Giỏ hàng của tôi</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/order">Đơn hàng của tôi</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/help">Trợ giúp</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/forgot-password">Quên mật khẩu</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/admin/index">Quản trị</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/logout">Đăng xuất</a></li>
+					</c:if>
+					<c:if test="${empty pageContext.request.remoteUser}">
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/login">Đăng nhập</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/register">Đăng ký</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/forgot-password">Quên mật khẩu</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

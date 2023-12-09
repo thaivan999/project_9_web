@@ -83,7 +83,7 @@ public class SecurityController {
 	@GetMapping("unauthorized")
 	public String unauthoried(Model model) {
 		model.addAttribute("message", "Access denied!");
-		return "security/login/login";
+		return "error/403";
 	}
 
 	@PostMapping("register")
@@ -163,13 +163,9 @@ public class SecurityController {
         String password = request.getParameter("password");
         UserEntity user = passService.getByResetPasswordToken(token);
         if (user == null) {
-            model.addAttribute("message", "Invalid Token");
-            System.out.println("Invalid Token");
             return new ModelAndView("redirect:/", model);
         } else {
             passService.updatePassword(user, password);
-            System.out.println("You have successfully changed your password.");
-            model.addAttribute("message", "You have successfully changed your password.");
         }
         return new ModelAndView("redirect:/", model);
     }
@@ -180,5 +176,10 @@ public class SecurityController {
 		session.removeAttribute("username");
 		return "security/login/login";
 	}
+	 @GetMapping("logout/success")
+	    public String logoutSuccess(Model model) {
+	        model.addAttribute("message", "You have log out!");
+	        return "security/login/login";
+	    }
 
 }

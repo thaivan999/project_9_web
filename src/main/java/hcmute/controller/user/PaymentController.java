@@ -163,7 +163,9 @@ public class PaymentController {
 				orderDetailEntity.setIdOrderDetail(idOrderDetail);
 
 				orderDetailService.save(orderDetailEntity);
-				model.addAttribute("orderMessage", "Bạn đã đặt hàng thành công!");
+				model.addAttribute("message", "Bạn đã đặt hàng thành công!");
+				model.addAttribute("status", "success");
+				model.addAttribute("viewOrder", true);
 			}
 
 		} catch (Exception e) {

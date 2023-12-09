@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // expired after 21 days
 				.key("superhumanisnotsuperjustoverpowered").userDetailsService(service);
-		http.logout().logoutUrl("/security/logout").logoutSuccessUrl("/security/login").clearAuthentication(true)
+		http.logout().logoutUrl("/security/logout").logoutSuccessUrl("/security/logout/success").clearAuthentication(true)
 				.invalidateHttpSession(true).deleteCookies("JSESSIONID");
 
 		http.exceptionHandling().accessDeniedPage("/security/unauthorized");
