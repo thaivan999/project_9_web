@@ -30,19 +30,62 @@
 	<section class="bg-white">
 		<div class="container py-2">
 			<div
-				class="row d-flex justify-content-center align-content-start align-items-center" style="margin-top:75px">
+				class="row d-flex justify-content-center align-content-start align-items-center"
+				style="margin-top: 75px">
 				<div class="col-md-6">
-                    		<img src='<c:url value="/security/img/register.jpg" />'alt="Image" class="img-fluid me-3"style="margin-left: -50px;">
-                		</div>
+					<img src='<c:url value="/security/img/register.jpg" />' alt="Image"
+						class="img-fluid me-3" style="margin-left: -50px;">
+				</div>
 				<div class="col-12 col-md-8 col-lg-8 col-xl-6">
 					<div class="card rounded-4 shadow">
-						
 						<div class="card-body p-md-5 p-sm-2">
 							<h2 class="fw-bold mb-4">Sign up for free</h2>
 							<form action="/security/register" method="post"
 								class="needs-validation" novalidate="true">
-								
+
 								<div class="">
+									<div class="mb-3">
+										<div class="form-floating">
+											<input type="text" name="surname" id="floatingUsername"
+												class="form-control rounded-3" required="required"
+												placeholder="Surname" /> <label for="floatingUsername">Surname</label>
+										</div>
+									</div>
+									<div class="mb-3">
+										<div class="form-floating">
+											<input type="text" name="name" id="floatingUsername"
+												class="form-control rounded-3" required="required"
+												placeholder="Name" /> <label for="floatingUsername">Name</label>
+										</div>
+									</div>
+									<div class="mb-3">
+										<div class="form-floating">
+											<input type="text" name="phoneNumber" id="floatingUsername"
+												class="form-control rounded-3" required="required"
+												placeholder="Phonenumber" /> <label for="floatingUsername">Phonenumber</label>
+										</div>
+									</div>
+									<div class="mb-3">
+										<div class="form-floating d-flex align-items-center">
+											<div>
+												<input type="radio" name="gender" id="nam" checked required>
+												<label>Nam</label>
+											</div>
+											<div>
+												<input class="ms-4" type="radio" name="gender" id="nu">
+												<label>Nữ</label>
+											</div>
+										</div>
+									</div>
+									<div class="mb-3  ">
+										<div class="form-floating">
+											<input type="email" name="email" id="floatingEmail"
+												class="form-control rounded-3" required="required"
+												placeholder="name@example.com" /> <label
+												for="floatingEmail">E-mail: </label>
+										</div>
+									</div>
+									<hr>
 									<div class="mb-3">
 										<div class="form-floating">
 											<input type="text" name="username" id="floatingUsername"
@@ -50,15 +93,6 @@
 												placeholder="Username" /> <label for="floatingUsername">Username</label>
 										</div>
 									</div>
-									<div class="mb-3  ">
-										<div class="form-floating">
-											<input type="email" name="email" id="floatingEmail"
-												class="form-control rounded-3" required="required"
-												placeholder="name@example.com" /> <label for="floatingEmail">E-mail:
-											</label>
-										</div>
-									</div>
-									<hr>
 									<div class="mb-3  ">
 										<div class="form-floating">
 											<input type="password" id="password" name="password"
@@ -97,8 +131,10 @@
 										<i class="fab fa-facebook-f me-2"></i>Sign in with facebook
 									</a>
 									<div class="d-grid gap-2 mb-2">
-										<a href="/security/login" class="text-dark text-decoration-none d-inline text-center"><b>Back to login</b></a>
-                                	</div>
+										<a href="/security/login"
+											class="text-dark text-decoration-none d-inline text-center"><b>Back
+												to login</b></a>
+									</div>
 									<div class="alert">
 										<c:if test="${not empty message}">
 											<div class="alert alert-success">${message}</div>

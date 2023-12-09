@@ -13,7 +13,7 @@ public class CartModel{
 	private int idCart;
 	private int totalProduct;
 	private int totalPrice;
-	private CustomerModel customerByCart;
+	private UserModel customerByCart;
 	private Set<CartDetailModel> cartDetails;
 	private Boolean isEdit = false;
 }

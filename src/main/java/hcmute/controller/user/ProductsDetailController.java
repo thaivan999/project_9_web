@@ -1,5 +1,7 @@
 package hcmute.controller.user;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import hcmute.entity.BranchEntity;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
+import hcmute.model.OrderProduct;
+import hcmute.model.OrderProduct.OrderItem;
+import hcmute.service.IBranchService;
 import hcmute.service.ICartDetailService;
 import hcmute.service.IMilkTeaService;
 
@@ -30,6 +38,8 @@ public class ProductsDetailController {
 	IMilkTeaService milkTeaService;
 	@Autowired
 	ICartDetailService cartDetailService;
+	@Autowired
+	IBranchService branchService;
 	
 	@GetMapping("/{id}")
 	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, RedirectAttributes redirectAttributes) {
@@ -66,12 +76,63 @@ public class ProductsDetailController {
 		return new ModelAndView("user/error", model);
 	}
 	
+	@GetMapping("/check")
+	public String check(ModelMap model, @RequestParam("data") String data) {
+		String dataEncoded = data;
+		byte[] decodedBytes = Base64.getDecoder().decode(data);
+		data = new String(decodedBytes, StandardCharsets.UTF_8);
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<BranchEntity> listBranches = branchService.findAll();
+		int idMilkTea = 0;
+		try {
+			OrderProduct orderProduct = objectMapper.readValue(data, OrderProduct.class);
+			int idBranchOrder = -1;
+			for (BranchEntity branch : listBranches) {
+				Boolean isChecked = true;
+				for (OrderItem item : orderProduct.getList()) {
+					idMilkTea = Integer.parseInt(item.getIdMilkTea());
+					Optional<MilkTeaEntity> entity = milkTeaService.findByIdMilkTea(idMilkTea);
+					if (entity.isPresent()) {
+						int idBranch = branch.getIdBranch();
+						Optional<Integer> remainQuantityOptional = milkTeaService
+								.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
+						if (remainQuantityOptional.isPresent()) {
+							if (remainQuantityOptional.get() < Integer.parseInt(item.getQuantity())) {
+								isChecked = false;
+								break;
+							}
+						} else {
+							isChecked = false;
+							break;
+						}
+					}
+				}
+				if (isChecked) {
+					idBranchOrder = branch.getIdBranch();
+					break;
+				}
+			}
+			if (idBranchOrder != -1) {
+				return "redirect:/payment?data=" + dataEncoded + "&idBranch=" + idBranchOrder;
+			} else {
+				model.addAttribute("message",
+						"Xin lỗi quý khách! Hiện tại sản phẩm này đã hết hàng trên toàn bộ chi nhánh!");
+				model.addAttribute("status", "fail");
+				return "user/product_detail/" + idMilkTea;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	
 	@GetMapping("/addtocart")
 	public RedirectView addToCart(RedirectAttributes redirectAttributes, @RequestParam("id") int id, @RequestParam("size") String size) {
 	    
 		try {
 	    	// tạm để id cart là 1
-		    cartDetailService.addProductToCart(3, id, size);
+		    cartDetailService.addProductToCart(1, id, size);
 		    redirectAttributes.addFlashAttribute("cartMessage", "success");
 		} catch (Exception e) {
 			 redirectAttributes.addFlashAttribute("cartMessage", "fail");

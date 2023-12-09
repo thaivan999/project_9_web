@@ -26,7 +26,7 @@ public class OrderDetailId implements Serializable {
 	@Column(name = "id_milk_tea")
 	private int idMilkTea;
 	
-	@Column(name = "size")
+	@Column(name = "size", columnDefinition = "nvarchar(50)")
 	private String size;
 
 	public int getIdOrder() {

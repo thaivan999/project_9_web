@@ -136,6 +136,11 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	public <S extends MilkTeaEntity> S save(S entity) {
 		return milkTeaRepository.save(entity);
 	}
+	
+	@Override
+	public Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(int idMilkTea, int idBranch) {
+		return milkTeaRepository.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
+	}
 
 
 	@Override
