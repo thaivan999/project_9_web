@@ -45,10 +45,17 @@
 						<div class="mb-4">
 							<h4>Giao hàng</h4>
 							<div class="payment-info">
-								<div class="mb-3">
-									<label for="addressInp" class="form-label">Địa chỉ </label> <input
+								<div class="mb-3" style="position: relative;">
+									<label for="addressInp" class="form-label">Địa chỉ nhận hàng </label> <input
 										id="addressInp" name="address" type="text"
-										class="form-control" placeholder="Địa chỉ">
+										class="form-control bold-text" placeholder="Địa chỉ">
+									<ul class="places-result"></ul>
+								</div>
+								<div class="mb-3" style="position: relative;">
+									<label for="addressInp" class="form-label">Địa chỉ giao hàng </label> <input readonly
+										id="addressRecieveInp" type="text" value="${addressBranch }"
+										class="form-control bold-text">
+									<ul class="places-result"></ul>
 								</div>
 								<div class="mb-3">
 									<label for="surnameInp" class="form-label">Tên khách
@@ -139,7 +146,7 @@
 							</li>
 							<li>
 								<p>Phí giao hàng</p>
-								<p class="payment-fee payment-price-value">12000đ</p>
+								<p class="payment-fee payment-price-value">0đ</p>
 							</li>
 							<li>
 								<p>Thành tiền</p>
