@@ -37,8 +37,7 @@
 				</ol>
 				<div class="card mb-4">
 					<form class="mt-3 ms-3 me-3 mb-3"
-						action="<c:url value="/admin/branch/saveOrUpdate/${branch.idBranch}"/>"
-						method="post">
+						action="<c:url value="/admin/branch/saveOrUpdate"/>" method="post">
 						<!-- Name -->
 						<div class="mb-3">
 							<label for="exampleInputName" class="form-label">Tên chi
@@ -68,12 +67,16 @@
 						</div>
 
 						<!-- Image -->
-						<div class="mb-3">
+						<div class="mb-3" style="display: flex;flex-direction: column;">
 							<label for="exampleInputImage" class="form-label">Hình
-								ảnh*</label> <input placeholder="Image URL" name="image" type="file"
-								class="form-control" id="exampleInputImage"
-								aria-describedby="imageHelp" value="${branch!=null?branch.image:'' }"
-								required="required">
+								ảnh*</label>
+							<c:url
+								value="/admin/branch/image/${branch.image != null ? branch.image : 'uploads/abc.jpg' }"
+								var="imgUrl" />
+							<img id="image" width="200px" height="200px" src="${imgUrl }" />
+							<input placeholder="Image" name="imageFile" type="file"
+								class="form-control-file" id="imageFile"
+								aria-describedby="imageFile">
 						</div>
 						<div class="mb-3">
 							<label for="exampleInputDescription" class="form-label">ID

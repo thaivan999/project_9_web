@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.UserEntity;
 import hcmute.model.AuthProvider;
@@ -47,16 +48,6 @@ public class SecurityController {
 	CookieServiceImpl cookieService;
 	@Autowired
 	SessionServiceImpl sessionService;
-
-	@GetMapping("change-password")
-	public String showResetPasswordForm(@RequestParam("token") String token, ModelMap model) {
-		UserEntity user = passService.getByResetPasswordToken(token);
-		model.addAttribute("token", token);
-		if (user == null) {
-			model.addAttribute("message", "Invalid Token");
-		}
-		return "security/change-password/change-password";
-	}
 
 	@GetMapping("forgot-password")
 	public String IndexForgotPassword() {
@@ -92,7 +83,7 @@ public class SecurityController {
 	@GetMapping("unauthorized")
 	public String unauthoried(Model model) {
 		model.addAttribute("message", "Access denied!");
-		return "security/login/login";
+		return "error/403";
 	}
 
 	@PostMapping("register")
@@ -140,7 +131,7 @@ public class SecurityController {
 
 		try {
 			passService.updateResetPasswordToken(token, email);
-			String resetPasswordLink = CommonUtils.getSiteURL(req) + "/security/forgot-password?token=" + token;
+			String resetPasswordLink = CommonUtils.getSiteURL(req) + "/security/change-password?token=" + token;
 			passService.sendEmail(email, resetPasswordLink);
 			model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
 			System.out.println("""
@@ -156,24 +147,28 @@ public class SecurityController {
 		}
 		return new ModelAndView("redirect:/", model);
 	}
-
-	@PostMapping("change-password")
-	public ModelAndView processResetPassword(HttpServletRequest request, ModelMap model) {
-		String token = request.getParameter("token");
-		System.out.println(token);
-		String password = request.getParameter("password");
-		UserEntity user = passService.getByResetPasswordToken(token);
-		if (user == null) {
-			model.addAttribute("message", "Invalid Token");
-			System.out.println("Invalid Token");
-			return new ModelAndView("redirect:/", model);
-		} else {
-			passService.updatePassword(user, password);
-			System.out.println("You have successfully changed your password.");
-			model.addAttribute("message", "You have successfully changed your password.");
-		}
-		return new ModelAndView("redirect:/", model);
-	}
+	@GetMapping("change-password")
+    public String showResetPassword(@RequestParam("token") String token, ModelMap model) {
+        UserEntity user = passService.getByResetPasswordToken(token);
+        model.addAttribute("token", token);
+        if (user == null) {
+            model.addAttribute("message", "Invalid Token");
+        }
+        return "security/change-password/change-password";
+    }
+    @PostMapping("change-password")
+    public ModelAndView processResetPassword(HttpServletRequest request, ModelMap model) {
+        String token = request.getParameter("token");
+        System.out.println(token);
+        String password = request.getParameter("password");
+        UserEntity user = passService.getByResetPasswordToken(token);
+        if (user == null) {
+            return new ModelAndView("redirect:/", model);
+        } else {
+            passService.updatePassword(user, password);
+        }
+        return new ModelAndView("redirect:/", model);
+    }
 
 	@GetMapping("logout")
 	public String logoffSuccess(Model model, HttpSession session) {
@@ -181,5 +176,10 @@ public class SecurityController {
 		session.removeAttribute("username");
 		return "security/login/login";
 	}
+	 @GetMapping("logout/success")
+	    public String logoutSuccess(Model model) {
+	        model.addAttribute("message", "You have log out!");
+	        return "security/login/login";
+	    }
 
 }

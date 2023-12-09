@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
+
 <div id="loader-wrapper">
 	<div id="loader"></div>
 	<div class="loader-section section-left"></div>
@@ -21,26 +23,17 @@
 	</form>
 
 	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle"
 			id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-			aria-expanded="false">Welcome ${account}<i
+			aria-expanded="false">Welcome <c:out value="${pageContext.request.remoteUser}" /><i
 				class="fas fa-user fa-fw"></i></a>
 			<ul class="dropdown-menu dropdown-menu-end"
 				aria-labelledby="navbarDropdown">
-				<li><a class="dropdown-item" href="/security/login"
-					${login_pass}>Đăng nhập</a></li>
-				<li><a class="dropdown-item" href="/security/register"
-					${login_pass}>Đăng ký</a></li>
-				<li><a class="dropdown-item" href="/security/logout"
-					${login_no}>Đăng xuất</a></li>
-				<li><hr class="dropdown-divider" ${login_no}></li>
-				<li><a class="dropdown-item" href="/security/change-password"
-					${login_no}>Đổi mật khẩu</a></li>
-				<li><a class="dropdown-item" href="/security/forgot-password"
-					${login_pass}>Quên mật khẩu</a></li>
-				<li><hr class="dropdown-divider" ${login_admin}></li>
-				<li><a class="dropdown-item" href="/home">Giao
-						diện User</a></li>
+				<li><a class="dropdown-item" href="/security/logout">Đăng xuất</a></li>
+				<li><a class="dropdown-item" href="/security/forgot-password">Quên mật khẩu</a></li>
+				<li><hr class="dropdown-divider"></li>
+				<li><a class="dropdown-item" href="/home">Giao diện User</a></li>
 			</ul></li>
 	</ul>
 </nav>

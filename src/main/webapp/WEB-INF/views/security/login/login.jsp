@@ -9,7 +9,7 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <style type="text/css">
 .custom-center {
-    margin-top:100px;
+    margin-top:15px;
 }
 </style>
 </head>
@@ -67,15 +67,13 @@
                                     </svg>
                                     Sign in with Facebook
                                 </a>
-                                					<span>${username}</span>
-                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 offset-md-4 text-end mb-3">
+        <div class="col-md-7 offset-md-4 text-end mb-3">
 		<div class="d-inline">
 			<p class="d-inline">
 				<b>Bạn chưa có tài khoản ?</b>
