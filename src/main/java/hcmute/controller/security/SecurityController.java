@@ -33,7 +33,7 @@ import hcmute.utils.CommonUtils;
 import net.bytebuddy.utility.RandomString;
 @Controller
 @RequestMapping("security")
-@SessionAttributes("username")
+@SessionAttributes("user")
 public class SecurityController {
 	@Autowired
     IUserService userService;
@@ -70,12 +70,13 @@ public class SecurityController {
 	}
 	
 	@PostMapping("login")
-	public String login(ModelMap model, HttpServletRequest req, HttpSession session) throws MessagingException {
-	    String username = req.getParameter("username");
+	public String login(ModelMap model, @RequestParam String username, HttpServletRequest req, HttpSession session) throws MessagingException {
+	    username = req.getParameter("username");
 	    String password = req.getParameter("password");
 	    String remember = req.getParameter("remember-me");
 	    Optional<UserEntity> user = userService.findByUsername(username);
-	    sessionService.setAttribute("user", user);
+//	    sessionService.setAttribute("user", user);
+	    model.addAttribute("user", user);
 	    if (remember != null && !remember.isEmpty()) {
 	        cookieService.Add("username", username, 1);
 	        cookieService.Add("password", password, 1);
@@ -89,7 +90,11 @@ public class SecurityController {
 
 	    return "redirect:/security/login";
 	}
-
+	@GetMapping("unauthorized")
+    public String unauthoried(Model model) {
+        model.addAttribute("message", "Access denied!");
+        return "security/login/login";
+    }
 	@PostMapping("register")
 	public String register(Model model, @ModelAttribute UserEntity user, HttpServletRequest req) throws MessagingException {
         Optional<UserEntity> existUserByEmail = userService.findByEmail(user.getEmail());
@@ -106,13 +111,14 @@ public class SecurityController {
         model.addAttribute("message", "Please check your email to verify your account");
         return "security/register/register";
     }
-	
-	@GetMapping("/verify")
-    public String verifyAcc(@RequestParam String code) {
+	@GetMapping("verify")
+    public String verifyAcc(Model model, @RequestParam String code) {
         if (userService.verify(code)) {
-            return "redirect:/home";
+        	model.addAttribute("message", "Xác thực thành công");
+            return "redirect:/security/login";
         } else {
-            return "security/login/login";
+        	model.addAttribute("message", "Xác thực thất bại");
+            return "security/security/login";
         }
     }
 	

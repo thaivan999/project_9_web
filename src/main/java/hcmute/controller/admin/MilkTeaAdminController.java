@@ -82,6 +82,7 @@ public class MilkTeaAdminController {
 			if (milkTea.getImage() != null) {
 				entity.setImage(milkTea.getImage());
 			}
+
 			if (milkTea.getImageFile() != null && !milkTea.getImageFile().isEmpty()) {
 				UUID uuid = UUID.randomUUID();
 				String uuString = uuid.toString();
