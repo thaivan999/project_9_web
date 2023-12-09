@@ -79,8 +79,8 @@ public class ProductsDetailController {
 		model.addAttribute("message", "Sản phẩm này không tồn tại");
 		return new ModelAndView("user/error", model);
 	}
-
-	@GetMapping("/checkProduct")
+	
+	@GetMapping("/check")
 	public String check(ModelMap model, @RequestParam("data") String data) {
 		String dataEncoded = data;
 		byte[] decodedBytes = Base64.getDecoder().decode(data);

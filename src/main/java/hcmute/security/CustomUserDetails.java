@@ -21,7 +21,8 @@ public class CustomUserDetails implements UserDetails {
 
     public CustomUserDetails() {
     }
-
+    
+    //Trả về danh sách quyền
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getAuthorities().stream()

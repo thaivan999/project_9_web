@@ -23,9 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserEntity> user = userRepo.findByUsername(username);
-        user.orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
-        return user.map(CustomUserDetails::new).get();
+        //Thực hiện truy vấn dựa theo từng username
+    	Optional<UserEntity> user = userRepo.findByUsername(username);
+        //Đưa ra thông báo lỗi khi không thấy username
+    	user.orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
+        //Ánh xạ UserEntity sang CustomUserDetails
+    	return user.map(CustomUserDetails::new).get();
     }
 
 }
