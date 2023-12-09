@@ -95,9 +95,11 @@ request.setAttribute("types", types);
 					<li class="header-action-item"><a class="header-action-link"
 						href="/order">Đơn hàng của tôi</a></li>
 					<li class="header-action-item"><a class="header-action-link"
-						href="/admin/index">Trợ giúp</a></li>
+						href="/help">Trợ giúp</a></li>
 					<li class="header-action-item"><a class="header-action-link"
-						href="#">Đăng xuất</a></li>
+						href="/admin/index">Quản trị</a></li>
+					<li class="header-action-item"><a class="header-action-link"
+						href="/security/logout">Đăng xuất</a></li>
 				</ul>
 			</div>
 		</div>
