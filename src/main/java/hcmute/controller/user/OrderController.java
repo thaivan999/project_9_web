@@ -38,6 +38,7 @@ public class OrderController {
 		}
 		return "user/order";
 	}
+	
 	@RequestMapping("order-detail/{idOrder}")
 	public String showOrderDetail(ModelMap model,@PathVariable("idOrder") Integer idOrder) {
 		try {

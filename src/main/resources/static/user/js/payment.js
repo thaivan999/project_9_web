@@ -57,14 +57,15 @@ paymentBtn.addEventListener('click', function() {
 	console.log(dataJSON);
 	data = JSON.parse(dataJSON);
 	var orderData = {};
-	orderData.address = address.textContent;
+	orderData.address = address.value;
 	orderData.phoneNumber = phoneNumber.value;
-	orderData.note = note.textContent;
+	orderData.note = note.value;
 	orderData.totalPrice = convertToVal(price.textContent);
 	orderData.totalProduct = parseInt(product.textContent);
 	orderData.finalPrice = convertToVal(finalPrice.textContent);
 	orderData.orderDay = orderDay.textContent;
 	orderData.shipDay = shipDay.textContent;
+	orderData.idBranch = parseInt(document.querySelector('.payment-content').getAttribute('data-id'));
 	listRadio.forEach(function(item) {
 		if(item.checked) {
 			orderData.idPayMethod = item.getAttribute('data-id');
@@ -83,7 +84,7 @@ paymentBtn.addEventListener('click', function() {
 		return btoa(unescape(encodeURIComponent(str)));
 	}
 
-	var encodedData = customBase64Encode(JSON.stringify(data));
+	var encodedData = customBase64Encode(JSON.stringify(orderData));
 	var myAnchor = document.createElement('a');
 	
 	if(check)

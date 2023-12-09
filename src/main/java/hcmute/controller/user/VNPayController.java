@@ -118,7 +118,8 @@ public class VNPayController {
 		else
 		{
 			//Giao dịch không thành công, chuyển về trang cart
-			model.addAttribute("cartMessage", "Thanh toán không thành công!");
+			model.addAttribute("message", "Thanh toán không thành công!");
+			model.addAttribute("status", "fail");
 			// Viết dùm thông báo hiển thị cartMessage ở cart.jsp
 			return "user/cart";
 		}

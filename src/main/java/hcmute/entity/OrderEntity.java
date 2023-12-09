@@ -46,7 +46,8 @@ public class OrderEntity implements Serializable {
 	
 	@Column(name = "phoneNumber",columnDefinition = "varchar(50)")
 	private String phoneNumber;
-
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_pay_method")
 	private PayMethodEntity payMethodByOrder;
@@ -55,7 +56,7 @@ public class OrderEntity implements Serializable {
 	@JoinColumn(name = "id_branch")
 	private BranchEntity branchByOrder;
   
-  @ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "id")
 	private UserEntity customerByOrder;
 
@@ -64,7 +65,7 @@ public class OrderEntity implements Serializable {
 
 	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDate orderDay,
 			int orderState, LocalDate shipDay, String note, String address, String phoneNumber,
-			PayMethodEntity payMethodByOrder, UserEntity customerByOrder, Set<OrderDetailEntity> orderDetails) {
+			PayMethodEntity payMethodByOrder, UserEntity customerByOrder, Set<OrderDetailEntity> orderDetails, BranchEntity branchByOrder) {
 		super();
 		this.idOrder = idOrder;
 		this.totalProduct = totalProduct;
@@ -79,6 +80,15 @@ public class OrderEntity implements Serializable {
 		this.payMethodByOrder = payMethodByOrder;
 		this.customerByOrder = customerByOrder;
 		this.orderDetails = orderDetails;
+		this.branchByOrder = branchByOrder;
+	}
+
+	public BranchEntity getBranchByOrder() {
+		return branchByOrder;
+	}
+
+	public void setBranchByOrder(BranchEntity branchByOrder) {
+		this.branchByOrder = branchByOrder;
 	}
 
 	public OrderEntity() {
