@@ -38,6 +38,9 @@ public class OrderEntity implements Serializable {
 	@Column(name = "ship_day")
 	private LocalDate shipDay;
 	
+	@Column(name = "fee")
+	private int fee;
+	
 	@Column(name = "note", columnDefinition = "nvarchar(1000)")
 	private String note;
 	
@@ -81,6 +84,14 @@ public class OrderEntity implements Serializable {
 		this.customerByOrder = customerByOrder;
 		this.orderDetails = orderDetails;
 		this.branchByOrder = branchByOrder;
+	}
+
+	public int getFee() {
+		return fee;
+	}
+
+	public void setFee(int fee) {
+		this.fee = fee;
 	}
 
 	public BranchEntity getBranchByOrder() {

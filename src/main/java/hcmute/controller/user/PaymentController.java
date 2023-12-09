@@ -100,6 +100,12 @@ public class PaymentController {
 			model.addAttribute("orderProduct", orderProduct);
 			model.addAttribute("listMilkTea", listMilkTea);
 			model.addAttribute("idBranch", idBranch);
+			Optional<BranchEntity> branchOpt = branchService.findById(idBranch);
+			if(branchOpt.isPresent()) {
+				BranchEntity entity = branchOpt.get();
+				model.addAttribute("addressBranch", entity.getAddressDetail());
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,6 +131,7 @@ public class PaymentController {
 			orderEntity.setNote(orderData.getNote());
 			orderEntity.setAddress(orderData.getAddress());
 			orderEntity.setPhoneNumber(orderData.getPhoneNumber());
+			orderEntity.setFee(orderData.getFee());
 			Optional<BranchEntity> optBranch = branchService.findById(orderData.getIdBranch());
 			if(optBranch.isPresent()) {
 				orderEntity.setBranchByOrder(optBranch.get());
@@ -163,7 +170,9 @@ public class PaymentController {
 				orderDetailEntity.setIdOrderDetail(idOrderDetail);
 
 				orderDetailService.save(orderDetailEntity);
-				model.addAttribute("orderMessage", "Bạn đã đặt hàng thành công!");
+				model.addAttribute("message", "Bạn đã đặt hàng thành công!");
+				model.addAttribute("status", "success");
+				model.addAttribute("viewOrder", true);
 			}
 
 		} catch (Exception e) {

@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors();
 		http.authorizeRequests().antMatchers("/", "/login**").permitAll()
-				.antMatchers("/home/**", "/oauth2/**", "/oauth/authorize",
+				.antMatchers("/home/**", "/security/**", "/api/places", "/security/verify/**", "/oauth2/**", "/oauth/authorize",
 						"/**/*.css", "/**/*.js")
 				.permitAll().antMatchers("/admin/index","/admin/**").hasAuthority("ADMIN")
 				.anyRequest().authenticated();
@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // expired after 21 days
 				.key("superhumanisnotsuperjustoverpowered").userDetailsService(service);
-		http.logout().logoutUrl("/security/logout").logoutSuccessUrl("/security/login").clearAuthentication(true)
+		http.logout().logoutUrl("/security/logout").logoutSuccessUrl("/security/logout/success").clearAuthentication(true)
 				.invalidateHttpSession(true).deleteCookies("JSESSIONID");
 
 		http.exceptionHandling().accessDeniedPage("/security/unauthorized");
