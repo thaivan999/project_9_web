@@ -100,6 +100,12 @@ public class PaymentController {
 			model.addAttribute("orderProduct", orderProduct);
 			model.addAttribute("listMilkTea", listMilkTea);
 			model.addAttribute("idBranch", idBranch);
+			Optional<BranchEntity> branchOpt = branchService.findById(idBranch);
+			if(branchOpt.isPresent()) {
+				BranchEntity entity = branchOpt.get();
+				model.addAttribute("addressBranch", entity.getAddressDetail());
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,6 +131,7 @@ public class PaymentController {
 			orderEntity.setNote(orderData.getNote());
 			orderEntity.setAddress(orderData.getAddress());
 			orderEntity.setPhoneNumber(orderData.getPhoneNumber());
+			orderEntity.setFee(orderData.getFee());
 			Optional<BranchEntity> optBranch = branchService.findById(orderData.getIdBranch());
 			if(optBranch.isPresent()) {
 				orderEntity.setBranchByOrder(optBranch.get());

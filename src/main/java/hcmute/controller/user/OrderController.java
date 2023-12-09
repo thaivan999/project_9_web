@@ -1,6 +1,7 @@
 package hcmute.controller.user;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import hcmute.entity.BranchEntity;
 import hcmute.entity.OrderDetailEntity;
 import hcmute.entity.OrderEntity;
 import hcmute.entity.PayMethodEntity;
 import hcmute.entity.UserEntity;
+import hcmute.service.IBranchService;
 import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
 
@@ -26,6 +29,9 @@ public class OrderController {
 	
 	@Autowired
 	IOrderDetailService orderDetailService;
+	
+	@Autowired
+	IBranchService branchService;
 	
 	@RequestMapping("")
 	public String showAllOrders(ModelMap model) {
@@ -47,6 +53,9 @@ public class OrderController {
 			model.addAttribute("orders", list);
 			model.addAttribute("userOrder", userOrder);	
 			model.addAttribute("idOrder", idOrder);
+			BranchEntity entity = userOrder.getBranchByOrder();
+			model.addAttribute("addressOrder", entity.getAddressDetail());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

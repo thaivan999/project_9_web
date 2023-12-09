@@ -64,7 +64,8 @@
 											${userOrder.customerByOrder.name}</p>
 										<p class="text-danger" style="font-weight: 700">Số điện
 											thoại: ${userOrder.phoneNumber}</p>
-										<p>Địa chỉ giao hàng: ${userOrder.address}</p>
+										<p class="bold-text">Địa chỉ giao hàng: ${addressOrder}</p>
+										<p class="bold-text">Địa chỉ nhận hàng: ${userOrder.address}</p>
 									</div>
 								</div>
 							</div>
@@ -91,7 +92,7 @@
 												<hr style="border: thin solid #D6D6D6;">
 												<div class="d-flex justify-content-between">
 													<p style="font-weight: bold">Phí giao hàng</p>
-													<h5 class="text-danger">+ 12000đ</h5>
+													<h5 class="text-danger">+ ${userOrder.fee }</h5>
 												</div>
 												<hr style="border: thin solid #D6D6D6;">
 											</div>
