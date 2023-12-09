@@ -31,9 +31,12 @@ public interface IUserService {
 
     boolean verify(String verifyCode);
 
-    void processOAuthPostLogin(String username, String email, String image, String oauth2ClientName);
+    //Set thông tin xuống cơ sở dữ liệu cho OAuth
+    void processOAuthPostLogin(String username, String email, String oauth2ClientName);
 
+    //Update thông tin theo OAuth
     void updateAuthenticationTypeOAuth(String username, String oauth2ClientName);
 
+    //Update thông tin theo DB
     void updateAuthenticationTypeDB(String username, String oauth2ClientName);
 }

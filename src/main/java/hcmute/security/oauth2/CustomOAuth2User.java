@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-
+//Bao bọc thông tin người dùng từ đối tượng OAuth2User
 public class CustomOAuth2User implements OAuth2User {
     private OAuth2User oauth2User;
     private String oauth2ClientName;
@@ -14,12 +14,14 @@ public class CustomOAuth2User implements OAuth2User {
         this.oauth2User = oauth2User;
         this.oauth2ClientName = oauth2ClientName;
     }
-
+    
+    //Trả về các thuộc tính của người dùng
     @Override
     public Map<String, Object> getAttributes() {
         return oauth2User.getAttributes();
     }
 
+    //Trả về danh sách các quyền
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return oauth2User.getAuthorities();
@@ -27,16 +29,11 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
-        // System.out.println(oauth2User.<String>getAttribute("email"));
         return oauth2User.getAttribute("name");
     }
 
     public String getEmail() {
         return oauth2User.<String>getAttribute("email");
-    }
-    
-    public String getImageUrl() {
-    	return oauth2User.getAttribute("image_url");
     }
 
     public String getOauth2ClientName() {
