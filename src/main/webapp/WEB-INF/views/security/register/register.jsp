@@ -130,11 +130,11 @@
 									<a
 										href="${pageContext.request.contextPath}/oauth2/authorization/google"
 										class="w-100 py-2 mb-2 btn btn-outline-danger rounded-3">
-										<i class="fab fa-google me-2"></i> Sign in with google
+										<i class="fab fa-google me-2"></i> Sign up with google
 									</a> <a
 										href="${pageContext.request.contextPath}/oauth2/authorization/facebook"
 										class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3">
-										<i class="fab fa-facebook-f me-2"></i>Sign in with facebook
+										<i class="fab fa-facebook-f me-2"></i>Sign up with facebook
 									</a>
 									<div class="d-grid gap-2 mb-2" style="margin-top:15px">
 										<a href="/security/login"

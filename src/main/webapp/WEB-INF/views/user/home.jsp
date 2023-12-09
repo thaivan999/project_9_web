@@ -9,6 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" type="text/css" href="home.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
 	<div class="home">
@@ -29,6 +30,32 @@
 				</div>
 			</div>
 		</c:if>
+		<c:if test="${cartMessage != null}">
+						<div class="alert" role="alert">
+							<c:choose>
+								<c:when test="${cartMessage eq 'success'}">
+									<div class="alert alert-success">
+										<button type="button" class="close" data-dismiss="alert"
+											aria-label="Close">&times;</button>
+										<i>Bạn đã thêm sản phẩm này vào <a
+											class="black-text bold-text" href="/product_favorite">sản phẩm yêu thích</a> thành
+											công.
+										</i>
+									</div>
+								</c:when>
+								<c:when test="${cartMessage eq 'fail'}">
+									<div class="alert alert-danger">
+										<button type="button" class="close" data-dismiss="alert"
+											aria-label="Close">&times;</button>
+										<i>Sản phẩm này đã có trong <a
+											class="black-text bold-text" href="/product_favorite">sản phẩm yêu thích</a> của
+											bạn.
+										</i>
+									</div>
+								</c:when>
+							</c:choose>
+						</div>
+					</c:if>
 		<div id="homeSlider" class="carousel slide" data-ride="carousel">
 			<!--Indicators-->
 			<ul class="carousel-indicators">
@@ -100,6 +127,11 @@
 								<p class="card-price">${milkTea.cost}đ</p>
 							</div>
 						</a>
+						<div class="d-flex justify-content-center">
+        					<a href="/home/addtofavorite?id=${milkTea.idMilkTea}" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            					<i class="fa-regular fa-heart"></i> Thêm vào yêu thích
+        					</a>
+    					</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -120,7 +152,12 @@
 								<p class="card-price">${milkTea.cost}đ</p>
 							</div>
 						</a>
-					</div>
+						<div class="d-flex justify-content-center">
+        					<a href="/home/addtofavorite?id=${milkTea.idMilkTea}" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            					<i class="fa-regular fa-heart"></i> Thêm vào yêu thích
+        					</a>
+    					</div>
+    				</div>
 				</c:forEach>
 			</div>
 		</div>
