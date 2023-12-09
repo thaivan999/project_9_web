@@ -12,6 +12,9 @@ const paymentBtn = document.querySelector('.payment-btn');
 const agreeCheckbox = document.querySelector('#flexCheckDefault');
 const placeResult = document.querySelector('.places-result');
 let listPlaceItem = document.querySelectorAll('.places-result-item');
+const listFee = document.querySelectorAll('.branch-fee-val');
+const listRadioBranch = document.querySelectorAll('.radio-branch');
+const listBranchAddress = document.querySelectorAll('.list-branches-item-address');
 
 let timeoutId = null;
 
@@ -69,7 +72,11 @@ paymentBtn.addEventListener('click', function() {
 	orderData.finalPrice = convertToVal(finalPrice.textContent);
 	orderData.orderDay = orderDay.textContent;
 	orderData.shipDay = shipDay.textContent;
-	orderData.idBranch = parseInt(document.querySelector('.payment-content').getAttribute('data-id'));
+	listRadioBranch.forEach((item) => {
+		if(item.checked) {
+			orderData.idBranch = item.getAttribute('data-id');
+		}
+	})
 	orderData.fee = convertToVal(fee.textContent);
 	listRadio.forEach(function(item) {
 		if (item.checked) {
@@ -167,23 +174,33 @@ function callShipPriceAPI(origins, destinations, units) {
 	});
 }
 
-const calculateShipPrice = async () => {
-	const data = await callShipPriceAPI(address.value, document.querySelector('#addressRecieveInp').value, "DRIVER");
+const calculateShipPrice = async (destination) => {
+	const data = await callShipPriceAPI(address.value, destination, "DRIVER");
 	const distance = data.rows[0].elements[0].distance.text;
 	const matchResult = distance.match(/^\d+(\.\d+)?/);
 	let distanceNumber = 10000;
-	if(matchResult) {
+	if (matchResult) {
 		distanceNumber = parseFloat(matchResult[0]);
 		distanceNumber = parseInt(distanceNumber * 2);
 		distanceNumber *= 1000;
 	}
-	fee.textContent = distanceNumber + "đ";
-	finalPrice.textContent = convertToVal(price.textContent) + distanceNumber + "đ";
+	return distanceNumber;
+}
+
+const calculateAllShipPrice = () => {
+	listBranchAddress.forEach(async (address, index) => {
+		const feeVal = await calculateShipPrice(address.textContent);
+		listFee[index].textContent = feeVal + "đ";
+		if(listRadioBranch[index].checked) {
+			fee.textContent = feeVal + "đ";
+			finalPrice.textContent = feeVal + convertToVal(price.textContent) + "đ";
+		}
+	})
 }
 
 address.addEventListener('blur', function() {
 	setTimeout(() => {
-		calculateShipPrice();
+		calculateAllShipPrice();
 	}, 500);
 })
 

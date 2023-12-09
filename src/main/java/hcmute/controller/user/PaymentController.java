@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +68,7 @@ public class PaymentController {
 	IBranchService branchService;
 
 	@GetMapping("")
-	private String displayPayment(ModelMap model, @RequestParam("data") String data, @RequestParam("idBranch") int idBranch)
+	private String displayPayment(ModelMap model, @RequestParam("data") String data, @RequestParam("listBranch") String listBranch)
 			throws UnsupportedEncodingException {
 //		data = URLDecoder.decode(data, "UTF-8");
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
@@ -80,7 +81,25 @@ public class PaymentController {
 			UserEntity customer = optCustomer.get();
 			model.addAttribute("customer", customer);
 		}
-
+		
+		byte[] branchBytes = Base64.getDecoder().decode(listBranch);
+		String branchString = new String(branchBytes);
+		branchString = branchString.trim();
+		if (branchString.startsWith("[")) {
+			branchString = branchString.substring(1, branchString.length() - 1);
+        }
+		
+		List<String> branchList = new ArrayList<>(Arrays.asList(branchString.split(",")));
+		List<BranchEntity> branches = new ArrayList<BranchEntity>();
+		for(String branchId : branchList) {
+			int id = Integer.parseInt(branchId);
+			Optional<BranchEntity> opt = branchService.findById(id);
+			if(opt.isPresent()) {
+				branches.add(opt.get());
+			}
+		}
+		model.addAttribute("branches", branches);
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		try {
@@ -99,12 +118,6 @@ public class PaymentController {
 			}
 			model.addAttribute("orderProduct", orderProduct);
 			model.addAttribute("listMilkTea", listMilkTea);
-			model.addAttribute("idBranch", idBranch);
-			Optional<BranchEntity> branchOpt = branchService.findById(idBranch);
-			if(branchOpt.isPresent()) {
-				BranchEntity entity = branchOpt.get();
-				model.addAttribute("addressBranch", entity.getAddressDetail());
-			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,9 +183,7 @@ public class PaymentController {
 				orderDetailEntity.setIdOrderDetail(idOrderDetail);
 
 				orderDetailService.save(orderDetailEntity);
-				model.addAttribute("message", "Bạn đã đặt hàng thành công!");
-				model.addAttribute("status", "success");
-				model.addAttribute("viewOrder", true);
+				model.addAttribute("orderMessage", "Bạn đã đặt hàng thành công!");
 			}
 
 		} catch (Exception e) {

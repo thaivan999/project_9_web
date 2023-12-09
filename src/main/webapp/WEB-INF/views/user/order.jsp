@@ -65,7 +65,8 @@
 										<p class="text-danger" style="font-weight: 700">Số điện
 											thoại: ${userOrder.phoneNumber}</p>
 										<p class="bold-text">Địa chỉ giao hàng: ${addressOrder}</p>
-										<p class="bold-text">Địa chỉ nhận hàng: ${userOrder.address}</p>
+										<p class="bold-text">Địa chỉ nhận hàng:
+											${userOrder.address}</p>
 									</div>
 								</div>
 							</div>
@@ -90,13 +91,13 @@
 													<h5 class="text-danger">${orderDetail.idOrderDetail.size == 'Lớn' ? '+ 5000đ' : '+ 0đ'}</h5>
 												</div>
 												<hr style="border: thin solid #D6D6D6;">
-												<div class="d-flex justify-content-between">
-													<p style="font-weight: bold">Phí giao hàng</p>
-													<h5 class="text-danger">+ ${userOrder.fee }</h5>
-												</div>
-												<hr style="border: thin solid #D6D6D6;">
 											</div>
 										</c:forEach>
+										<div class="d-flex justify-content-between">
+											<p style="font-weight: bold">Phí giao hàng</p>
+											<h5 class="text-danger">+ ${userOrder.fee }đ</h5>
+										</div>
+										<hr style="border: thin solid #D6D6D6;">
 										<!-- Tổng giá -->
 										<div class="total_price">
 											<div class="d-flex justify-content-between">

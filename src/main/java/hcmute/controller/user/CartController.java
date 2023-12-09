@@ -1,5 +1,6 @@
 package hcmute.controller.user;
 
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -26,6 +27,7 @@ import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.model.OrderProduct;
 import hcmute.model.OrderProduct.OrderItem;
+import hcmute.service.IBranchMilkTeaService;
 import hcmute.service.IBranchService;
 import hcmute.service.ICartDetailService;
 import hcmute.service.IMilkTeaService;
@@ -42,6 +44,9 @@ public class CartController {
 
 	@Autowired
 	IBranchService branchService;
+
+	@Autowired
+	IBranchMilkTeaService branchMilkTeaService;
 
 	private List<MilkTeaModel> getList() {
 		List<CartDetailId> milkTeas = cartDetailService.findMilkTeaByCartId(1);
@@ -76,9 +81,8 @@ public class CartController {
 
 	@GetMapping("/check")
 	public String check(ModelMap model, @RequestParam("data") String data, @RequestParam("noChoose") String noChoose) {
-		if(noChoose.equals("true")) {
-			model.addAttribute("message",
-					"Quý khách chưa chọn sản phẩm để đặt hàng!");
+		if (noChoose.equals("true")) {
+			model.addAttribute("message", "Quý khách chưa chọn sản phẩm để đặt hàng!");
 			model.addAttribute("status", "fail");
 			model.addAttribute("listmilkteas", this.getList());
 			return "user/cart";
@@ -88,9 +92,10 @@ public class CartController {
 		data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<BranchEntity> listBranches = branchService.findAll();
+		List<Integer> listBranchesEligible = new ArrayList<Integer>();
 		try {
 			OrderProduct orderProduct = objectMapper.readValue(data, OrderProduct.class);
-			int idBranchOrder = -1;
+			Boolean isSuccess = true;
 			for (BranchEntity branch : listBranches) {
 				Boolean isChecked = true;
 				for (OrderItem item : orderProduct.getList()) {
@@ -98,8 +103,8 @@ public class CartController {
 					Optional<MilkTeaEntity> entity = milkTeaService.findByIdMilkTea(idMilkTea);
 					if (entity.isPresent()) {
 						int idBranch = branch.getIdBranch();
-						Optional<Integer> remainQuantityOptional = milkTeaService
-								.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
+						Optional<Integer> remainQuantityOptional = branchMilkTeaService
+								.findRemainQuantityByBranchIdAndMilkTeaId(idBranch, idMilkTea);
 						if (remainQuantityOptional.isPresent()) {
 							if (remainQuantityOptional.get() < Integer.parseInt(item.getQuantity())) {
 								isChecked = false;
@@ -112,12 +117,17 @@ public class CartController {
 					}
 				}
 				if (isChecked) {
-					idBranchOrder = branch.getIdBranch();
+					listBranchesEligible.add(branch.getIdBranch());
+				} else {
+					isSuccess = false;
 					break;
 				}
 			}
-			if (idBranchOrder != -1) {
-				return "redirect:/payment?data=" + dataEncoded + "&idBranch=" + idBranchOrder;
+			if (isSuccess) {
+				String json = objectMapper.writeValueAsString(listBranchesEligible);
+				byte[] bytes = json.getBytes();
+				String base64Encoded = Base64.getEncoder().encodeToString(bytes);
+				return "redirect:/payment?data=" + dataEncoded + "&listBranch=" + base64Encoded;
 			} else {
 				model.addAttribute("message",
 						"Xin lỗi quý khách! Hiện tại toàn bộ các chi nhánh không có đủ số lượng đáp ứng cho toàn bộ sản phẩm bạn đã đặt hàng!");
