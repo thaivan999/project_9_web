@@ -17,7 +17,6 @@ public class MilkTeaModel {
 	private String name;
 	private int cost;
 	private String description;
-	private int remainQuantity;
 	private int orderQuantity;
 	private String image;
 
@@ -27,7 +26,6 @@ public class MilkTeaModel {
 	private int milkTeaTypeId;
 
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
-	private BranchModel branchByMilkTea;
 	private CartDetailModel cartDetails;
 
 	private Boolean isEdit = false;

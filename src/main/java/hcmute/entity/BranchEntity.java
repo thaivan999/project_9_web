@@ -43,9 +43,6 @@ public class BranchEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "branchByUser")
 	private Set<UserEntity> accounts;
-		
-	@OneToMany(mappedBy = "branchByMilkTea")
-	private Set<MilkTeaEntity> milkTeas;
 	
 	@OneToMany(mappedBy = "branchByOrder")
 	private Set<OrderEntity> orders;
@@ -114,16 +111,8 @@ public class BranchEntity implements Serializable{
 		this.cityByBranch = cityByBranch;
 	}
 
-	public Set<MilkTeaEntity> getMilkTeas() {
-		return milkTeas;
-	}
-
-	public void setMilkTeas(Set<MilkTeaEntity> milkTeas) {
-		this.milkTeas = milkTeas;
-	}
-
 	public BranchEntity(int idBranch, String name, String addressDetail, String opentime, String image,
-			String description, CityEntity cityByBranch, Set<MilkTeaEntity> milkTeas) {
+			String description, CityEntity cityByBranch) {
 		super();
 		this.idBranch = idBranch;
 		this.name = name;
@@ -133,7 +122,6 @@ public class BranchEntity implements Serializable{
 		this.description = description;
 		this.idCity = idCity;
 		this.cityByBranch = cityByBranch;
-		this.milkTeas = milkTeas;
 	}
 
 	public BranchEntity() {
