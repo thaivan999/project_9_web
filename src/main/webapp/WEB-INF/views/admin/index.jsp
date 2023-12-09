@@ -43,7 +43,17 @@
 		        <div class="col-xl-12">
 				    <div class="card mb-4">
 				        <div class="card-header">
-				            <h5 class="card-title">Doanh thu theo ngày trong tháng này</h5>
+				            <h5 class="card-title">Số lượng bán ra của từng loại trà sữa trong tháng</h5>
+				        </div>
+				        <div class="card-body">
+				            <canvas id="quantityChartByMilkTeaType" width="400" height="200"></canvas>
+				        </div>
+				    </div>
+				</div>	
+		        <div class="col-xl-12">
+				    <div class="card mb-4">
+				        <div class="card-header">
+				            <h5 class="card-title">Doanh thu theo ngày trong tháng</h5>
 				        </div>
 				        <div class="card-body">
 				            <canvas id="revenueChartByDay" width="400" height="200"></canvas>
@@ -59,22 +69,31 @@
 				            <canvas id="revenueChartByMonth" width="400" height="200"></canvas>
 				        </div>
 				    </div>
-				</div>						        
+				</div>					        
 		    </div>
 		</main>
 	</div>	
 	
 	<script>
-		function createChart(revenueData, chartId) {
-		    var labels = revenueData.map(function(item) {
+		function createChart(statisticsData, chartId) {
+		    var labels = statisticsData.map(function(item) {
 		    	if(chartId == 'revenueChartByMonth') 
 		    		return 'Tháng ' + item[0];
-		        return 'Ngày ' + item[0].join('-');
+		    	else if(chartId == 'revenueChartByDay')
+		        	return 'Ngày ' + item[0].join('-');
+		    	return item[0].replace(/\+/g, ' ');
 		    });
 	
-		    var data = revenueData.map(function(item) {
+		    var data = statisticsData.map(function(item) {
 		        return item[1];
 		    });
+		    
+		    var label = '';
+		    if (chartId == 'revenueChartByMonth' || chartId == 'revenueChartByDay') {
+		        label = 'Doanh thu';
+		    } else {
+		        label = 'Số lượng';
+		    }
 	
 		    var ctx = document.getElementById(chartId).getContext('2d');
 		    var myChart = new Chart(ctx, {
@@ -82,7 +101,7 @@
 		        data: {
 		            labels: labels,
 		            datasets: [{
-		                label: 'Doanh thu',
+		                label: label,
 		                data: data,
 		                backgroundColor: 'rgba(75, 192, 192, 0.2)',
 		                borderColor: 'rgba(75, 192, 192, 1)',
@@ -103,8 +122,11 @@
 		createChart(revenueDataByDay, 'revenueChartByDay');
 	
 		var revenueDataByMonth = <c:out value="${revenueDataByMonthJson}" />;
-		console.log(revenueDataByMonth);
 		createChart(revenueDataByMonth, 'revenueChartByMonth');
+		
+		var quantityDataOfMilkTeaType = decodeURIComponent('<c:out value="${quantityDataOfMilkTeaTypeJson}" />');
+		createChart(JSON.parse(quantityDataOfMilkTeaType), 'quantityChartByMilkTeaType');
+		console.log(quantityDataOfMilkTeaType);
 	</script>	
 </body>
 

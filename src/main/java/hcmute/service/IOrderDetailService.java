@@ -14,6 +14,7 @@ public interface IOrderDetailService {
 
 	OrderDetailEntity getById(OrderDetailId id);
 
+	List<Object[]> getQuantityByMilkTeaType();
 
 
 }
