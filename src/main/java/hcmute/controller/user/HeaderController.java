@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -44,7 +45,7 @@ public class HeaderController {
 		int currentPage = page.orElse(1);
 		int pageSize = 8;
 
-		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id_milk_tea"));
 		Page<MilkTeaEntity> resultpaPage = null;
 		resultpaPage = milkTeaService.findAll(pageable);
 
@@ -77,7 +78,7 @@ public class HeaderController {
 			int currentPage = page.orElse(1);
 			int pageSize = 8;
 
-			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id_milk_tea"));
 			Page<MilkTeaEntity> resultpaPage = null;
 			resultpaPage = milkTeaService.findByNameContaining(name, pageable);
 			int totalPages = resultpaPage.getTotalPages();
@@ -113,7 +114,7 @@ public class HeaderController {
 			int currentPage = page.orElse(1);
 			int pageSize = 8;
 
-			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("idMilkTea"));
+			Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id_milk_tea"));
 			Page<MilkTeaEntity> resultPage = milkTeaService.findByNameContaining(name, pageable);
 			int totalPages = resultPage.getTotalPages();
 			if (totalPages > 0) {
@@ -131,13 +132,23 @@ public class HeaderController {
 			model.addAttribute("milkTeaBySorts", resultPage);
 
 			if ("outstanding".equals(method)) {
-				List<MilkTeaEntity> milkTeas = resultPage.getContent();
+				List<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name);
 				milkTeaService.sortByOrderDetailQuantity(milkTeas);
-				model.addAttribute("milkTeaBySorts", resultPage);
+				// Chuyển đổi List<MilkTeaEntity> sang Page<MilkTeaEntity>
+				// Tính toán index bắt đầu và kết thúc của trang
+				int start = (int) pageable.getOffset();
+				int end = Math.min((start + pageable.getPageSize()), milkTeas.size());
+				// Tạo một sublist của danh sách đã sắp xếp để giữ lại các phần tử của trang cụ thể
+				List<MilkTeaEntity> pagedMilkTeas = milkTeas.subList(start, end);
+				// Tạo một đối tượng PageImpl mới với danh sách đã cắt và thông tin phân trang từ resultPage
+				Page<MilkTeaEntity> milkTeaPage = new PageImpl<>(pagedMilkTeas, pageable, milkTeas.size());
+				model.addAttribute("milkTeaBySorts", milkTeaPage);
+				
 			} else if ("low-to-high".equals(method)) {
 				Pageable sortPageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("cost").ascending());
 				Page<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name, sortPageable);
 				model.addAttribute("milkTeaBySorts", milkTeas);
+				
 			} else if ("high-to-low".equals(method)) {
 				Pageable sortPageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("cost").descending());
 				Page<MilkTeaEntity> milkTeas = milkTeaService.findByNameContaining(name, sortPageable);
