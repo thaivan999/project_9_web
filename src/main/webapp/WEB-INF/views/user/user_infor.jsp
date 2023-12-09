@@ -24,30 +24,32 @@
 </head>
 <body>
 	
-    <div class="content" style="margin-top: 80px">
+     <div class="content" style="margin-top: 80px">
         <div class="user-infor-title">Thông tin tài khoản</div>
 
         <div class = "user-infor-container">
-            <form action="/user_infor/saveOrUpdate/${customer.idUser}" method="post">
+            <form action="/user_infor/edit/${users.id}" method="post">
                 <div class = "user-infor user-name">Tên khách hàng</div>
                 <div class ="user-infor user-name-textbox">
-                <input type="text" class = "user-lastname-textbox textbox" name="name" value="${customer.name}" required placeholder="Tên khách hàng">
-                <input type="text" class = "user-surname-textbox textbox" name = "surname" value="${customer.surname}" required placeholder="Họ khách hàng">
+                <input type="text" class = "user-lastname-textbox textbox" name="name" value="${users.name}" placeholder="Tên khách hàng">
+                <input type="text" class = "user-surname-textbox textbox" name = "surname" value="${users.surname}" placeholder="Họ khách hàng">
                 </div>
     
                 <div class = "user-infor user-phone">Số điện thoại</div>
-                <input type="tel" id="phone" class = "user-phone-textbox textbox" name = "phoneNumber" value="${customer.phoneNumber}" readonly>
+                <input type="tel" id="phone" class = "user-phone-textbox textbox" name = "phoneNumber" value="${users.phoneNumber}" readonly>
                 <div class = "user-infor user-birthday">Sinh nhật</div>
-                <input type="date" class = "user-birthday-textbox textbox" name="birthday" value="${customer.birthday}" required>
+                <input type="date" class = "user-birthday-textbox textbox" name="birthday" value="${users.birthday}" readonly>
                 <div class = "user-infor user-email">Email</div>
-                <input type="email" class = "user-email-textbox textbox" name = "email" value="${customer.email}" readonly>
-                <input type="radio" name="gender" id="nam" ${customer.gender == 1 ? "checked" : ""} required>Nam
-                <input type="radio" name="gender" id="nu" ${customer.gender == 0 ? "checked" : ""}>Nữ
+                <input type="email" class = "user-email-textbox textbox" name = "email" value="${users.email}" readonly>
+                <input type="radio" name="gender" id="nam" value="1" ${users.gender == 1 ? 'checked' : ''} required>Nam
+                <input type="radio" name="gender" id="nu" value="0" ${users.gender == 0 ? 'checked' : ''}>Nữ
                 <input type="submit" class="user-update-button" value="Cập nhật" >
                 
             </form>
+	    <div style="color:black">${message }</div>
         </div>
     </div>
+
 
 </body>
 </html>
