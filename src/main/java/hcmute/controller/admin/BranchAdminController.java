@@ -49,9 +49,7 @@ public class BranchAdminController {
 	@PostMapping("saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch,
 			BindingResult result) {
-//		if (result.hasErrors()) {
-//			return new ModelAndView("admin/customize/customize-branch");
-//		}
+		System.out.println();
 		if (branch != null) {
 			BranchEntity entity = new BranchEntity();
 			if (branch.getIdBranch() != null) {
@@ -75,7 +73,6 @@ public class BranchAdminController {
 			if (branch.getIdCity() != null) {
 				entity.setIdCity(branch.getIdCity());
 			}
-			System.out.println(branch.getImageFile());
 			if (!branch.getImageFile().isEmpty()) {
 				
 				UUID uuid = UUID.randomUUID();
