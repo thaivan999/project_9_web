@@ -23,6 +23,7 @@ public class OrderData {
 	    private List<OrderItem> list;
 	    private int orderState;
 	    private int idBranch;
+	    private int fee;
 
 	    @Data
 	    @NoArgsConstructor
