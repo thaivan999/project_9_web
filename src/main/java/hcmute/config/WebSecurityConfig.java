@@ -122,25 +122,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Cấu hình đăng nhập oauth2
 		http.oauth2Login().loginPage("/security/login").failureUrl("/security/login").authorizationEndpoint()
 				.baseUri("/oauth2/authorization").and().userInfoEndpoint().userService(oauthUserService).and()
-				.successHandler((request, response, authentication) -> {
-					String username = authentication.getName();
-					Optional<UserEntity> userOpt = userService.findByUsername(username);
-
-					if (userOpt.isPresent()) {
-						UserEntity user = userOpt.get();
-						int userId = user.getId();
-						Optional<CartEntity> cartOpt = cartService.findCartsByUserId(userId);
-						if(cartOpt.isEmpty()) {
-							CartEntity entity = new CartEntity();
-							entity.setTotalPrice(0);
-							entity.setTotalProduct(0);
-							entity.setCustomerByCart(user);
-							cartService.save(entity);
-						}
-						saveUserIdToCookie(request, response, String.valueOf(userId));
-					}
-					response.sendRedirect("/home");
-				});
+				.successHandler(oauthLoginSuccessHandler);
 
 		// Cấu hình remember me
 		http.rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // expired after 21 days

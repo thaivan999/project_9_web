@@ -67,6 +67,10 @@ public class UserServiceImpl implements IUserService {
     public List<UserEntity> findAll() {
         return userRepo.findAll();
     }
+    @Override
+    public Optional<UserEntity> getUserById(int userId) {
+        return userRepo.findById(userId);
+    }
 ///////////////OAuth///////////////
     @Override
     public void processOAuthPostLogin(String username, String email, String oauth2ClientName) {
@@ -177,5 +181,13 @@ public class UserServiceImpl implements IUserService {
             return true;
         }
     }
+    
+    
+    @Override
+    public Optional<UserEntity> getUserByEmail(String email) {
+        Optional<UserEntity> userOptional = userRepo.findByEmail(email);
+        return userOptional;
+    }
+
 
 }
