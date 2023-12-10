@@ -10,60 +10,61 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import hcmute.entity.UserEntity;
+
 public class CustomUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private String userId;
+	private UserEntity user;
 
-    public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities, String userId) {
-        // Khởi tạo các thuộc tính khác
-        this.userId = userId;
-    }
+	public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities,
+			String userId) {
+		// Khởi tạo các thuộc tính khác
+		this.userId = userId;
+	}
+	
+	 public CustomUserDetails(UserEntity user) {
+	        this.user = user;
+	    }
 
-    // Các phương thức khác của UserDetails
+	// Các phương thức khác của UserDetails
 
-    public String getUserId() {
-        return userId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return user.getAuthorities().stream().map(au -> new SimpleGrantedAuthority(au.getRole().getId()))
+				.peek(System.out::println).collect(Collectors.toList());
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		return user.getUsername();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return user.getEnabled();
 	}
 }
