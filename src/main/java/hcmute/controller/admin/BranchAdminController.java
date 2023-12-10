@@ -72,7 +72,7 @@ public class BranchAdminController {
 			if (branch.getIdCity() != null) {
 				entity.setIdCity(branch.getIdCity());
 			}
-			if (!branch.getImageFile().isEmpty()) {
+			if (branch.getImageFile() !=null && !branch.getImageFile().isEmpty()) {
 				UUID uuid = UUID.randomUUID();
 				String uuString = uuid.toString();
 				entity.setImage(storageService.getStorageFilename(branch.getImageFile(), uuString));

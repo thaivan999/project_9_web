@@ -1,7 +1,11 @@
 package hcmute.model;
 
+import java.util.Set;
+
 import org.springframework.web.multipart.MultipartFile;
 
+import hcmute.entity.BranchMilkTea;
+import hcmute.entity.CartDetailEntity;
 import lombok.*;
 
 @Data
@@ -23,7 +27,7 @@ public class MilkTeaModel {
 	private int branchId;
 
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
-	private CartDetailModel cartDetails;
-
+	private Set<CartDetailEntity> cartDetails;;
+	private Set<BranchMilkTea> branchMilkTeas;
 	private Boolean isEdit = false;
 }

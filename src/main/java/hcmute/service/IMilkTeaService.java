@@ -49,4 +49,6 @@ public interface IMilkTeaService {
 	<S extends MilkTeaEntity> S save(S entity);
 	Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(int idMilkTea, int idBranch);
 
+	Optional<MilkTeaEntity> findById(Integer id);
+
 }

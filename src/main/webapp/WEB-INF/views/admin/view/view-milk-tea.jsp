@@ -78,27 +78,25 @@ svg {
 									<th>Giá</th>
 									<th>Mô tả</th>
 									<th>Tên loại Trà Sữa</th>
-									<th>Số lượng còn lại</th>
 									<th>Hình ảnh</th>
 									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="milkTea" items="${milkTeas}">
-									<c:forEach var="branchMilkTea"
-										items="${milkTea.branchMilkTeas}">
-										<tr>
-											<td>${milkTea.idMilkTea}</td>
-											<td>${milkTea.name}</td>
-											<td>${milkTea.cost}</td>
-											<td>${milkTea.description}</td>
-											<td>${milkTea.milkTeaTypeByMilkTea.name}</td>
-											<td>${branchMilkTea.remainQuantity}</td>
-											<td></td>
-											<td><a class="btn btn-success"
-												href="/admin/milk-tea/edit/${milkTea.idMilkTea}">edit</a></td>
-										</tr>
-									</c:forEach>
+									<tr>
+										<td>${milkTea.idMilkTea}</td>
+										<td>${milkTea.name}</td>
+										<td>${milkTea.cost}</td>
+										<td>${milkTea.description}</td>
+										<td>${milkTea.milkTeaTypeByMilkTea.name}</td>
+										<td><c:url
+												value="/admin/milk-tea/image/${milkTea.image != null ? milkTea.image : 'uploads/abc.jpg' }"
+												var="imgUrl" /> <img width="50px" height="50px"
+											src="${imgUrl }" /></td>
+										<td><a class="btn btn-success"
+											href="/admin/milk-tea/edit/${milkTea.idMilkTea}">edit</a></td>
+									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
