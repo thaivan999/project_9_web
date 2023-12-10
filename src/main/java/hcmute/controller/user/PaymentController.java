@@ -81,7 +81,8 @@ public class PaymentController {
 		model.addAttribute("dataJSON", data);
 		List<PayMethodEntity> listPayMethod = payMethodService.findAll();
 		model.addAttribute("listPayMethod", listPayMethod);
-		Optional<UserEntity> optCustomer = userService.findById(1);
+		int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+		Optional<UserEntity> optCustomer = userService.findById(idUser);
 		if (optCustomer.isPresent()) {
 			UserEntity customer = optCustomer.get();
 			model.addAttribute("customer", customer);
