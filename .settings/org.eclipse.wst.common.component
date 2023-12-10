@@ -14,7 +14,10 @@
                         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+=======
+>>>>>>> fdeafa47f1eaa7a666f1460ac8bd39f626488e67
                         
         
         <property name="context-root" value="project"/>
