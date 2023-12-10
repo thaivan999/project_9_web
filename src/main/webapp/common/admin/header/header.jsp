@@ -213,8 +213,8 @@
 					</a>
 					<div class="collapse" id="collapsePaymethod" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/view-paymethod">Danh sách phương thức thanh toán</a> 
-							<a class="nav-link" href="/admin/customize-paymethod">Cập nhật phương thức thanh toán</a>
+							<a class="nav-link" href="/admin/paymethod">Danh sách phương thức thanh toán</a> 
+							<a class="nav-link" href="/admin/paymethod/add">Cập nhật phương thức thanh toán</a>
 						</nav>
 					</div>
 					<!-- Quản lý đơn hàng người dùng-->
