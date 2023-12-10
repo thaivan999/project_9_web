@@ -88,9 +88,10 @@ svg {
 										<td>${branch.name}</td>
 										<td>${branch.addressDetail}</td>
 										<td>${branch.opentime}</td>
-										<td><%-- <img alt=""
-											src="${branch.image != null ? '/admin/branch/image/' + branch.image : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vectors%2Fdefault-vectors&psig=AOvVaw37Fzk_XQkcuMKKxNR4BLS-&ust=1702070383671000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDn0rag_oIDFQAAAAAdAAAAABAE'}" /> --%>
-										</td>
+										<td><c:url
+												value="/admin/branch/image/${branch.image != null ? branch.image : 'uploads/abc.jpg' }"
+												var="imgUrl" /> <img width="50px" height="50px"
+											src="${imgUrl }" /></td>
 										<td>${branch.idCity}</td>
 										<td>${branch.description}</td>
 										<td><a class="btn btn-success"

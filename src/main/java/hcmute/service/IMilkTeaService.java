@@ -36,7 +36,7 @@ public interface IMilkTeaService {
 	
 	List<MilkTeaEntity> findByNameContaining(@Param("name") String name);
 	
-	Page<MilkTeaEntity> findByNameContaining(String name, Pageable pageable);
+	Page<MilkTeaEntity> findByNameContaining(@Param("name") String name, Pageable pageable);
 
 	void sortByOrderDetailQuantity(List<MilkTeaEntity> milkTeaList);
 
