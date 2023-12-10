@@ -32,7 +32,7 @@ public class UserInfoController {
 	@GetMapping("/{user_id}")
 	public String viewuser(ModelMap model, @PathVariable("user_id") Integer userId) {
 		Optional<UserEntity> opt = userService.findById(userId);
-
+		
 		if (opt.isPresent()) {
 			UserEntity user = opt.get();
 			model.addAttribute("user", user);
@@ -51,6 +51,9 @@ public class UserInfoController {
 //		}
 		if (user != null) {
 			UserEntity entity = userService.findById(userId).get();
+			if(entity.getPassword() == null) {
+				entity.setPassword("");
+			}
 			if (user.getName() != "") {
 				entity.setName(user.getName());
 			}
