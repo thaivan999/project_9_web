@@ -13,6 +13,10 @@ public class SessionServiceImpl {
 	public <T> T getAttribute(String name) {
   	  return (T) session.getAttribute(name);
     }
+    public <T> T get(String name) {
+    	T value = getAttribute(name);
+  	  	return value;
+  	  }
     public void setAttribute(String name,Object value) {
   	  session.setAttribute(name, value);
     }

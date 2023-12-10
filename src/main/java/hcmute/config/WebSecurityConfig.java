@@ -96,6 +96,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//Cấu hình trang đăng nhập
 		http.formLogin()
 			.loginPage("/security/login")
+			.usernameParameter("username")
+            .passwordParameter("password")
 			.loginProcessingUrl("/security/login")
 			.defaultSuccessUrl("/home", false)
 			.failureUrl("/security/login");

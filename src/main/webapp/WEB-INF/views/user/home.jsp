@@ -113,7 +113,7 @@
 			</div>
 		</div>
 		<div class="products">
-			<p class="products-title">Sản phẩm bán chạy${user}</p>
+			<p class="products-title">Sản phẩm bán chạy</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list1}">
 					<div class="col col-1-2">
