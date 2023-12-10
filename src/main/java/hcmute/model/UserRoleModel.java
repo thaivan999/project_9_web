@@ -18,5 +18,6 @@ public class UserRoleModel {
 	private RoleEntity role;
 	private int user_id;
 	private String role_id;
+	private int idBranch;
 	private Boolean isEdit;
 }

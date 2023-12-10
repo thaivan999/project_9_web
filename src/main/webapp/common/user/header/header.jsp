@@ -107,8 +107,6 @@ if (cookies != null) {
 						<li class="header-action-item"><a class="header-action-link"
 							href="/cart">Giỏ hàng của tôi</a></li>
 						<li class="header-action-item"><a class="header-action-link"
-							href="/product_favorite">Sản phẩm yêu thích của tôi</a></li>
-						<li class="header-action-item"><a class="header-action-link"
 							href="/order">Đơn hàng của tôi</a></li>
 						<li class="header-action-item"><a class="header-action-link"
 							href="/help">Trợ giúp</a></li>
@@ -116,6 +114,8 @@ if (cookies != null) {
 							href="/security/forgot-password">Quên mật khẩu</a></li>
 						<li class="header-action-item"><a class="header-action-link"
 							href="/admin/index">Quản trị</a></li>
+							<li class="header-action-item"><a class="header-action-link"
+							href="/manager/index">Manager</a></li>
 						<li class="header-action-item"><a class="header-action-link"
 							href="/security/logout">Đăng xuất</a></li>
 					</c:if>

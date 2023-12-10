@@ -69,7 +69,7 @@ public class UserEntity implements Serializable{
     private List<UserRoleEntity> authorities;
     
     @ManyToOne
-	@JoinColumn(name = "id_branch",insertable = false, updatable = false)
+	@JoinColumn(name = "id_branch")
 	private BranchEntity branchByUser;
     
     @OneToOne(mappedBy = "customerByCart")
