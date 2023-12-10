@@ -45,7 +45,7 @@
 			<div class="sb-sidenav-menu">
 				<div class="nav">
 					<div class="sb-sidenav-menu-heading">Trang tổng quan</div>
-					<a class="nav-link" href="/admin/index">
+					<a class="nav-link" href="/manager/index">
 						<div class="sb-nav-link-icon">
 							<i class="fas fa-tachometer-alt"></i>
 						</div> Báo cáo - Thống kê
@@ -65,8 +65,8 @@
 					<div class="collapse" id="collapseMilkTea"
 						aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/milk-tea">Danh sách trà sữa</a>
-							<a class="nav-link" href="/admin/milk-tea/add">Cập nhật trà
+							<a class="nav-link" href="/manager/milk-tea">Danh sách trà sữa</a>
+							<a class="nav-link" href="/manager/milk-tea/add">Cập nhật trà
 								sữa</a>
 						</nav>
 					</div>

@@ -48,6 +48,30 @@ public class BranchEntity implements Serializable{
 		return idBranch;
 	}
 
+	public Set<UserEntity> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<UserEntity> accounts) {
+		this.accounts = accounts;
+	}
+
+	public Set<OrderEntity> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<OrderEntity> orders) {
+		this.orders = orders;
+	}
+
+	public Set<BranchMilkTea> getBranchMilkTeas() {
+		return branchMilkTeas;
+	}
+
+	public void setBranchMilkTeas(Set<BranchMilkTea> branchMilkTeas) {
+		this.branchMilkTeas = branchMilkTeas;
+	}
+
 	public void setIdBranch(int idBranch) {
 		this.idBranch = idBranch;
 	}
