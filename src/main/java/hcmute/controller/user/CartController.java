@@ -95,7 +95,7 @@ public class CartController {
 		List<Integer> listBranchesEligible = new ArrayList<Integer>();
 		try {
 			OrderProduct orderProduct = objectMapper.readValue(data, OrderProduct.class);
-			Boolean isSuccess = true;
+			Boolean isSuccess = false;
 			for (BranchEntity branch : listBranches) {
 				Boolean isChecked = true;
 				for (OrderItem item : orderProduct.getList()) {
@@ -118,10 +118,8 @@ public class CartController {
 				}
 				if (isChecked) {
 					listBranchesEligible.add(branch.getIdBranch());
-				} else {
-					isSuccess = false;
-					break;
-				}
+					isSuccess = true;
+				} 
 			}
 			if (isSuccess) {
 				String json = objectMapper.writeValueAsString(listBranchesEligible);

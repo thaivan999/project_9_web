@@ -91,7 +91,7 @@ public class ProductsDetailController {
 		int idMilkTea = 0;
 		try {
 			OrderProduct orderProduct = objectMapper.readValue(data, OrderProduct.class);
-			Boolean isSuccess = true;
+			Boolean isSuccess = false;
 			for (BranchEntity branch : listBranches) {
 				Boolean isChecked = true;
 				for (OrderItem item : orderProduct.getList()) {
@@ -114,9 +114,7 @@ public class ProductsDetailController {
 				}
 				if (isChecked) {
 					listBranchesEligible.add(branch.getIdBranch());
-				} else {
-					isSuccess = false;
-					break;
+					isSuccess = true;
 				}
 			}
 			if (isSuccess) {
