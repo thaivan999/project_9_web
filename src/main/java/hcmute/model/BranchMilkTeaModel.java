@@ -1,9 +1,4 @@
 package hcmute.model;
-
-import javax.persistence.EmbeddedId;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import hcmute.embeddedId.BranchMilkTeaId;
 import hcmute.entity.BranchEntity;
 import hcmute.entity.MilkTeaEntity;

@@ -1,10 +1,5 @@
 package hcmute.model;
 
-import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.*;
@@ -19,15 +14,16 @@ public class MilkTeaModel {
 	private String description;
 	private int orderQuantity;
 	private String image;
+	private MultipartFile imageFile;
 
 	// use for product detail
 	private String milkTeaType;
 	private String size;
 	private int milkTeaTypeId;
+	private int branchId;
 
 	private MilkTeaTypeModel milkTeaTypeByMilkTea;
 	private CartDetailModel cartDetails;
 
 	private Boolean isEdit = false;
-	private MultipartFile imageFile;
 }

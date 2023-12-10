@@ -34,7 +34,7 @@
 						href="/admin/index">Trang chủ</a></li>
 					<li class="breadcrumb-item active"><a
 						style="text-decoration: none; color: black"
-						href="/admin/branch-update">Cập nhật chi nhánh</a></li>
+						href="#">Cập nhật chi nhánh</a></li>
 				</ol>
 				<div class="card mb-4">
 					<form class="mt-3 ms-3 me-3 mb-3"

@@ -22,7 +22,7 @@
                 <h1 class="mt-4">CẬP NHẬT THÀNH PHỐ</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="/admin/index">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/city-update">Cập nhật thành phố</a></li>
+                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="#">Cập nhật thành phố</a></li>
                 </ol>
                 <div class="card mb-4">
                     <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/city/saveOrUpdate"/>" method="post">

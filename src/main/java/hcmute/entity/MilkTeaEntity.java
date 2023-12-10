@@ -40,4 +40,7 @@ public class MilkTeaEntity implements Serializable {
 
 	@OneToMany(mappedBy = "milkTeaByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
+	
+	@OneToMany(mappedBy = "milkTeaByBranchMilkTea")
+	private Set<BranchMilkTea> branchMilkTeas;
 }

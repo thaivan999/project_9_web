@@ -1,9 +1,5 @@
 package hcmute.model;
-
-import java.io.Serializable;
 import java.util.Set;
-
-import javax.persistence.*;
 import lombok.*;
 
 @Data
@@ -13,4 +9,5 @@ public class MilkTeaCategoryModel{
 	private int idCategory;
 	private String name;	
 	private Set<MilkTeaTypeModel> milkTeaTypes;
+	private Boolean isEdit = false;
 }
