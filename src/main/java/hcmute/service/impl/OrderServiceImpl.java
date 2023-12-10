@@ -1,6 +1,7 @@
 package hcmute.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,11 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public List<OrderEntity> findAllOrdersByUserId(Integer userId) {
 		return orderRepository.findAllOrdersByUserId(userId);
+	}
+
+	@Override
+	public Optional<OrderEntity> findById(Integer id) {
+		return orderRepository.findById(id);
 	}
 	
 	

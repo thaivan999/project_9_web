@@ -25,7 +25,7 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="#">Cập nhật thành phố</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/city/saveOrUpdate"/>" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customer/saveOrUpdate"/>" method="post">
                         <!-- Name -->
                         <div class="mb-3">
                             <label for="exampleInputName" class="form-label">Tên thành phố*</label> 
