@@ -4,11 +4,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import lombok.*;
-
-
 @Entity
 @Table(name = "branch")
 public class BranchEntity implements Serializable{
@@ -46,6 +41,7 @@ public class BranchEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "branchByOrder")
 	private Set<OrderEntity> orders;
+	
 
 	public int getIdBranch() {
 		return idBranch;
@@ -120,7 +116,7 @@ public class BranchEntity implements Serializable{
 		this.opentime = opentime;
 		this.image = image;
 		this.description = description;
-		this.idCity = idCity;
+		this.idCity = cityByBranch.getIdCity();
 		this.cityByBranch = cityByBranch;
 	}
 

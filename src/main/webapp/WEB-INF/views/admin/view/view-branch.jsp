@@ -71,13 +71,8 @@ svg {
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>ID Branch</th>
+									<th>ID Category</th>
 									<th>Name</th>
-									<th>Address Detail</th>
-									<th>Open Time</th>
-									<th>Image</th>
-									<th>ID City</th>
-									<th>Description</th>
 									<th>Edit</th>
 								</tr>
 							</thead>

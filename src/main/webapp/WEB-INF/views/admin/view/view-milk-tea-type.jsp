@@ -20,7 +20,7 @@
                 <div class="card mb-4">
                     <ol class="breadcrumb mb-4">
                     	<li class="breadcrumb-item"><a style="text-decoration: none" href="/admin/index">Trang chủ</a></li>
-                    	<li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/view-milk-tea-type">Danh sách loại trà sữa</a></li>
+                    	<li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="#">Danh sách loại trà sữa</a></li>
                 	</ol>
                 	<div class="card mb-4">
                     	<div class="card-header">
@@ -45,15 +45,16 @@
                                     	<th>ID</th>
                                     	<th>Name</th>
                                     	<th>Category</th>
+                                    	<th>Edit</th>
                                 	</tr>
                             	</thead>
                             	<tbody>
-                                	<c:forEach var="type" items="${milkTeaTypes}">
+                                	<c:forEach var="milkTeaType" items="${milkTeaTypes}">
                                     	<tr>
-                                        	<td>${type.idType}</td>
-                                        	<td>${type.name}</td>
-                                        	<td>${type.milkTeaCategoryByMilkTeaType.name}</td>
-                                        	<td><a class="btn btn-success" href="/admin/customize-milk-tea-type/saveOrUpdate/${type.idType}">edit</a></td>
+                                        	<td>${milkTeaType.idType}</td>
+                                        	<td>${milkTeaType.name}</td>
+                                        	<td>${milkTeaType.milkTeaCategoryByMilkTeaType.name}</td>
+                                        	<td><a class="btn btn-success" href="/admin/milk-tea-type/edit/${type.idType}">edit</a></td>
                                    	 	</tr>
                                 	</c:forEach>
                             	</tbody>
