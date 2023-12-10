@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import hcmute.entity.UserEntity;
 
-public class CustomUserDetails implements UserDetails {
-
-    private UserEntity user;
+public class CustomUserDetails implements UserDetails, CustomUser {
+	private static final long serialVersionUID = 1L;
+	private UserEntity user;
 
     public CustomUserDetails(UserEntity user) {
         this.user = user;
@@ -60,5 +60,4 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return user.getEnabled();
     }
-
 }

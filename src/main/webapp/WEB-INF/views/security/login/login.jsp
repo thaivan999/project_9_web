@@ -35,13 +35,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+                                        <input type="text" id="username" name="username" value="${username}" class="form-control" placeholder="Username" />
                                         <label class="form-label">User Name</label>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+                                        <input type="password" id="password" name="password" value="${password}" class="form-control" placeholder="Password" />
                                         <label class="form-label">Password</label>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                     <a href="/security/forgot-password" class="ms-auto text-decoration-none">Forgot password?</a>
                                 </div>
                                 <div class="d-grid gap-2 mb-2">
-                                    <button formaction="/security/login" type="submit" id="submit" class="btn btn-lg rounded-3 btn-primary">Sign In</button>
+                                    <button type="submit" id="submit" class="btn btn-lg rounded-3 btn-primary">Sign In</button>
                                 </div>
                                 <hr class="my-4">
                                 <h2 class="fs-5 fw-bold mb-3 text-center">Or</h2>

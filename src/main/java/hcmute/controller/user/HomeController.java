@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.UserEntity;
 import hcmute.model.MilkTeaModel;
+import hcmute.security.CustomUser;
 import hcmute.service.ICartDetailService;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.IUserService;
 import hcmute.service.impl.SessionServiceImpl;
 
 @Controller
@@ -30,12 +33,20 @@ import hcmute.service.impl.SessionServiceImpl;
 public class HomeController {
 	@Autowired
 	IMilkTeaService milkTeaService;
-	
+	@Autowired
+	IUserService userService;
 	@Autowired
     ICartDetailService cartDetailService;
-
+	@Autowired
+	SessionServiceImpl sessionService;
 	@GetMapping("home")
-	public String LoadData(ModelMap model, HttpSession session) {
+	public String LoadData(ModelMap model, @AuthenticationPrincipal CustomUser loggedUser, HttpSession session) {
+//		String username = sessionService.getAttribute("username");
+//		System.err.println(username);
+		if (loggedUser != null) {
+            Optional<UserEntity> user = userService.findByUsername(loggedUser.getUsername());
+            session.setAttribute("user", user);
+        }
 		List<MilkTeaEntity> list1 = milkTeaService.findFiveProductOutstanding();
 		model.addAttribute("list1", list1);
 		List<MilkTeaEntity> list2 = milkTeaService.findFiveProduct();

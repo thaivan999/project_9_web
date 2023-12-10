@@ -29,21 +29,23 @@ import hcmute.service.IForgotPasswordService;
 import hcmute.service.IMilkTeaService;
 import hcmute.service.IUserService;
 import hcmute.service.impl.CookieServiceImpl;
+import hcmute.service.impl.ParamServiceImpl;
 import hcmute.service.impl.SessionServiceImpl;
 import hcmute.utils.CommonUtils;
 import net.bytebuddy.utility.RandomString;
 
 @Controller
 @RequestMapping("security")
-@SessionAttributes("user")
 public class SecurityController {
 	@Autowired
 	IUserService userService;
 	@Autowired
 	UserRepository repo;
-
 	@Autowired
 	IForgotPasswordService passService;
+
+	@Autowired
+	ParamServiceImpl paramService;
 	@Autowired
 	CookieServiceImpl cookieService;
 	@Autowired
@@ -88,24 +90,39 @@ public class SecurityController {
 	
 //////////////Login//////////////
 	@GetMapping("login")
-	public String IndexLogin() {
+	public String IndexLogin(ModelMap model) {
+		 model.addAttribute("username", cookieService.getValue("username"));
+         model.addAttribute("password", cookieService.getValue("password"));
 		return "security/login/login";
 	}
+	
+//	@PostMapping("login")
+//	public String login(ModelMap model, HttpServletRequest req) throws MessagingException {
+//	    String username = paramService.getString("username", "");
+//	    String password = paramService.getString("password", "");
+//	    
+//	    Optional<UserEntity> userOptional = userService.findByUsername(username);
+//	    
+//	    if (userOptional.isPresent()) {
+//	        UserEntity user = userOptional.get();
+//	        
+//	        if (user.getUsername().equals(username) && user.getPassword().equalsIgnoreCase(password)) {
+//	            // Correct username and password
+//	            sessionService.setAttribute("username", username);
+//	            cookieService.Add("username", username, 1);
+//	            cookieService.Add("password", password, 1);
+//	            model.addAttribute("username", cookieService.getValue("username"));
+//	            model.addAttribute("password", cookieService.getValue("password"));
+//	            return "redirect:/home";
+//	        }
+//	    }
+//	    
+//	    // Incorrect username or password, handle accordingly (e.g., show error message)
+//	    model.addAttribute("loginError", "Invalid credentials");
+//	    return "loginPage"; // Adjust the view name accordingly
+//	}
 
-	@PostMapping("login")
-	public String login(ModelMap model, @RequestParam String username, HttpServletRequest req, HttpSession session)
-			throws MessagingException {
-		username = req.getParameter("username");
-		String password = req.getParameter("password");
-		String remember = req.getParameter("remember-me");
-		Optional<UserEntity> user = userService.findByUsername(username);
-		model.addAttribute("user", user);
-		cookieService.Add("username", username, 1);
-		cookieService.Add("password", password, 1);
-		model.addAttribute("username", cookieService.getValue("username"));
-		model.addAttribute("password", cookieService.getValue("password"));
-		return "redirect:/security/login";
-	}
+
 	
 //////////////Register//////////////
 	@GetMapping("register")
