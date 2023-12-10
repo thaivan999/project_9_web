@@ -22,7 +22,7 @@
                 <h1 class="mt-4">QUẢN LÝ TRÀ SỮA</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="/admin/index">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/milk-tea-update">Cập nhật trà sữa</a></li>
+                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="#">Cập nhật trà sữa</a></li>
                 </ol>
                 <div class="card mb-4">
                     <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-milk-tea/saveOrUpdate"/>" method="post" enctype="multipart/from-data">
@@ -53,17 +53,8 @@
                         <!-- ID Type -->
                         <div class="mb-3">
                             <label for="exampleInputTypeId" class="form-label">ID Type*</label> 
-                            <input placeholder="Type ID" ${milkTea.isEdit ? 'readonly':'' } name="idType" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTea.milkTeaTypeByMilkTea.idType}" required="required">
+                            <input placeholder="Type ID" ${milkTea.isEdit ? 'readonly':'' } name="milkTeaTypeId" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTea.milkTeaTypeByMilkTea.idType}" required="required">
                         </div>
-
-                      
-
-                        <!-- ID Branch -->
-                        <div class="mb-3">
-                            <label for="exampleInputBranchId" class="form-label">ID Branch*</label> 
-                            <input placeholder="Branch ID" ${milkTea.isEdit ? 'readonly':'' } name="idBranch" type="text" class="form-control" id="exampleInputBranchId" aria-describedby="branchIdHelp" value="${milkTea.branchByMilkTea.idBranch}" required="required">
-                        </div>
-
                         <!-- Image -->
                         <div class="mb-3">
                             <label for="exampleInputImage" class="form-label">Ảnh*</label> 

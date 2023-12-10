@@ -27,7 +27,7 @@ import hcmute.service.IMilkTeaService;
 import hcmute.service.IStorageService;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("admin/milk-tea")
 public class MilkTeaAdminController {
 
 	@Autowired
@@ -36,19 +36,13 @@ public class MilkTeaAdminController {
 	@Autowired
 	private IStorageService storageService;
 
-	@GetMapping("view-milk-tea")
+	@GetMapping("")
 	public String IndexViewMilkTea(ModelMap model) {
 		List<MilkTeaEntity> milkTeas = milkTeaService.findAll();
 		model.addAttribute("milkTeas", milkTeas);
 		return "admin/view/view-milk-tea";
 	}
-
-	@GetMapping("customize-milk-tea")
-	public String IndexCustomizeMilkTea() {
-		return "admin/customize/customize-milk-tea";
-	}
-
-	@GetMapping("customize-milk-tea/add")
+	@GetMapping("add")
 	public String add(ModelMap model) {
 		MilkTeaModel milkTea = new MilkTeaModel();
 		milkTea.setIsEdit(false);
