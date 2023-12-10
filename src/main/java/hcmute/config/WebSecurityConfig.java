@@ -107,7 +107,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						UserEntity user = userOpt.get();
 						int userId = user.getId();
 						Optional<CartEntity> cartOpt = cartService.findCartsByUserId(userId);
-						if(cartOpt.isEmpty()) {
+						if (cartOpt.isEmpty()) {
 							CartEntity entity = new CartEntity();
 							entity.setTotalPrice(0);
 							entity.setTotalProduct(0);
@@ -130,7 +130,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						UserEntity user = userOpt.get();
 						int userId = user.getId();
 						Optional<CartEntity> cartOpt = cartService.findCartsByUserId(userId);
-						if(cartOpt.isEmpty()) {
+						if (cartOpt.isEmpty()) {
 							CartEntity entity = new CartEntity();
 							entity.setTotalPrice(0);
 							entity.setTotalProduct(0);

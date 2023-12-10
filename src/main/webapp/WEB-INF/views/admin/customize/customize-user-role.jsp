@@ -25,24 +25,52 @@
                     <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/user-role-update">Cập nhật vai trò người dùng</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/user-role-update/create" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3" action="/admin/userrole/saveOrUpdate" method="post">
                         <!-- ID Role -->
                         <div class="mb-3">
                             <label for="exampleInputRoleId" class="form-label">ID Role*</label> 
-                            <input placeholder="Role ID" name="id_role" type="text" class="form-control" id="exampleInputRoleId" aria-describedby="roleIdHelp" value="${userRole.id_role}" ${loguser} required="required">
+                            <input readonly="readonly" placeholder="Role ID" name="role_user_id" type="text" class="form-control" id="exampleInputRoleId" aria-describedby="roleIdHelp" value="${userRole.role_user_id}" required="required">
+                        </div>
+                        
+                        <!-- ID Role -->
+                        <div class="mb-3">
+                            <label for="exampleInputRoleId" class="form-label">User ID</label> 
+                            <input readonly name="user_id" type="text" class="form-control" id="exampleInputUserId" aria-describedby="roleIdHelp" value="${userRole.user.id}" required="required">
+                        </div>
+                        
+                        <!-- ID Role -->
+                        <div class="mb-3">
+                            <label for="exampleInputRoleId" class="form-label">User Name</label> 
+                            <input readonly name="" type="text" class="form-control" id="exampleInputUserName" aria-describedby="roleIdHelp" value="${userRole.user.username}" ${loguser} required="required">
+                        </div>
+                        
+                        <!-- ID Role -->
+                        <div class="mb-3">
+                            <label for="exampleInputRoleId" class="form-label">Email</label> 
+                            <input readonly name="" type="text" class="form-control" id="exampleInputEmail" aria-describedby="roleIdHelp" value="${userRole.user.email}" required="required">
                         </div>
 
                         <!-- Name -->
-                        <div class="mb-3">
-                            <label for="exampleInputName" class="form-label">Tên vai trò*</label> 
-                            <input placeholder="Name" name="name" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" value="${userRole.name}" required="required">
+						<div class="mb-3">
+							<label for="exampleInputGender" class="form-label">Vai trò*</label> <select name="role_id" class="form-select"
+								id="exampleInputGender" required="required">
+								<c:forEach var="role" items="${listRole }">
+									<option value="${role.id }" ${role.id == userRole.role.id ? 'selected' : ''}>${role.name }</option>
+								</c:forEach>
+							</select>
+						</div>
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary" formaction="/admin/user-role-update/create" ${buttonnolog}>Thêm</button>
-                            <button type="submit" class="btn btn-success" formaction="/admin/user-role-update/update" ${buttonlog}>Sửa</button>
-                            <button type="submit" class="btn btn-danger" formaction="/admin/user-role-update/delete" ${buttonlog1} ${buttonxoa}>Xóa</button>
-                        </div>
+							<button type="submit" class="btn btn-success">
+								<c:if test="${branch.isEdit}">
+									<span>Update</span>
+								</c:if>
+								<c:if test="${!branch.isEdit}">
+									<span>Save</span>
+								</c:if>
+							</button>
+						</div>
                     </form>
                     <h6 class="ms-3 text-primary">${message}</h6>
                 </div>
