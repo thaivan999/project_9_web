@@ -78,4 +78,9 @@ public class CartServiceImpl implements ICartService{
 		cartRepository.deleteById(id);
 	}
 	
+	@Override
+	public Optional<CartEntity> findCartsByUserId(int userId) {
+		return cartRepository.findCartsByUserId(userId);
+	}
+	
 }

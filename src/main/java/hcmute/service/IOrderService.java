@@ -18,4 +18,5 @@ public interface IOrderService {
 	
 	List<Object[]> getRevenueByDay();
 	List<Object[]> getRevenueByMonth();
+	List<OrderEntity> findAllOrdersByUserId(Integer userId);
 }

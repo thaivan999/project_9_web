@@ -46,6 +46,7 @@ import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
 import hcmute.service.IPayMethodService;
 import hcmute.service.IUserService;
+import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
 @RequestMapping("payment")
@@ -67,6 +68,9 @@ public class PaymentController {
 	
 	@Autowired
 	IBranchService branchService;
+	
+	@Autowired
+	CookieServiceImpl cookieServiceImpl;
 
 	@GetMapping("")
 	private String displayPayment(ModelMap model, @RequestParam("data") String data, @RequestParam("listBranch") String listBranch)
@@ -129,6 +133,7 @@ public class PaymentController {
 	@GetMapping("/order")
 	private String insertOrder(ModelMap model, @RequestParam("data") String data)
 			throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException {
+		int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
 		data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -160,7 +165,7 @@ public class PaymentController {
 				}
 			}
 
-			Optional<UserEntity> optCustomer = userService.findById(1);
+			Optional<UserEntity> optCustomer = userService.findById(idUser);
 			if (optCustomer.isPresent()) {
 				orderEntity.setCustomerByOrder(optCustomer.get());
 			}

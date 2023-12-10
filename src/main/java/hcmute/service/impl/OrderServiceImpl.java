@@ -48,6 +48,10 @@ public class OrderServiceImpl implements IOrderService{
 		return orderRepository.getRevenueByMonth();
 	}
 	
+	@Override
+	public List<OrderEntity> findAllOrdersByUserId(Integer userId) {
+		return orderRepository.findAllOrdersByUserId(userId);
+	}
 	
 	
 }

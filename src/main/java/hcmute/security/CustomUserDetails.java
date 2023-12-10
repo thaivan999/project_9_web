@@ -10,54 +10,60 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import hcmute.entity.UserEntity;
-
-public class CustomUserDetails implements UserDetails, CustomUser {
+public class CustomUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
-	private UserEntity user;
+	private String userId;
 
-    public CustomUserDetails(UserEntity user) {
-        this.user = user;
-    }
-
-    public CustomUserDetails() {
-    }
-    
-    //Trả về danh sách quyền
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getAuthorities().stream()
-                .map(au -> new SimpleGrantedAuthority( au.getRole().getId()))
-                .peek(System.out::println) 
-                .collect(Collectors.toList());
+    public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities, String userId) {
+        // Khởi tạo các thuộc tính khác
+        this.userId = userId;
     }
 
-    @Override
-    public String getPassword() {
-        return user.getPassword();
+    // Các phương thức khác của UserDetails
+
+    public String getUserId() {
+        return userId;
     }
 
-    @Override
-    public String getUsername() {
-        return user.getUsername();
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return user.getEnabled();
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

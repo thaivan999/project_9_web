@@ -23,4 +23,7 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer>{
 			+ "WHERE YEAR(o.orderDay) = YEAR(GETDATE()) "
 			+ "GROUP BY MONTH(o.orderDay)")
 	List<Object[]> getRevenueByMonth();
+	
+	@Query("SELECT o FROM OrderEntity o WHERE o.customerByOrder.id = :userId")
+    List<OrderEntity> findAllOrdersByUserId(Integer userId);
 }
