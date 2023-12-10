@@ -59,12 +59,16 @@
 										<c:forEach var="branch" items="${branches }" varStatus="loop">
 											<li class="list-branches-item">
 												<div class="d-flex align-items-center">
-													<input data-id="${branch.idBranch }" type="radio" class="radio-branch" name="branchRadio" ${loop.index == 0 ? 'checked' : '' } id="flexRadio${branch.idBranch}${loop.index}"/>
+													<input data-id="${branch.idBranch }" type="radio"
+														class="radio-branch" name="branchRadio"
+														${loop.index == 0 ? 'checked' : '' }
+														id="flexRadio${branch.idBranch}${loop.index}" />
 													<div class="list-branches-item-info"
 														style="margin-left: 12px">
 														<p class="m-0 bold-text list-branches-item-name"
 															style="font-size: 24px;">${branch.name }</p>
-														<p class="bold-text text-secondary fst-italic list-branches-item-address"
+														<p
+															class="bold-text text-secondary fst-italic list-branches-item-address"
 															style="margin-bottom: 6px">${branch.addressDetail }</p>
 														<p class="m-0 branch-fee" style="font-size: 20px;">
 															Phí giao hàng: <span
@@ -128,9 +132,10 @@
 							<c:forEach var="milkTea" items="${listMilkTea}">
 								<li class="cart-item payment-item">
 									<div class="cart-item-container">
-										<img
-											src="https://cdn.phonebooky.com/blog/wp-content/uploads/2020/04/07010330/Brown-Sugar.jpg"
-											class="cart-product-image payment-product-image" />
+										<c:url
+											value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+											var="imgUrl" />
+										<img src="${imgUrl}" class="cart-product-image payment-product-image" />
 										<div class="cart-item-info">
 											<div class="d-flex align-items-center"
 												style="margin-bottom: 6px">

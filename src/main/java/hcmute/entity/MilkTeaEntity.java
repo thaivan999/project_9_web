@@ -32,7 +32,7 @@ public class MilkTeaEntity implements Serializable {
 	private String image;
 
 	@ManyToOne
-	@JoinColumn(name = "id_type", insertable = false, updatable = false)
+	@JoinColumn(name = "id_type")
 	private MilkTeaTypeEntity milkTeaTypeByMilkTea;
 
 	@OneToMany(mappedBy = "milkTeaByCartDetail")

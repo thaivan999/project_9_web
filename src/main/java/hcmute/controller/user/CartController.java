@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +36,7 @@ import hcmute.service.IBranchService;
 import hcmute.service.ICartDetailService;
 import hcmute.service.ICartService;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.IStorageService;
 import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
@@ -56,6 +60,9 @@ public class CartController {
 	
 	@Autowired
 	ICartService cartService;
+	
+	@Autowired
+	private IStorageService storageService;
 	
 	private int getCartId(int idUser) {
 		Optional<CartEntity> cartOpt = cartService.findCartsByUserId(idUser);
@@ -171,5 +178,12 @@ public class CartController {
 			model.addAttribute("listmilkteas", this.getList());
 			return "redirect:/cart?status=fail";
 		}
+	}
+	@GetMapping("/image/{filename:.+}")
+	public ResponseEntity<Resource> serverFile(@PathVariable String filename) {
+		Resource file = storageService.loadAsResource(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file.getFilename() + "\"")
+				.body(file);
 	}
 }

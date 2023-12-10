@@ -40,15 +40,17 @@
 			<!-- List tất cả sản phẩm-->
 
 			<c:if test="${milkTeas.hasContent()}">
-				<div class="col-9 products-item" style="background-image: url('https://phuclong.com.vn/images/background/bg_tealeaf.svg')">
+				<div class="col-9 products-item"
+					style="background-image: url('https://phuclong.com.vn/images/background/bg_tealeaf.svg')">
 					<div class="row gx-4">
 						<c:forEach var="milkTea" items="${milkTeas.content}">
 							<div class="col-4">
 								<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 									<div class="img-container">
-										<img
-											src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-											class="card-image card-img-top" alt="...">
+										<c:url
+											value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+											var="imgUrl" />
+										<img src="${imgUrl}" class="card-image card-img-top" />
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">${milkTea.name}</h5>
@@ -61,12 +63,12 @@
 					<!-- Phan trang -->
 					<c:if test="${milkTeas.totalPages > 1}">
 						<nav aria-label="Page navigation">
-							<ul class="pagination"  style="background-image: url('https://phuclong.com.vn/images/background/bg_tealeaf.svg')">
+							<ul class="pagination"
+								style="background-image: url('https://phuclong.com.vn/images/background/bg_tealeaf.svg')">
 								<li
 									class="${1==milkTeas.number + 1 ? 'page-item active' : 'page-item'}"><a
-									class="page-link"
-									href="<c:url value='/products?page=${1}'/>" tabindex="-1"
-									aria-disabled="true">First</a></li>
+									class="page-link" href="<c:url value='/products?page=${1}'/>"
+									tabindex="-1" aria-disabled="true">First</a></li>
 
 								<c:forEach items="${pageNumbers}" var="pageNumber">
 									<c:if test="${milkTeas.totalPages > 1}">
@@ -96,12 +98,12 @@
 					<div class="row gx-4">
 						<c:forEach var="milkTea" items="${milkTeaByTypes.content}">
 							<div class="col-4">
-								<a href="/product_detail/${milkTea.idMilkTea}"
-									class="card">
+								<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 									<div class="img-container">
-										<img
-											src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-											class="card-image card-img-top" alt="...">
+										<c:url
+											value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+											var="imgUrl" />
+										<img src="${imgUrl}" class="card-image card-img-top" />
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">${milkTea.name}</h5>

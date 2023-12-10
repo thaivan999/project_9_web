@@ -43,9 +43,10 @@
 							<input value="${milktea.idMilkTea }" type="checkbox"
 								class="checkbox-element" /> <label class="cbx"></label>
 						</div>
-						<img
-							src="https://cdn.phonebooky.com/blog/wp-content/uploads/2020/04/07010330/Brown-Sugar.jpg"
-							class="cart-product-image" />
+						<c:url
+							value="/cart/image/${milktea.image != null ? milktea.image : null }"
+							var="imgUrl" />
+						<img src="${imgUrl}" class="cart-product-image" />
 						<div class="cart-item-info">
 							<p class="cart-product-name">${milktea.getName() }</p>
 							<span data-name="${milktea.getSize() }" class="cart-size">${milktea.getSize() }</span>

@@ -25,7 +25,7 @@ public class MilkTeaTypeEntity implements Serializable{
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_category",insertable = false, updatable = false)
+	@JoinColumn(name = "id_category")
 	private MilkTeaCategoryEntity milkTeaCategoryByMilkTeaType;
 	
 	@OneToMany(mappedBy = "milkTeaTypeByMilkTea")

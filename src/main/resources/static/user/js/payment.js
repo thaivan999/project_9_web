@@ -36,6 +36,7 @@ function convertToDateTime(dateString) {
 
 var currentDate = new Date();
 orderDay.textContent = convertToDateTime(currentDate.toISOString());
+shipDay.textContent = convertToDateTime(currentDate.toISOString());
 
 function convertToVal(str) {
 	str = str.slice(0, -1);
