@@ -29,14 +29,14 @@ public class OrderEntity implements Serializable {
 	@Column(name = "final_price")
 	private int finalPrice;
 
-	@Column(name = "order_day")
-	private LocalDate orderDay;
+	@Column(name = "order_day", columnDefinition = "datetime2")
+	private LocalDateTime orderDay;
 
 	@Column(name = "order_state")
 	private int orderState;
 
-	@Column(name = "ship_day")
-	private LocalDate shipDay;
+	@Column(name = "ship_day", columnDefinition = "datetime2")
+	private LocalDateTime shipDay;
 	
 	@Column(name = "fee")
 	private int fee;
@@ -66,8 +66,8 @@ public class OrderEntity implements Serializable {
 	@OneToMany(mappedBy = "orderByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
 
-	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDate orderDay,
-			int orderState, LocalDate shipDay, String note, String address, String phoneNumber,
+	public OrderEntity(Integer idOrder, int totalProduct, int totalPrice, int finalPrice, LocalDateTime orderDay,
+			int orderState, LocalDateTime shipDay, String note, String address, String phoneNumber,
 			PayMethodEntity payMethodByOrder, UserEntity customerByOrder, Set<OrderDetailEntity> orderDetails, BranchEntity branchByOrder) {
 		super();
 		this.idOrder = idOrder;
@@ -138,12 +138,12 @@ public class OrderEntity implements Serializable {
 		this.finalPrice = finalPrice;
 	}
 
-	public LocalDate getOrderDay() {
+	public LocalDateTime getOrderDay() {
 		return orderDay;
 	}
 
-	public void setOrderDay(LocalDate orderDay) {
-		this.orderDay = orderDay;
+	public void setOrderDay(LocalDateTime localDateTime) {
+		this.orderDay = localDateTime;
 	}
 
 	public int getOrderState() {
@@ -154,11 +154,11 @@ public class OrderEntity implements Serializable {
 		this.orderState = orderState;
 	}
 
-	public LocalDate getShipDay() {
+	public LocalDateTime getShipDay() {
 		return shipDay;
 	}
 
-	public void setShipDay(LocalDate shipDay) {
+	public void setShipDay(LocalDateTime shipDay) {
 		this.shipDay = shipDay;
 	}
 

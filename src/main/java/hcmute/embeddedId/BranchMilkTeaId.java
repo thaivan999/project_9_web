@@ -20,4 +20,7 @@ public class BranchMilkTeaId implements Serializable {
 	
 	@Column(name = "id_milk_tea")
 	private int idMilkTea;
+	
+	@Column(name = "size", columnDefinition = "nvarchar(50)")
+	private String size;
 }

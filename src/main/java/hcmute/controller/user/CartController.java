@@ -104,7 +104,7 @@ public class CartController {
 					if (entity.isPresent()) {
 						int idBranch = branch.getIdBranch();
 						Optional<Integer> remainQuantityOptional = branchMilkTeaService
-								.findRemainQuantityByBranchIdAndMilkTeaId(idBranch, idMilkTea);
+								.findRemainQuantityByBranchIdAndMilkTeaId(idBranch, idMilkTea, item.getSize());
 						if (remainQuantityOptional.isPresent()) {
 							if (remainQuantityOptional.get() < Integer.parseInt(item.getQuantity())) {
 								isChecked = false;

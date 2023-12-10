@@ -18,8 +18,8 @@ public class BranchMilkTeaServiceImpl implements IBranchMilkTeaService{
 	}
 	
 	@Override
-	public Optional<Integer> findRemainQuantityByBranchIdAndMilkTeaId(int idBranch, int idMilkTea) {
-		return branchMilkTeaRepository.findRemainQuantityByBranchIdAndMilkTeaId(idBranch, idMilkTea);
+	public Optional<Integer> findRemainQuantityByBranchIdAndMilkTeaId(int idBranch, int idMilkTea, String size) {
+		return branchMilkTeaRepository.findRemainQuantityByBranchIdAndMilkTeaId(idBranch, idMilkTea, size);
 	}
 	
 }
