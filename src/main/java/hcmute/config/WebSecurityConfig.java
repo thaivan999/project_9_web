@@ -89,6 +89,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/home/**", "/security/**", "/api/places", "/security/verify/**", "/oauth2/**",
 						"/oauth/authorize", "/**/*.css", "/**/*.js")
 				.permitAll()
+				// Phải có quyền MANAGER
+				.antMatchers("/manager/index", "/manager/**").hasAuthority("MANAGER")
 				// Phải có quyền ADMIN
 				.antMatchers("/admin/index", "/admin/**", "/admin/branch/**").hasAuthority("ADMIN")
 				// Đường dẫn còn phải phải đăng nhập
