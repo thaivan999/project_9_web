@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import hcmute.entity.UserEntity;
 import hcmute.model.UserModel;
@@ -27,12 +28,10 @@ public class UserInfoController {
 	@Autowired
 	IUserService userService;
 
-	//code cũ chạy được mà sao giờ gộp 2 bảng xong hết chạy được
-	
 	@GetMapping("/{user_id}")
 	public String viewuser(ModelMap model, @PathVariable("user_id") Integer userId) {
 		Optional<UserEntity> opt = userService.findById(userId);
-		
+
 		if (opt.isPresent()) {
 			UserEntity user = opt.get();
 			model.addAttribute("user", user);
@@ -45,32 +44,23 @@ public class UserInfoController {
 
 	@PostMapping("/edit/{user_id}")
 	public ModelAndView edit(ModelMap model, @PathVariable("user_id") Integer userId,
-			@Valid @ModelAttribute("user") UserModel user, BindingResult result) {
-//		if (result.hasErrors()) {
-//			return new ModelAndView("user/error");
-//		}
+			RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") UserModel user,
+			BindingResult result) {
+
+
 		if (user != null) {
 			UserEntity entity = userService.findById(userId).get();
-			if(entity.getPassword() == null) {
-				entity.setPassword("");
-			}
-			if (user.getName() != "") {
+			if (entity != null) {
+				// Cập nhật thông tin người dùng
 				entity.setName(user.getName());
-			}
-			if (user.getSurname() != "") {
 				entity.setSurname(user.getSurname());
-			}
-			if (user.getGender() == 1 || user.getGender() == 0) {
 				entity.setGender(user.getGender());
+				entity.setPhoneNumber(user.getPhoneNumber());
+
+				userService.save(entity);
+				redirectAttributes.addFlashAttribute("message", "Thông tin đã được cập nhật thành công!");
 			}
-
-//			BeanUtils.copyProperties(user, entity);
-			userService.save(entity);
-			model.addAttribute("message", "Thông tin đã được cập nhật thành công!");
-		} else {
-			model.addAttribute("message", "Vui lòng không để trống thông tin!");
 		}
-
 		return new ModelAndView("redirect:/user_infor/" + userId);
 
 	}
