@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -71,8 +72,8 @@ public class UserEntity implements Serializable{
 	@JoinColumn(name = "id_branch",insertable = false, updatable = false)
 	private BranchEntity branchByUser;
     
-    @OneToMany(mappedBy = "customerByCart")
-	private Set<CartEntity> carts;
+    @OneToOne(mappedBy = "customerByCart")
+	private CartEntity cart;
 	
 	@OneToMany(mappedBy = "customerByOrder")
 	private Set<OrderEntity> orders;

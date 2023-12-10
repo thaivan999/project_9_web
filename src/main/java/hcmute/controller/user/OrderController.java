@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hcmute.entity.BranchEntity;
+import hcmute.entity.CartEntity;
 import hcmute.entity.OrderDetailEntity;
 import hcmute.entity.OrderEntity;
 import hcmute.entity.PayMethodEntity;
 import hcmute.entity.UserEntity;
 import hcmute.service.IBranchService;
+import hcmute.service.ICartService;
 import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
+import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
 @RequestMapping("order")
@@ -33,10 +36,17 @@ public class OrderController {
 	@Autowired
 	IBranchService branchService;
 	
+	@Autowired
+	ICartService cartService;
+	
+	@Autowired
+	CookieServiceImpl cookieServiceImpl;
+	
 	@RequestMapping("")
 	public String showAllOrders(ModelMap model) {
 		try {
-			List<OrderEntity> list = orderService.findAll();
+			int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+			List<OrderEntity> list = orderService.findAllOrdersByUserId(idUser);
 			model.addAttribute("orders", list);	
 			
 		} catch (Exception e) {
@@ -48,7 +58,8 @@ public class OrderController {
 	@RequestMapping("order-detail/{idOrder}")
 	public String showOrderDetail(ModelMap model,@PathVariable("idOrder") Integer idOrder) {
 		try {
-			List<OrderEntity> list = orderService.findAll();
+			int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+			List<OrderEntity> list = orderService.findAllOrdersByUserId(idUser);
 			OrderEntity userOrder = orderService.getById(idOrder);
 			model.addAttribute("orders", list);
 			model.addAttribute("userOrder", userOrder);	

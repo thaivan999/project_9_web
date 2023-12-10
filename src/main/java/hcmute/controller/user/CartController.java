@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import hcmute.embeddedId.CartDetailId;
 import hcmute.entity.BranchEntity;
 import hcmute.entity.CartDetailEntity;
+import hcmute.entity.CartEntity;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.model.OrderProduct;
@@ -30,7 +31,9 @@ import hcmute.model.OrderProduct.OrderItem;
 import hcmute.service.IBranchMilkTeaService;
 import hcmute.service.IBranchService;
 import hcmute.service.ICartDetailService;
+import hcmute.service.ICartService;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
 @RequestMapping("cart")
@@ -47,9 +50,23 @@ public class CartController {
 
 	@Autowired
 	IBranchMilkTeaService branchMilkTeaService;
+	
+	@Autowired
+	CookieServiceImpl cookieServiceImpl;
+	
+	@Autowired
+	ICartService cartService;
+	
+	private int getCartId(int idUser) {
+		Optional<CartEntity> cartOpt = cartService.findCartsByUserId(idUser);
+		CartEntity cart = cartOpt.get();
+		return cart.getIdCart();
+	}
 
 	private List<MilkTeaModel> getList() {
-		List<CartDetailId> milkTeas = cartDetailService.findMilkTeaByCartId(1);
+		int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+		int idCart = getCartId(idUser);
+		List<CartDetailId> milkTeas = cartDetailService.findMilkTeaByCartId(idCart);
 		List<MilkTeaModel> listmilkteas = new ArrayList<MilkTeaModel>();
 		for (CartDetailId result : milkTeas) {
 			Optional<MilkTeaEntity> milktea = milkTeaService.findByIdMilkTea(result.getIdMilkTea());
@@ -141,7 +158,9 @@ public class CartController {
 
 	@GetMapping("/delete")
 	public String delete(ModelMap model, @RequestParam("idMilkTea") int idMilkTea, @RequestParam("size") String size) {
-		CartDetailId cartDetailId = new CartDetailId(1, idMilkTea, size);
+		int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+		int idCart = getCartId(idUser);
+		CartDetailId cartDetailId = new CartDetailId(idCart, idMilkTea, size);
 		Optional<CartDetailEntity> cartDetail = cartDetailService.findById(cartDetailId);
 		if (cartDetail.isPresent()) {
 			CartDetailEntity cartDetailEntity = cartDetail.get();

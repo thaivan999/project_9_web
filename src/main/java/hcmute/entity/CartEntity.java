@@ -29,8 +29,8 @@ public class CartEntity implements Serializable{
 	@Column(name = "total_price")
 	private int totalPrice;
 	
-	@ManyToOne
-	@JoinColumn(name = "id",insertable = false, updatable = false)
+	@OneToOne
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private UserEntity customerByCart;
 	
 	@OneToMany(mappedBy = "cartByCartDetail")

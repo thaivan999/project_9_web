@@ -32,4 +32,6 @@ public interface ICartService {
 	<S extends CartEntity> S save(S entity);
 
 	void deleteById(Integer id);
+	
+	public Optional<CartEntity> findCartsByUserId(int userId);
 }
