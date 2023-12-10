@@ -142,6 +142,21 @@
 							<a class="nav-link" href="/admin/milk-tea-type/add">Cập nhật loại trà sữa</a>
 						</nav>
 					</div>
+					<!-- Quản lý chi nhánh - trà sữa-->
+					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBranchMilkTeaType" aria-expanded="false" aria-controls="collapseBranchMilkTeaType">
+						<div class="sb-nav-link-icon">
+							
+						</div> Quản lý chi nhánh - trà sữa
+						<div class="sb-sidenav-collapse-arrow">
+							<i class="fas fa-angle-down"></i>
+						</div>
+					</a>
+					<div class="collapse" id="collapseBranchMilkTeaType" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+						<nav class="sb-sidenav-menu-nested nav">
+							<a class="nav-link" href="/admin/branch-milk-tea">Danh sách loại trà sữa</a> 
+							<a class="nav-link" href="/admin/branch-milk-tea/add">Cập nhật loại trà sữa</a>
+						</nav>
+					</div>
 					<!-- Quản lý trà sữa -->
 					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMilkTea" aria-expanded="false" aria-controls="collapseMilkTea">
 						<div class="sb-nav-link-icon">
