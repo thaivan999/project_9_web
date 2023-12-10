@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import hcmute.entity.BranchEntity;
 import hcmute.entity.OrderEntity;
 
 @Repository
@@ -26,4 +27,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer>{
 	
 	@Query("SELECT o FROM OrderEntity o WHERE o.customerByOrder.id = :userId")
     List<OrderEntity> findAllOrdersByUserId(Integer userId);
+	
+	List<OrderEntity> findByBranchByOrder(BranchEntity branchEntity);
 }

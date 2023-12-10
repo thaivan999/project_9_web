@@ -32,31 +32,6 @@
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${cartMessage != null}">
-			<div class="alert" role="alert">
-				<c:choose>
-					<c:when test="${cartMessage eq 'success'}">
-						<div class="alert alert-success">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-label="Close">&times;</button>
-							<i>Bạn đã thêm sản phẩm này vào <a
-								class="black-text bold-text" href="/product_favorite">sản
-									phẩm yêu thích</a> thành công.
-							</i>
-						</div>
-					</c:when>
-					<c:when test="${cartMessage eq 'fail'}">
-						<div class="alert alert-danger">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-label="Close">&times;</button>
-							<i>Sản phẩm này đã có trong <a class="black-text bold-text"
-								href="/product_favorite">sản phẩm yêu thích</a> của bạn.
-							</i>
-						</div>
-					</c:when>
-				</c:choose>
-			</div>
-		</c:if>
 		<div id="homeSlider" class="carousel slide" data-ride="carousel">
 			<!--Indicators-->
 			<ul class="carousel-indicators">
@@ -129,8 +104,6 @@
 								<h5 class="card-title">${milkTea.name}</h5>
 								<p class="card-price">${milkTea.cost}đ</p>
 							</div>
-						</a> <a href="/home/addtofavorite?id=${milkTea.idMilkTea}"
-							class="favourite-icon"> <i class="fa-regular fa-heart"></i>
 						</a>
 					</div>
 				</c:forEach>
@@ -151,8 +124,6 @@
 								<h5 class="card-title">${milkTea.name}</h5>
 								<p class="card-price">${milkTea.cost}đ</p>
 							</div>
-						</a><a href="/home/addtofavorite?id=${milkTea.idMilkTea}"
-							class="favourite-icon"> <i class="fa-regular fa-heart"></i>
 						</a>
 					</div>
 				</c:forEach>

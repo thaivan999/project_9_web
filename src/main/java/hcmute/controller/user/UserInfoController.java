@@ -59,6 +59,7 @@ public class UserInfoController {
 
 				userService.save(entity);
 				redirectAttributes.addFlashAttribute("message", "Thông tin đã được cập nhật thành công!");
+				redirectAttributes.addFlashAttribute("status", "success");
 			}
 		}
 		return new ModelAndView("redirect:/user_infor/" + userId);

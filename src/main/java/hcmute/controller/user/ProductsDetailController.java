@@ -24,6 +24,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hcmute.entity.BranchEntity;
+import hcmute.entity.CartEntity;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.model.OrderProduct;
@@ -31,7 +32,9 @@ import hcmute.model.OrderProduct.OrderItem;
 import hcmute.service.IBranchMilkTeaService;
 import hcmute.service.IBranchService;
 import hcmute.service.ICartDetailService;
+import hcmute.service.ICartService;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
 @RequestMapping("product_detail")
@@ -44,6 +47,10 @@ public class ProductsDetailController {
 	IBranchService branchService;
 	@Autowired
 	IBranchMilkTeaService branchMilkTeaService;
+	@Autowired
+	CookieServiceImpl cookieServiceImpl;
+	@Autowired
+	ICartService cartService;
 
 	@GetMapping("/{id}")
 	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, RedirectAttributes redirectAttributes) {
@@ -152,14 +159,21 @@ public class ProductsDetailController {
 		}
 		return "";
 	}
+	
+	private int getCartId(int idUser) {
+		Optional<CartEntity> cartOpt = cartService.findCartsByUserId(idUser);
+		CartEntity cart = cartOpt.get();
+		return cart.getIdCart();
+	}
 
 	@GetMapping("/addtocart")
 	public RedirectView addToCart(RedirectAttributes redirectAttributes, @RequestParam("id") int id,
 			@RequestParam("size") String size) {
 
 		try {
-			// tạm để id cart là 1
-			cartDetailService.addProductToCart(1, id, size);
+			int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+			int idCart = getCartId(idUser);
+			cartDetailService.addProductToCart(idCart, id, size);
 			redirectAttributes.addFlashAttribute("cartMessage", "success");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("cartMessage", "fail");

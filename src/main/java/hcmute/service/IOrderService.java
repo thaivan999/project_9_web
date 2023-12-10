@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.repository.query.Param;
 
+import hcmute.entity.BranchEntity;
 import hcmute.entity.OrderEntity;
 
 public interface IOrderService {
@@ -21,4 +22,5 @@ public interface IOrderService {
 	List<Object[]> getRevenueByMonth();
 	List<OrderEntity> findAllOrdersByUserId(Integer userId);
 	Optional<OrderEntity> findById(Integer id);
+	List<OrderEntity> findByBranchByOrder(BranchEntity branchEntity);
 }

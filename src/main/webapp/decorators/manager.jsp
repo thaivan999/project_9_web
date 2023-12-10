@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MANAGER</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="<c:url value='/admin/css/styles.css'/>" rel="stylesheet" />
 <link href="<c:url value='/admin/css/my-style.css'/>" rel="stylesheet" />

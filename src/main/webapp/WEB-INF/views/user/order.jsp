@@ -75,6 +75,7 @@
 							<div class="card border">
 								<div class="card-header">
 									<h5>Đơn hàng: ${userOrder.idOrder}</h5>
+									<h5>Trạng thái: <i class="text-danger">${userOrder.orderState == 0 ? "Chờ xử lý" : userOrder.orderState == 1 ? "Đã xác nhận" : userOrder.orderState == 2 ? "Đang giao hàng" : "Đã nhận hàng" }</i></h5>
 								</div>
 								<div class="card-body">
 									<!-- Danh sách món -->

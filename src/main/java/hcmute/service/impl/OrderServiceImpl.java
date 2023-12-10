@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hcmute.entity.BranchEntity;
 import hcmute.entity.OrderEntity;
 import hcmute.repository.OrderRepository;
 import hcmute.service.IOrderService;
@@ -57,6 +58,11 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public Optional<OrderEntity> findById(Integer id) {
 		return orderRepository.findById(id);
+	}
+	
+	@Override
+	public List<OrderEntity> findByBranchByOrder(BranchEntity branchEntity) {
+		return orderRepository.findByBranchByOrder(branchEntity);
 	}
 	
 	
