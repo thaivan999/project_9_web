@@ -40,6 +40,7 @@
 					<form class="mt-3 ms-3 me-3 mb-3"
 						action="<c:url value="/admin/branch/saveOrUpdate"/>" method="post"
 						enctype="multipart/form-data">
+						<input type="hidden" name="idBranch" value="${branch.idBranch}">
 						<!-- Name -->
 						<div class="mb-3">
 							<label for="exampleInputName" class="form-label">Tên chi
@@ -71,9 +72,7 @@
 						<!-- Image -->
 						<script type="text/javascript">
 							function chooseFile(fileInput) {
-								
 								if (fileInput.files && fileInput.files[0]) {
-									
 									var reader = new FileReader();
 									reader.onload = function(e) {
 										document.querySelector("#image").setAttribute(
@@ -81,17 +80,18 @@
 										document.querySelector("#image").classList.remove("hidden");
 									}
 									reader.readAsDataURL(fileInput.files[0]);
-									
 								}
-								
 							}
 						</script>
+						
+
 						<div class="mb-3" style="display: flex; flex-direction: column;">
 							<label for="exampleInputImage" class="form-label">Hình
 								ảnh*</label>
 							<c:url
 								value="/admin/branch/image/${branch.image != null ? branch.image : null }"
 								var="imgUrl" />
+							<input type="hidden" name="image" value="${branch.image}">
 							<img class="${branch.image == null ? 'hidden':''}" id="image" width="200px" height="200px" src="${imgUrl}" />
 							<input onchange="chooseFile(this)" placeholder="Image"
 								name="imageFile" type="file" class="form-control-file"

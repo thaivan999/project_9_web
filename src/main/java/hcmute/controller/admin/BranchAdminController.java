@@ -49,11 +49,10 @@ public class BranchAdminController {
 	@PostMapping("saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("branch") BranchModel branch,
 			BindingResult result) {
-		System.out.println();
 		if (branch != null) {
 			BranchEntity entity = new BranchEntity();
 			if (branch.getIdBranch() != null) {
-				/* entity.setIdBranch(); */
+				entity.setIdBranch(branch.getIdBranch());
 			}
 			if (branch.getName() != null) {
 				entity.setName(branch.getName());
@@ -74,7 +73,6 @@ public class BranchAdminController {
 				entity.setIdCity(branch.getIdCity());
 			}
 			if (!branch.getImageFile().isEmpty()) {
-				
 				UUID uuid = UUID.randomUUID();
 				String uuString = uuid.toString();
 				entity.setImage(storageService.getStorageFilename(branch.getImageFile(), uuString));
@@ -84,7 +82,7 @@ public class BranchAdminController {
 			String message = branch.getIsEdit() ? "Branch đã được cập nhật thành công"
 					: "Branch đã được thêm thành công";
 			model.addAttribute("message", message);
-		} else {
+		}else {
 			model.addAttribute("message", "Không thể lưu Branch với dữ liệu null");
 		}
 
