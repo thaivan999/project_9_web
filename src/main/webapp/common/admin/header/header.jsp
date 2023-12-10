@@ -138,8 +138,8 @@
 					</a>
 					<div class="collapse" id="collapseMilkTeaType" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/view-milk-tea-type">Danh sách loại trà sữa</a> 
-							<a class="nav-link" href="/admin/customize-milk-tea-type">Cập nhật loại trà sữa</a>
+							<a class="nav-link" href="/admin/milk-tea-type">Danh sách loại trà sữa</a> 
+							<a class="nav-link" href="/admin/milk-tea-type/add">Cập nhật loại trà sữa</a>
 						</nav>
 					</div>
 					<!-- Quản lý trà sữa -->
