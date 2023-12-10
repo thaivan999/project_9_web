@@ -168,8 +168,8 @@
 					</a>
 					<div class="collapse" id="collapseMilkTeaCategory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/view-milk-tea-category">Danh sách danh mục trà sữa</a> 
-							<a class="nav-link" href="/admin/customize-milk-tea-category">Cập nhật danh mục trà sữa</a>
+							<a class="nav-link" href="/admin/category">Danh sách danh mục trà sữa</a> 
+							<a class="nav-link" href="/admin/category/add">Cập nhật danh mục trà sữa</a>
 						</nav>
 					</div>
 					<!-- Quản lý chi tiết đơn hàng -->

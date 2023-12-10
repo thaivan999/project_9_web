@@ -1,61 +1,61 @@
-//package hcmute.controller.admin;
-//
-//import java.util.List;
-//import java.util.Optional;
-//import java.util.UUID;
-//
-//import javax.validation.Valid;
-//
-//import org.springframework.beans.BeanUtils;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.core.io.Resource;
-//import org.springframework.http.HttpHeaders;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.ModelMap;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.servlet.ModelAndView;
-//
-//import hcmute.entity.MilkTeaEntity;
-//import hcmute.model.MilkTeaModel;
-//import hcmute.service.IMilkTeaService;
-//import hcmute.service.IStorageService;
-//
-//@Controller
-//@RequestMapping("admin")
-//public class MilkTeaAdminController {
-//
-//	@Autowired
-//	private IMilkTeaService milkTeaService;
-//
-//	@Autowired
-//	private IStorageService storageService;
-//
-//	@GetMapping("view-milk-tea")
-//	public String IndexViewMilkTea(ModelMap model) {
-//		List<MilkTeaEntity> milkTeas = milkTeaService.findAll();
-//		model.addAttribute("milkTeas", milkTeas);
-//		return "admin/view/view-milk-tea";
-//	}
-//
-//	@GetMapping("customize-milk-tea")
-//	public String IndexCustomizeMilkTea() {
-//		return "admin/customize/customize-milk-tea";
-//	}
-//
-//	@GetMapping("customize-milk-tea/add")
-//	public String add(ModelMap model) {
-//		MilkTeaModel milkTea = new MilkTeaModel();
-//		milkTea.setIsEdit(false);
-//		model.addAttribute("milkTea", milkTea);
-//		return "admin/customize/customize-milk-tea";
-//	}
-//
+package hcmute.controller.admin;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import hcmute.entity.MilkTeaEntity;
+import hcmute.model.MilkTeaModel;
+import hcmute.service.IMilkTeaService;
+import hcmute.service.IStorageService;
+
+@Controller
+@RequestMapping("admin")
+public class MilkTeaAdminController {
+
+	@Autowired
+	private IMilkTeaService milkTeaService;
+
+	@Autowired
+	private IStorageService storageService;
+
+	@GetMapping("view-milk-tea")
+	public String IndexViewMilkTea(ModelMap model) {
+		List<MilkTeaEntity> milkTeas = milkTeaService.findAll();
+		model.addAttribute("milkTeas", milkTeas);
+		return "admin/view/view-milk-tea";
+	}
+
+	@GetMapping("customize-milk-tea")
+	public String IndexCustomizeMilkTea() {
+		return "admin/customize/customize-milk-tea";
+	}
+
+	@GetMapping("customize-milk-tea/add")
+	public String add(ModelMap model) {
+		MilkTeaModel milkTea = new MilkTeaModel();
+		milkTea.setIsEdit(false);
+		model.addAttribute("milkTea", milkTea);
+		return "admin/customize/customize-milk-tea";
+	}
+
 //	@PostMapping("customize-milk-tea/saveOrUpdate")
 //	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("milkTea") MilkTeaModel milkTea,
 //			BindingResult result) {
@@ -131,4 +131,4 @@
 //		model.addAttribute("message", "milkTea không tồn tại");
 //		return new ModelAndView("forward:/admin/view-milk-tea", model);
 //	}
-//}
+}

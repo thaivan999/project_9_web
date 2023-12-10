@@ -56,11 +56,7 @@
                             <input placeholder="Type ID" ${milkTea.isEdit ? 'readonly':'' } name="idType" type="text" class="form-control" id="exampleInputTypeId" aria-describedby="typeIdHelp" value="${milkTea.milkTeaTypeByMilkTea.idType}" required="required">
                         </div>
 
-                        <!-- Remain Quantity -->
-                        <div class="mb-3">
-                            <label for="exampleInputRemainQuantity" class="form-label">Số lượng còn lại*</label> 
-                            <input placeholder="Remain Quantity" name="remainQuantity" type="text" class="form-control" id="exampleInputRemainQuantity" aria-describedby="remainQuantityHelp" value="${milkTea.remainQuantity}" required="required">
-                        </div>
+                      
 
                         <!-- ID Branch -->
                         <div class="mb-3">
