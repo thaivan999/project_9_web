@@ -24,12 +24,16 @@ input{
     border-radius: 10px;
     border: 1px solid;
 }
-.user-phone-textbox,
+
 .user-birthday-textbox,
 .user-email-textbox{
     width:100%;
     background-color: #d6d6d6;
     border: none;
+}
+.user-phone-textbox{
+    width:100%;
+    border: 1px solid;
 }
 .textbox{
     padding:8px;

@@ -16,4 +16,6 @@ public interface UserRoleRepository extends JpaRepository<UserRoleEntity, Intege
     // count accounts have role is user
     @Query("SELECT COUNT(a) FROM UserRoleEntity a WHERE a.role.id = 'USER'")
     int countUser();
+    
+    List<UserRoleEntity> findByRoleId(String id);
 }

@@ -15,8 +15,6 @@ public interface IUserService {
 
     Optional<UserEntity> findByEmail(String email);
 
-    UserEntity save(UserEntity user);
-
     UserEntity update(UserEntity user);
 
     void deleteByUsername(String id);
@@ -39,4 +37,10 @@ public interface IUserService {
 
     //Update thông tin theo DB
     void updateAuthenticationTypeDB(String username, String oauth2ClientName);
+    
+
+	Optional<UserEntity> getUserById(int userId);
+
+	Optional<UserEntity> getUserByEmail(String email);
+    <S extends UserEntity> S save(S entity);
 }

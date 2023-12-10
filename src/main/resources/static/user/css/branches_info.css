@@ -5,7 +5,10 @@
 }
 
 .store_image {
-	width: 100%;
+	width: 530px;
+	height: 400px;
+	background-repeat: no-repeat;
+	background-size: cover;
 	flex-shrink: 0;
 	max-width: 100%;
 	border-radius: 12px;

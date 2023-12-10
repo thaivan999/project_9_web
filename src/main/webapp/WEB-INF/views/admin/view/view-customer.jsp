@@ -53,18 +53,20 @@
                                     <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Gender</th>
+                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="customer" items="${customers}">
+                                <c:forEach var="customer" items="${listUser}">
                                     <tr>
-                                        <td>${customer.id_user}</td>
+                                        <td>${customer.id}</td>
                                         <td>${customer.surname}</td>
                                         <td>${customer.name}</td>
                                         <td>${customer.birthday}</td>
-                                        <td>${customer.phone_number}</td>
+                                        <td>${customer.phoneNumber}</td>
                                         <td>${customer.email}</td>
-                                        <td>${customer.gender}</td>
+                                        <td>${customer.gender == 1 ? "Nam" : "Nữ"}</td>
+                                        <td><a class="btn btn-success" href="/admin/customer/edit/${customer.id}">Edit</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

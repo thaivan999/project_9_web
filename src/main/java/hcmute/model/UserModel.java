@@ -39,7 +39,7 @@ public class UserModel {
     private String reset_pwd_token;
 	private String surname;
 	private String name;
-	private LocalDate birthday;
+	private String birthday;
 	private String phoneNumber;
 	private String imageUrl;
 	private int gender;

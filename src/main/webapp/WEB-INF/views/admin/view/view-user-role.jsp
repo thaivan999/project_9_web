@@ -47,14 +47,22 @@
                             	<thead>
                                 	<tr>
                                     	<th>Role ID</th>
+                                    	<th>Username</th>
+                                    	<th>Password</th>
+                                    	<th>Email</th>
                                     	<th>Role Name</th>
+                                    	<th>Edit</th>
                                 	</tr>
                             	</thead>
                             	<tbody>
-                                	<c:forEach var="userrole" items="${userroles}">
+                                	<c:forEach var="userrole" items="${listUserRole}">
                                     	<tr>
-                                        	<td>${userrole.id_type}</td>
-                                        	<td>${userrole.name}</td>
+                                        	<td>${userrole.user.id}</td>
+                                        	<td>${userrole.user.username}</td>
+                                        	<td>${userrole.user.password}</td>
+                                        	<td>${userrole.user.email}</td>
+                                        	<td>${userrole.role.name}</td>
+                                        	<td><a class="btn btn-success" href="/admin/userrole/edit/${userrole.role_user_id}">Edit</a></td>
                                     	</tr>
                                 	</c:forEach>
                             	</tbody>
@@ -66,7 +74,6 @@
         </div>
     </main>
 </div>
-<%@include file="/common/admin/footer/footer.jsp"%>
 <script>
 	function exportToExcel() {
 		// Clone bảng và loại bỏ cột cuối

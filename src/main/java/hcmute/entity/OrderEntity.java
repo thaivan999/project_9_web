@@ -18,7 +18,7 @@ public class OrderEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_order")
-	private Integer idOrder;
+	private int idOrder;
 
 	@Column(name = "total_product")
 	private int totalProduct;

@@ -67,6 +67,10 @@ public class UserServiceImpl implements IUserService {
     public List<UserEntity> findAll() {
         return userRepo.findAll();
     }
+    @Override
+    public Optional<UserEntity> getUserById(int userId) {
+        return userRepo.findById(userId);
+    }
 ///////////////OAuth///////////////
     @Override
     public void processOAuthPostLogin(String username, String email, String oauth2ClientName) {
@@ -133,16 +137,13 @@ public class UserServiceImpl implements IUserService {
             e.printStackTrace();
         }
     }
-
-    //Lưu mật khẩu mã hóa
+    
     @Override
-    public UserEntity save(UserEntity user) {
-        String encodedPassword = encoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        return userRepo.save(user);
-    }
+    public <S extends UserEntity> S save(S entity) {
+		return userRepo.save(entity);
+	}
 
-    //Thực hiện cập nhật mật khẩu mới có trùng với mật khẩu hiện tại không 
+	//Thực hiện cập nhật mật khẩu mới có trùng với mật khẩu hiện tại không 
     @Override
     public UserEntity update(UserEntity user) {
         Optional<UserEntity> findUser = userRepo.findByUsername(user.getUsername());
@@ -158,7 +159,8 @@ public class UserServiceImpl implements IUserService {
         return userRepo.save(user);
     }
 
-    //Thực hiện xóa username
+
+	//Thực hiện xóa username
     @Override
     public void deleteByUsername(String username) {
         userRepo.deleteByUsername(username);
@@ -177,5 +179,13 @@ public class UserServiceImpl implements IUserService {
             return true;
         }
     }
+    
+    
+    @Override
+    public Optional<UserEntity> getUserByEmail(String email) {
+        Optional<UserEntity> userOptional = userRepo.findByEmail(email);
+        return userOptional;
+    }
+
 
 }

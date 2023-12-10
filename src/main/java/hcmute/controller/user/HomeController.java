@@ -22,7 +22,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.UserEntity;
 import hcmute.model.MilkTeaModel;
-import hcmute.security.CustomUser;
 import hcmute.service.ICartDetailService;
 import hcmute.service.IMilkTeaService;
 import hcmute.service.IUserService;
@@ -40,13 +39,7 @@ public class HomeController {
 	@Autowired
 	SessionServiceImpl sessionService;
 	@GetMapping("home")
-	public String LoadData(ModelMap model, @AuthenticationPrincipal CustomUser loggedUser, HttpSession session) {
-//		String username = sessionService.getAttribute("username");
-//		System.err.println(username);
-		if (loggedUser != null) {
-            Optional<UserEntity> user = userService.findByUsername(loggedUser.getUsername());
-            session.setAttribute("user", user);
-        }
+	public String LoadData(ModelMap model, HttpSession session) {
 		List<MilkTeaEntity> list1 = milkTeaService.findFiveProductOutstanding();
 		model.addAttribute("list1", list1);
 		List<MilkTeaEntity> list2 = milkTeaService.findFiveProduct();

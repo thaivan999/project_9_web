@@ -1,6 +1,7 @@
 package hcmute.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.query.Param;
 
@@ -18,4 +19,6 @@ public interface IOrderService {
 	
 	List<Object[]> getRevenueByDay();
 	List<Object[]> getRevenueByMonth();
+	List<OrderEntity> findAllOrdersByUserId(Integer userId);
+	Optional<OrderEntity> findById(Integer id);
 }

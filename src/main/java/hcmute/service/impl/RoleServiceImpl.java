@@ -1,6 +1,7 @@
 package hcmute.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,9 @@ public class RoleServiceImpl implements IRoleService {
     public List<RoleEntity> findAll() {
         return repo.findAll();
     }
+    
+    @Override
+	public Optional<RoleEntity> findById(String id) {
+		return repo.findById(id);
+	}
 }
