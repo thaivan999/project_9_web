@@ -18,28 +18,34 @@ import hcmute.model.UserModel;
 import hcmute.service.IUserService;
 
 @Component
-public class DatabaseLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler{
-    @Autowired IUserService userService;
+public class DatabaseLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+    @Autowired
+    IUserService userService;
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws ServletException, IOException {
-    	String username = authentication.getName();
+        String username = authentication.getName();
         Optional<UserEntity> userOpt = userService.findByUsername(username);
-        System.out.println("ok");
 
         if (userOpt.isPresent()) {
-        	UserEntity user = userOpt.get();
+            UserEntity user = userOpt.get();
             int userId = user.getId();
-            System.out.println(userId);
 
+            // Lưu userId vào cookie
             Cookie userIdCookie = new Cookie("USER_ID", String.valueOf(userId));
-            userIdCookie.setMaxAge(24 * 60 * 60); 
+            userIdCookie.setMaxAge(24 * 60 * 60);
             userIdCookie.setPath("/");
-
             response.addCookie(userIdCookie);
         }
+
+        // Lấy thông tin người dùng
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        // Thực hiện cập nhật loại xác thực trong csdl
+        userService.updateAuthenticationTypeDB(userDetails.getUsername(), "database");
+        // Chuyển hướng
+        getRedirectStrategy().sendRedirect(request, response, "/home");
     }
 }

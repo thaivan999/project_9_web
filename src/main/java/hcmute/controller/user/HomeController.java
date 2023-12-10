@@ -22,7 +22,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.entity.UserEntity;
 import hcmute.model.MilkTeaModel;
-import hcmute.security.CustomUser;
 import hcmute.service.ICartDetailService;
 import hcmute.service.IMilkTeaService;
 import hcmute.service.IUserService;

@@ -38,5 +38,9 @@ public interface IUserService {
     //Update thông tin theo DB
     void updateAuthenticationTypeDB(String username, String oauth2ClientName);
     
+
+	Optional<UserEntity> getUserById(int userId);
+
+	Optional<UserEntity> getUserByEmail(String email);
     <S extends UserEntity> S save(S entity);
 }
