@@ -53,23 +53,6 @@
 
 
 					<div class="sb-sidenav-menu-heading">Trang quản lý</div>
-					<!-- Quản lý trà sữa -->
-					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-						data-bs-target="#collapseMilkTea" aria-expanded="false"
-						aria-controls="collapseMilkTea">
-						<div class="sb-nav-link-icon"></div> Quản lý trà sữa
-						<div class="sb-sidenav-collapse-arrow">
-							<i class="fas fa-angle-down"></i>
-						</div>
-					</a>
-					<div class="collapse" id="collapseMilkTea"
-						aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/manager/milk-tea">Danh sách trà sữa</a>
-							<a class="nav-link" href="/manager/milk-tea/add">Cập nhật trà
-								sữa</a>
-						</nav>
-					</div>
 					<!-- Quản lý chi tiết đơn hàng -->
 					<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 						data-bs-target="#collapseOrderDetail" aria-expanded="false"

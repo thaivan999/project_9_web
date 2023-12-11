@@ -35,15 +35,6 @@ public class ManagerController {
 			UserEntity entity = opt.get();
 			BranchEntity branch = entity.getBranchByUser();
 			model.addAttribute("branch", branch);
-			Set<BranchMilkTea> branchMilkTeas = branch.getBranchMilkTeas();
-			Set<MilkTeaEntity> milkTeas = branchMilkTeas.stream()
-			        .map(branchMilkTea -> branchMilkTea.getMilkTeaByBranchMilkTea())
-			        .collect(Collectors.toSet());
-			model.addAttribute("milkTeas", milkTeas);
-			int countOrder = branch.getOrders().size();
-			int countProduct = milkTeas.size();
-			model.addAttribute("countOrder", countOrder);
-			model.addAttribute("countProduct", countProduct);
 		}
 		return "manager/index";
 	}
