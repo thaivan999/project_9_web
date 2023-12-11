@@ -34,6 +34,8 @@
 <script src="<c:url value='/admin/js/jszip.min.js'/>"></script>
 <script src="<c:url value='/admin/js/pdfmake.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
+
 <script>
 	$(window).on("load", function() {
 		$('body').addClass('loaded');

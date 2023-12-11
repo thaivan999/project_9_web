@@ -80,11 +80,13 @@
 		    	if(chartId == 'revenueChartByMonth') 
 		    		return 'Tháng ' + item[0];
 		    	else if(chartId == 'revenueChartByDay')
-		        	return 'Ngày ' + item[0].join('-');
+		        	return 'Ngày ' + item.order_date;
 		    	return item[0].replace(/\+/g, ' ');
 		    });
 	
 		    var data = statisticsData.map(function(item) {
+		    	if(chartId == 'revenueChartByDay')
+		    		return item.total_price
 		        return item[1];
 		    });
 		    
@@ -117,16 +119,17 @@
 		        }
 		    });
 		}
-	
-		var revenueDataByDay = <c:out value="${revenueDataByDayJson}" />;
+		
+		var revenueDataByDay =  JSON.parse(he.decode('<c:out value="${revenueDataByDayJson}" />'));
 		createChart(revenueDataByDay, 'revenueChartByDay');
+
 	
 		var revenueDataByMonth = <c:out value="${revenueDataByMonthJson}" />;
 		createChart(revenueDataByMonth, 'revenueChartByMonth');
 		
 		var quantityDataOfMilkTeaType = decodeURIComponent('<c:out value="${quantityDataOfMilkTeaTypeJson}" />');
 		createChart(JSON.parse(quantityDataOfMilkTeaType), 'quantityChartByMilkTeaType');
-		console.log(quantityDataOfMilkTeaType);
+
 	</script>	
 </body>
 
