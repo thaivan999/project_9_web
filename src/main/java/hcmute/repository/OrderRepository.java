@@ -13,10 +13,10 @@ import hcmute.entity.OrderEntity;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Integer>{
 	// Statistics for each day of the current month
-	@Query("SELECT o.orderDay, SUM(o.finalPrice) FROM OrderEntity o "
-			+ "WHERE MONTH(o.orderDay) = MONTH(GETDATE()) "
-			+ "AND YEAR(o.orderDay) = YEAR(GETDATE()) "
-			+ "GROUP BY o.orderDay")
+	@Query(value="SELECT CAST(order_day AS DATE) AS order_date, SUM(final_price) AS total_price\r\n"
+			+ "FROM user_order\r\n"
+			+ "WHERE MONTH(order_day) = MONTH(GETDATE()) AND YEAR(order_day) = YEAR(GETDATE())\r\n"
+			+ "GROUP BY CAST(order_day AS DATE);" , nativeQuery = true)
 	List<Object[]> getRevenueByDay();
 	
 	// Statistics for each month of the current year

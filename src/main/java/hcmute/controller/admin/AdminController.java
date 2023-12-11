@@ -3,7 +3,12 @@ package hcmute.controller.admin;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +57,19 @@ public class AdminController {
 		objectMapper.registerModule(new JavaTimeModule());
 		
         List<Object[]> revenueDataByDay = orderService.getRevenueByDay();
-        String revenueDataByDayJson = objectMapper.writeValueAsString(revenueDataByDay);
+//        String revenueDataByDayJson = objectMapper.writeValueAsString(revenueDataByDay);
+        List<Map<String, Object>> formattedRevenueDataByDay = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Object[] data : revenueDataByDay) {
+            Map<String, Object> formattedData = new HashMap<>();
+            Date orderDate = (Date) data[0]; // Assume data[0] is a java.sql.Date
+            formattedData.put("order_date", dateFormat.format(orderDate));
+            formattedData.put("total_price", data[1]);
+            formattedRevenueDataByDay.add(formattedData);
+        }
+        
+        String revenueDataByDayJson = objectMapper.writeValueAsString(formattedRevenueDataByDay);
         
         List<Object[]> revenueDataByMonth = orderService.getRevenueByMonth();
         String revenueDataByMonthJson = objectMapper.writeValueAsString(revenueDataByMonth);
