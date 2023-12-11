@@ -14,9 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "branch_milk_tea")
 public class BranchMilkTea implements Serializable {
@@ -35,4 +32,50 @@ public class BranchMilkTea implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_milk_tea",insertable = false, updatable = false)
 	private MilkTeaEntity milkTeaByBranchMilkTea;
+
+	public BranchMilkTeaId getBranchMilkTeaId() {
+		return branchMilkTeaId;
+	}
+
+	public void setBranchMilkTeaId(BranchMilkTeaId branchMilkTeaId) {
+		this.branchMilkTeaId = branchMilkTeaId;
+	}
+
+	public int getRemainQuantity() {
+		return remainQuantity;
+	}
+
+	public void setRemainQuantity(int remainQuantity) {
+		this.remainQuantity = remainQuantity;
+	}
+
+	public BranchEntity getBranchByBranchMilkTea() {
+		return branchByBranchMilkTea;
+	}
+
+	public void setBranchByBranchMilkTea(BranchEntity branchByBranchMilkTea) {
+		this.branchByBranchMilkTea = branchByBranchMilkTea;
+	}
+
+	public MilkTeaEntity getMilkTeaByBranchMilkTea() {
+		return milkTeaByBranchMilkTea;
+	}
+
+	public void setMilkTeaByBranchMilkTea(MilkTeaEntity milkTeaByBranchMilkTea) {
+		this.milkTeaByBranchMilkTea = milkTeaByBranchMilkTea;
+	}
+
+	public BranchMilkTea(BranchMilkTeaId branchMilkTeaId, int remainQuantity, BranchEntity branchByBranchMilkTea,
+			MilkTeaEntity milkTeaByBranchMilkTea) {
+		super();
+		this.branchMilkTeaId = branchMilkTeaId;
+		this.remainQuantity = remainQuantity;
+		this.branchByBranchMilkTea = branchByBranchMilkTea;
+		this.milkTeaByBranchMilkTea = milkTeaByBranchMilkTea;
+	}
+
+	public BranchMilkTea() {
+		super();
+	}
+	
 }
