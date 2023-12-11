@@ -15,8 +15,6 @@ public interface IUserService {
 
     Optional<UserEntity> findByEmail(String email);
 
-    UserEntity save(UserEntity user);
-
     UserEntity update(UserEntity user);
 
     void deleteByUsername(String id);
@@ -31,9 +29,18 @@ public interface IUserService {
 
     boolean verify(String verifyCode);
 
-    void processOAuthPostLogin(String username, String email, String image, String oauth2ClientName);
+    //Set thông tin xuống cơ sở dữ liệu cho OAuth
+    void processOAuthPostLogin(String username, String email, String oauth2ClientName);
 
+    //Update thông tin theo OAuth
     void updateAuthenticationTypeOAuth(String username, String oauth2ClientName);
 
+    //Update thông tin theo DB
     void updateAuthenticationTypeDB(String username, String oauth2ClientName);
+    
+
+	Optional<UserEntity> getUserById(int userId);
+
+	Optional<UserEntity> getUserByEmail(String email);
+    <S extends UserEntity> S save(S entity);
 }

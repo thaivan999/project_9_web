@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query("SELECT u FROM UserEntity u WHERE u.email = ?1")
     public Optional<UserEntity> findByEmail(String email);
 
-    @Query("SELECT DISTINCT ur.user FROM UserRoleEntity ur WHERE ur.role.id IN ('ADMIN', 'USER')")
+    @Query("SELECT DISTINCT ur.user FROM UserRoleEntity ur WHERE ur.role.id IN ('ADMIN', 'USER', 'MANAGER')")
     public List<UserEntity> getAdministrators();
 
     @Query("SELECT u FROM UserEntity u WHERE u.reset_pwd_token = ?1")
@@ -47,4 +47,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Modifying
     @Query("UPDATE UserEntity u SET u.provider = ?2 WHERE u.username = ?1")
     public void updateAuthenticationTypeDB(String username, AuthProvider provider);
+
 }

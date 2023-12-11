@@ -96,3 +96,26 @@
 	margin-top: 20px;
 	float: right;
 }
+
+.places-result {
+	list-style: none;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	background-color: #fff;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	z-index: 100;
+}
+
+.radio-branch:checked + .list-branches-item-info .list-branches-item-name {
+    color: red; 
+}
+
+.places-result-item {
+	padding: 6px 12px;
+	cursor: pointer;
+}
+
+.places-result-item:hover {
+	background-color: #ccc;
+}

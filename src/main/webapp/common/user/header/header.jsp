@@ -1,3 +1,4 @@
+<%@page import="hcmute.service.impl.CookieServiceImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
@@ -28,6 +29,16 @@ for (MilkTeaCategoryEntity category : categories) {
 }
 
 request.setAttribute("types", types);
+Cookie[] cookies = request.getCookies();
+if (cookies != null) {
+	for (Cookie cookie : cookies) {
+		if ("USER_ID".equals(cookie.getName())) {
+	int idUser = Integer.parseInt(cookie.getValue());
+	request.setAttribute("user_id", idUser);
+	break;
+		}
+	}
+}
 %>
 
 <!DOCTYPE html>
@@ -84,20 +95,38 @@ request.setAttribute("types", types);
 					class="avatar" />
 				<p class="username">
 					<c:if test="${not empty pageContext.request.remoteUser}">
-						<span class="fw-bold"><c:out value="${pageContext.request.remoteUser}" /></span>
+						<span class="fw-bold"><c:out
+								value="${pageContext.request.remoteUser}" /></span>
 					</c:if>
 				</p>
 				<ul class="header-action">
-					<li class="header-action-item"><a href="/user_infor/1" class="header-action-link"
-						href="#">Quản lý tài khoản</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/cart">Giỏ hàng của tôi</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="/order">Đơn hàng của tôi</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="#">Trợ giúp</a></li>
-					<li class="header-action-item"><a class="header-action-link"
-						href="#">Đăng xuất</a></li>
+					<c:if test="${not empty pageContext.request.remoteUser}">
+						<li class="header-action-item"><a
+							href="/user_infor/${user_id }" class="header-action-link"
+							href="#">Quản lý tài khoản</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/cart">Giỏ hàng của tôi</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/order">Đơn hàng của tôi</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/help">Trợ giúp</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/forgot-password">Quên mật khẩu</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/admin/index">Quản trị</a></li>
+							<li class="header-action-item"><a class="header-action-link"
+							href="/manager/index">Manager</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/logout">Đăng xuất</a></li>
+					</c:if>
+					<c:if test="${empty pageContext.request.remoteUser}">
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/login">Đăng nhập</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/register">Đăng ký</a></li>
+						<li class="header-action-item"><a class="header-action-link"
+							href="/security/forgot-password">Quên mật khẩu</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

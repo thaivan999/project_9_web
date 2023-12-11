@@ -108,9 +108,10 @@
 			<div class="col-12 col-lg-6">
 				<div class="card mb-3 no-border">
 					<div class="card-body" style="padding: 0;">
-						<a href="" data-toggle="modal" data-target="#productModal"> <img
-							class="img-fluid" style="border-radius: 10px;"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg" />
+						<a href="" data-toggle="modal" data-target="#productModal"> <c:url
+								value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+								var="imgUrl" /> <img src="${imgUrl}" class="img-fluid"
+							style="border-radius: 10px;" />
 						</a>
 					</div>
 				</div>
@@ -180,9 +181,9 @@
 				<c:forEach var="milkTea" items="${relevantProducts }">
 					<div class="col-lg-3 col-sm-12 mt-2">
 						<a href="/product_detail/${milkTea.idMilkTea }" class="card">
-							<img class="card-img-top"
-							src="https://eatbook.sg/wp-content/uploads/2020/09/Media-Kit-KOI-Biscuit-Milk-Tea-by-Qing-2.jpg"
-							alt="Card image cap">
+							<c:url
+								value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+								var="imgUrl" /> <img src="${imgUrl}" class="card-img-top" />
 							<div class="card-body">
 								<p class="card-title bold-text">${milkTea.name }
 								<p class="black-text"></p>

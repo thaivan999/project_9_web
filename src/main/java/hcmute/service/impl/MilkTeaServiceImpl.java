@@ -138,7 +138,7 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 		if (entity.getIdMilkTea() == 0) {
 			return milkTeaRepository.save(entity);
 		} else {
-			Optional<MilkTeaEntity> opt = findByIdMilkTea(entity.getIdMilkTea());
+			Optional<MilkTeaEntity> opt = findById(entity.getIdMilkTea());
 			if (opt.isPresent()) {
 				if (StringUtils.isEmpty(entity.getImage())) {
 					entity.setImage(opt.get().getImage());
@@ -152,7 +152,7 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	
 	@Override
 	public Optional<Integer> findRemainQuantityByIdMilkTeaAndIdBranch(int idMilkTea, int idBranch) {
-		return milkTeaRepository.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
+		return null;
 	}
 
 
@@ -186,8 +186,9 @@ public class MilkTeaServiceImpl implements IMilkTeaService {
 	}
 
 
-
-
-
+	@Override
+	public Optional<MilkTeaEntity> findById(Integer id) {
+		return milkTeaRepository.findById(id);
+	}
 
 }

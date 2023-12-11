@@ -42,7 +42,6 @@
                                     <c:if test="${not empty message}">
                                         <div class="alert alert-success">${message}</div>
                                     </c:if>
-
                                 </div>
                             </form>
                         </div>

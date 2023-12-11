@@ -30,13 +30,19 @@
 										<div class="col col-6 branch-item">
 											<div class="branch">
 												<div class="branch_image-container">
-													<img src="${branch.image}" class="branch-image" />
+													<c:url
+														value="/branches/image/${branch.image != null ? branch.image : null }"
+														var="imgUrl" />
+													<img
+														src="${imgUrl}"
+														class="branch-image" />
 													<div class="branch-slide"></div>
 												</div>
 												<div class="branch_body">
 													<h3 class="branch_name">${branch.name }</h3>
-													<a class="branch_btn" href="/branch-info/${branch.idBranch}">
-														<span>Xem chi tiết</span>
+													<a class="branch_btn"
+														href="/branch-info/${branch.idBranch}"> <span>Xem
+															chi tiết</span>
 													</a>
 													<div class="branch_society">
 														<ul class="branch_society_list">
@@ -74,6 +80,7 @@
 		</div>
 
 	</div>
-<script type="text/javascript" src='<c:url value="/user/js/branches.js" />'></script>
+	<script type="text/javascript"
+		src='<c:url value="/user/js/branches.js" />'></script>
 </body>
 </html>

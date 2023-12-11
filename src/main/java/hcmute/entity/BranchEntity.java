@@ -4,11 +4,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import lombok.*;
-
-
 @Entity
 @Table(name = "branch")
 public class BranchEntity implements Serializable{
@@ -43,15 +38,38 @@ public class BranchEntity implements Serializable{
 	
 	@OneToMany(mappedBy = "branchByUser")
 	private Set<UserEntity> accounts;
-		
-	@OneToMany(mappedBy = "branchByMilkTea")
-	private Set<MilkTeaEntity> milkTeas;
 	
 	@OneToMany(mappedBy = "branchByOrder")
 	private Set<OrderEntity> orders;
-
+	
+	@OneToMany(mappedBy = "branchByBranchMilkTea")
+	private Set<BranchMilkTea> branchMilkTeas;
 	public int getIdBranch() {
 		return idBranch;
+	}
+
+	public Set<UserEntity> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<UserEntity> accounts) {
+		this.accounts = accounts;
+	}
+
+	public Set<OrderEntity> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<OrderEntity> orders) {
+		this.orders = orders;
+	}
+
+	public Set<BranchMilkTea> getBranchMilkTeas() {
+		return branchMilkTeas;
+	}
+
+	public void setBranchMilkTeas(Set<BranchMilkTea> branchMilkTeas) {
+		this.branchMilkTeas = branchMilkTeas;
 	}
 
 	public void setIdBranch(int idBranch) {
@@ -114,16 +132,8 @@ public class BranchEntity implements Serializable{
 		this.cityByBranch = cityByBranch;
 	}
 
-	public Set<MilkTeaEntity> getMilkTeas() {
-		return milkTeas;
-	}
-
-	public void setMilkTeas(Set<MilkTeaEntity> milkTeas) {
-		this.milkTeas = milkTeas;
-	}
-
 	public BranchEntity(int idBranch, String name, String addressDetail, String opentime, String image,
-			String description, CityEntity cityByBranch, Set<MilkTeaEntity> milkTeas) {
+			String description, CityEntity cityByBranch) {
 		super();
 		this.idBranch = idBranch;
 		this.name = name;
@@ -131,9 +141,8 @@ public class BranchEntity implements Serializable{
 		this.opentime = opentime;
 		this.image = image;
 		this.description = description;
-		this.idCity = idCity;
+		this.idCity = cityByBranch.getIdCity();
 		this.cityByBranch = cityByBranch;
-		this.milkTeas = milkTeas;
 	}
 
 	public BranchEntity() {

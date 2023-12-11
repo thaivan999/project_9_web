@@ -28,23 +28,19 @@ public class MilkTeaEntity implements Serializable {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "remain_quantity")
-	private int remainQuantity;
-
 	@Column(name = "image", columnDefinition = "varchar(1000)")
 	private String image;
 
 	@ManyToOne
-	@JoinColumn(name = "id_type", insertable = false, updatable = false)
+	@JoinColumn(name = "id_type")
 	private MilkTeaTypeEntity milkTeaTypeByMilkTea;
-
-	@ManyToOne
-	@JoinColumn(name = "id_branch", insertable = false, updatable = false)
-	private BranchEntity branchByMilkTea;
 
 	@OneToMany(mappedBy = "milkTeaByCartDetail")
 	private Set<CartDetailEntity> cartDetails;
 
 	@OneToMany(mappedBy = "milkTeaByOrderDetail")
 	private Set<OrderDetailEntity> orderDetails;
+	
+	@OneToMany(mappedBy = "milkTeaByBranchMilkTea")
+	private Set<BranchMilkTea> branchMilkTeas;
 }

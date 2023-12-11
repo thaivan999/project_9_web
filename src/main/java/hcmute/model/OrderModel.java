@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import hcmute.entity.BranchEntity;
+import hcmute.entity.PayMethodEntity;
+import hcmute.entity.UserEntity;
 import lombok.*;
 
 @Data
@@ -22,6 +26,9 @@ public class OrderModel{
 	private String note;
 	private String address;
 	private String phoneNumber;
-	private PayMethodModel payMethodByOrder;
-	private UserModel customerByOrder;
+	private int fee;
+	private PayMethodEntity payMethodByOrder;
+	private UserEntity customerByOrder;
+	private BranchEntity branchByOrder;
+	private Boolean isEdit;
 }

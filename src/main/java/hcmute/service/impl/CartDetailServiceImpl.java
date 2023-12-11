@@ -81,4 +81,9 @@ public class CartDetailServiceImpl implements ICartDetailService {
 	public void addProductToCart(int idCart, int idMilkTea, String size) {
 		cartDetailRepository.addProductToCart(idCart, idMilkTea, size);		
 	}
+	@Override
+	public void addProductToFavorite(int idCart, int idMilkTea) {
+		cartDetailRepository.addProductToFavorite(idCart, idMilkTea);		
+	}
+
 }

@@ -36,28 +36,60 @@
 </head>
 <body>
 	<div class="payment">
-		<div data-name='${dataJSON}' data-id="${idBranch }" class="payment-content">
-			<h1 class="bold-text" style="margin-bottom: 46px; margin-top: 16px">Thanh toán đơn
-				hàng</h1>
+		<div data-name='${dataJSON}' data-id="${idBranch }"
+			class="payment-content">
+			<h1 class="bold-text" style="margin-bottom: 46px; margin-top: 16px">Thanh
+				toán đơn hàng</h1>
 			<div class="row w-100">
 				<div class="col-5">
 					<div class="payment-container">
 						<div class="mb-4">
 							<h4>Giao hàng</h4>
 							<div class="payment-info">
-								<div class="mb-3">
-									<label for="addressInp" class="form-label">Địa chỉ </label> <input
-										id="addressInp" name="address" type="text"
-										class="form-control" placeholder="Địa chỉ">
+								<div class="mb-4" style="position: relative;">
+									<label for="addressInp" class="form-label">Địa chỉ nhận
+										hàng </label> <input id="addressInp" type="text"
+										class="form-control bold-text" placeholder="Địa chỉ">
+									<ul class="places-result"></ul>
+								</div>
+								<div class="mb-4" style="position: relative;">
+									<label for="addressInp" class="form-label">Chọn cửa
+										hàng</label>
+									<ul class="list-branches" style="list-style: none">
+										<c:forEach var="branch" items="${branches }" varStatus="loop">
+											<li class="list-branches-item">
+												<div class="d-flex align-items-center">
+													<input data-id="${branch.idBranch }" type="radio"
+														class="radio-branch" name="branchRadio"
+														${loop.index == 0 ? 'checked' : '' }
+														id="flexRadio${branch.idBranch}${loop.index}" />
+													<div class="list-branches-item-info"
+														style="margin-left: 12px">
+														<p class="m-0 bold-text list-branches-item-name"
+															style="font-size: 24px;">${branch.name }</p>
+														<p
+															class="bold-text text-secondary fst-italic list-branches-item-address"
+															style="margin-bottom: 6px">${branch.addressDetail }</p>
+														<p class="m-0 branch-fee" style="font-size: 20px;">
+															Phí giao hàng: <span
+																class="branch-fee-val bold-text text-danger">0đ</span>
+														</p>
+													</div>
+												</div>
+												<hr>
+											</li>
+										</c:forEach>
+									</ul>
 								</div>
 								<div class="mb-3">
 									<label for="surnameInp" class="form-label">Tên khách
 										hàng </label>
 									<div class="d-flex align-items-center">
 										<input id="surnameInp" type="text" readonly="readonly"
-											value="${customer.surname}" class="form-control" style="margin-right: 12px">
-										<input type="text" readonly="readonly"
-											value="${customer.name}" class="form-control">
+											value="${customer.surname}" class="form-control"
+											style="margin-right: 12px"> <input type="text"
+											readonly="readonly" value="${customer.name}"
+											class="form-control">
 									</div>
 								</div>
 								<div class="mb-3">
@@ -75,8 +107,7 @@
 							<c:forEach var="paymentMethod" items="${listPayMethod}">
 								<div class="form-check">
 									<input class="form-check-input-radio" type="radio"
-										data-id="${paymentMethod.idPayMethod}"
-										name="payMethodByOrder"
+										data-id="${paymentMethod.idPayMethod}" name="payMethodByOrder"
 										id="flexRadioDefault${paymentMethod.idPayMethod}" /> <label
 										class="form-check-label"
 										for="flexRadioDefault${paymentMethod.idPayMethod}">
@@ -101,9 +132,10 @@
 							<c:forEach var="milkTea" items="${listMilkTea}">
 								<li class="cart-item payment-item">
 									<div class="cart-item-container">
-										<img
-											src="https://cdn.phonebooky.com/blog/wp-content/uploads/2020/04/07010330/Brown-Sugar.jpg"
-											class="cart-product-image payment-product-image" />
+										<c:url
+											value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+											var="imgUrl" />
+										<img src="${imgUrl}" class="cart-product-image payment-product-image" />
 										<div class="cart-item-info">
 											<div class="d-flex align-items-center"
 												style="margin-bottom: 6px">
@@ -139,7 +171,7 @@
 							</li>
 							<li>
 								<p>Phí giao hàng</p>
-								<p class="payment-fee payment-price-value">12000đ</p>
+								<p class="payment-fee payment-price-value">0đ</p>
 							</li>
 							<li>
 								<p>Thành tiền</p>

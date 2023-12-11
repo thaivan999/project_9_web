@@ -67,9 +67,13 @@ public class UserServiceImpl implements IUserService {
     public List<UserEntity> findAll() {
         return userRepo.findAll();
     }
-
     @Override
-    public void processOAuthPostLogin(String username, String email, String image, String oauth2ClientName) {
+    public Optional<UserEntity> getUserById(int userId) {
+        return userRepo.findById(userId);
+    }
+///////////////OAuth///////////////
+    @Override
+    public void processOAuthPostLogin(String username, String email, String oauth2ClientName) {
         Optional<UserEntity> existAcc = userRepo.findByEmail(email);
         if (!existAcc.isPresent()) {
             UserEntity newAcc = new UserEntity();
@@ -78,8 +82,6 @@ public class UserServiceImpl implements IUserService {
             newAcc.setEmail(email);
             newAcc.setProvider(authProvider);
             newAcc.setEnabled(true);
-            
-            System.out.println(newAcc.toString());
             userRepo.save(newAcc);
         }
     }
@@ -89,13 +91,15 @@ public class UserServiceImpl implements IUserService {
         AuthProvider authProvider = AuthProvider.valueOf(oauth2ClientName.toUpperCase());
         userRepo.updateAuthenticationTypeOAuth(username, authProvider);
     }
-
+///////////////Database///////////////
+    //Cập nhật thông tin về nhà cung cấp của từng user
     @Override
     public void updateAuthenticationTypeDB(String username, String oauth2ClientName) {
         AuthProvider authProvider = AuthProvider.valueOf(oauth2ClientName.toUpperCase());
         userRepo.updateAuthenticationTypeDB(username, authProvider);
     }
 
+    //Thực hiện set thông tin khi đăng ký
     @Override
     public void register(UserEntity user, String url) throws MessagingException {
         // save user
@@ -107,11 +111,11 @@ public class UserServiceImpl implements IUserService {
         user.setProvider(AuthProvider.DATABASE);
         UserEntity savedUser = userRepo.save(user);
         Optional<RoleEntity> role = roleRepo.findById("USER");
-        role.ifPresent(userRole -> userRoleRepo.save(new UserRoleEntity(savedUser, userRole)));
-        sendVerifyEmail(savedUser, url);
+        userRoleRepo.save(new UserRoleEntity(user, role.get()));
+        sendVerifyEmail(user, url);
     }
 
-
+    //Gửi mail xác thực khi đăng ký
     @Override
     public void sendVerifyEmail(UserEntity user, String url) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -133,14 +137,13 @@ public class UserServiceImpl implements IUserService {
             e.printStackTrace();
         }
     }
-
+    
     @Override
-    public UserEntity save(UserEntity user) {
-        String encodedPassword = encoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        return userRepo.save(user);
-    }
+    public <S extends UserEntity> S save(S entity) {
+		return userRepo.save(entity);
+	}
 
+	//Thực hiện cập nhật mật khẩu mới có trùng với mật khẩu hiện tại không 
     @Override
     public UserEntity update(UserEntity user) {
         Optional<UserEntity> findUser = userRepo.findByUsername(user.getUsername());
@@ -156,11 +159,14 @@ public class UserServiceImpl implements IUserService {
         return userRepo.save(user);
     }
 
+
+	//Thực hiện xóa username
     @Override
     public void deleteByUsername(String username) {
         userRepo.deleteByUsername(username);
     }
 
+    //Thực hiện xác thực, nếu có xác thực qua email thì set enabled bằng true và lưu lại
     @Override
     public boolean verify(String verifyCode) {
         UserEntity user = userRepo.findByVerifyCode(verifyCode);
@@ -173,5 +179,13 @@ public class UserServiceImpl implements IUserService {
             return true;
         }
     }
+    
+    
+    @Override
+    public Optional<UserEntity> getUserByEmail(String email) {
+        Optional<UserEntity> userOptional = userRepo.findByEmail(email);
+        return userOptional;
+    }
+
 
 }

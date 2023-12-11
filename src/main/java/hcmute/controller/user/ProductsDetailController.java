@@ -1,6 +1,7 @@
 package hcmute.controller.user;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -23,13 +24,17 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hcmute.entity.BranchEntity;
+import hcmute.entity.CartEntity;
 import hcmute.entity.MilkTeaEntity;
 import hcmute.model.MilkTeaModel;
 import hcmute.model.OrderProduct;
 import hcmute.model.OrderProduct.OrderItem;
+import hcmute.service.IBranchMilkTeaService;
 import hcmute.service.IBranchService;
 import hcmute.service.ICartDetailService;
+import hcmute.service.ICartService;
 import hcmute.service.IMilkTeaService;
+import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
 @RequestMapping("product_detail")
@@ -40,7 +45,13 @@ public class ProductsDetailController {
 	ICartDetailService cartDetailService;
 	@Autowired
 	IBranchService branchService;
-	
+	@Autowired
+	IBranchMilkTeaService branchMilkTeaService;
+	@Autowired
+	CookieServiceImpl cookieServiceImpl;
+	@Autowired
+	ICartService cartService;
+
 	@GetMapping("/{id}")
 	public ModelAndView detail(ModelMap model, @PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 		Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(id);
@@ -48,30 +59,30 @@ public class ProductsDetailController {
 
 		if (optMilkTea.isPresent()) {
 			MilkTeaEntity entity = optMilkTea.get();
-			
+
 			// copy from entity to model
 			BeanUtils.copyProperties(entity, milkTeaModel);
 			int typeId = entity.getMilkTeaTypeByMilkTea().getIdType();
-			
+
 			// set attributes for model
 			milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
 			milkTeaModel.setMilkTeaTypeId(typeId);
-			
+
 			List<MilkTeaEntity> relevantProducts = milkTeaService.findRelevantProducts(typeId, id);
 
-			// get flash attributes from previous request 
-	        String cartMessage = (String) redirectAttributes.getFlashAttributes().get("cartMessage");
-			
+			// get flash attributes from previous request
+			String cartMessage = (String) redirectAttributes.getFlashAttributes().get("cartMessage");
+
 			if (cartMessage != null) {
 				model.addAttribute("cartMessage", cartMessage);
 			}
-			
+
 			model.addAttribute("milkTea", milkTeaModel);
 			model.addAttribute("relevantProducts", relevantProducts);
-			
+
 			return new ModelAndView("user/product_detail", model);
 		}
-		
+
 		model.addAttribute("message", "Sản phẩm này không tồn tại");
 		return new ModelAndView("user/error", model);
 	}
@@ -83,10 +94,11 @@ public class ProductsDetailController {
 		data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<BranchEntity> listBranches = branchService.findAll();
+		List<Integer> listBranchesEligible = new ArrayList<Integer>();
 		int idMilkTea = 0;
 		try {
 			OrderProduct orderProduct = objectMapper.readValue(data, OrderProduct.class);
-			int idBranchOrder = -1;
+			Boolean isSuccess = false;
 			for (BranchEntity branch : listBranches) {
 				Boolean isChecked = true;
 				for (OrderItem item : orderProduct.getList()) {
@@ -94,8 +106,8 @@ public class ProductsDetailController {
 					Optional<MilkTeaEntity> entity = milkTeaService.findByIdMilkTea(idMilkTea);
 					if (entity.isPresent()) {
 						int idBranch = branch.getIdBranch();
-						Optional<Integer> remainQuantityOptional = milkTeaService
-								.findRemainQuantityByIdMilkTeaAndIdBranch(idMilkTea, idBranch);
+						Optional<Integer> remainQuantityOptional = branchMilkTeaService
+								.findRemainQuantityByBranchIdAndMilkTeaId(idBranch, idMilkTea, item.getSize());
 						if (remainQuantityOptional.isPresent()) {
 							if (remainQuantityOptional.get() < Integer.parseInt(item.getQuantity())) {
 								isChecked = false;
@@ -108,37 +120,66 @@ public class ProductsDetailController {
 					}
 				}
 				if (isChecked) {
-					idBranchOrder = branch.getIdBranch();
-					break;
+					listBranchesEligible.add(branch.getIdBranch());
+					isSuccess = true;
 				}
 			}
-			if (idBranchOrder != -1) {
-				return "redirect:/payment?data=" + dataEncoded + "&idBranch=" + idBranchOrder;
+			if (isSuccess) {
+				String json = objectMapper.writeValueAsString(listBranchesEligible);
+				byte[] bytes = json.getBytes();
+				String base64Encoded = Base64.getEncoder().encodeToString(bytes);
+				return "redirect:/payment?data=" + dataEncoded + "&listBranch=" + base64Encoded;
 			} else {
 				model.addAttribute("message",
 						"Xin lỗi quý khách! Hiện tại sản phẩm này đã hết hàng trên toàn bộ chi nhánh!");
 				model.addAttribute("status", "fail");
-				return "user/product_detail/" + idMilkTea;
+				Optional<MilkTeaEntity> optMilkTea = milkTeaService.findByIdMilkTea(idMilkTea);
+				MilkTeaModel milkTeaModel = new MilkTeaModel();
+
+				if (optMilkTea.isPresent()) {
+					MilkTeaEntity entity = optMilkTea.get();
+
+					// copy from entity to model
+					BeanUtils.copyProperties(entity, milkTeaModel);
+					int typeId = entity.getMilkTeaTypeByMilkTea().getIdType();
+
+					// set attributes for model
+					milkTeaModel.setMilkTeaType(entity.getMilkTeaTypeByMilkTea().getName());
+					milkTeaModel.setMilkTeaTypeId(typeId);
+
+					List<MilkTeaEntity> relevantProducts = milkTeaService.findRelevantProducts(typeId, idMilkTea);
+
+					model.addAttribute("milkTea", milkTeaModel);
+					model.addAttribute("relevantProducts", relevantProducts);
+				}
+				return "user/product_detail";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "";
 	}
-
 	
+	private int getCartId(int idUser) {
+		Optional<CartEntity> cartOpt = cartService.findCartsByUserId(idUser);
+		CartEntity cart = cartOpt.get();
+		return cart.getIdCart();
+	}
+
 	@GetMapping("/addtocart")
-	public RedirectView addToCart(RedirectAttributes redirectAttributes, @RequestParam("id") int id, @RequestParam("size") String size) {
-	    
+	public RedirectView addToCart(RedirectAttributes redirectAttributes, @RequestParam("id") int id,
+			@RequestParam("size") String size) {
+
 		try {
-	    	// tạm để id cart là 1
-		    cartDetailService.addProductToCart(1, id, size);
-		    redirectAttributes.addFlashAttribute("cartMessage", "success");
+			int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+			int idCart = getCartId(idUser);
+			cartDetailService.addProductToCart(idCart, id, size);
+			redirectAttributes.addFlashAttribute("cartMessage", "success");
 		} catch (Exception e) {
-			 redirectAttributes.addFlashAttribute("cartMessage", "fail");
+			redirectAttributes.addFlashAttribute("cartMessage", "fail");
 		}
 
-	    // redirect
-	    return new RedirectView("/product_detail/" + id);
+		// redirect
+		return new RedirectView("/product_detail/" + id);
 	}
 }

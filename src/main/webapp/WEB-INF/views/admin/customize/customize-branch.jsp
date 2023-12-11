@@ -22,6 +22,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
 </head>
+
 <body class="sb-nav-fixed">
 	<%@include file="/common/admin/header/header.jsp"%>
 	<div id="layoutSidenav_content">
@@ -33,12 +34,13 @@
 						href="/admin/index">Trang chủ</a></li>
 					<li class="breadcrumb-item active"><a
 						style="text-decoration: none; color: black"
-						href="/admin/branch-update">Cập nhật chi nhánh</a></li>
+						href="#">Cập nhật chi nhánh</a></li>
 				</ol>
 				<div class="card mb-4">
 					<form class="mt-3 ms-3 me-3 mb-3"
-						action="<c:url value="/admin/branch/saveOrUpdate/${branch.idBranch}"/>"
-						method="post">
+						action="<c:url value="/admin/branch/saveOrUpdate"/>" method="post"
+						enctype="multipart/form-data">
+						<input type="hidden" name="idBranch" value="${branch.idBranch}">
 						<!-- Name -->
 						<div class="mb-3">
 							<label for="exampleInputName" class="form-label">Tên chi
@@ -68,12 +70,32 @@
 						</div>
 
 						<!-- Image -->
-						<div class="mb-3">
+						<script type="text/javascript">
+							function chooseFile(fileInput) {
+								if (fileInput.files && fileInput.files[0]) {
+									var reader = new FileReader();
+									reader.onload = function(e) {
+										document.querySelector("#image").setAttribute(
+												'src', e.target.result);
+										document.querySelector("#image").classList.remove("hidden");
+									}
+									reader.readAsDataURL(fileInput.files[0]);
+								}
+							}
+						</script>
+						
+
+						<div class="mb-3" style="display: flex; flex-direction: column;">
 							<label for="exampleInputImage" class="form-label">Hình
-								ảnh*</label> <input placeholder="Image URL" name="image" type="file"
-								class="form-control" id="exampleInputImage"
-								aria-describedby="imageHelp" value="${branch!=null?branch.image:'' }"
-								required="required">
+								ảnh*</label>
+							<c:url
+								value="/admin/branch/image/${branch.image != null ? branch.image : null }"
+								var="imgUrl" />
+							<input type="hidden" name="image" value="${branch.image}">
+							<img class="${branch.image == null ? 'hidden':''}" id="image" width="200px" height="200px" src="${imgUrl}" />
+							<input onchange="chooseFile(this)" placeholder="Image"
+								name="imageFile" type="file" class="form-control-file"
+								id="imageFile" aria-describedby="imageFile">
 						</div>
 						<div class="mb-3">
 							<label for="exampleInputDescription" class="form-label">ID
@@ -106,5 +128,6 @@
 			</div>
 		</main>
 	</div>
+
 </body>
 </html>

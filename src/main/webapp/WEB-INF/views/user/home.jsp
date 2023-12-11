@@ -9,6 +9,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" type="text/css" href="home.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
 	<div class="home">
@@ -22,7 +24,8 @@
 						<h3 class="toast__title">Success</h3>
 						<p class="toast__msg">${orderMessage }</p>
 					</div>
-					<a href="/order" class="btn btn-warning ms-2" style="font-size: 12px !important">Xem đơn hàng</a>
+					<a href="/order" class="btn btn-warning ms-2"
+						style="font-size: 12px !important">Xem đơn hàng</a>
 					<div class="toast__close">
 						<i class="fas fa-times"></i>
 					</div>
@@ -72,28 +75,31 @@
 						style="height: 100%">
 						<div class="introduce-item">
 							<div class="introduce-title">Câu chuyện thương hiệu</div>
-							<p class="home-desc">Được trồng trọt và chăm chút kỹ lưỡng, nuôi dưỡng từ thổ
-								nhưỡng phì nhiêu, nguồn nước mát lành, bao bọc bởi mây và sương
-								cùng nền nhiệt độ mát mẻ quanh năm, những búp trà ở Tây Bắc mập
-								mạp và xanh mướt, hội tụ đầy đủ dưỡng chất, sinh khí, và tinh
-								hoa đất trời.</p>
-							<a href="https://homitatea.com/about/cau-chuyen-thuong-hieu.html" class="btn-explore">Khám phá</a>
+							<p class="home-desc">Được trồng trọt và chăm chút kỹ lưỡng,
+								nuôi dưỡng từ thổ nhưỡng phì nhiêu, nguồn nước mát lành, bao bọc
+								bởi mây và sương cùng nền nhiệt độ mát mẻ quanh năm, những búp
+								trà ở Tây Bắc mập mạp và xanh mướt, hội tụ đầy đủ dưỡng chất,
+								sinh khí, và tinh hoa đất trời.</p>
+							<a href="https://homitatea.com/about/cau-chuyen-thuong-hieu.html"
+								class="btn-explore">Khám phá</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="products">
-			<p class="products-title">Sản phẩm bán chạy${user.getFullname()}</p>
+			<p class="products-title">Sản phẩm bán chạy</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list1}">
 					<div class="col col-1-2">
-						<a href="/product_detail/${milkTea.idMilkTea}" class="card outstanding-item">
-							<span class="outstanding-title">BEST SELLER</span>
+						<a href="/product_detail/${milkTea.idMilkTea}"
+							class="d-block card outstanding-item"> <span
+							class="outstanding-title">BEST SELLER</span>
 							<div class="img-container">
-								<img
-									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-									class="card-image card-img-top" alt="...">
+								<c:url
+									value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+									var="imgUrl" />
+								<img src="${imgUrl}" class="card-image card-img-top" />
 							</div>
 							<div class="card-body">
 								<h5 class="card-title">${milkTea.name}</h5>
@@ -105,15 +111,16 @@
 			</div>
 		</div>
 		<div class="products pb-4">
-			<p class="products-title">Sản phẩm khuyến mãi</p>
+			<p class="products-title">Sản phẩm cửa hàng</p>
 			<div class="row gx-1">
 				<c:forEach var="milkTea" items="${list2}">
 					<div class="col col-1-2">
 						<a href="/product_detail/${milkTea.idMilkTea}" class="card">
 							<div class="img-container">
-								<img
-									src="https://i1.wp.com/talkboba.com/wp-content/uploads/2019/04/strawberry-milk-tea-tb.jpg?zoom=0.800000011920929&fit=1024%2C1024&ssl=1"
-									class="card-image card-img-top" alt="...">
+								<c:url
+									value="/home/image/${milkTea.image != null ? milkTea.image : null }"
+									var="imgUrl" />
+								<img src="${imgUrl}" class="card-image card-img-top" />
 							</div>
 							<div class="card-body">
 								<h5 class="card-title">${milkTea.name}</h5>

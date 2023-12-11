@@ -31,7 +31,7 @@
 		<div class="container py-2">
 			<div
 				class="row d-flex justify-content-center align-content-start align-items-center"
-				style="margin-top: 75px">
+				style="margin-top: 65px; margin-bottom: 50px">
 				<div class="col-md-6">
 					<img src='<c:url value="/security/img/register.jpg" />' alt="Image"
 						class="img-fluid me-3" style="margin-left: -50px;">
@@ -40,6 +40,11 @@
 					<div class="card rounded-4 shadow">
 						<div class="card-body p-md-5 p-sm-2">
 							<h2 class="fw-bold mb-4">Sign up for free</h2>
+							<div class="alert">
+								<c:if test="${not empty message}">
+									<div class="alert alert-success">${message}</div>
+								</c:if>
+							</div>
 							<form action="/security/register" method="post"
 								class="needs-validation" novalidate="true">
 
@@ -65,17 +70,14 @@
 												placeholder="Phonenumber" /> <label for="floatingUsername">Phonenumber</label>
 										</div>
 									</div>
+
 									<div class="mb-3">
-										<div class="form-floating d-flex align-items-center">
-											<div>
-												<input type="radio" name="gender" id="nam" checked required>
-												<label>Nam</label>
-											</div>
-											<div>
-												<input class="ms-4" type="radio" name="gender" id="nu">
-												<label>Nữ</label>
-											</div>
-										</div>
+										<label for="exampleInputGender" style="margin-left: 2px" class="form-label">Giới
+											tính*</label> <select name="gender" class="form-select"
+											id="exampleInputGender" required="required">
+											<option value="1">Nam</option>
+											<option value="0">Nữ</option>
+										</select>
 									</div>
 									<div class="mb-3  ">
 										<div class="form-floating">
@@ -124,21 +126,16 @@
 									<a
 										href="${pageContext.request.contextPath}/oauth2/authorization/google"
 										class="w-100 py-2 mb-2 btn btn-outline-danger rounded-3">
-										<i class="fab fa-google me-2"></i> Sign in with google
+										<i class="fab fa-google me-2"></i> Sign up with google
 									</a> <a
 										href="${pageContext.request.contextPath}/oauth2/authorization/facebook"
 										class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3">
-										<i class="fab fa-facebook-f me-2"></i>Sign in with facebook
+										<i class="fab fa-facebook-f me-2"></i>Sign up with facebook
 									</a>
-									<div class="d-grid gap-2 mb-2">
+									<div class="d-grid gap-2 mb-2" style="margin-top: 15px">
 										<a href="/security/login"
 											class="text-dark text-decoration-none d-inline text-center"><b>Back
 												to login</b></a>
-									</div>
-									<div class="alert">
-										<c:if test="${not empty message}">
-											<div class="alert alert-success">${message}</div>
-										</c:if>
 									</div>
 								</div>
 							</form>

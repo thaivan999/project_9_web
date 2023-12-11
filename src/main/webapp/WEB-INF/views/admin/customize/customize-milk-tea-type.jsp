@@ -22,10 +22,11 @@
                 <h1 class="mt-4">QUẢN LÝ LOẠI TRÀ SỮA</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="/admin/index">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="/admin/milk-tea-type-update">Cập nhật loại trà sữa</a></li>
+                    <li class="breadcrumb-item active"><a style="text-decoration: none; color: black" href="#">Cập nhật loại trà sữa</a></li>
                 </ol>
                 <div class="card mb-4">
-                    <form class="mt-3 ms-3 me-3 mb-3" action="<c:url value="/admin/customize-milk-tea-type/saveOrUpdate"/>" method="post">
+                    <form class="mt-3 ms-3 me-3 mb-3"
+						action="<c:url value="/admin/milk-tea-type/saveOrUpdate"/>" method="post">
                         <!-- ID Type -->
                         <div class="mb-3">
                             <label for="exampleInputTypeId" class="form-label">ID Type*</label> 

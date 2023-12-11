@@ -16,12 +16,15 @@ import hcmute.entity.MilkTeaEntity;
 public interface ICartDetailService {
 
 	void addProductToCart(int idCart, int idMilkTea, String size);
+	
+	void addProductToFavorite(int idCart, int idMilkTea);
 
 	List<CartDetailId> findMilkTeaByCartId(int idCart);
 
 	List<CartDetailEntity> findByCartByCartDetailIdCart(int idCart);
 
 	Optional<CartDetailEntity> findById(CartDetailId id);
+	
 
 	void deleteAll();
 

@@ -6,7 +6,9 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +46,7 @@ import hcmute.service.IOrderDetailService;
 import hcmute.service.IOrderService;
 import hcmute.service.IPayMethodService;
 import hcmute.service.IUserService;
+import hcmute.service.impl.CookieServiceImpl;
 
 @Controller
 @RequestMapping("payment")
@@ -65,9 +68,12 @@ public class PaymentController {
 	
 	@Autowired
 	IBranchService branchService;
+	
+	@Autowired
+	CookieServiceImpl cookieServiceImpl;
 
 	@GetMapping("")
-	private String displayPayment(ModelMap model, @RequestParam("data") String data, @RequestParam("idBranch") int idBranch)
+	private String displayPayment(ModelMap model, @RequestParam("data") String data, @RequestParam("listBranch") String listBranch)
 			throws UnsupportedEncodingException {
 //		data = URLDecoder.decode(data, "UTF-8");
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
@@ -75,12 +81,31 @@ public class PaymentController {
 		model.addAttribute("dataJSON", data);
 		List<PayMethodEntity> listPayMethod = payMethodService.findAll();
 		model.addAttribute("listPayMethod", listPayMethod);
-		Optional<UserEntity> optCustomer = userService.findById(1);
+		int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
+		Optional<UserEntity> optCustomer = userService.findById(idUser);
 		if (optCustomer.isPresent()) {
 			UserEntity customer = optCustomer.get();
 			model.addAttribute("customer", customer);
 		}
-
+		
+		byte[] branchBytes = Base64.getDecoder().decode(listBranch);
+		String branchString = new String(branchBytes);
+		branchString = branchString.trim();
+		if (branchString.startsWith("[")) {
+			branchString = branchString.substring(1, branchString.length() - 1);
+        }
+		
+		List<String> branchList = new ArrayList<>(Arrays.asList(branchString.split(",")));
+		List<BranchEntity> branches = new ArrayList<BranchEntity>();
+		for(String branchId : branchList) {
+			int id = Integer.parseInt(branchId);
+			Optional<BranchEntity> opt = branchService.findById(id);
+			if(opt.isPresent()) {
+				branches.add(opt.get());
+			}
+		}
+		model.addAttribute("branches", branches);
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		try {
@@ -99,7 +124,7 @@ public class PaymentController {
 			}
 			model.addAttribute("orderProduct", orderProduct);
 			model.addAttribute("listMilkTea", listMilkTea);
-			model.addAttribute("idBranch", idBranch);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -109,22 +134,26 @@ public class PaymentController {
 	@GetMapping("/order")
 	private String insertOrder(ModelMap model, @RequestParam("data") String data)
 			throws UnsupportedEncodingException, JsonMappingException, JsonProcessingException {
+		int idUser = Integer.parseInt(cookieServiceImpl.getValue("USER_ID"));
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
 		data = new String(decodedBytes, StandardCharsets.UTF_8);
 		ObjectMapper objectMapper = new ObjectMapper();
-		DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		try {
 			OrderData orderData = objectMapper.readValue(data, OrderData.class);
 			OrderEntity orderEntity = new OrderEntity();
 			orderEntity.setTotalProduct(orderData.getTotalProduct());
 			orderEntity.setTotalPrice(orderData.getTotalPrice());
 			orderEntity.setFinalPrice(orderData.getFinalPrice());
-			orderEntity.setOrderDay(LocalDate.parse(orderData.getOrderDay(), formatter));
+			LocalDateTime localDateTime = LocalDateTime.parse(orderData.getOrderDay(), formatter);
+			orderEntity.setOrderDay(localDateTime.truncatedTo(ChronoUnit.SECONDS));
 			orderEntity.setOrderState(orderData.getOrderState());
-			orderEntity.setShipDay(LocalDate.parse(orderData.getShipDay(), formatter));
+			localDateTime = LocalDateTime.parse(orderData.getShipDay(), formatter);
+			orderEntity.setShipDay(localDateTime.truncatedTo(ChronoUnit.SECONDS));
 			orderEntity.setNote(orderData.getNote());
 			orderEntity.setAddress(orderData.getAddress());
 			orderEntity.setPhoneNumber(orderData.getPhoneNumber());
+			orderEntity.setFee(orderData.getFee());
 			Optional<BranchEntity> optBranch = branchService.findById(orderData.getIdBranch());
 			if(optBranch.isPresent()) {
 				orderEntity.setBranchByOrder(optBranch.get());
@@ -137,7 +166,7 @@ public class PaymentController {
 				}
 			}
 
-			Optional<UserEntity> optCustomer = userService.findById(1);
+			Optional<UserEntity> optCustomer = userService.findById(idUser);
 			if (optCustomer.isPresent()) {
 				orderEntity.setCustomerByOrder(optCustomer.get());
 			}

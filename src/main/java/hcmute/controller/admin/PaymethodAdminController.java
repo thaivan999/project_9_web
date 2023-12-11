@@ -17,38 +17,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import hcmute.entity.BranchEntity;
 import hcmute.entity.PayMethodEntity;
+import hcmute.model.BranchModel;
 import hcmute.model.PayMethodModel;
 import hcmute.service.IPayMethodService;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("admin/paymethod")
 public class PaymethodAdminController {
 
 	@Autowired
 	private IPayMethodService payMethodService;
 
-	@GetMapping("view-paymethod")
+	@GetMapping("")
 	public String IndexViewMethod(ModelMap model) {
-		List<PayMethodEntity> payMethod = payMethodService.findAll();
-		model.addAttribute("payMethod", payMethod);
+		List<PayMethodEntity> paymethods = payMethodService.findAll();
+		model.addAttribute("paymethods", paymethods);
 		return "admin/view/view-paymethod";
 	}
-
-	@GetMapping("customize-paymethod")
-	public String IndexCustomizePayMehthod() {
-		return "admin/customize/customize-paymethod";
-	}
-
-	@GetMapping("customize-paymethod/add")
+	@GetMapping("add")
 	public String add(ModelMap model) {
-		PayMethodModel payMethod = new PayMethodModel();
-		payMethod.setIsEdit(false);
-		model.addAttribute("payMethod", payMethod);
+		PayMethodModel paymethod = new PayMethodModel();
+		paymethod.setIsEdit(false);
+		model.addAttribute("paymethod", paymethod);
 		return "admin/customize/customize-paymethod";
 	}
 
-	@PostMapping("customize-paymethod/saveOrUpdate")
+	@PostMapping("saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("payMethod") PayMethodModel payMethod,
 			BindingResult result) {
 		if (result.hasErrors()) {
@@ -71,21 +67,23 @@ public class PaymethodAdminController {
 			model.addAttribute("message", "Không thể lưu paymethod với dữ liệu null");
 		}
 
-		return new ModelAndView("redirect:/admin/view-paymethod", model);
+		return new ModelAndView("redirect:/admin/paymethod", model);
 	}
 
-	@GetMapping("customize-paymethod/saveOrUpdate/{idPayMethod}")
+	@GetMapping("edit/{idPayMethod}")
 	public ModelAndView edit(ModelMap model, @PathVariable("idPayMethod") String idPayMethod) {
 		Optional<PayMethodEntity> opt = payMethodService.findById(idPayMethod);
-		PayMethodModel payMethod = new PayMethodModel();
+		PayMethodModel paymethod = new PayMethodModel();
 		if (opt.isPresent()) {
 			PayMethodEntity entity = opt.get();
-			BeanUtils.copyProperties(entity, payMethod);
-			payMethod.setIsEdit(true);
-			model.addAttribute("payMethod", payMethod);
+			BeanUtils.copyProperties(entity, paymethod);
+			paymethod.setIsEdit(true);
+			model.addAttribute("paymethod", paymethod);
 			return new ModelAndView("admin/customize/customize-paymethod", model);
 		}
-		model.addAttribute("message", "paymethod không tồn tại");
-		return new ModelAndView("forward:/admin/view-paymethod", model);
+
+		model.addAttribute("message", "Branch không tồn tại");
+		return new ModelAndView("forward:/admin/paymethod", model);
 	}
+
 }

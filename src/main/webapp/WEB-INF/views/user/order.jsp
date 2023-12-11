@@ -64,7 +64,9 @@
 											${userOrder.customerByOrder.name}</p>
 										<p class="text-danger" style="font-weight: 700">Số điện
 											thoại: ${userOrder.phoneNumber}</p>
-										<p>Địa chỉ giao hàng: ${userOrder.address}</p>
+										<p class="bold-text">Địa chỉ giao hàng: ${addressOrder}</p>
+										<p class="bold-text">Địa chỉ nhận hàng:
+											${userOrder.address}</p>
 									</div>
 								</div>
 							</div>
@@ -73,6 +75,7 @@
 							<div class="card border">
 								<div class="card-header">
 									<h5>Đơn hàng: ${userOrder.idOrder}</h5>
+									<h5>Trạng thái: <i class="text-danger">${userOrder.orderState == 0 ? "Chờ xử lý" : userOrder.orderState == 1 ? "Đã xác nhận" : userOrder.orderState == 2 ? "Đang giao hàng" : "Đã nhận hàng" }</i></h5>
 								</div>
 								<div class="card-body">
 									<!-- Danh sách món -->
@@ -89,13 +92,13 @@
 													<h5 class="text-danger">${orderDetail.idOrderDetail.size == 'Lớn' ? '+ 5000đ' : '+ 0đ'}</h5>
 												</div>
 												<hr style="border: thin solid #D6D6D6;">
-												<div class="d-flex justify-content-between">
-													<p style="font-weight: bold">Phí giao hàng</p>
-													<h5 class="text-danger">+ 12000đ</h5>
-												</div>
-												<hr style="border: thin solid #D6D6D6;">
 											</div>
 										</c:forEach>
+										<div class="d-flex justify-content-between">
+											<p style="font-weight: bold">Phí giao hàng</p>
+											<h5 class="text-danger">+ ${userOrder.fee }đ</h5>
+										</div>
+										<hr style="border: thin solid #D6D6D6;">
 										<!-- Tổng giá -->
 										<div class="total_price">
 											<div class="d-flex justify-content-between">
