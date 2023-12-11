@@ -17,6 +17,7 @@ const listRadioBranch = document.querySelectorAll('.radio-branch');
 const listBranchAddress = document.querySelectorAll('.list-branches-item-address');
 
 let timeoutId = null;
+let shipAddress = "";
 
 function convertToDateTime(dateString) {
 	const date = new Date(dateString);
@@ -59,12 +60,12 @@ paymentBtn.addEventListener('click', function() {
 	orderData.finalPrice = convertToVal(finalPrice.textContent);
 	orderData.orderDay = orderDay.textContent;
 	orderData.shipDay = shipDay.textContent;
+	orderData.fee = convertToVal(fee.textContent);
 	listRadioBranch.forEach((item) => {
 		if (item.checked) {
 			orderData.idBranch = item.getAttribute('data-id');
 		}
 	})
-	orderData.fee = convertToVal(fee.textContent);
 	listRadio.forEach(function(item) {
 		if (item.checked) {
 			orderData.idPayMethod = item.getAttribute('data-id');
@@ -207,6 +208,18 @@ address.addEventListener('blur', function() {
 		calculateAllShipPrice();
 	}, 500);
 })
+
+listRadioBranch.forEach((radio, index) => {
+	radio.addEventListener('change', async () => {
+		if (radio.checked) {
+			fee.textContent = listFee[index].textContent;
+			finalPrice.textContent = convertToVal(listFee[index].textContent) + convertToVal(price.textContent) + "đ";
+			shipAddress = listBranchAddress[index].textContent;
+			const dataObj = await getDataOfAPI(shipAddress);
+			shipDay.textContent = calculateShipDayBaseOnDistance(dataObj.duration.text);
+		}
+	});
+});
 
 
 

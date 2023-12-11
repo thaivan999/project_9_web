@@ -14,7 +14,7 @@ public class ShipPriceCaculatorApi {
 	@GetMapping("/calculateDistance")
 	public ResponseEntity<Object> calculateDistance(@RequestParam String origins, @RequestParam String destinations,
 			@RequestParam String units) {
-		String apiKey = "AIzaSyD-S3yuHb8vVcR8Pqo0raNKf3EF3RL7EvE";
+		String apiKey = "AIzaSyCMohr_wpjKEczE-IhEl-BGyXkeIEUFptw";
 		String url = String.format(
 				"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%s&destinations=%s&units=%s&key=%s",
 				origins, destinations, units, apiKey);
